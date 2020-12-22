@@ -1,0 +1,21 @@
+bookdown::gitbook:
+  css: style.css
+  cover-image: "images/cover.png"
+  github-repo: "FAO-GSP/SOC-Mapping-Cookbook"
+  config:
+    toc:
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/FAO-GSP/SOC-Mapping-Cookbook/edit/master/%s
+    download: ["pdf", "epub"]
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+    before_body: ["frontcover.tex", "abbrev.tex"]
+    after_body: backcover.tex
+  latex_engine: xelatex
+  toc: false
+  citation_package: natbib
+  keep_tex: yes
+  toc_bib: yes
+bookdown::epub_book: default

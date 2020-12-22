@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Chapter 6| Datasets and inputs | GSOCseq - Global Soil Organic Carbon Sequestration Potential Map Technical Manual</title>
+  <meta name="description" content="The GSOCseq Technical Manual" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Chapter 6| Datasets and inputs | GSOCseq - Global Soil Organic Carbon Sequestration Potential Map Technical Manual" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:description" content="The GSOCseq Technical Manual" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Chapter 6| Datasets and inputs | GSOCseq - Global Soil Organic Carbon Sequestration Potential Map Technical Manual" />
+  
+  <meta name="twitter:description" content="The GSOCseq Technical Manual" />
+  <meta name="twitter:image" content="images/cover.png" />
+
+<meta name="author" content="Food and Agriculture Organization of the United Nations, Rome, 2020" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter-5-modelling-approach-for-the-gsocseq.html"/>
+<link rel="next" href="chapter-7-software-environment.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>List of contributors</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributers-and-reviewers"><i class="fa fa-check"></i>Contributers and Reviewers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#special-advisor"><i class="fa fa-check"></i>Special Advisor</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="chapter-1-presentation.html"><a href="chapter-1-presentation.html"><i class="fa fa-check"></i><b>1</b> Chapter 1| Presentation</a><ul>
+<li class="chapter" data-level="1.1" data-path="chapter-1-presentation.html"><a href="chapter-1-presentation.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> 1.1 How to use this book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chapter-2-soil-organic-carbon-soc-sequestration.html"><a href="chapter-2-soil-organic-carbon-soc-sequestration.html"><i class="fa fa-check"></i><b>2</b> Chapter 2| Soil Organic Carbon (SOC) sequestration</a><ul>
+<li class="chapter" data-level="2.1" data-path="chapter-2-soil-organic-carbon-soc-sequestration.html"><a href="chapter-2-soil-organic-carbon-soc-sequestration.html#soil-carbon"><i class="fa fa-check"></i><b>2.1</b> 2.1 Soil carbon</a></li>
+<li class="chapter" data-level="2.2" data-path="chapter-2-soil-organic-carbon-soc-sequestration.html"><a href="chapter-2-soil-organic-carbon-soc-sequestration.html#soc-sequestration"><i class="fa fa-check"></i><b>2.2</b> 2.2 SOC sequestration</a></li>
+<li class="chapter" data-level="2.3" data-path="chapter-2-soil-organic-carbon-soc-sequestration.html"><a href="chapter-2-soil-organic-carbon-soc-sequestration.html#factors-affecting-soc-sequestration"><i class="fa fa-check"></i><b>2.3</b> 2.3 Factors affecting SOC sequestration</a></li>
+<li class="chapter" data-level="2.4" data-path="chapter-2-soil-organic-carbon-soc-sequestration.html"><a href="chapter-2-soil-organic-carbon-soc-sequestration.html#estimating-soc-sequestration-potential"><i class="fa fa-check"></i><b>2.4</b> 2.4 Estimating SOC sequestration potential</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapter-3-soc-modelling.html"><a href="chapter-3-soc-modelling.html"><i class="fa fa-check"></i><b>3</b> Chapter 3| SOC Modelling</a><ul>
+<li class="chapter" data-level="3.1" data-path="chapter-3-soc-modelling.html"><a href="chapter-3-soc-modelling.html#process-oriented-models"><i class="fa fa-check"></i><b>3.1</b> 3.1 Process-oriented models</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter-3-soc-modelling.html"><a href="chapter-3-soc-modelling.html#examples-of-process-oriented-models"><i class="fa fa-check"></i><b>3.2</b> 3.2 Examples of process-oriented models</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="chapter-4-the-rothc-model.html"><a href="chapter-4-the-rothc-model.html"><i class="fa fa-check"></i><b>4</b> Chapter 4| The RothC model</a><ul>
+<li class="chapter" data-level="4.1" data-path="chapter-4-the-rothc-model.html"><a href="chapter-4-the-rothc-model.html#model-description"><i class="fa fa-check"></i><b>4.1</b> 4.1 Model description</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter-4-the-rothc-model.html"><a href="chapter-4-the-rothc-model.html#rothc-general-data-requirements"><i class="fa fa-check"></i><b>4.2</b> 4.2 RothC general data requirements</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="chapter-5-modelling-approach-for-the-gsocseq.html"><a href="chapter-5-modelling-approach-for-the-gsocseq.html"><i class="fa fa-check"></i><b>5</b> Chapter 5| Modelling approach for the GSOCseq</a><ul>
+<li class="chapter" data-level="5.1" data-path="chapter-5-modelling-approach-for-the-gsocseq.html"><a href="chapter-5-modelling-approach-for-the-gsocseq.html#general-framework"><i class="fa fa-check"></i><b>5.1</b> 5.1 General framework</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter-5-modelling-approach-for-the-gsocseq.html"><a href="chapter-5-modelling-approach-for-the-gsocseq.html#potential-soc-sequestration-estimates-after-the-implementation-of-ssm-practices"><i class="fa fa-check"></i><b>5.2</b> 5.2 Potential SOC sequestration estimates after the implementation of SSM practices</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-5-modelling-approach-for-the-gsocseq.html"><a href="chapter-5-modelling-approach-for-the-gsocseq.html#business-as-usual-and-sustainable-soil-management-scenarios"><i class="fa fa-check"></i><b>5.3</b> 5.3 Business as usual and sustainable soil management scenarios</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter-5-modelling-approach-for-the-gsocseq.html"><a href="chapter-5-modelling-approach-for-the-gsocseq.html#general-modeling-procedures"><i class="fa fa-check"></i><b>5.4</b> 5.4 General modeling procedures</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="chapter-5-modelling-approach-for-the-gsocseq.html"><a href="chapter-5-modelling-approach-for-the-gsocseq.html#initialization-long-spin-up"><i class="fa fa-check"></i><b>5.4.1</b> 5.4.1 Initialization: Long spin-up</a></li>
+<li class="chapter" data-level="5.4.2" data-path="chapter-5-modelling-approach-for-the-gsocseq.html"><a href="chapter-5-modelling-approach-for-the-gsocseq.html#short-spin-up"><i class="fa fa-check"></i><b>5.4.2</b> 5.4.2 Short spin-up</a></li>
+<li class="chapter" data-level="5.4.3" data-path="chapter-5-modelling-approach-for-the-gsocseq.html"><a href="chapter-5-modelling-approach-for-the-gsocseq.html#forward-runs"><i class="fa fa-check"></i><b>5.4.3</b> 5.4.2 Forward runs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="chapter-5-modelling-approach-for-the-gsocseq.html"><a href="chapter-5-modelling-approach-for-the-gsocseq.html#summary"><i class="fa fa-check"></i><b>5.5</b> 5.5 Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html"><i class="fa fa-check"></i><b>6</b> Chapter 6| Datasets and inputs</a><ul>
+<li class="chapter" data-level="6.1" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#climate-datasets"><i class="fa fa-check"></i><b>6.1</b> 6.1 Climate datasets</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#soil-datasets"><i class="fa fa-check"></i><b>6.2</b> 6.2 Soil datasets</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#initial-total-soc-stocks"><i class="fa fa-check"></i><b>6.2.1</b> 6.2.1 Initial total SOC stocks</a></li>
+<li class="chapter" data-level="6.2.2" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#initial-c-pools"><i class="fa fa-check"></i><b>6.2.2</b> 6.2.2 Initial C pools</a></li>
+<li class="chapter" data-level="6.2.3" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#soil-texture-clay-content"><i class="fa fa-check"></i><b>6.2.3</b> 6.2.3 Soil texture: clay content</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#land-cover-datasets"><i class="fa fa-check"></i><b>6.3</b> 6.3 Land cover datasets</a></li>
+<li class="chapter" data-level="6.4" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#monthly-vegetation-cover"><i class="fa fa-check"></i><b>6.4</b> 6.4 Monthly vegetation cover</a></li>
+<li class="chapter" data-level="6.5" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#monthly-carbon-inputs"><i class="fa fa-check"></i><b>6.5</b> 6.5 Monthly carbon inputs:</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#c-inputs-under-bau-practices"><i class="fa fa-check"></i><b>6.5.1</b> 6.5.1 C inputs under BAU practices:</a></li>
+<li class="chapter" data-level="6.5.2" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#c-inputs-under-ssm-practices"><i class="fa fa-check"></i><b>6.5.2</b> 6.5.2 C inputs under SSM practices:</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#residue-decomposability-decomposable-to-resistant-plant-material-ratio-dpmrpm"><i class="fa fa-check"></i><b>6.6</b> 6.6 Residue decomposability: decomposable to resistant plant material ratio (DPM/RPM)</a></li>
+<li class="chapter" data-level="6.7" data-path="chapter-6-datasets-and-inputs.html"><a href="chapter-6-datasets-and-inputs.html#required-datasets-and-global-data-sources.-summary"><i class="fa fa-check"></i><b>6.7</b> 6.7 Required datasets and global data sources. Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html"><i class="fa fa-check"></i><b>7</b> Chapter 7| Software environment</a><ul>
+<li class="chapter" data-level="7.1" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html#setting-up-the-software-environment-r-rstudio-and-r-packages"><i class="fa fa-check"></i><b>7.1</b> 7.1 Setting up the software environment: R, RStudio and R Packages</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html#obtaining-and-installing-r"><i class="fa fa-check"></i><b>7.1.1</b> 7.1.1 Obtaining and installing R</a></li>
+<li class="chapter" data-level="7.1.2" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html#obtaining-and-installing-rstudio"><i class="fa fa-check"></i><b>7.1.2</b> 7.1.2 Obtaining and installing RStudio</a></li>
+<li class="chapter" data-level="7.1.3" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html#getting-started-with-r"><i class="fa fa-check"></i><b>7.1.3</b> 7.1.3 Getting started with R</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html#r-packages"><i class="fa fa-check"></i><b>7.2</b> 7.2 R packages</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html#finding-r-packages"><i class="fa fa-check"></i><b>7.2.1</b> 7.2.1 Finding R packages</a></li>
+<li class="chapter" data-level="7.2.2" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html#some-useful-r-packages-for-the-socseq-maps"><i class="fa fa-check"></i><b>7.2.2</b> 7.2.2 Some useful R-packages for the SOCseq maps</a></li>
+<li class="chapter" data-level="7.2.3" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html#installation-of-r-packages-used-in-this-technical-manual"><i class="fa fa-check"></i><b>7.2.3</b> 7.2.3 Installation of R-Packages used in this technical manual</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="chapter-7-software-environment.html"><a href="chapter-7-software-environment.html#considerations-when-using-r"><i class="fa fa-check"></i><b>7.3</b> 7.3 Considerations when using R</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="chapter-8-running-the-scripts-overview.html"><a href="chapter-8-running-the-scripts-overview.html"><i class="fa fa-check"></i><b>8</b> Chapter 8| Running the scripts: overview</a><ul>
+<li class="chapter" data-level="8.1" data-path="chapter-8-running-the-scripts-overview.html"><a href="chapter-8-running-the-scripts-overview.html#stage-1-preparation-of-data"><i class="fa fa-check"></i><b>8.1</b> 8.2 Stage 1: Preparation of data</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter-8-running-the-scripts-overview.html"><a href="chapter-8-running-the-scripts-overview.html#stage-2-running-the-model"><i class="fa fa-check"></i><b>8.2</b> 8.3. Stage 2: Running the model</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter-8-running-the-scripts-overview.html"><a href="chapter-8-running-the-scripts-overview.html#stage-3-map-generation"><i class="fa fa-check"></i><b>8.3</b> 8.4. Stage 3: Map generation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html"><i class="fa fa-check"></i><b>9</b> Chapter 9| Stage 1: preparation of input data</a><ul>
+<li class="chapter" data-level="9.1" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#preparation-of-soc-layer"><i class="fa fa-check"></i><b>9.1</b> 9.1 Preparation of SOC layer</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-0.soc_map_aoi.r"><i class="fa fa-check"></i><b>9.1.1</b> 9.1.1 Script Number 0.“SOC_MAP_AOI.R”</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#preparation-of-climate-layers"><i class="fa fa-check"></i><b>9.2</b> 9.2 Preparation of climate Layers</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-1.cru_variables_spin_up.r"><i class="fa fa-check"></i><b>9.2.1</b> 9.2.1 Script Number 1.“CRU_variables_SPIN_UP.R”</a></li>
+<li class="chapter" data-level="9.2.2" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-2.-cru_variables_warm_up.r"><i class="fa fa-check"></i><b>9.2.2</b> 9.2.2 Script Number 2. “CRU_variables_WARM_UP.R”</a></li>
+<li class="chapter" data-level="9.2.3" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-3.-preparation-of-cru-files-to-estimate-npp-1981-2000"><i class="fa fa-check"></i><b>9.2.3</b> 9.3.1 Script Number 3. Preparation of CRU files to estimate NPP 1981-2000</a></li>
+<li class="chapter" data-level="9.2.4" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-5.-miami-model-npp-mean-1981-2000"><i class="fa fa-check"></i><b>9.2.4</b> 9.3.2 Script Number 5. MIAMI model NPP mean 1981-2000</a></li>
+<li class="chapter" data-level="9.2.5" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-6.-monthly_vegetation_cover-vegetation-cover-from-google-earth-engine."><i class="fa fa-check"></i><b>9.2.5</b> 9.4.1 Script Number 6. “Monthly_vegetation_cover” vegetation cover from Google Earth Engine.</a></li>
+<li class="chapter" data-level="9.2.6" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-7.-vegetation_cover_stack.r"><i class="fa fa-check"></i><b>9.2.6</b> 9.4.2 Script Number 7. “Vegetation_Cover_stack.R”</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#preparing-the-land-use-layer"><i class="fa fa-check"></i><b>9.3</b> 9.6 Preparing the land use layer</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-9-land_use_esa_to_fao_classes.r"><i class="fa fa-check"></i><b>9.3.1</b> 9.6.1 Script Number 9 “Land_Use_ESA_to_FAO_classes.R”</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#harmonization-of-soil-climate-and-vegetation-layers."><i class="fa fa-check"></i><b>9.4</b> 9.7 Harmonization of soil, climate and vegetation layers.</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-10.-spin_up_stack.v3.r"><i class="fa fa-check"></i><b>9.4.1</b> 9.7.1 Script Number 10. “SPIN_UP_STACK.v3.R”</a></li>
+<li class="chapter" data-level="9.4.2" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-11.-warm_up_stack_v5.r"><i class="fa fa-check"></i><b>9.4.2</b> 9.7.2 Script Number 11. “WARM_UP_STACK_V5.R”</a></li>
+<li class="chapter" data-level="9.4.3" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#script-number-12.-forward_stack.r"><i class="fa fa-check"></i><b>9.4.3</b> 9.7.3 Script Number 12. “FORWARD_STACK.R”</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#defining-target-points-to-run-the-model"><i class="fa fa-check"></i><b>9.5</b> 9.8 Defining target points to run the model</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="chapter-9-stage-1-preparation-of-input-data.html"><a href="chapter-9-stage-1-preparation-of-input-data.html#qgis-procedure-number-1-model"><i class="fa fa-check"></i><b>9.5.1</b> 9.8.1 QGIS Procedure number 1 (model)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapter-10-stage-2-running-the-model.html"><a href="chapter-10-stage-2-running-the-model.html"><i class="fa fa-check"></i><b>10</b> Chapter 10| Stage 2: running the model</a><ul>
+<li class="chapter" data-level="10.1" data-path="chapter-10-stage-2-running-the-model.html"><a href="chapter-10-stage-2-running-the-model.html#script-number-13.-roth_c_spin_up_v2.r"><i class="fa fa-check"></i><b>10.1</b> 10.1 Script Number 13. “ROTH_C_SPIN_UP_v2.R”</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter-10-stage-2-running-the-model.html"><a href="chapter-10-stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r"><i class="fa fa-check"></i><b>10.2</b> 10.2 Script Number 14. “ROTH_C_WARM_UP_v4.R”</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="chapter-10-stage-2-running-the-model.html"><a href="chapter-10-stage-2-running-the-model.html#script-number-15.-roth_c_forward_v2.r"><i class="fa fa-check"></i><b>10.2.1</b> 10.3 Script Number 15. “ROTH_C_forward_v2.R”</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter-11-stage-3-map-generation.html"><a href="chapter-11-stage-3-map-generation.html"><i class="fa fa-check"></i><b>11</b> Chapter 11| Stage 3: map generation</a><ul>
+<li class="chapter" data-level="11.1" data-path="chapter-11-stage-3-map-generation.html"><a href="chapter-11-stage-3-map-generation.html#script-number-16-points_to_raster.r"><i class="fa fa-check"></i><b>11.1</b> 11.1 Script Number 16: “Points_to_Raster.R”</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter-12-uncertainty-and-validation.html"><a href="chapter-12-uncertainty-and-validation.html"><i class="fa fa-check"></i><b>12</b> Chapter 12| Uncertainty and validation</a></li>
+<li class="chapter" data-level="13" data-path="chapter-13-data-sharing.html"><a href="chapter-13-data-sharing.html"><i class="fa fa-check"></i><b>13</b> Chapter 13| Data sharing</a><ul>
+<li class="chapter" data-level="13.1" data-path="chapter-13-data-sharing.html"><a href="chapter-13-data-sharing.html#general-principles"><i class="fa fa-check"></i><b>13.1</b> 13.1 General principles</a></li>
+<li class="chapter" data-level="13.2" data-path="chapter-13-data-sharing.html"><a href="chapter-13-data-sharing.html#data-formats-and-integrity"><i class="fa fa-check"></i><b>13.2</b> 13.2 Data formats and integrity</a></li>
+<li class="chapter" data-level="13.3" data-path="chapter-13-data-sharing.html"><a href="chapter-13-data-sharing.html#data-correctness"><i class="fa fa-check"></i><b>13.3</b> 13.3 Data correctness</a></li>
+<li class="chapter" data-level="13.4" data-path="chapter-13-data-sharing.html"><a href="chapter-13-data-sharing.html#data-completeness"><i class="fa fa-check"></i><b>13.4</b> 13.4 Data completeness</a></li>
+<li class="chapter" data-level="13.5" data-path="chapter-13-data-sharing.html"><a href="chapter-13-data-sharing.html#other-modes-of-data-sharing"><i class="fa fa-check"></i><b>13.5</b> 13.5 Other modes of data sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="chapter-14-limitations-knowledge-gaps-and-way-forward.html"><a href="chapter-14-limitations-knowledge-gaps-and-way-forward.html"><i class="fa fa-check"></i><b>14</b> Chapter 14| Limitations, knowledge gaps and way forward</a></li>
+<li class="chapter" data-level="15" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>15</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GSOCseq - Global Soil Organic Carbon Sequestration Potential Map Technical Manual</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-6-datasets-and-inputs" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Chapter 6| Datasets and inputs</h1>
+<p>A careful harmonization of datasets and input estimation procedures is essential to obtain consistent results across regions and countries. This Chapter describes the required datasets, the potential data sources and the methodologies to estimate required inputs for the modeling approach described in Chapter 5. Procedures for the preparation and harmonization of input data are explained in Chapter 9.</p>
+<div id="climate-datasets" class="section level2">
+<h2><span class="header-section-number">6.1</span> 6.1 Climate datasets</h2>
+<p>Gridded climate data shall be obtained from:</p>
+<p>a.) National Sources or a preferred regional data source;<br />
+b.) Global datasets, when national or regional gridded historical climate datasets are not available.</p>
+<p>The dataset provided by the Climate Research Unit (CRU), developed by the University of East Anglia, United Kingdom (Harris et al., 2014) at a resolution of 0.5<span class="math inline">\(^\circ\)</span> (~50x50 km) shall be used as the standard global dataset if national or regional gridded data is not available, or if the available national data is at a coarser resolution. The CRU 2019 dataset (CRU TS v. 4.03) covers the period 1901-2018, including precipitation (pre), average/minimum and maximum air temperatures (tmp, tmn, tmx), cloud cover percentage (cld), diurnal temperature range (dtr), vapor pressure (vap), number of rainy days (wet), frost days (frs), and potential evapotranspiration (pet); (See Table 6.2, Datasets and download sources).</p>
+<p>The following variables and datasets are required to run the model (See Chapter 5, General modeling procedures):</p>
+<ul>
+<li>Monthly average air temperature (<span class="math inline">\(^\circ\)</span>C),</li>
+<li>Monthly precipitation (mm),</li>
+<li>Monthly potential evapotranspiration (Penman-Monteith; mm)</li>
+<li>Datasets: 1981-1990 (series average); 1991-2000 (series average); 2011-2010 (year to year); 2011-2018 (year to year).</li>
+</ul>
+<p>The same data sources must be used in all modeling phases.</p>
+</div>
+<div id="soil-datasets" class="section level2">
+<h2><span class="header-section-number">6.2</span> 6.2 Soil datasets</h2>
+<div id="initial-total-soc-stocks" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> 6.2.1 Initial total SOC stocks</h3>
+<p>Initial total SOC stocks to 30cm depth (in t C ha<sup>-1</sup>) are to be derived from the GSOCmap (30 arc seconds; ~ 1km x 1km resolution grid), latest revised version (FAO-ITPS, 2019). Countries wishing to include an updated or improved estimate of current SOC stocks, compared to the latest version of the GSOCmap, are encouraged to submit their updated national SOCmap to the GSP Secretariat and use it for modeling.
+Since the GSOCmap was generated from national measurements taken between the 1960s and the 2000s, and no temporal corrections have been developed in many countries, GSOCmap values will represent SOC stocks for the year 2000. A ‘short spin-up’ model run (20 years) with climate variables and management forcing for the period 2000-2020 shall be performed to reduce the effect of temporal deviations. Thus, the simulated SOC content at 2020 after the ‘short spin-up’ run will represent the initial SOC stocks prior to implementation of SSM practices (See Chapter 6, General modeling procedures). If recent national SOC monitoring campaigns (2015-2020) have been undertaken to generate the latest version of the FAO-IPS GSOC map, the SOC stocks from the GSOCmap can be considered as the current stocks (t = 0 y; i.e. year 2020), and the ‘short spin-up’ phase is not required.</p>
+</div>
+<div id="initial-c-pools" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> 6.2.2 Initial C pools</h3>
+<p>The initial C stocks in the different pools (in t C ha<sup>-1</sup>) considered in the RothC model (DPM, RPM, BIO, HUM and IOM, Fig. 4.1) shall be estimated following the ‘long spin-up’ and ‘short spin-up’ procedure described in Chapter 6.</p>
+</div>
+<div id="soil-texture-clay-content" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> 6.2.3 Soil texture: clay content</h3>
+<p>The average clay contents over 0-30 cm depth is to be obtained from gridded data (raster format) from:</p>
+<ul>
+<li>national Sources (1 km x 1 km resolution);</li>
+<li>global datasets, where national or regional datasets are not available.</li>
+</ul>
+<p>The topsoil clay content (0-30 cm, % mass fraction; 1 x 1 km resolution) from the Harmonized World Soil Database (HWSD) or SoilGrids developed by the- International Soil Reference and Information Centre (ISRIC) (see Table 6.2) shall be used as the standard global database if national or regional data is not available in the required format or resolution. Clay content can be averaged at finer resolutions to obtain 1 x 1 km grids. However, countries are encouraged to produce their own texture and clay content maps to be used as inputs for the SOCseq map, following the digital soil mapping approaches described in the GSOCmap Cookbook (FAO, 2018).
+Average clay contents over a 0-30 cm depth interval can be derived by taking a weighted average of the predictions over the depth interval using numerical integration (Hengl et al., 2017).</p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.1}
+\frac{1}{b-a} \int_{a}^{b} f(x) dx \approx \frac{1}{(b-a)} \frac{1}{2} \sum_{k=1}^{N-1}(x_{k+1} - x_{k})(f(x_{k}) + f(x_{k +1})) 
+\end{equation}\]</span></p>
+<p>where N is the number of depths; b is 30 cm, a is 0 cm, xk is the k-th depth and f(xk) is the value of the target variable (i.e., clay content) at depth xk. For example, for the 0-30 cm depth interval, with soil clay values at the first four standard depths (0, 5, 15 and 30 cm) equal to 14.5, 25.0, 25.3 and 25.0, clay content 0-30 cm equals:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.2}
+	\frac{(5-0) \times(14.5+25.0)+(15-5) \times(25.0 + 25.3) + (30 - 15) \times (25.3 + 25.0)} {30\times 0.5} = 24.25
+\end{equation}\]</span></p>
+</div>
+</div>
+<div id="land-cover-datasets" class="section level2">
+<h2><span class="header-section-number">6.3</span> 6.3 Land cover datasets</h2>
+<p>The gridded land cover data layers shall be obtained from:</p>
+<ul>
+<li>national or regional sources;</li>
+<li>global datasets, where national or regional land use or land cover datasets are not available.</li>
+</ul>
+<p>Since land cover may vary substantially between data sources and estimates of past and current land cover may have important deviations from real land cover and land use, users should estimate land use from the source that best reflects national and subnational conditions. Land cover datasets should cover the 2000-2020 (or approximate) period.
+The ESA (European Space Agency) land cover Global dataset (See Table 6.2), and its reclassification into FAO Global Land Cover - SHARE (GLC-SHARE; See Table 6.2) classes will be provided by the GSP Secretariat, if no national land use dataset is available. However, users should estimate land use from the source that best reflects national and subnational conditions. Other global and regional datasets are provided in Table 6.2 at the end of this Chapter.
+The land cover classes will affect the decomposability of the incoming plant material (DPM/RPM ratio; See Section 6.6). A spatialized R-version of RothC is provided by the GSP Secretariat (See Chapter 7, software environment) and runs considering the 11 classes defined in the FAO Global Land Cover - SHARE (GLC-SHARE). A default DPM/RPM value is assigned to each class (Table 6.1). Thus, when using this spatialized R-version of RothC without modifying its scripts, the land use classes from the possible different datasets need to be re-classified into FAO Global Land Cover - SHARE (GLC-SHARE) land use classes. However, users can model alternative land use classes, and modify these default DPM/RPM values. If so, modifications in the R-version must be then introduced (See Chapter 7). Examples of land cover reclassification from the ESA land cover database into the RothC land use categories are presented (Table 6.4) at the end of this Chapter.</p>
+<p><strong>Table 6.1</strong> <em>FAO Land cover classes, land cover number and default DPM/RPM ratios. An extra land use class (*Tree-crops) is shown as an example of the disaggregation of a land use class.</em></p>
+<table>
+<colgroup>
+<col width="36%" />
+<col width="30%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">FAO Land aggregated cover class</th>
+<th align="left">Land Cover code number</th>
+<th align="left">Default DPM/RPM ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Artificial surfaces</td>
+<td align="left">1 | - |</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">Cropland</td>
+<td align="left">2</td>
+<td align="left">1.44</td>
+</tr>
+<tr class="odd">
+<td align="left">Grassland</td>
+<td align="left">3 |</td>
+<td align="left">0.67 |</td>
+</tr>
+<tr class="even">
+<td align="left">Tree covered</td>
+<td align="left">4 | 0.25</td>
+<td align="left">0.25 |</td>
+</tr>
+<tr class="odd">
+<td align="left">Shrub covered</td>
+<td align="left">5 | 0.67</td>
+<td align="left">0.67 |</td>
+</tr>
+<tr class="even">
+<td align="left">Herbaceous vegetation</td>
+<td align="left">6 | 0.67</td>
+<td align="left">0.67 |</td>
+</tr>
+<tr class="odd">
+<td align="left">Mangroves</td>
+<td align="left">7</td>
+<td align="left">- |</td>
+</tr>
+<tr class="even">
+<td align="left">Spare vegetation</td>
+<td align="left">8</td>
+<td align="left">0.67</td>
+</tr>
+<tr class="odd">
+<td align="left">Bare soil</td>
+<td align="left">9 |</td>
+<td align="left">- |</td>
+</tr>
+<tr class="even">
+<td align="left">Snow and Glaciers</td>
+<td align="left">10</td>
+<td align="left">- |</td>
+</tr>
+<tr class="odd">
+<td align="left">Water bodies</td>
+<td align="left">11</td>
+<td align="left">- |</td>
+</tr>
+<tr class="even">
+<td align="left">Cropland-Tree crops*</td>
+<td align="left">12 | 1.44</td>
+<td align="left">1.44 |</td>
+</tr>
+</tbody>
+</table>
+<p>As a minimum, land use for the year 2000 and land use for the year 2020 (or last available year) at 1x1 km resolution shall be defined. The predominant land use category in each cell of the 1x1 km grid shall be selected if finer resolutions are available.</p>
+</div>
+<div id="monthly-vegetation-cover" class="section level2">
+<h2><span class="header-section-number">6.4</span> 6.4 Monthly vegetation cover</h2>
+<p>It is required to indicate the approximate annual distribution of monthly vegetation cover for the simulations in order to:</p>
+<ul>
+<li>adjust the topsoil moisture deficit estimations (See Chapter 4, Fig. 4.1);</li>
+<li>consider the effects of soil cover on SOC decomposition rates (See Chapter 4, Fig.4.1).</li>
+</ul>
+<p>The annual distribution of vegetation cover can be derived from:</p>
+<ul>
+<li>public statistics of national and/or administrative units considering the predominant agricultural systems in a temporal series (2000-2020);</li>
+<li>derived from NDVI (normalized difference in vegetation index) values from historic satellite images (See datasets, Table 6.2).</li>
+</ul>
+<p>The occurrence of plant cover can be assumed to be constant in grasslands, shrublands and savannas and during specific months (e.g. 1-6 months for croplands) (e.g. Smith et al., 2005; Smith et al., 2007). The following coefficients can be set for based on the specific land cover and/or land use:</p>
+<ul>
+<li>Perennial tree-crops, forests and grasslands (c=0.6);</li>
+<li>Months with predominantly bare soil and unvegetated fallows (c=1);</li>
+<li>Annual crops (c=0.6).</li>
+</ul>
+<p>Considering a temporal series (2000-2020), the proportion of images with NDVI values greater than a specified threshold, indicating active vegetation growth, can be estimated (e.g. NDVI &gt; 0.6). The monthly probability of being vegetated (P veg) can be estimated for each cell grid and each month of the year (1-12), as:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.3}
+P_{veg} = \frac{number images NDVI &gt; 0.6}{Total images}  
+\end{equation}\]</span></p>
+<p>NDVI is proposed as an alternative for estimating vegetation cover when no vegetation cover data or local knowledge is available. The proposed threshold may vary according to local conditions. Global monthly vegetation cover datasets estimated by NDVI (2000-2020) will be provided by the GSP Secretariat. However, NDVI may be a biased indicator in areas with low vegetation cover (e.g. drylands, shrublands), or high nubosity. In these cases, countries are encouraged to use other locally validated spectral indices to accurately estimate monthly vegetation cover (e.g. Multi Sensor Vegetation Index; Moradizadeh and Saradjian, 2016).</p>
+</div>
+<div id="monthly-carbon-inputs" class="section level2">
+<h2><span class="header-section-number">6.5</span> 6.5 Monthly carbon inputs:</h2>
+<div id="c-inputs-under-bau-practices" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> 6.5.1 C inputs under BAU practices:</h3>
+<p>Carbon inputs for the BAU scenarios shall be estimated using the approach proposed by Smith et al. (2005; 2006; 2007) and Gottschalk et al. (2012). Total plant C inputs to the soil, which include plant litter, root exudates and fine root turnover, are rarely known. To overcome this problem, RothC shall be run in ‘equilibrium mode’ to calculate the initial plant carbon inputs to the soil (or ‘equilibrium Carbon inputs’, Ceq), which led to the initial SOC stocks (GSOCmap), under historic forcing conditions. The Ceq thus represents the historical average of annual carbon input of the BAU scenario up to the year 2000. For further details on the equilibrium run and initialization to estimate Ceq, refer to section 3.2 (General modeling procedures).
+Once these initial carbon inputs have been established (from the year 2000 onwards), year-to-year changes can be adjusted in accordance with changes in Net Primary Production (NPP), as changes in C inputs to the soil are assumed to be associated with changes in NPP (Smith et al., 2005). Thus, annual C inputs for the BAU scenario can be adjusted as:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.4}
+BAU_{Ct} = Ct-1 \times (NPP t-1) -1 \times NPP_t
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(BAU_{Ct}\)</span> is the annual carbon input of a specific year <span class="math inline">\(t\)</span>; <span class="math inline">\(Ct-1\)</span> is the annual carbon input of the previous year; <span class="math inline">\(NPP_t\)</span> is the net primary production of year <span class="math inline">\(t\)</span>, and <span class="math inline">\(NPP-t\)</span> is the NPP of the previous year (in tC ha<sup>-1</sup>). Thus, the average NPP over the initialization period shall be associated with Ceq and the annual C inputs for the BAU scenario can be adjusted as:
+<span class="math display">\[\begin{equation}
+\tag{6.5}
+BAU_{Ct \ 2001} = C_{eq} \times NPP_{1980-2000}-1 \times NPP_{2001}                                                 
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(BAU_{Ct \ 2001}\)</span> is the annual carbon input for the first year of the ‘short spin-up’ phase; <span class="math inline">\(C_{eq}\)</span> is the estimated annual C input at equilibrium derived through the ‘long spin-up’ process; <span class="math inline">\(NPP_{1980-2000}\)</span> is the estimated average net primary production over the initialization period (1980-2000); and <span class="math inline">\(NPP_{2001}\)</span> is the estimated annual net primary production for the first year of the ‘short spin-up’ phase. The annual C inputs for the BAU scenario can be then adjusted following equation 7, according to changes in the NPP.
+The estimation of NPP using the MIAMI model (Lieth, 1975) is defined as the standard method in this document. It requires little input and is easily applicable worldwide, can be used to estimate NPP under future climatic conditions, and can act as a baseline for different NPP datasets or projections (e.g. Gottschalk et al., 2012). NPP estimated with the MIAMI model is computed with the following equations:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.6}
+NPP_{MIAMI}= min(NPP_T , NPP_P)                                                                       
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.7}
+NPPT_{MIAMI}= \frac{3000}{1^{(1.315-0.119)\times T}  
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.8}
+NPPP_{MIAMI} = 3000 \times 1^{-0.000664P} 
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(NPP\)</span> is the climatic net primary production in dry matter (DM; g m<sup>-2</sup> yr<sup>-1</sup>), <span class="math inline">\(NPP_T\)</span> is the temperature dependency term of NPP, where <span class="math inline">\(T\)</span> is the annual mean temperature (<span class="math inline">\(^\circ\)</span>C) and <span class="math inline">\(NPP_P\)</span> is the moisture dependency term of NPP, where P is the mean annual sum of precipitation (mm). NPP is limited by either temperature or precipitation. MIAMI model NPP can be expressed in t C ha<sup>-1</sup> yr<sup>-1</sup> as:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.9}
+NPP_{MIAMI} \ tC ha^1 yr^{-1} = NPP_{MIAMI} (DM; g m^{-2} yr^{-1}) \times 0.01 \times 0.48                  
+\end{equation}\]</span></p>
+<p>The annual NPPMIAMI shall be estimated for each grid cell from the climatic datasets described in section 6.1 for the different simulation periods (1981-1990; 1991-2000; 2001-2010; 2011-2020; 2021-2040). The NPPMIAMI is used to estimate BAU carbon inputs under current and projected climatic conditions.
+The change in NPP is used as a surrogate for estimating the change in C input and assumes that a similar proportion remains in the field (e.g. Smith et al., 2005; Gottschalk et al., 2012). In a first instance, countries should focus on C inputs in agricultural lands in 2020, the use of which has not changed since the year 2000. Changes in land use and management over the period 2000-2020 and associated changes in C inputs can nevertheless be taken into account, if trends in biomass removal are known, in order to adjust C inputs (e.g. Schulze et al., 2010; Plutzar et al., 2016; Neumann and Smith, 2018). Thus, the annual changes in C inputs by equations 7 and 8 can be adjusted using annual land cover data. For example, by assuming and approving an NPP of 12, 28 and 47% for forests, grasslands and croplands (Schulze et al., 2010), the annual NPP of a specific year (NPPt) can be adjusted using these coefficients (equations 6.9 to 6.11), and the annual C inputs can then be estimated by equations 6.3 and 6.4:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.10}
+NPPt_{forests} = NPP_{MIAMI} \times 0.88				 
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.11}
+NPPt_{grasslands} = NPP_{MIAMI} \times 0.72	
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.12}
+NPPt_{croplands} = NPP_{MIAMI} \times 0.53
+\end{equation}\]</span></p>
+</div>
+<div id="c-inputs-under-ssm-practices" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> 6.5.2 C inputs under SSM practices:</h3>
+<p>SSM practices shall be grouped into three scenarios as a standard method, based on their expected relative effects on C inputs compared to BAU: Low, Medium and High C inputs. The SSM practices considered in this approach are practices that affect C inputs to the soil, as changes in C inputs have been identified as one of the factors to which models are most sensitive when projecting changes in SOC stocks (FAO, 2019).
+As with estimates of BAU C inputs, total plant C inputs to the soil, including plant litter, root exudates and fine root turnover, are rarely known. Thus, C inputs of SSM scenarios will represent a % increase from BAU C inputs:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.13}
+	\Delta \% CSSM-BAU = (Cinputs_{SSM} - Cinputs_{BAU}) \times Cinputs_{BAU}
+\end{equation}\]</span></p>
+<p>As a standard, the expected effects (% increase in C inputs) of 3 scenarios have been conservatively set at:</p>
+<ul>
+<li>Low: 5 % increase in C inputs</li>
+<li>Medium: 10% increase C inputs</li>
+<li>High: 20 % increase in C inputs</li>
+</ul>
+<p>These percentages (based on Smith, 2004; Wiesmeier et al., 2016) shall be used to produce the mandatory maps for the global product. An additional ‘High increase’ scenario, considering a 30% increase in C inputs, can be modeled, to compare results with recent ‘top-down’ modeling approaches (e.g. CIRCASA).
+The use of default percentages in C input increase can be applied globally without complex configuration. However, countries should carefully check whether these scenarios are reasonable and under what type of management practices they are achievable. Countries are encouraged to produce and provide additional maps, taking into account their own estimates of the effects of different selected practices or land use changes, based on expert knowledge and local capacities. These effects can be determined on the basis of expert opinion and available information at the country level. A meta-analysis should be conducted based on the latest available local and regional studies to estimate how agricultural practices affect average annual C inputs (and the % increase in C input compared to BAU practices). These practices may include, for example, the use of cover crops, rotation with high residue yielding crops or perennials, residue retention, grazing management, plant nutrition, species introduction, manure or organic amendment application, among others. If no data is directly provided in the compiled studies, carbon inputs and % increase in C inputs relative to BAU practices shall be estimated considering the framework proposed by Bolinder et al. (2007).
+The annual C inputs required to model the effects of SSM practices under 3 scenarios (Low, Medium, High) for each modeling unit (i.e. grid cells) shall be estimated from the annual BAU C inputs:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{6.14}
+SSM_{Ct} t C ha^-1 yr^-1 = BAU_{Ct} + \% \Delta CSSM_i - BAU \times  BAU_{Ct}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(SSM_{Ct}\)</span> represents the estimated annual C inputs for a specific scenario (<span class="math inline">\(i\)</span> =Low, Medium, High) for year <span class="math inline">\(t\)</span>; <span class="math inline">\(BAU_{Ct}\)</span> represents the estimated annual C inputs for the BAU scenario for year t (determined from C inputs at equilibrium, as explained at the beginning of this section and in Chapter 5), and
+<span class="math inline">\(\% \Delta CSSM_i - BAU\)</span> is the representative % increase in C inputs for a specific scenario (<span class="math inline">\(i\)</span>=Low, Medium, High).</p>
+</div>
+</div>
+<div id="residue-decomposability-decomposable-to-resistant-plant-material-ratio-dpmrpm" class="section level2">
+<h2><span class="header-section-number">6.6</span> 6.6 Residue decomposability: decomposable to resistant plant material ratio (DPM/RPM)</h2>
+<p>Default values for the DPM/RPM ratio (decomposability of incoming plant material) can be used (e.g. 1.44 for crops and improved grasslands; 0.67 for unimproved grasslands and shrublands, and 0.25 for forests, woodlands and tree crops; Falloon and Smith, 2009). Table 6.1 (Land cover datasets) show default DPM/RPM for FAO land use classes. These default values can be modified according to region-specific data and local knowledge.</p>
+</div>
+<div id="required-datasets-and-global-data-sources.-summary" class="section level2">
+<h2><span class="header-section-number">6.7</span> 6.7 Required datasets and global data sources. Summary</h2>
+<p>The required datasets described in this chapter are summarized in Table 6.2. The proposed regional and global data sources to obtain the required input data when no quality national or regional data is available are described in Table 6.3.</p>
+<p><strong>Table 6.2</strong> <em>Summary of the input data requirements for the proposed modeling approach to generate national SOCseq maps</em></p>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="21%" />
+<col width="20%" />
+<col width="20%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variables</th>
+<th align="left">Time series</th>
+<th align="left">Units</th>
+<th align="left">Type</th>
+<th align="left">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Monthly air temperature | 1980</td>
+<td align="left">1980-2000; 2001-2020 (or until last year available)</td>
+<td align="left"><span class="math inline">\(^\circ\)</span>C</td>
+<td align="left">Raster</td>
+<td align="left">50 x 50 km or finer|</td>
+</tr>
+<tr class="even">
+<td align="left">Monthly evapotranspiration /pan evaporation</td>
+<td align="left">1980-2000; 2001-2020 (or until last year available)</td>
+<td align="left">mm</td>
+<td align="left">Raster | 50</td>
+<td align="left">50 x 50 km or finer |</td>
+</tr>
+<tr class="odd">
+<td align="left">Monthly precipitation + irrigation</td>
+<td align="left">1980-2000; 2001-2020 (or until last year available) |</td>
+<td align="left">mm</td>
+<td align="left">Raster | 50</td>
+<td align="left">50 x 50 km or finer</td>
+</tr>
+<tr class="even">
+<td align="left">Topsoil clay content (0-30 cm)</td>
+<td align="left">-</td>
+<td align="left">%</td>
+<td align="left">Raster | 1 x</td>
+<td align="left">1 x 1 km |</td>
+</tr>
+<tr class="odd">
+<td align="left">Current Soil organic carbon stocks (0-30 cm)</td>
+<td align="left">Latest version of national FAO-GSOC map</td>
+<td align="left">tC ha<sup>-1</sup></td>
+<td align="left">Raster |</td>
+<td align="left">1 x 1 km</td>
+</tr>
+<tr class="even">
+<td align="left">Monthly vegetation cover. Obtained from national statistics/local expert knowledge; or derived from NDVI or spectral indexes (see section 3.3.4)</td>
+<td align="left">Minimum: average 2000- 2020 (or last year available) Optimum: annual land use 2000 to 2020 | 0-</td>
+<td align="left">0-1</td>
+<td align="left">Raster |1 x 1</td>
+<td align="left">1 x 1 km</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 6.3</strong> <em>Global and regional data sources to generate national SOCseq maps</em></p>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="27%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Type</th>
+<th align="left">Source</th>
+<th align="left">Address</th>
+<th align="left">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Climatic monthly data</td>
+<td align="left">CRU - Climate Research Unit , University of East Anglia | http</td>
+<td align="left"><a href="https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.03/cruts.1905011326.v4.03/" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.03/cruts.1905011326.v4.03/</a></td>
+<td align="left">50 km x 50 km</td>
+</tr>
+<tr class="even">
+<td align="left">SOC stocks 0-30 cm</td>
+<td align="left">GSOCmap - FAO-ITPS |</td>
+<td align="left"><a href="http://54.229.242.119/GSOCmap/" class="uri">http://54.229.242.119/GSOCmap/</a></td>
+<td align="left">1 x 1 km |</td>
+</tr>
+<tr class="odd">
+<td align="left">Soil Texture</td>
+<td align="left">Harmonized World Soil Database v1.2</td>
+<td align="left"><a href="http://www.fao.org/soils-portal/" class="uri">http://www.fao.org/soils-portal/</a> |</td>
+<td align="left">1 km (30 arc seconds by 30 arc seconds)</td>
+</tr>
+<tr class="even">
+<td align="left">Soil Texture</td>
+<td align="left">OpenGeoHub Foundation - OpenLandMap | <a href="https://d" class="uri">https://d</a></td>
+<td align="left"><a href="https://doi.org/10.5281/zenodo.1476854" class="uri">https://doi.org/10.5281/zenodo.1476854</a></td>
+<td align="left">250m |</td>
+</tr>
+<tr class="odd">
+<td align="left">Soil texture, including uncertainties</td>
+<td align="left">Soil Grids -ISRIC</td>
+<td align="left"><a href="http://soilgrids.isric.org" class="uri">http://soilgrids.isric.org</a> |</td>
+<td align="left">250 m |</td>
+</tr>
+<tr class="even">
+<td align="left">NDVI- Historic images (2001-2020) every 16 days</td>
+<td align="left">MODIS - MOD13A2 datasets |</td>
+<td align="left"><a href="https://lpdaac.usgs.gov/products/mod13a2v006/" class="uri">https://lpdaac.usgs.gov/products/mod13a2v006/</a></td>
+<td align="left">1 x 1km |</td>
+</tr>
+<tr class="odd">
+<td align="left">Land Cover</td>
+<td align="left">MODIS Land Cover Dynamics MCD12Q2 |</td>
+<td align="left"><a href="https://modis.gsfc.nasa.gov/data/dataprod/mod12.php" class="uri">https://modis.gsfc.nasa.gov/data/dataprod/mod12.php</a></td>
+<td align="left">500 x 500m or 1 x 1 km</td>
+</tr>
+<tr class="even">
+<td align="left">Land Cover</td>
+<td align="left">European Space Agency (ESA) Climate Change Initiative (CCI)- Copernicus Climate Change Service (C3S) |</td>
+<td align="left"><a href="https://www.esa-landcover-cci.org/" class="uri">https://www.esa-landcover-cci.org/</a> |</td>
+<td align="left">300 x 300m</td>
+</tr>
+<tr class="odd">
+<td align="left">Land Cover - Land Use</td>
+<td align="left">FAO. Global Land Cover SHARE</td>
+<td align="left"><a href="http://www.fao.org/land-water/land/land-governance/land-resources-planning-toolbox/category/details/en/c/1036355/" class="uri">http://www.fao.org/land-water/land/land-governance/land-resources-planning-toolbox/category/details/en/c/1036355/</a></td>
+<td align="left">~1 x 1km</td>
+</tr>
+<tr class="even">
+<td align="left">Land Cover</td>
+<td align="left">USGS Global Land Survey |</td>
+<td align="left"><a href="https://lta.cr.usgs.gov/GLS" class="uri">https://lta.cr.usgs.gov/GLS</a> | 30 x</td>
+<td align="left">30 x 30m</td>
+</tr>
+<tr class="odd">
+<td align="left">Land Cover</td>
+<td align="left">CORINE land cover (Europe only) |</td>
+<td align="left"><a href="https://land.copernicus.eu/pan-european/corine-land-cover" class="uri">https://land.copernicus.eu/pan-european/corine-land-cover</a> | 100</td>
+<td align="left">100 x 100 m</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 6.4</strong> <em>Land cover aggregation schemes into RothC land use classes. Example from ESA</em></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="chapter-6-datasets-and-inputs.html#cb1-1"></a>dt &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;tables/Table_6.4.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb1-2"><a href="chapter-6-datasets-and-inputs.html#cb1-2"></a><span class="kw">kable</span>(dt) <span class="op">%&gt;%</span></span>
+<span id="cb1-3"><a href="chapter-6-datasets-and-inputs.html#cb1-3"></a><span class="kw">kable_styling</span>(<span class="st">&quot;striped&quot;</span>, <span class="dt">full_width =</span> F)</span></code></pre></div>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+ESA.Land.Cover.Class
+</th>
+<th style="text-align:right;">
+ESA.class.Number
+</th>
+<th style="text-align:left;">
+RothC.Land.Use.type
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Cropland rainfed
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Agricultural crops/improved grassland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cropland rainfed herbaceous cover
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+Agricultural crops/improved grassland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mosaic Cropland &gt; 50%
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+Agricultural crops/improved grassland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cropland - Tree/shrub cover
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cropland irrigated flooding
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+Waterlogged soils
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Grasslands
+</td>
+<td style="text-align:right;">
+130
+</td>
+<td style="text-align:left;">
+-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mosaic Natural vegetation herbaceous &gt; 50% /cropland
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub (including Savanna)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mosaic herbaceous cover &gt;50%/trees-shrubs
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+Agricultural crops/improved grassland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shrubland
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shrubland evergreen
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shrubland deciduous
+</td>
+<td style="text-align:right;">
+122
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover broadleaved deciduous open 15-40%
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved deciduous open 15-40%
+</td>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover broadleaved evergreen closed to open &gt;15%
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover broadleaved deciduous closed to open &gt;15%
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover broadleaved deciduous closed &gt;40%
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved evergreen closed to open &gt;15%
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved evergreen closed &gt;40%
+</td>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved evergreen open &gt;40%
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved deciduous closed to open &gt;15%
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved deciduous closed &gt;40%
+</td>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover mixed leave type
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mosaic tree-shrub &gt;50%/herbaceous cover
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shrub or herbaceous flooded fresh/saline/brackish water
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover flooded fresh or brackish water
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:left;">
+Waterlogged
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover flooded saline water
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:left;">
+-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Urban areas
+</td>
+<td style="text-align:right;">
+190
+</td>
+<td style="text-align:left;">
+-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lichens and mosses
+</td>
+<td style="text-align:right;">
+140
+</td>
+<td style="text-align:left;">
+-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bare areas
+</td>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sparse vegetation tree-shrub-herbaceous (&lt;15%)
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:left;">
+Others - No data-10000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sparse tree (&lt;15%)
+</td>
+<td style="text-align:right;">
+151
+</td>
+<td style="text-align:left;">
+Others - No data-10001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sparse Shrub (&lt;15%)
+</td>
+<td style="text-align:right;">
+152
+</td>
+<td style="text-align:left;">
+Others - No data-10002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sparse herbaceous (&lt;15%)
+</td>
+<td style="text-align:right;">
+153
+</td>
+<td style="text-align:left;">
+Others - No data-10003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Consolidated bare areas
+</td>
+<td style="text-align:right;">
+201
+</td>
+<td style="text-align:left;">
+Others - No data-10004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unconsolidated bare areas
+</td>
+<td style="text-align:right;">
+202
+</td>
+<td style="text-align:left;">
+Others - No data-10005
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Permanent snow/ice
+</td>
+<td style="text-align:right;">
+220
+</td>
+<td style="text-align:left;">
+Others - No data-10006
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Water bodies
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:left;">
+Others - No data-10007
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No data
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Others - No data-10008
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+Others - No data-10009
+</td>
+</tr>
+</tbody>
+</table>
+<p><em>cover classes= “-9999” denotes areas to be excluded without local adaptations in the RothC model.</em></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-5-modelling-approach-for-the-gsocseq.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-7-software-environment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/FAO-GSP/SOC-Mapping-Cookbook/edit/master/06.Datasets_and_inputs.rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["SOCMapping.pdf", "SOCMapping.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

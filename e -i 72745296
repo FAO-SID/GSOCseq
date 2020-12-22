@@ -1,0 +1,296 @@
+[33mcommit 983372891eb474349a46ec22419775516cae8278[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Dec 21 09:09:16 2020 +0100
+
+    deleted big file
+
+[33mcommit 83877404d9cf5e71866c3b49e3ff5d1fe3b91700[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Dec 7 17:36:36 2020 +0100
+
+    removed large file
+
+[33mcommit 07698085af8654848985c8d0d4667e589da28fc3[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Dec 7 14:28:52 2020 +0100
+
+    updated scripts
+
+[33mcommit 874cc9bb9bf9d3fba28acaebd9338e0a6560c2b1[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Dec 4 16:12:35 2020 +0100
+
+    updated script
+
+[33mcommit 3c31eaf743e617759a5e37d8bc8e501b41467725[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Dec 4 14:59:29 2020 +0100
+
+    updated scripts
+
+[33mcommit 367f21ffb56f72851c1e64039b48c401619118af[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Thu Dec 3 15:22:13 2020 +0100
+
+    updated the scripts
+
+[33mcommit 7637aec68903f22d8b39e4a86ac8292f3228a5c6[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Tue Dec 1 10:29:40 2020 +0100
+
+    update formula
+
+[33mcommit 40467dfd28f63bc38f87af9997bf7ee39c75e7de[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 30 16:50:49 2020 +0100
+
+    replaced dataset with data set
+
+[33mcommit a71f4a6d111e491ff4a7957429921d535b4237af[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 30 16:46:37 2020 +0100
+
+    changed figure 1.1 caption
+
+[33mcommit c7eb5497ae9689b182624a5c238e645878ff04b8[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 30 16:43:55 2020 +0100
+
+    Minor fixes
+
+[33mcommit cb1e4eaf78eae7619bcc9507dd60a61a1b42bfbf[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 30 16:37:14 2020 +0100
+
+    minor fix
+
+[33mcommit 4de48c2647ee2e586bdccc9aba375fb88dba9821[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 30 16:33:49 2020 +0100
+
+    fixed picture size
+
+[33mcommit b4463fd37ed5dcd07533d9d559c877d6ca83ea94[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 30 16:31:17 2020 +0100
+
+    Added section on the sample dataset
+
+[33mcommit c7872da2779ece72475e7227b458716c2a82e185[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 30 16:16:06 2020 +0100
+
+    updated the downloadable scripts
+
+[33mcommit a48bbaa1bf3d754a08c9930e3c0162438306fc1a[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 30 15:26:23 2020 +0100
+
+    added input and output folder
+
+[33mcommit 814b52089c0a14315bd69a3bc3dc7784b6ec55f8[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 30 14:42:59 2020 +0100
+
+    minor fix
+
+[33mcommit efd4c76214d1a56d857cde5c899e1671b4d7eed0[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 27 10:39:48 2020 +0100
+
+    fixed tables
+
+[33mcommit 1582ae178b520ce0f373360041150a4ea225d5ad[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 27 10:35:14 2020 +0100
+
+    don't display code in tables
+
+[33mcommit a35390c1bc54841dc954dbbdbd7c0d08bd1cf552[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 27 10:24:59 2020 +0100
+
+    minor fixes
+
+[33mcommit ef96df6a4f75d77a58a6f3d5e463dd7f8acf6ba3[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 27 09:57:37 2020 +0100
+
+    justified text
+
+[33mcommit a9e7c6b701775c9f8b11289cbf694b8b296c3fd7[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 27 09:54:03 2020 +0100
+
+    Minor fixes
+
+[33mcommit d312497943ac2970ab7543d39576f4e8169f741c[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 27 09:50:27 2020 +0100
+
+    changed pic size
+
+[33mcommit cdc9aaaa23d78188844da329f853c13ae76226a1[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 27 09:49:31 2020 +0100
+
+    changed picture size
+
+[33mcommit 80bdf3699e36b68883518c1f940698679a53e59b[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 27 09:43:47 2020 +0100
+
+    fixed image size
+
+[33mcommit 9642adfde7a88bd19683ac6e484cec85e0c5952c[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 27 09:38:43 2020 +0100
+
+    fixed recommended citation
+
+[33mcommit 11f643cd4b755b5e6d08f9ab4883c9b5374709c2[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Thu Nov 26 17:10:53 2020 +0100
+
+    minor fix
+
+[33mcommit c4cd113427ce274e3de97f6fd38c23938e39e76f[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Thu Nov 26 17:08:39 2020 +0100
+
+    Added references
+
+[33mcommit 1e717f046c1d8ba7b48dbaf639bb2d3ea7433505[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 25 17:25:15 2020 +0100
+
+    corrected eq 6.4
+
+[33mcommit c2822c7a0ea7a715d4118251c41b0843865a0d7b[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 25 16:33:35 2020 +0100
+
+    compiled book
+
+[33mcommit d668ab3066131c9353d61d452c05f01849b4a259[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 25 16:32:26 2020 +0100
+
+    fixed table colnames and equations
+
+[33mcommit cf6298976ec7843c36983f5796b743f800403b98[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 25 15:42:26 2020 +0100
+
+    fixed table
+
+[33mcommit 37ccd1c8ec04cfb5b705cb517f12481dfcc4a0eb[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 25 15:33:00 2020 +0100
+
+    Minor fixed
+
+[33mcommit a09f43a1e763a7ee91323b3494f2b2963bc2dc39[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 25 10:09:10 2020 +0100
+
+    minor fixes
+
+[33mcommit a47b0238cbcd724ece4dee3cea9b5cb3f2e308e7[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 25 09:54:47 2020 +0100
+
+    We have a bookdown bookbook
+
+[33mcommit 7b0744342eaf780fd4b639603e25f5d8b0896891[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 25 09:11:19 2020 +0100
+
+    minor changes
+
+[33mcommit a4d8f85d3e33c7a8b5b23100abd1d4f1c3901602[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 25 09:00:02 2020 +0100
+
+    removed headers
+
+[33mcommit f5d3f4870138ee8283062d6b57dccbe429f1b01a[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Tue Nov 24 17:12:01 2020 +0100
+
+    add necessary files for bookdown
+
+[33mcommit d75de375bd12378b57e89d5b45e97d1d1f612536[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Tue Nov 24 17:06:28 2020 +0100
+
+    changed file name
+
+[33mcommit 3e644c7c9f6caf65bc5c63f59a9a2b690380957b[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Tue Nov 24 16:59:28 2020 +0100
+
+    Delete _main.Rmd
+
+[33mcommit 7b375a36455dc63defcd2744258bc8b4637682fb[m
+Merge: b6737f4 92df7b6
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Tue Nov 24 16:58:39 2020 +0100
+
+    Merge branch 'master' of https://github.com/FAO-GSP/GSOCseq
+
+[33mcommit b6737f4872f5b96f3b4c4ebcca368c847be701f8[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Tue Nov 24 16:55:18 2020 +0100
+
+    Add new repository with RProject
+
+[33mcommit 92df7b65ecb6cb7ca69f9c46af14901293e3ca78[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Tue Nov 24 16:51:27 2020 +0100
+
+    add RProject
+
+[33mcommit 6b22685afada2ca0bd807ebbb882a1a1c4cd0c69[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Mon Nov 23 15:27:49 2020 +0100
+
+    Added scripts and input files
+    
+    The Output and Input files are in the module-1-scripts folder, just as in the training. I would suggest to change this in a later step, because it's counter intuitive.
+
+[33mcommit 91674565907f7b2b8a029cc0a5c20b0a0d76e247[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 18 16:41:22 2020 +0100
+
+    Update _main.Rmd
+
+[33mcommit 95c5c81f3394205a8b824320c554b314dc5ed422[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 18 16:26:42 2020 +0100
+
+    updated index
+
+[33mcommit 5d408da4eaa57fe3e8c8c3f53eb2e230b75b86eb[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Wed Nov 18 15:26:32 2020 +0100
+
+    Added final chapters
+
+[33mcommit b3550f080afa6f293d1725171f31843311965cbe[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Tue Nov 17 17:01:09 2020 +0100
+
+    Updated chapters
+
+[33mcommit 47a47bedbd9608053a2f7ce4ef2fecbf8e577c53[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Tue Nov 17 11:00:35 2020 +0100
+
+    Updated chapters
+
+[33mcommit 7ef066554d9150977e0b8451bc3ddd62e12001e1[m
+Author: Isabel Luotto <72745296+Isa-Luotto@users.noreply.github.com>
+Date:   Fri Nov 13 12:40:46 2020 +0100
+
+    First chapters to be written in RMarkdown

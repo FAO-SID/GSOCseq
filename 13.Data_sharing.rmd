@@ -1,0 +1,60 @@
+# | Data sharing   
+## General principles
+Sharing of the national GSOCseq products will follow the same approach as other GSP global mapping products such as the Global Soil Organic Carbon Map (GSOCmap - 2017) and Global Map of Salt-Affected Soils (GSSmap - 2020). The GSP Secretariat will provide an online data submission facility.
+Data sharing is governed by the GSP Data Policy (http://www.fao.org/3/a-bs975e.pdf). When delivering national data to the GSP, countries need to ensure that:
+
+1.    The data shared contain the relevant soil information representative for the country.
+2.    The shared datasets contain the best available information for a given area and topic, however, subject to potential restrictions based on the institutions' or countries' data policy.
+3.    The data shared are reliable and quality controlled which means that the data have passed a technical routine to ensure data integrity, correctness, and completeness; errors and omissions are identified and, if possible, addressed.
+
+Data providers will retain the ownership of national datasets. The final global dataset will be distributed under Creative Commons license.
+ 
+## Data formats and integrity
+All GIS files should be delivered in correct format according to the Technical Specifications and Country Guidelines for the GSOCseq map.
+GIS files shall be delivered in GeoTIFF format with embedded additional georeferencing information, including spatial extent, coordinate reference system, resolution, no data values. Pixel values should contain numeric values of the target parameter, estimated for the topsoil layer (0-30cm depth).
+World Geodetic System 1984 (WGS84) geographic (latitude/longitude) projection should be preferred for all submitted maps. The map shall be produced at regular fixed horizontal dimensions of 30 by 30 arc-seconds grid (approximately only 1x1km) at the equator. Countries will be expected to deliver their datasets using the standard 30 arc-second grids prepared and shared by the GSP.
+Each data layer should be provided as a single continuous surface. Data providers should not attempt to mask out the excluded areas from the grid (e.g. saline soils, organic soils, wetlands). The GSP Secretariat will mask excluded areas using standard spatialized layers. Values in the excluded grid cells will be identified as no data (NA) in the final global product.
+
+## Data correctness
+Each country will be responsible for carrying out basic Quality Assurance/Quality Control (QA/QC) of all data before providing it to the GSP Secretariat. Quality Assurance can be described as the process of preventing errors from entering the datasets, while Quality Control can be described as the process of identifying and correcting existing errors in the datasets.
+All datasets should be checked for:
+
+*   Erroneous or unrealistic predictions
+*   Spatial errors (extent, projection)
+*   Units (t C ha^-1^ yr^-1^)
+*   Completeness and integrity of data
+*   Consistency with data shown in any accompanying documents (such as reports or drawings)
+*   Validation (if possible) and consistency of reported validation results with the provided data.
+
+Final QA/QC for the global datasets will be facilitated by the GSP Secretariat through its technical networks (INSII, P4WG, and Intergovernmental Technical Panel on Soils (ITPS) will give final clearance to the global dataset prior to public release).
+
+## Data completeness
+A complete set of mandatory data layers should be provided. This complete set of SOC sequestration maps includes country-level predicted topsoil (0-30 cm) SOC stocks and mean annual sequestration rates after the implementation of SSM practices, for a 20-year period, estimated with the spatialized version of the RothC carbon model. Each pixel shall contain:
+
+1.    Absolute average (vs. initial SOC stock) sequestration rates for 20 years (t C ha^-1^ yr^-1^ ), for BAU, SSM1, SSM2 and SSM3 scenarios
+2.    Mean relative (vs. business as usual) sequestration rates for 20 years (t C ha^-1^ yr^-1^ ), for SSM1, SSM2 and SSM3 scenarios
+3.    Initial SOC stocks (t C ha-1)
+4.    SOC sequestration uncertainty maps (absolute and relative sequestration rates) for 3 SSM Scenarios (in %)
+
+The set of data layers should be supplemented by a country report (electronic document) according to the submission form provided by GSP-FAO.
+
+Country members are also encouraged to deliver the following products and supplementary data (optional):
+
+*   final SOC stocks at 2040 (t C ha^-1^), for BAU, SSM1, SSM2 and SSM3 scenarios;
+*   SOC sequestration maps using alternative modeling procedures: Includes country-level topsoil (0-30 cm) predicted SOC stocks and mean annual sequestration rates after implementation of SSM practices, for a 20-year period (2020-2040), estimated using;
+*   alternative SSM scenarios (e.g. alternative C % increase based on local data analysis);
+*   alternative local preferred, process-oriented and peer-reviewed models (e.g. CENTURY/DAYCENT, DNDC, YASSO, ICBM, or their derived models);
+*   meta-analysis on the local impact of SSM management practices on SOC sequestration;
+*   validation dataset (results from predicted vs. observed SOC stocks/SOC sequestration rates from meta-analysis and RMSE; validation dataset in table format; shapefile/points if georeferenced data is available).
+
+## Other modes of data sharing
+Apart from sharing national data with the GSP for the development of the Global Soil Organic Carbon Sequestration Potential Map, countries are encouraged to share and use their maps in a number of ways, including:
+
+*   scientific publications;
+*   inclusion in national soil information systems;
+*   using the maps for the development of national policy regarding; sustainable and country-smart agriculture;
+*   using the maps for identifying key areas for governmental, non-governmental, commercial, national or international projects, related to promoting sustainable soil management and carbon sequestration;
+*   using the maps for awareness raising on the topics of climate change and soil health;
+*   using the maps for educational purposes at schools and universities for subjects related to geography, climate, soils, agriculture, etc.
+
+GSP encourages data providers to apply open licensing and free data sharing of their products to ensure broad distribution of knowledge and high impact towards sustainable management of our soils.

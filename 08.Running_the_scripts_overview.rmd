@@ -1,0 +1,44 @@
+# | Running the scripts: overview  
+
+## Summary of steps and scripts
+The generation of national SOC sequestration potential maps using the spatially explicit R-version of the RothC model shall be divided in three stages (Figure 8.1.): 
+
+1.    Preparation and Harmonization of data (consists of eleven R scripts, one QGIS model script, and one Google Earth Engine script)
+2.    Running the model in three phases (three R scripts), 
+3.    Transformation of vector data to raster data (map generation, one R script).
+
+![**Figure 8.1.** *Workflow for generating the national GSOCseq layers.*](images/Figure_8.1.png)
+ 
+
+## Stage 1: Preparation of data
+Running the model over an area will require several spatial layers of information (climate, clay content, land use, vegetation cover, NPP layers) and defining target points where the model will be run. So before running the model, we will "harmonize" the different spatial layers, in order to have the same extent, same pixel size and same Coordinate Reference System (CRS). On the other hand, each modeling phase (spin up, short spin-up/warm up, forward runs) will require a different selection of layers for the different time series. So we will create 'stacks' of the different layers for the single modeling phases.
+Land cover classes need to be re-classified into land use types that the model will recognize. We will reclassify land cover classes (like the ones provided by ESA; European Space Agency) to match the FAO land cover classes. 
+At this stage, we will also create other input layers (like NPP and vegetation cover layers) which are necessary to run the model. 
+Finally, we will create target points over the land use classes of interest (agricultural lands). These target points will become the modeling units (where the model is to be run). So, the first step (Fig. 8.1; see Chapter 9) is aimed at:
+
+*   preparing, organizing and harmonizing all the required input data layers to run the model in the different phases
+*   creating supplementary input data layers
+*   creating target points for land use classes of interests
+
+Eleven R scripts, one QGIS script and one Google earth engine script are provided to complete these tasks (Table 8.1.).
+
+
+## Stage 2: Running the model
+Once the input data layers are prepared and stacked, we will run the spatialized RothC model at each target point using three specific scripts (Table 8.1. in the following three phases (Chapter 10):
+
+1.  Long spin up phase: he equilibrium carbon inputs (carbon inputs in tha^-1^ y^-1^ required to reach SOC stocks in year 2000) and the initial stocks of the different SOC pools are calculated; 
+2.  Short spin up or Warm Up phase: SOC stocks are adjusted for the 2000-2020 period; 
+3.  Forward" phase: SOC stocks are projected (2020 to 2040) under a "business as usual" scenario (no changes in carbon inputs), "low" scenario (5 $\%$ increase in carbon inputs), "medium" scenario (10$\%$ increase in carbon inputs), and "high" scenario (20 $\%$ increase in carbon inputs). 
+
+## Stage 3: generation of the map
+After the "forward" modeling phase, in the final step we will calculate the average absolute and relative SOC sequestration rates over a 20-years period for each scenario and for each target point. The vector target points will be then rasterized and saved to geotiff format to obtain the final product, using a specific R script. All the provided scripts are summarized in Table 8.1.
+
+**Table 8.1** *Summary of the scripts for the complete modelling process*
+
+```{r,echo=FALSE}
+dt <- read.csv("tables/Table_8.1.csv", sep = ";")
+kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
+kable_styling("striped", full_width = F)
+```
+
+

@@ -1,0 +1,97 @@
+--- 
+title: "Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq"
+
+author: "Food and Agriculture Organization of the United Nations, Rome, 2020"
+date: '25/11/2020'
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+site: bookdown::bookdown_site
+css: "justify.css"
+#cover-image: images/cover.png
+documentclass: book
+papersize: b5
+fontsize: 10pt
+bibliography: "GSOCseq_references_FAO.bib"
+csl: "food-and-agriculture-organization-of-the-united-nations.csl"
+nocite: '@*'
+link-citations: yes
+description: The GSOCseq Technical Manual
+always_allow_html: true
+---
+\mainmatter
+\pagestyle{fancy}
+
+
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 65)
+library(kableExtra)
+## redefine str for the width option
+str <- function(...){
+  utils::str(..., strict.width = "cut")}
+# reproducible results
+set.seed(123)
+## Boolean object for running all the code #####
+# if FALSE will use precalculated RK prediction and svm tuning
+#RUN.ALL <- TRUE
+# Cache results
+knitr::opts_chunk$set(cache=T)
+```
+
+\frontmatter
+\addtocontents{toc}{\protect\hypersetup{hidelinks}}   
+\addtocontents{lot}{\protect\hypersetup{hidelinks}}
+\addtocontents{lof}{\protect\hypersetup{hidelinks}}
+\tableofcontents
+\listoffigures
+\listoftables
+\printnomenclature
+
+# List of contributors{-}
+
+## Authors{-}
+
+
+Guillermo Peralta (GSP Secretariat)  
+Luciano Di Paolo (GSP Secretariat)  
+Christian Omuto (GSP Secretariat)  
+Kostiantyn Viatkin (GSP Secretariat)  
+Isabel Luotto (GSP Secretariat)  
+Yusuf Yigini (GSP Secretariat)  
+
+
+*Cover design:* Matteo Sala
+
+
+## Contributers and Reviewers{-}
+
+|               |                                      |
+|-----|--------------------------------------|
+| P4WG | (Pillar 4 Working Group Agency) |
+| INSII | (International Network of Soil Information Institutions) |
+| ITPS | (Intergovernmental Technical Panel on Soils) |
+| 4per1000 SCT| (4 per 1000 Scientific and Technical Committee) |
+| CIRCASA | (Coordination of International Research Cooperation on Soil Carbon Sequestration in Agriculture) |
+| UNCCD-SPI | (The UNCCD Science-Policy Interface) |  
+  
+  
+## Special Advisor {-}
+Pete Smith (University of Aberdeen)
+  
+  
+\vfill
+
+
+
+
+
+
+ 
+
+
+
+**Recommended citation:**
+
+> FAO. 2020. GSOCseq Global Soil Organic Carbon Sequestration Potential Map
+Technical Manual. G. Peralta,L. Di Paolo, C. Omuto, K. Viatkin, I. Luotto, Y. Yigini, 1st Edition, Rome. 

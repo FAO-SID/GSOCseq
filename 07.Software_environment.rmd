@@ -1,0 +1,83 @@
+# | Software environment 
+
+A spatially explicit version of the RothC model (e.g. Gottschalk et al., 2012; Mondini et al. 2017; Morais et al.; 2019) is required to generate national SOC sequestration maps. A spatialized version of the model was developed by the GSP Secretariat using an open source R-environment, based on the SoilR package developed by Sierra et al. (2012; downloadable from the Max Planck Institute of Biogeochemistry (https://www.bgc-jena.mpg.de/TEE/software/soilr/). 
+Other spatialized versions have been developed in Fortran (e.g. Gottschalk et al., 2012) and MATLAB (e.g. Morais et al., 2019) environments. Users can use these and other alternative local adaptations of a spatialized RothC model by following the general procedures and input data described in Chapter 5 and 6 to obtain consistent results. Users are asked to provide evidence, i.e. .peer-reviewed scientific journal papers university theses etc.,, demonstrating that the use of the modified version and changes in model parameters are appropriate for the selected agro-ecological conditions. 
+This Chapter summarizes the steps required to set-up the software environment (R, RStudio) to prepare the input data and run the spatialized R-version of the RothC model through scripts provided by the GSP. Additional supplementary scripts for QGIS and Google Earth Engine (GEE) are also provided.
+Users are required to download the following open source software:
+
+*   RStudio (latest stable version, https://rstudio.com/products/rstudio/download/)
+*   QGIS (latest stable version, https://qgis.org/en/site/forusers/download.html)
+
+In order to use Google Earth Engine users must register an account. The  instructions in this  Chapter will guide users through installing  and  manually configuring  the  software  to  be used  for Microsoft  Windows desktop  platform.  Instructions for the  other  platforms  (e.g. Linux  Flavours, Mac OS) can be found through free online resources.
+
+## Setting up the software environment: R, RStudio and R Packages
+R is a language and environment for statistical computing. It provides a wide variety of statistical (e.g. linear modeling, statistical tests, time-series,  classification, clustering,  etc.)  and graphical methods.  It is highly extensible through packages, which are collections of R functions,  data and  documentation. 
+
+### Obtaining and installing R
+
+In order to run RStudio, R base needs to be installed according to the user's environment. Installation files and instructions can be downloaded  from the  Comprehensive R Archive Network  (CRAN) following these steps:
+
+1.    Go to the following link https://cloud.r-project.org/index.html to download and install  R.
+2.    Pick an installation file for your platform.
+
+### Obtaining and installing RStudio
+Since R base does not have a Graphical User Interface (GUI), first time users may encounter some difficulties in running the provided scripts.  There are some GUIs  which offer some of the  functionality of R.  RStudio makes R easier to use. It includes a code editor, debugging and visualization tools.  Similar steps need to be followed to install RStudio:
+
+1.   Go to  https://www.rstudio.com/products/rstudio/download/ to  download and install  RStudio's open source edition.
+2.   On the download page, RStudio Desktop, Open Source License option should be selected.
+3.   Pick an installation file for your platform.
+
+### Getting started with R
+One of the main benefits of using R is that this programming language relies on a wide and active community of developers and end-users. Several manuals, including the one found on CRAN below, guiding material, tutorials and web pages dedicated to debugging errors, such as stackoverflow (listed below) can be found online: 
+
+*   R manuals:  http://cran.r-project.org/manuals.html
+*   Contributed documentation: http://cran.r-project.org/other-docs.html
+*   Quick-R:  http://www.statmethods.net/index.html
+*   Stackoverflow R community: https://stackoverflow.com/questions/tagged/r
+
+## R packages
+As mentioned previously, the main advantage of R is its extensibility. The scope of the possible implementations of R can be greatly increased with the vast collection of packages that extend its basic functionalities. Packages are the equivalent of add-ons that developers can freely write and make available through the open-source platform that constitutes R.
+
+### Finding R packages
+The  primary  source  for R  packages  is CRAN's official website,  where  currently about  12,000 available  packages  are listed.  For spatial applications, various packages are available.  You can obtain information about the available packages directly on CRAN with the available.packages() function.  The function returns a matrix of details corresponding to the packages currently available at one or more repositories.  An easier way to browse the list of packages is using the Task Views link, which groups together packages related  to a given topic. The following Subsections present some of the most used packages related to digital soil mapping.
+
+### Some useful R-packages for the SOCseq maps
+R has a large and growing number of spatial data packages.  We recommend taking a quick browse on R's official website to see the spatial packages available: http://cran.r-project.org/web/views/Spatial.html. Some of these packages that will be useful to generate the national SOCseq maps include:
+
+*   *raster*: Reading, writing, manipulating, analyzing and modeling of gridded spatial data.  The package implements basic and high-level functions, processing of very large files is supported.
+*   *rgdal*: Provides bindings to the 'Geospatial' Data Abstraction Library ('GDAL') (>= 1.11.4) and access to projection/transformation operations from the 'PROJ' library. Use is made of classes defined in the 'sp' package. Raster and vector map data can be imported into R, and raster and vector 'sp' objects exported. 
+*   *ncdf4*: Provides a high-level R interface to data files written using unidata's netCDF library (version 4 or earlier), which are binary data files that are portable across platforms and include metadata information in addition to the data sets. Using this package, netCDF files (either version 4 or ``classic'' version 3) can be opened and datasets read in easily.
+*   *SoilR*: This package contains functions for modeling Soil Organic Matter decomposition in terrestrial ecosystems. See https://cran.r-project.org/web/packages/SoilR/SoilR.pdf.
+*   *abind*: Combine multidimensional arrays into a single array. This is a generalization of 'cbind' and 'rbind'. Works with vectors, matrices, and higher-dimensional arrays. Also provides functions 'adrop', 'asub', and 'afill' for manipulating, extracting and replacing data in arrays.
+*   *soilassessment*: Soil assessment builds information for improved decision in soil management. It analyzes soil conditions with regard to agriculture crop suitability requirements (such as those given by FAO http://www.fao.org/land-water/databases-and-software/crop-information/en/ soil fertility classes, soil erosion models and soil salinity classification. Suitability requirements are for crops grouped into cereal crops, nuts, legumes, fruits, vegetables, industrial crops, and root crops.
+
+### Installation of R-Packages used in this technical manual
+The authors of this Technical Manual used a number of different R packages (summarized in Table 7.1). All required packages can be installed using the following code and the install.packages() function when starting a new SOC sequestration mapping project:
+
+```{r,eval=FALSE}
+Install.packages("name_of_the_package")
+
+```
+
+Alternatively, the code for the installation of the needed packages is included at the beginning of each Chapter.
+
+**Table 7.1** *Required R-packages for the national SOC sequestration potential maps using an R-environment*
+
+```{r,echo=FALSE}
+dt <- read.csv("tables/Table_7.1.csv", sep = ";",fileEncoding = 'UTF-8-BOM')
+kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
+kable_styling("striped", full_width = F)
+```
+
+## Considerations when using R
+It is important to note the following points when using R:
+
+*   As shown in Figure x, R is a case-sensitive scripting software. More than 90% of its commands are scripted in a text-editor and executed by running the line/script.
+*   Hash (#) denotes the beginning of a comment and is not executed by the software. Consequently, it can be used to insert comments in a line. All comments after hash (#) are colored green (like green traffic light) implying "pass" without execution.
+*   With the default editor theme errors and warnings are given in red, while functions and numbers are given in blue and commands and variables are given in black.
+*   When using RStudio text-editor, four panes are available in which the top left pane is the text editing window, top right pane is for the data environment, bottom right pane is for display and help, and the bottom left is the console for executing the scripts.
+*   Implemented scripts and reports (warning or errors) are shown in the console panel.
+*   Some commands may run for some time and patience is recommended to enable the software to progress to completion. During such time, a red icon will be shown at the top left corner of the console panel.
+*   The execution of a line or script can be stopped if necessary by clicking on the "STOP" button from the tools bar. 
+
+![**Figure 7.1.** *Overview of RStudio's windowpanes and functionalities*](images/Figure_7.1.png)  

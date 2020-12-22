@@ -1,0 +1,60 @@
+# | The RothC model  
+
+## Model description
+RothC is a model for the turnover of organic carbon in non-waterlogged topsoil that allows for the inclusion of the effects of soil type, temperature, moisture content and plant cover on the turnover process, with a monthly time step (Coleman and Jenkinson, 1996). C sequestration in RothC is quantified solely based on soil processes, and as such it is not linked to a plant production model. The user defines carbon inputs to the soil. SOC is split into four active compartments and one inactive compartment which comprises the inert organic matter (IOM). The four active compartments differ in the mean residence time of organic carbon in the soil and are defined as:
+
+*   Decomposable Plant Material (DPM); 
+*   Resistant Plant Material (RPM); 
+*   Microbial Biomass (BIO);
+*   Humified Organic Matter (HUM).  
+
+The structure of the model is shown in Figure 4.1.
+The IOM compartment is resistant to decomposition and is calculated using the following equation (Falloon et al., 1998):
+
+\begin{equation}
+\tag{4.1}
+IOM = 0.049 \times SOC^{1.139} 
+\end{equation}
+
+Where $SOC$ is soil organic carbon, t C ha^-1^, and $IOM$ is Inert organic matter, t C ha^-1^.
+Incoming carbon inputs are split between DPM and RPM, depending on the DPM/RPM ratio of the particular incoming material. For most agricultural crops and improved grassland, the default DPM/RPM ratio is 1.44, i.e. 59% of the plant material is DPM and 41% is RPM. For unimproved grassland and scrub (including Savanna) a default ratio of 0.67 is used. For a deciduous or tropical woodland a default  DPM/RPM ratio of 0.25 is used, i.e. 20% of the plant material is DPM and 80% is RPM.
+Both DPM and RPM decompose to form CO2, BIO and HUM. The proportion that goes to CO2 and to BIO + HUM is determined by the clay content of the soil. The BIO + HUM is then split into 46% BIO and 54% HUM. BIO and HUM both decompose to form more CO2, BIO and HUM. Each compartment decomposes by a first-order process with its own characteristic rate. If an active compartment contains Y t C/ha, this declines at the end of the month to:
+
+\begin{equation}
+\tag{4.2}
+Y e^{-abckt} t C ha^-1 
+\end{equation}
+
+where $a$ is the rate-modifying factor for temperature; $b$ is the rate-modifying factor for moisture; $c$ is the soil cover rate-modifying factor; $k$ is the decomposition rate constant for that compartment; and $t$ is 1/12, since $k$ is based on an annual decomposition rate. $Y (1 - e^{-abckt})$ is the amount of the material in a compartment that decomposes in a particular month.
+RothC has also been adapted to simulate N and S dynamics (Falloon and Smith, 2009), but nutrient and C dynamics are not interconnected in RothC. It was originally developed and parameterized to model the turnover of organic C in arable topsoil, and it was later extended to model turnover in grasslands, savannas and woodlands, and to operate in different soils and under different climates (Coleman and Jenkinson, 1996).    
+
+![**Figure 4.1.** *Structure of the pools, and flows of Carbon in the Roth-C model, including major factors controlling the fluxes (a = multiplier for effects of temperature, b = multiplier for effects of moisture, c = multiplier for effects of soil cover; DPM/RPM = Decomposable/resistant plant material ratio). Source: redrawn from Coleman and Jenkinson (1996) and Falloon and Smith (2009).*](images/Figure_4.1.png)    
+  
+ 
+## RothC general data requirements
+The model requires climatic, soil and management data that are relatively easy to obtain or estimate.  Each modeling unit (e.g. cell of a grid) requires the following minimum data (Table 4.1):
+
+
+**Table 4.1** *Roth-C model minimum data requirements*
+
+```{r, echo = FALSE}
+dt <- read.csv("tables/Table_4.1.csv", sep = ";")
+kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
+kable_styling("striped", full_width = F)
+```
+
+
+Careful harmonization of modeling procedures, datasets and input estimation methodologies is essential to obtain consistent SOC sequestration results across regions and countries. The general approach and modeling procedures to generate national SOCseq maps using the RothC model are described in Chapter 5. The land use datasets required for the proposed procedures are described in Chapter 6.
+
+
+
+
+
+
+
+
+
+
+
+
+
