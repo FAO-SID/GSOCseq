@@ -1078,6 +1078,7 @@ plot(ESA_LU_AOI)
 #   220 = 10 Snow and Glaciers
 #   210 = 11 Waterbodies
 #   12 = 12 Treecrops
+#   20 = 13 Paddy fields(rice/ flooded crops)
 # Reclassify matrix. "Is" to "become"
 is<-c(0,190,10,11,20,30,40,130,50,60,61,62,70,71,72,80,81,82,90,100,110,120,121,122,160,180,170,150,151,152,153,200,201,202,220,210,12)
 become<-c(0,1,2,2,2,2,2,3,4,4,4,4,4,4,4,4,4,4,4,4,4,5,5,5,6,6,7,8,8,8,8,9,9,9,10,11,12)
@@ -1169,6 +1170,7 @@ Next, we will open, resample and mask the land use raster layer to be used in th
 # 10 Snow and Glaciers
 # 11 Waterbodies
 # 12 TreeCrops
+# 13 Paddy fields
 setwd(WD_LU)
 LU_AOI<-raster("ESA_Land_Cover_12clases_FAO_AOI.tif")
 Then, we will open the vegetation cover layers (created in script number 7):
@@ -1187,7 +1189,7 @@ The script then creates a DR layer (DPM/RPM ratio). Here the DR layer is derived
 #(1) Most agricultural crops and improved grassland and tree crops 1.44 
 #(2) Unimproved grassland and schrub 0.67
 #(3) Deciduous and tropical woodland 0.25    
-DR<-(LU_AOI==2 | LU_AOI==12)*1.44+ (LU_AOI==4)*0.25 + (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
+DR<-(LU_AOI==2 | LU_AOI==12| LU_AOI==13)*1.44+ (LU_AOI==4)*0.25 + (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
  Finally, we will create a stack with all the raster layers that have been prepared.
  # STACK all layers
 Stack_Set_AOI<-stack(SOC_MAP_AOI,Clay_WA_AOI_res,TEMP_AOI,PREC_AOI,PET_AOI,DR,LU_AOI,Cov_AOI)
@@ -1266,7 +1268,7 @@ Then, we will create a "DR" stack layer, one DR layer per year of the WARM UP ph
 #(1) Most agricultural crops and improved grassland or tree crops 1.44 
 #(2) Unimproved grassland and shrub 0.67
 #(3) Deciduous and tropical woodland 0.25    
-DR<-(LU_AOI==2 | LU_AOI==12)*1.44+ (LU_AOI==4)*0.25 + (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
+DR<-(LU_AOI==2 | LU_AOI==12| LU_AOI==13)*1.44+ (LU_AOI==4)*0.25 + (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
 DR_Stack<-LU_Stack
 for (i in 1:nlayers(LU_Stack)){
 DR_Stack[[i]]<-(LU_Stack[[i]]==2 | LU_Stack[[i]]==12)*1.44+ (LU_Stack[[i]]==4)*0.25 + (LU_Stack[[i]]==3 | LU_Stack[[i]]==5 | LU_Stack[[i]]==6 | LU_Stack[[i]]==8)*0.67
@@ -1348,7 +1350,7 @@ As in the previous scripts, this script creates a DR layer (DPM/RPM ratio), assi
 #(1) Most agricultural crops and improved grassland or tree crops 1.44 
 #(2) Unimproved grassland and schrub 0.67
 #(3) Deciduous and tropical woodland 0.25    
-DR<-(LU_AOI==2 | LU_AOI==12)*1.44+ (LU_AOI==4)*0.25 + (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
+DR<-(LU_AOI==2 | LU_AOI==12| LU_AOI==13)*1.44+ (LU_AOI==4)*0.25 + (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
 ```
 We will create a stack for the forward modelling phase. We will have to define the filename and  save the output stack.  
 

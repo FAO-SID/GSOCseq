@@ -1,8 +1,9 @@
 # | Stage 2: running the model  
 
-Once all input layers are prepared, harmonized and stacked, we will run the three modelling phases. At this stage, we will run the model three times, once for each phase, so we will need three different scripts (scripts 13, 14 and 15), which use the same RothC function.  For each script we will need the created raster stacks (in the case of the warm up phase we will also include the climate stacks), and the created target points. Each script will generate output vector points (containing the modelling results, i.e. SOC stocks of the different carbon pools of the RothC model). The output vector of each phase will be used as an input of the next modelling phase. Finally, after running the 'forward' phase, we will obtain an output vector file containing the SOC data for each projected scenario. This output vector will be used in the final script to generate the raster files to build the sequestration potential maps.   
+Once all input layers are prepared, harmonized and stacked, we will run the three modeling phases. At this stage, we will run the model three times, once for each phase, so we will need three different scripts (scripts 13, 14 and 15), which use the same RothC function.  For each script we will need the created raster stacks (in the case of the warm up phase we will also include the climate stacks), and the created target points. Each script will generate output vector points (containing the modeling results, i.e. SOC stocks of the different carbon pools of the RothC model). The output vector of each phase will be used as an input of the next modeling phase. Finally, after running the 'forward' phase, we will obtain an output vector file containing the SOC data for each projected scenario. This output vector will be used in the final script to generate the raster files to build the sequestration potential maps.   
 
-In each phase and script we will use the same RothC function. The RothC function is the core of the next three scripts and will be used to simulate the different C pools over the defined time periods. 
+In each phase and script we will use the same RothC function. The RothC function is the core of the next three scripts and will be used to simulate the different C pools over the defined time periods. In the following a brief overview of the commands we will be running to perform the RothC calculations.
+
 ```{r, eval = FALSE}
 
 # ROTH C MODEL FUNCTION .
@@ -15,6 +16,7 @@ This function will calculate first the "Temperature factor per month" using a fu
 fT=fT.RothC(Temp[,2]) 
 
 ```
+
 Then the function will calculate the "Moisture factor per month" (this function was modified from the original SOILR moisture function, to include the soil cover effect, as in the original RothC model (See Chapter 4):
 ```{r, eval = FALSE}
 #Moisture effects per month . 
@@ -50,11 +52,12 @@ Then the function will calculate the "vegetation cover factor" effect:
 #Vegetation Cover effects 
 fC<-Cov2[,2]
 ```
-In each script, we will need to set the factor frame to run the model (500 years for spin up, 18/20 years for the warm-up, 20 years for the forward), and run the model. We will have two options: one from the SoilR package (using "lsoda" function to solve the differential equations) and one from the soilassessment package that allows to change the differential equation solver , by default we will use the "euler" method, which is faster.
+In each script, we will need to set the factor frame to run the model (500 years for spin up, 18/20 years for the warm-up, 20 years for the forward), and run the model. We will have two options: one from the SoilR package (using "lsoda" function to solve the differential equations) and one from the soilassessment package that allows to change the differential equation solver, by default we will use the "euler" method, which is faster.
 ```{r, eval = FALSE}
-# Set the factors frame for Model calculations
 
-xi.frame=data.frame(years,rep(fT*fW_2*fC,length.out=length(years)))
+# Set the factors frame for Model calculations
+xi.frame=data.frame(years,rep(fT*fW_2*fC*fPR,length.out=length(years)))
+
 
 # RUN THE MODEL from soilassessment
 #Roth C soilassesment
@@ -73,7 +76,7 @@ return(poolSize3_spin)
 ########## function set up ends###############
 ```
 ## Script Number 13. "ROTH_C_SPIN_UP_v2.R"
-Script number 13 implements the first modelling phase (long spin up phase). In this script we will load the stack generated in script number 10 and the target points (Section 9.7, QGIS model number 1). We will obtain an output vector containing our target points. This script runs the RothC model for 500 years to calculate the equilibrium carbon inputs (the carbon inputs needed to reach the 2001 SOC stocks) and the SOC stocks for the different pools. It first runs using a standard C input of 1 tC ha^-1^ yr^-1^, and then equilibrium inputs are estimated from the obtained results and GSOCmap stocks (See Chapters 5 and 6). In this script we will use pedotransfer functions to estimate the SOC stocks of the different pools from the total SOC stock (Weiherm&uuller et al., 2013) to accelerate the spin up process. All that information will be saved to the output vector (shapefile file).
+Script number 13 implements the first modeling phase (long spin up phase). In this script we will load the stack generated in script number 10 and the target points (Section 9.7, QGIS model number 1). We will obtain an output vector containing our target points. This script runs the RothC model for 500 years to calculate the equilibrium carbon inputs (the carbon inputs needed to reach the 2001 SOC stocks) and the SOC stocks for the different pools. It first runs using a standard C input of 1 tC ha^-1^ yr^-1^, and then equilibrium inputs are estimated from the obtained results and GSOCmap stocks (See Chapters 5 and 6). In this script we will use pedotransfer functions to estimate the SOC stocks of the different pools from the total SOC stock (Weiherm&uuller et al., 2013) to accelerate the spin up process. All that information will be saved to the output vector (shapefile file).
 Table 10.1 Script Number 13. Spin Up phase. Inputs and Outputs.
  
 
@@ -130,10 +133,70 @@ years=seq(1/12,500,by=1/12)
 Once we have defined the variables and time frame, we can start using the the RothC function. 
 ```{r, eval = FALSE}
 # ROTH C MODEL FUNCTION .
-########## function set up starts############### 
-Roth_C<-function(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1){
-```
+########## function set up starts###############
+Roth_C<-function(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1,LU)
 
+{
+
+# Paddy fields coefficent fPR = 0.4 if the target point is class = 13 , else fPR=1
+# From Shirato and Yukozawa 2004
+
+fPR=(LU == 13)*0.4 + (LU!=13)*1
+
+#Temperature effects per month
+fT=fT.RothC(Temp[,2]) 
+
+#Moisture effects per month . 
+
+fw1func<-function(P, E, S.Thick = 30, pClay = 32.0213, pE = 1, bare) 
+{
+   
+    M = P - E * pE
+    Acc.TSMD = NULL
+    for (i in 2:length(M)) {
+ 	B = ifelse(bare[i] == FALSE, 1, 1.8)
+	 Max.TSMD = -(20 + 1.3 * pClay - 0.01 * (pClay^2)) * (S.Thick/23) * (1/B)
+        Acc.TSMD[1] = ifelse(M[1] > 0, 0, M[1])
+        if (Acc.TSMD[i - 1] + M[i] < 0) {
+            Acc.TSMD[i] = Acc.TSMD[i - 1] + M[i]
+        }
+        else (Acc.TSMD[i] = 0)
+        if (Acc.TSMD[i] <= Max.TSMD) {
+            Acc.TSMD[i] = Max.TSMD
+        }
+    }
+    b = ifelse(Acc.TSMD > 0.444 * Max.TSMD, 1, (0.2 + 0.8 * ((Max.TSMD - 
+        Acc.TSMD)/(Max.TSMD - 0.444 * Max.TSMD))))
+	b<-clamp(b,lower=0.2)
+    return(data.frame(b))	
+}
+
+fW_2<- fw1func(P=(Precip[,2]), E=(Evp[,2]), S.Thick = soil.thick, pClay = clay, pE = 1, bare=bare1)$b 
+
+#Vegetation Cover effects 
+
+fC<-Cov2[,2]
+
+# Set the factors frame for Model calculations
+
+xi.frame=data.frame(years,rep(fT*fW_2*fC*fPR,length.out=length(years)))
+
+# RUN THE MODEL from soilassessment
+#Roth C soilassesment
+Model3_spin=carbonTurnover(tt=years,C0=c(DPMptf, RPMptf, BIOptf, HUMptf, FallIOM),In=Cinputs,Dr=DR,clay=clay,effcts=xi.frame, "euler") 
+Ct3_spin=Model3_spin[,2:6]
+
+# RUN THE MODEL FROM SOILR
+#Model3_spin=RothCModel(t=years,C0=c(DPMptf, RPMptf, BIOptf, HUMptf, FallIOM),In=Cinputs,DR=DR,clay=clay,xi=xi.frame, pass=TRUE) 
+#Ct3_spin=getC(Model3_spin)
+
+# Get the final pools of the time series
+poolSize3_spin=as.numeric(tail(Ct3_spin,1))
+
+return(poolSize3_spin)
+}
+########## function set up ends###############
+```
 After setting the RothC function we will iterate it over each one of the target points.  
 For each target point we extract the climate variables and the monthly vegetation cover values. Each variable will be assigned to an R variable. 
 ```{r, eval = FALSE}
@@ -298,7 +361,7 @@ writeOGR(C_INPUT_EQ, ".", "OUTPUTS/1_SPIN_UP/SPIN_UP_County_AOI", driver="ESRI S
 ```
 
 ## Script Number 14. "ROTH_C_WARM_UP_v4.R"
-Script number 14 implements the second modelling phase ("Warm up" phase). In this script we will load the stack of different layers generated in script number 11 and the target points. We also will load the output vector of the phase 1 (spin up), the climate layers from script number 2, the NPP layer from script number 5, and the land use layer stack from script number 9. This script runs the Roth C model for 18 years (2000-2018) with the possibility to be modified to 20 years if data is available (2000-2020). The final outputs are SOC stocks of the five C pools of the RothC model (DPM, RPM, BIO, HUM and IOM), and the total SOC stock. This information will be saved to a shapefile vector.
+Script number 14 implements the second modeling phase ("Warm up" phase). In this script we will load the stack of different layers generated in script number 11 and the target points. We also will load the output vector of the phase 1 (spin up), the climate layers from script number 2, the NPP layer from script number 5, and the land use layer stack from script number 9. This script runs the Roth C model for 18 years (2000-2018) with the possibility to be modified to 20 years if data is available (2000-2020). The final outputs are SOC stocks of the five C pools of the RothC model (DPM, RPM, BIO, HUM and IOM), and the total SOC stock. This information will be saved to a shapefile vector.
  
 **Table 10.2** *Script Number 14. Warm Up phase. Inputs and Outputs*
 
@@ -381,9 +444,75 @@ year=seq(1/12,1,by=1/12)
 We will need to set the RothC function to be ready to be used in the "Warm Up" process. 
 
 ```{r, eval = FALSE}
-# ROTH C MODEL FUNCTION . 
 ###########function set up starts################
-Roth_C<-function(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1){
+Roth_C<-function(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1,LU)
+
+{
+
+# Paddy fields coefficent fPR = 0.4 if the target point is class = 13 , else fPR=1
+# From Shirato and Yukozawa 2004
+
+fPR=(LU == 13)*0.4 + (LU!=13)*1
+
+#Temperature effects per month
+fT=fT.RothC(Temp[,2]) 
+
+#Moisture effects per month . Si se usa evapotranspiracion pE=1
+
+fw1func<-function(P, E, S.Thick = 30, pClay = 32.0213, pE = 1, bare) 
+{
+   
+    M = P - E * pE
+    Acc.TSMD = NULL
+    for (i in 2:length(M)) {
+ 	B = ifelse(bare[i] == FALSE, 1, 1.8)
+	 Max.TSMD = -(20 + 1.3 * pClay - 0.01 * (pClay^2)) * (S.Thick/23) * (1/B)
+        Acc.TSMD[1] = ifelse(M[1] > 0, 0, M[1])
+        if (Acc.TSMD[i - 1] + M[i] < 0) {
+            Acc.TSMD[i] = Acc.TSMD[i - 1] + M[i]
+        }
+        else (Acc.TSMD[i] = 0)
+        if (Acc.TSMD[i] <= Max.TSMD) {
+            Acc.TSMD[i] = Max.TSMD
+        }
+    }
+    b = ifelse(Acc.TSMD > 0.444 * Max.TSMD, 1, (0.2 + 0.8 * ((Max.TSMD - 
+        Acc.TSMD)/(Max.TSMD - 0.444 * Max.TSMD))))
+	b<-clamp(b,lower=0.2)
+    return(data.frame(b))
+}
+
+
+fW_2<- fw1func(P=(Precip[,2]), E=(Evp[,2]), S.Thick = soil.thick, pClay = clay, pE = 1, bare=bare1)$b 
+
+#Vegetation Cover effects  C1: No till Agriculture, C2: Conventional Agriculture, C3: Grasslands and Forests, C4 bareland and Urban
+
+fC<-Cov2[,2]
+
+# Set the factors frame for Model calculations
+
+xi.frame=data.frame(years,rep(fT*fW_2*fC*fPR,length.out=length(years)))
+
+# RUN THE MODEL from SoilR
+#Loads the model Si pass=TRUE genera calcula el modelo aunque sea invalido. 
+#Model3_spin=RothCModel(t=years,C0=c(DPMptf, RPMptf, BIOptf, HUMptf, FallIOM),In=Cinputs,DR=DR,clay=clay,xi=xi.frame, pass=TRUE) 
+#Calculates stocks for each pool per month
+#Ct3_spin=getC(Model3_spin)
+
+# RUN THE MODEL from soilassesment
+
+Model3_spin=carbonTurnover(tt=years,C0=c(DPMptf, RPMptf, BIOptf, HUMptf, FallIOM),In=Cinputs,Dr=DR,clay=clay,effcts=xi.frame, "euler") 
+
+Ct3_spin=Model3_spin[,2:6]
+
+# Get the final pools of the time series
+
+poolSize3_spin=as.numeric(tail(Ct3_spin,1))
+
+return(poolSize3_spin)
+
+}
+##############funtion set up ends##########
 ```
 Then, we will apply the function for each target point 18/20 times according to the number of years of the "warm up" process. We will also create empty variables called "Cinputs","Cinputs_min", "Cinputs_max","NPP_M", 
 
@@ -574,13 +703,13 @@ writeOGR(WARM_UP,".", "OUTPUTS/2_WARM_UP/WARM_UP_County_AOI", driver="ESRI Shape
 ```
 
 ### Script Number 15. "ROTH_C_forward_v2.R"
-Script number 15 implements the third modelling phase ("forward" phase). We will need to load the stack of layers generated in script number 12 and the target points. We will also need to load the output vector of the phase 2 ("warm up") as an input.  This script will run the Roth C model for 20 years, projecting SOC stocks for the 2020-2040 period under different management scenarios ("BAU" scenario and the three SSM scenarios: low, medium and high input carbon). C inputs will vary according to the SSM scenarios. Standard default values of 5-10-20% increase in C inputs are defined for the three SSM scenarios (low, medium, high, respectively). Users can modify these inputs based on local expertise and available information, and generate alternative maps using this data. The final outputs will be the final SOC stocks after 20 years for the different scenarios. This information will be saved to a shapefile.
+Script number 15 implements the third modeling phase ("forward" phase). We will need to load the stack of layers generated in script number 12 and the target points. We will also need to load the output vector of the phase 2 ("warm up") as an input.  This script will run the Roth C model for 20 years, projecting SOC stocks for the 2020-2040 period under different management scenarios ("BAU" scenario and the three SSM scenarios: low, medium and high input carbon). C inputs will vary according to the SSM scenarios. Standard default values of 5-10-20% increase in C inputs are defined for the three SSM scenarios (low, medium, high, respectively). Users can modify these inputs based on local expertise and available information, and generate alternative maps using this data. The final outputs will be the final SOC stocks after 20 years for the different scenarios. This information will be saved to a shapefile.
  
 **Table 10.3** *Script Number 15. forward phase. Inputs and Outputs*
 
 ![](tables/Table_10.3.png)
 
-The 'Forward' modelling phase requires (as in the previous phases) the target points (generated from the Qgis procedure number 1), the stack of layers (from script number 12), and the output vector from the previous phase (warm up).  We will need to load the R packages, the target points, the stack for this phase (Stack_Set_forward_[country_code].tif), and  vector from the 'Warm up' phase (WARM_UP.shp).
+The 'Forward' modeling phase requires (as in the previous phases) the target points (generated from the Qgis procedure number 1), the stack of layers (from script number 12), and the output vector from the previous phase (warm up).  We will need to load the R packages, the target points, the stack for this phase (Stack_Set_forward_[country_code].tif), and  vector from the 'Warm up' phase (WARM_UP.shp).
 
 ```{r, eval = FALSE}
 
@@ -617,6 +746,10 @@ High_Grass<-1.2
 Low_Forest<-1.05
 Med_Forest<-1.10
 High_Forest<-1.2
+#Paddy Fields
+Low_PaddyFields<-1.05
+Med_PaddyFields<-1.10
+High_PaddyFields<-1.2
 ```
 
 Next, we will extract the variables contained in the stack to the target points.
@@ -644,16 +777,79 @@ DR_im<-Variables[[40]]
 LU_im<-Variables[[41]]
 ```
 
-Next, we will define the number of years for the modelling runs. 
+Next, we will define the number of years for the modeling runs. 
 
 ```{r, eval = FALSE}
 # Define the years to run the model
 years=seq(1/12,20,by=1/12)
 ```
-Then, we will set the RothC function as we did for the previous modelling phases.
+Then, we will set the RothC function as we did for the previous modeling phases.
 
 ```{r, eval = FALSE}
-Roth_C<-function(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1){
+#############function set up starts###############
+Roth_C<-function(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1,LU)
+{
+# Paddy Fields coefficent fPR = 0.4 if the target point is class = 13 , else fPR=1
+# From Shirato and Yukozawa 2004
+
+fPR=(LU == 13)*0.4 + (LU!=13)*1
+
+#Temperature effects per month
+fT=fT.RothC(Temp[,2]) 
+
+#Moisture effects per month . 
+
+fw1func<-function(P, E, S.Thick = 30, pClay = 32.0213, pE = 1, bare) 
+{
+   
+    M = P - E * pE
+    Acc.TSMD = NULL
+    for (i in 2:length(M)) {
+ 	B = ifelse(bare[i] == FALSE, 1, 1.8)
+	 Max.TSMD = -(20 + 1.3 * pClay - 0.01 * (pClay^2)) * (S.Thick/23) * (1/B)
+        Acc.TSMD[1] = ifelse(M[1] > 0, 0, M[1])
+        if (Acc.TSMD[i - 1] + M[i] < 0) {
+            Acc.TSMD[i] = Acc.TSMD[i - 1] + M[i]
+        }
+        else (Acc.TSMD[i] = 0)
+        if (Acc.TSMD[i] <= Max.TSMD) {
+            Acc.TSMD[i] = Max.TSMD
+        }
+    }
+    b = ifelse(Acc.TSMD > 0.444 * Max.TSMD, 1, (0.2 + 0.8 * ((Max.TSMD - 
+        Acc.TSMD)/(Max.TSMD - 0.444 * Max.TSMD))))
+	b<-clamp(b,lower=0.2)
+    return(data.frame(b))
+}
+
+fW_2<- fw1func(P=(Precip[,2]), E=(Evp[,2]), S.Thick = soil.thick, pClay = clay, pE = 1, bare=bare1)$b 
+
+#Vegetation Cover effects  
+
+fC<-Cov2[,2]
+
+# Set the factors frame for Model calculations
+
+xi.frame=data.frame(years,rep(fT*fW_2*fC*fPR,length.out=length(years)))
+
+# RUN THE MODEL from SoilR
+#Loads the model 
+#Model3_spin=RothCModel(t=years,C0=c(DPMptf[[1]], RPMptf[[1]], BIOptf[[1]], HUMptf[[1]], FallIOM[[1]]),In=Cinputs,DR=DR,clay=clay,xi=xi.frame, pass=TRUE) 
+#Ct3_spin=getC(Model3_spin)
+
+# RUN THE MODEL from soilassesment
+
+Model3_spin=carbonTurnover(tt=years,C0=c(DPMptf[[1]], RPMptf[[1]], BIOptf[[1]], HUMptf[[1]], FallIOM[[1]]),In=Cinputs,Dr=DR,clay=clay,effcts=xi.frame, "euler") 
+
+Ct3_spin=Model3_spin[,2:6]
+
+# Get the final pools of the time series
+
+poolSize3_spin=as.numeric(tail(Ct3_spin,1))
+
+return(poolSize3_spin)
+}
+################function set up ends#############
 ```
 
 Then we can iterate over the vector variable, running the model for each target point.
@@ -690,67 +886,91 @@ Now we can run the model for the business as usual (BAU) scenario.  The "f_bau_t
 
 ```{r, eval = FALSE}
 # Final calculation of SOC  20 years in the future  (Business as usual)
-f_bau<-Roth_C(Cinputs=Cinputs,years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+
+f_bau<-Roth_C(Cinputs=Cinputs,years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_bau_t<-f_bau[1]+f_bau[2]+f_bau[3]+f_bau[4]+f_bau[5]
+
 #Unc BAU minimum 
 Cinputs_min<-WARM_UP@data[i,23]
 Cinputs_max<-WARM_UP@data[i,24]
-SOC_2018_min<-WARM_UP@data[i,11]
-SOC_2018_max<-WARM_UP@data[i,17]
-f_bau_min<-Roth_C(Cinputs=Cinputs_min,years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1)
+SOC_t0_min<-WARM_UP@data[i,11]
+SOC_t0_max<-WARM_UP@data[i,17]
+
+f_bau_min<-Roth_C(Cinputs=Cinputs_min,years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
 f_bau_t_min<-f_bau_min[1]+f_bau_min[2]+f_bau_min[3]+f_bau_min[4]+f_bau_min[5]
+
 #Unc BAU maximum
-f_bau_max<-Roth_C(Cinputs=Cinputs_max,years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1)
+
+f_bau_max<-Roth_C(Cinputs=Cinputs_max,years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
 f_bau_t_max<-f_bau_max[1]+f_bau_max[2]+f_bau_max[3]+f_bau_max[4]+f_bau_max[5]
-In this block, we will run the model for the three SSM scenarios. 
+
 # Crops and Tree crops
 if (LU==2 | LU==12){
-f_low<-Roth_C(Cinputs=(Cinputs*Low_Crops),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+f_low<-Roth_C(Cinputs=(Cinputs*Low_Crops),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_low_t<-f_low[1]+f_low[2]+f_low[3]+f_low[4]+f_low[5]
-f_med<-Roth_C(Cinputs=(Cinputs*Med_Crops),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+
+f_med<-Roth_C(Cinputs=(Cinputs*Med_Crops),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_med_t<-f_med[1]+f_med[2]+f_med[3]+f_med[4]+f_med[5]
-f_high<-Roth_C(Cinputs=(Cinputs*High_Crops),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+
+f_high<-Roth_C(Cinputs=(Cinputs*High_Crops),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_high_t<-f_high[1]+f_high[2]+f_high[3]+f_high[4]+f_high[5]
+
 # SSM croplands unc min
-f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_Crops-0.15)),years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1)
+
+f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_Crops-0.15)),years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
 f_med_t_min<-f_med_min[1]+f_med_min[2]+f_med_min[3]+f_med_min[4]+f_med_min[5]
+
 # SSM croplands unc max
 
-f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_Crops+0.15)),years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1)
+f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_Crops+0.15)),years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
 f_med_t_max<-f_med_max[1]+f_med_max[2]+f_med_max[3]+f_med_max[4]+f_med_max[5]
+
 }
 #Shrublands, grasslands, and sparce vegetation
 else if (LU==3 | LU==5 | LU==6 | LU==8) {
-f_low<-Roth_C(Cinputs=(Cinputs*Low_Grass),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+f_low<-Roth_C(Cinputs=(Cinputs*Low_Grass),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_low_t<-f_low[1]+f_low[2]+f_low[3]+f_low[4]+f_low[5]
-f_med<-Roth_C(Cinputs=(Cinputs*Med_Grass),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+
+f_med<-Roth_C(Cinputs=(Cinputs*Med_Grass),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_med_t<-f_med[1]+f_med[2]+f_med[3]+f_med[4]+f_med[5]
-f_high<-Roth_C(Cinputs=(Cinputs*High_Grass),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+
+f_high<-Roth_C(Cinputs=(Cinputs*High_Grass),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_high_t<-f_high[1]+f_high[2]+f_high[3]+f_high[4]+f_high[5]
+
 #SSM Shrublands unc min
-f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_Grass-0.15)),years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1)
+
+f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_Grass-0.15)),years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
 f_med_t_min<-f_med_min[1]+f_med_min[2]+f_med_min[3]+f_med_min[4]+f_med_min[5]
 
 #SSM Shrublands unc max
-f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_Grass+0.15)),years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1)
+
+f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_Grass+0.15)),years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
 f_med_t_max<-f_med_max[1]+f_med_max[2]+f_med_max[3]+f_med_max[4]+f_med_max[5]
+
 }
-# Forest 
-else if (LU==4) {
-f_low<-Roth_C(Cinputs=(Cinputs*Low_Forest),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+# Paddy Fields 
+else if (LU==13) {
+f_low<-Roth_C(Cinputs=(Cinputs*Low_PaddyFields),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_low_t<-f_low[1]+f_low[2]+f_low[3]+f_low[4]+f_low[5]
-f_med<-Roth_C(Cinputs=(Cinputs*Med_Forest),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+
+f_med<-Roth_C(Cinputs=(Cinputs*Med_PaddyFields),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_med_t<-f_med[1]+f_med[2]+f_med[3]+f_med[4]+f_med[5]
-f_high<-Roth_C(Cinputs=(Cinputs*High_Forest),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1)
+
+f_high<-Roth_C(Cinputs=(Cinputs*High_PaddyFields),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
 f_high_t<-f_high[1]+f_high[2]+f_high[3]+f_high[4]+f_high[5]
+
 #SSM Forest unc min
-f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_Forest-0.15)),years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1)
+
+f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_PaddyFields-0.15)),years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
 f_med_t_min<-f_med_min[1]+f_med_min[2]+f_med_min[3]+f_med_min[4]+f_med_min[5]
 
 #SSM Forest unc max
-f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_Forest+0.15)),years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1)
+
+f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_PaddyFields+0.15)),years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
 f_med_t_max<-f_med_max[1]+f_med_max[2]+f_med_max[3]+f_med_max[4]+f_med_max[5]
+
 }
+
 else{
 f_bau_t<-0
 f_low_t<-0
@@ -760,13 +980,11 @@ f_bau_t_min<-0
 f_bau_t_max<-0
 f_med_t_min<-0
 f_med_t_max<-0
-SOC_2018_min<-0
-SOC_2018_max<-0
-}
-```
-Now we will save the results to the "FOWARD" variables. We also are going to save the initial SOC stock (2018) and the land use. 
+SOC_t0_min<-0
+SOC_t0_max<-0
 
-```{r, eval = FALSE}
+}
+
 
 FOWARD[i,2]<-SOC
 FOWARD[i,3]<-f_bau_t
@@ -783,15 +1001,21 @@ FOWARD[i,13]<-f_bau_t_min
 FOWARD[i,14]<-f_bau_t_max
 FOWARD[i,15]<-f_med_t_min
 FOWARD[i,16]<-f_med_t_max
-FOWARD[i,17]<-SOC_2018_min
-FOWARD[i,18]<-SOC_2018_max
+FOWARD[i,17]<-SOC_t0_min
+FOWARD[i,18]<-SOC_t0_max
+
+
+
 print(c(i,SOC,f_bau_t,f_low_t,f_med_t,f_high_t,f_bau_t_min,f_bau_t_max))
-}}
-##################for loop ends###############
+
+}
+}
+
+############for loop ends##############
 ```
 ```{r, eval = FALSE}
 Next , we will change the names of the fields in the output vector layer.
-colnames(FOWARD@data)[2]="SOC_i_2018"
+colnames(FOWARD@data)[2]="SOC_t0"
 colnames(FOWARD@data)[3]="SOC_BAU_20"
 colnames(FOWARD@data)[4]="DPM_BAU_20"
 colnames(FOWARD@data)[5]="RPM_BAU_20"
@@ -806,8 +1030,8 @@ colnames(FOWARD@data)[13]="SOC_BAU_20_min"
 colnames(FOWARD@data)[14]="SOC_BAU_20_max"
 colnames(FOWARD@data)[15]="Med_Scen_min"
 colnames(FOWARD@data)[16]="Med_Scen_max"
-colnames(FOWARD@data)[17]="SOC_2018_min"
-colnames(FOWARD@data)[18]="SOC_2018_max"
+colnames(FOWARD@data)[17]="SOC_t0_min"
+colnames(FOWARD@data)[18]="SOC_t0_max"
 ```
 
 The 'euler' method can give some out of range results in some points, under specific combinations of climatic, soil and NPP variables. To avoid including those points in the maps we will remove any "out of range" value. 

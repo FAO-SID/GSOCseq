@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.12.7)  22 DEC 2020 10:55
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.12.22)  22 DEC 2020 11:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **SOCMapping.tex
 (./SOCMapping.tex
 LaTeX2e <2020-10-01> patch level 2
-L3 programming layer <2020-12-05> xparse <2020-03-03> (c:/Users/hp/AppData/Roam
+L3 programming layer <2020-12-07> xparse <2020-03-03> (c:/Users/hp/AppData/Roam
 ing/TinyTeX/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2020/04/10 v1.4m Standard LaTeX document class
 (c:/Users/hp/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
@@ -134,7 +134,7 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 (c:/Users/hp/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-
 math.sty (c:/Users/hp/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/exp
 l3.sty
-Package: expl3 2020-12-05 L3 programming layer (loader) 
+Package: expl3 2020-12-07 L3 programming layer (loader) 
 
 (c:/Users/hp/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-x
 etex.def
@@ -469,8 +469,8 @@ l.125 \usepackage
                  {sectsty} 
 Here is how much of TeX's memory you used:
  15982 strings out of 479324
- 279502 string characters out of 5876985
- 641772 words of memory out of 5000000
+ 279502 string characters out of 5876984
+ 641775 words of memory out of 5000000
  35309 multiletter control sequences out of 15000+600000
  403806 words of font info for 30 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

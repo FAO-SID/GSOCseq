@@ -3168,6 +3168,7 @@ First, we will need to open the R packages, open the shapefile of the region/cou
 \CommentTok{#   220 = 10 Snow and Glaciers}
 \CommentTok{#   210 = 11 Waterbodies}
 \CommentTok{#   12 = 12 Treecrops}
+\CommentTok{#   20 = 13 Paddy fields(rice/ flooded crops)}
 \CommentTok{# Reclassify matrix. "Is" to "become"}
 \NormalTok{is<-}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{190}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{30}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{130}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{61}\NormalTok{,}\DecValTok{62}\NormalTok{,}\DecValTok{70}\NormalTok{,}\DecValTok{71}\NormalTok{,}\DecValTok{72}\NormalTok{,}\DecValTok{80}\NormalTok{,}\DecValTok{81}\NormalTok{,}\DecValTok{82}\NormalTok{,}\DecValTok{90}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{110}\NormalTok{,}\DecValTok{120}\NormalTok{,}\DecValTok{121}\NormalTok{,}\DecValTok{122}\NormalTok{,}\DecValTok{160}\NormalTok{,}\DecValTok{180}\NormalTok{,}\DecValTok{170}\NormalTok{,}\DecValTok{150}\NormalTok{,}\DecValTok{151}\NormalTok{,}\DecValTok{152}\NormalTok{,}\DecValTok{153}\NormalTok{,}\DecValTok{200}\NormalTok{,}\DecValTok{201}\NormalTok{,}\DecValTok{202}\NormalTok{,}\DecValTok{220}\NormalTok{,}\DecValTok{210}\NormalTok{,}\DecValTok{12}\NormalTok{)}
 \NormalTok{become<-}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{)}
@@ -3265,6 +3266,7 @@ First, we will open the required R-packages and a shapefile (polygon) which repr
 \CommentTok{# 10 Snow and Glaciers}
 \CommentTok{# 11 Waterbodies}
 \CommentTok{# 12 TreeCrops}
+\CommentTok{# 13 Paddy fields}
 \KeywordTok{setwd}\NormalTok{(WD_LU)}
 \NormalTok{LU_AOI<-}\KeywordTok{raster}\NormalTok{(}\StringTok{"ESA_Land_Cover_12clases_FAO_AOI.tif"}\NormalTok{)}
 \NormalTok{Then, we will open the vegetation cover }\KeywordTok{layers}\NormalTok{ (created }\ControlFlowTok{in}\NormalTok{ script number }\DecValTok{7}\NormalTok{)}\OperatorTok{:}
@@ -3283,7 +3285,7 @@ The script then creates a DR layer (DPM/RPM ratio). Here the DR layer is derived
 \CommentTok{#(1) Most agricultural crops and improved grassland and tree crops 1.44 }
 \CommentTok{#(2) Unimproved grassland and schrub 0.67}
 \CommentTok{#(3) Deciduous and tropical woodland 0.25    }
-\NormalTok{DR<-(LU_AOI}\OperatorTok{==}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{12}\NormalTok{)}\OperatorTok{*}\FloatTok{1.44}\OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{4}\NormalTok{)}\OperatorTok{*}\FloatTok{0.25} \OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{6} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{8}\NormalTok{)}\OperatorTok{*}\FloatTok{0.67}
+\NormalTok{DR<-(LU_AOI}\OperatorTok{==}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{12}\OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{13}\NormalTok{)}\OperatorTok{*}\FloatTok{1.44}\OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{4}\NormalTok{)}\OperatorTok{*}\FloatTok{0.25} \OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{6} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{8}\NormalTok{)}\OperatorTok{*}\FloatTok{0.67}
 \NormalTok{ Finally, we will create a stack with all the raster layers that have been prepared.}
  \CommentTok{# STACK all layers}
 \NormalTok{Stack_Set_AOI<-}\KeywordTok{stack}\NormalTok{(SOC_MAP_AOI,Clay_WA_AOI_res,TEMP_AOI,PREC_AOI,PET_AOI,DR,LU_AOI,Cov_AOI)}
@@ -3378,7 +3380,7 @@ Then, we will create a ``DR'' stack layer, one DR layer per year of the WARM UP 
 \CommentTok{#(1) Most agricultural crops and improved grassland or tree crops 1.44 }
 \CommentTok{#(2) Unimproved grassland and shrub 0.67}
 \CommentTok{#(3) Deciduous and tropical woodland 0.25    }
-\NormalTok{DR<-(LU_AOI}\OperatorTok{==}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{12}\NormalTok{)}\OperatorTok{*}\FloatTok{1.44}\OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{4}\NormalTok{)}\OperatorTok{*}\FloatTok{0.25} \OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{6} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{8}\NormalTok{)}\OperatorTok{*}\FloatTok{0.67}
+\NormalTok{DR<-(LU_AOI}\OperatorTok{==}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{12}\OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{13}\NormalTok{)}\OperatorTok{*}\FloatTok{1.44}\OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{4}\NormalTok{)}\OperatorTok{*}\FloatTok{0.25} \OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{6} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{8}\NormalTok{)}\OperatorTok{*}\FloatTok{0.67}
 \NormalTok{DR_Stack<-LU_Stack}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{nlayers}\NormalTok{(LU_Stack))\{}
 \NormalTok{DR_Stack[[i]]<-(LU_Stack[[i]]}\OperatorTok{==}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{LU_Stack[[i]]}\OperatorTok{==}\DecValTok{12}\NormalTok{)}\OperatorTok{*}\FloatTok{1.44}\OperatorTok{+}\StringTok{ }\NormalTok{(LU_Stack[[i]]}\OperatorTok{==}\DecValTok{4}\NormalTok{)}\OperatorTok{*}\FloatTok{0.25} \OperatorTok{+}\StringTok{ }\NormalTok{(LU_Stack[[i]]}\OperatorTok{==}\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{LU_Stack[[i]]}\OperatorTok{==}\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{LU_Stack[[i]]}\OperatorTok{==}\DecValTok{6} \OperatorTok{|}\StringTok{ }\NormalTok{LU_Stack[[i]]}\OperatorTok{==}\DecValTok{8}\NormalTok{)}\OperatorTok{*}\FloatTok{0.67}
@@ -3469,7 +3471,7 @@ First, we will load the packages, set path to the files directories and open the
 \CommentTok{#(1) Most agricultural crops and improved grassland or tree crops 1.44 }
 \CommentTok{#(2) Unimproved grassland and schrub 0.67}
 \CommentTok{#(3) Deciduous and tropical woodland 0.25    }
-\NormalTok{DR<-(LU_AOI}\OperatorTok{==}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{12}\NormalTok{)}\OperatorTok{*}\FloatTok{1.44}\OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{4}\NormalTok{)}\OperatorTok{*}\FloatTok{0.25} \OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{6} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{8}\NormalTok{)}\OperatorTok{*}\FloatTok{0.67}
+\NormalTok{DR<-(LU_AOI}\OperatorTok{==}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{12}\OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{13}\NormalTok{)}\OperatorTok{*}\FloatTok{1.44}\OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{4}\NormalTok{)}\OperatorTok{*}\FloatTok{0.25} \OperatorTok{+}\StringTok{ }\NormalTok{(LU_AOI}\OperatorTok{==}\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{6} \OperatorTok{|}\StringTok{ }\NormalTok{LU_AOI}\OperatorTok{==}\DecValTok{8}\NormalTok{)}\OperatorTok{*}\FloatTok{0.67}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3519,9 +3521,9 @@ This process will create vector points. Each point will be created in the centro
 \hypertarget{stage-2-running-the-model}{%
 \chapter{\textbar{} Stage 2: running the model}\label{stage-2-running-the-model}}
 
-Once all input layers are prepared, harmonized and stacked, we will run the three modelling phases. At this stage, we will run the model three times, once for each phase, so we will need three different scripts (scripts 13, 14 and 15), which use the same RothC function. For each script we will need the created raster stacks (in the case of the warm up phase we will also include the climate stacks), and the created target points. Each script will generate output vector points (containing the modelling results, i.e.~SOC stocks of the different carbon pools of the RothC model). The output vector of each phase will be used as an input of the next modelling phase. Finally, after running the `forward' phase, we will obtain an output vector file containing the SOC data for each projected scenario. This output vector will be used in the final script to generate the raster files to build the sequestration potential maps.
+Once all input layers are prepared, harmonized and stacked, we will run the three modeling phases. At this stage, we will run the model three times, once for each phase, so we will need three different scripts (scripts 13, 14 and 15), which use the same RothC function. For each script we will need the created raster stacks (in the case of the warm up phase we will also include the climate stacks), and the created target points. Each script will generate output vector points (containing the modeling results, i.e.~SOC stocks of the different carbon pools of the RothC model). The output vector of each phase will be used as an input of the next modeling phase. Finally, after running the `forward' phase, we will obtain an output vector file containing the SOC data for each projected scenario. This output vector will be used in the final script to generate the raster files to build the sequestration potential maps.
 
-In each phase and script we will use the same RothC function. The RothC function is the core of the next three scripts and will be used to simulate the different C pools over the defined time periods.
+In each phase and script we will use the same RothC function. The RothC function is the core of the next three scripts and will be used to simulate the different C pools over the defined time periods. In the following a brief overview of the commands we will be running to perform the RothC calculations.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3581,13 +3583,13 @@ Then the function will calculate the ``vegetation cover factor'' effect:
 \end{Highlighting}
 \end{Shaded}
 
-In each script, we will need to set the factor frame to run the model (500 years for spin up, 18/20 years for the warm-up, 20 years for the forward), and run the model. We will have two options: one from the SoilR package (using ``lsoda'' function to solve the differential equations) and one from the soilassessment package that allows to change the differential equation solver , by default we will use the ``euler'' method, which is faster.
+In each script, we will need to set the factor frame to run the model (500 years for spin up, 18/20 years for the warm-up, 20 years for the forward), and run the model. We will have two options: one from the SoilR package (using ``lsoda'' function to solve the differential equations) and one from the soilassessment package that allows to change the differential equation solver, by default we will use the ``euler'' method, which is faster.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Set the factors frame for Model calculations}
+\NormalTok{xi.frame=}\KeywordTok{data.frame}\NormalTok{(years,}\KeywordTok{rep}\NormalTok{(fT}\OperatorTok{*}\NormalTok{fW_}\DecValTok{2}\OperatorTok{*}\NormalTok{fC}\OperatorTok{*}\NormalTok{fPR,}\DataTypeTok{length.out=}\KeywordTok{length}\NormalTok{(years)))}
 
-\NormalTok{xi.frame=}\KeywordTok{data.frame}\NormalTok{(years,}\KeywordTok{rep}\NormalTok{(fT}\OperatorTok{*}\NormalTok{fW_}\DecValTok{2}\OperatorTok{*}\NormalTok{fC,}\DataTypeTok{length.out=}\KeywordTok{length}\NormalTok{(years)))}
 
 \CommentTok{# RUN THE MODEL from soilassessment}
 \CommentTok{#Roth C soilassesment}
@@ -3610,7 +3612,7 @@ In each script, we will need to set the factor frame to run the model (500 years
 \hypertarget{script-number-13.-roth_c_spin_up_v2.r}{%
 \section{Script Number 13. ``ROTH\_C\_SPIN\_UP\_v2.R''}\label{script-number-13.-roth_c_spin_up_v2.r}}
 
-Script number 13 implements the first modelling phase (long spin up phase). In this script we will load the stack generated in script number 10 and the target points (Section 9.7, QGIS model number 1). We will obtain an output vector containing our target points. This script runs the RothC model for 500 years to calculate the equilibrium carbon inputs (the carbon inputs needed to reach the 2001 SOC stocks) and the SOC stocks for the different pools. It first runs using a standard C input of 1 tC ha\textsuperscript{-1} yr\textsuperscript{-1}, and then equilibrium inputs are estimated from the obtained results and GSOCmap stocks (See Chapters 5 and 6). In this script we will use pedotransfer functions to estimate the SOC stocks of the different pools from the total SOC stock (Weiherm\&uuller et al., 2013) to accelerate the spin up process. All that information will be saved to the output vector (shapefile file).
+Script number 13 implements the first modeling phase (long spin up phase). In this script we will load the stack generated in script number 10 and the target points (Section 9.7, QGIS model number 1). We will obtain an output vector containing our target points. This script runs the RothC model for 500 years to calculate the equilibrium carbon inputs (the carbon inputs needed to reach the 2001 SOC stocks) and the SOC stocks for the different pools. It first runs using a standard C input of 1 tC ha\textsuperscript{-1} yr\textsuperscript{-1}, and then equilibrium inputs are estimated from the obtained results and GSOCmap stocks (See Chapters 5 and 6). In this script we will use pedotransfer functions to estimate the SOC stocks of the different pools from the total SOC stock (Weiherm\&uuller et al., 2013) to accelerate the spin up process. All that information will be saved to the output vector (shapefile file).
 Table 10.1 Script Number 13. Spin Up phase. Inputs and Outputs.
 
 The SPIN UP Phase will allow us to calculate two outputs that will be saved to a point vector layer called ``C\_INPUT\_EQ.shp'': equilibrium carbon inputs (Ceq) and the carbon stocks of the different soil C pools to run the
@@ -3690,8 +3692,69 @@ Once we have defined the variables and time frame, we can start using the the Ro
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# ROTH C MODEL FUNCTION .}
-\CommentTok{########## function set up starts############### }
-\NormalTok{Roth_C<-}\ControlFlowTok{function}\NormalTok{(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1)\{}
+\CommentTok{########## function set up starts###############}
+\NormalTok{Roth_C<-}\ControlFlowTok{function}\NormalTok{(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1,LU)}
+
+\NormalTok{\{}
+
+\CommentTok{# Paddy fields coefficent fPR = 0.4 if the target point is class = 13 , else fPR=1}
+\CommentTok{# From Shirato and Yukozawa 2004}
+
+\NormalTok{fPR=(LU }\OperatorTok{==}\StringTok{ }\DecValTok{13}\NormalTok{)}\OperatorTok{*}\FloatTok{0.4} \OperatorTok{+}\StringTok{ }\NormalTok{(LU}\OperatorTok{!=}\DecValTok{13}\NormalTok{)}\OperatorTok{*}\DecValTok{1}
+
+\CommentTok{#Temperature effects per month}
+\NormalTok{fT=}\KeywordTok{fT.RothC}\NormalTok{(Temp[,}\DecValTok{2}\NormalTok{]) }
+
+\CommentTok{#Moisture effects per month . }
+
+\NormalTok{fw1func<-}\ControlFlowTok{function}\NormalTok{(P, E, }\DataTypeTok{S.Thick =} \DecValTok{30}\NormalTok{, }\DataTypeTok{pClay =} \FloatTok{32.0213}\NormalTok{, }\DataTypeTok{pE =} \DecValTok{1}\NormalTok{, bare) }
+\NormalTok{\{}
+   
+\NormalTok{    M =}\StringTok{ }\NormalTok{P }\OperatorTok{-}\StringTok{ }\NormalTok{E }\OperatorTok{*}\StringTok{ }\NormalTok{pE}
+\NormalTok{    Acc.TSMD =}\StringTok{ }\OtherTok{NULL}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\KeywordTok{length}\NormalTok{(M)) \{}
+\NormalTok{ 	B =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(bare[i] }\OperatorTok{==}\StringTok{ }\OtherTok{FALSE}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{1.8}\NormalTok{)}
+\NormalTok{	 Max.TSMD =}\StringTok{ }\OperatorTok{-}\NormalTok{(}\DecValTok{20} \OperatorTok{+}\StringTok{ }\FloatTok{1.3} \OperatorTok{*}\StringTok{ }\NormalTok{pClay }\OperatorTok{-}\StringTok{ }\FloatTok{0.01} \OperatorTok{*}\StringTok{ }\NormalTok{(pClay}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{(S.Thick}\OperatorTok{/}\DecValTok{23}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{B)}
+\NormalTok{        Acc.TSMD[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(M[}\DecValTok{1}\NormalTok{] }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, M[}\DecValTok{1}\NormalTok{])}
+        \ControlFlowTok{if}\NormalTok{ (Acc.TSMD[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{M[i] }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+\NormalTok{            Acc.TSMD[i] =}\StringTok{ }\NormalTok{Acc.TSMD[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{M[i]}
+\NormalTok{        \}}
+        \ControlFlowTok{else}\NormalTok{ (Acc.TSMD[i] =}\StringTok{ }\DecValTok{0}\NormalTok{)}
+        \ControlFlowTok{if}\NormalTok{ (Acc.TSMD[i] }\OperatorTok{<=}\StringTok{ }\NormalTok{Max.TSMD) \{}
+\NormalTok{            Acc.TSMD[i] =}\StringTok{ }\NormalTok{Max.TSMD}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    b =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(Acc.TSMD }\OperatorTok{>}\StringTok{ }\FloatTok{0.444} \OperatorTok{*}\StringTok{ }\NormalTok{Max.TSMD, }\DecValTok{1}\NormalTok{, (}\FloatTok{0.2} \OperatorTok{+}\StringTok{ }\FloatTok{0.8} \OperatorTok{*}\StringTok{ }\NormalTok{((Max.TSMD }\OperatorTok{-}\StringTok{ }
+\StringTok{        }\NormalTok{Acc.TSMD)}\OperatorTok{/}\NormalTok{(Max.TSMD }\OperatorTok{-}\StringTok{ }\FloatTok{0.444} \OperatorTok{*}\StringTok{ }\NormalTok{Max.TSMD))))}
+\NormalTok{	b<-}\KeywordTok{clamp}\NormalTok{(b,}\DataTypeTok{lower=}\FloatTok{0.2}\NormalTok{)}
+    \KeywordTok{return}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(b))	}
+\NormalTok{\}}
+
+\NormalTok{fW_}\DecValTok{2}\NormalTok{<-}\StringTok{ }\KeywordTok{fw1func}\NormalTok{(}\DataTypeTok{P=}\NormalTok{(Precip[,}\DecValTok{2}\NormalTok{]), }\DataTypeTok{E=}\NormalTok{(Evp[,}\DecValTok{2}\NormalTok{]), }\DataTypeTok{S.Thick =}\NormalTok{ soil.thick, }\DataTypeTok{pClay =}\NormalTok{ clay, }\DataTypeTok{pE =} \DecValTok{1}\NormalTok{, }\DataTypeTok{bare=}\NormalTok{bare1)}\OperatorTok{$}\NormalTok{b }
+
+\CommentTok{#Vegetation Cover effects }
+
+\NormalTok{fC<-Cov2[,}\DecValTok{2}\NormalTok{]}
+
+\CommentTok{# Set the factors frame for Model calculations}
+
+\NormalTok{xi.frame=}\KeywordTok{data.frame}\NormalTok{(years,}\KeywordTok{rep}\NormalTok{(fT}\OperatorTok{*}\NormalTok{fW_}\DecValTok{2}\OperatorTok{*}\NormalTok{fC}\OperatorTok{*}\NormalTok{fPR,}\DataTypeTok{length.out=}\KeywordTok{length}\NormalTok{(years)))}
+
+\CommentTok{# RUN THE MODEL from soilassessment}
+\CommentTok{#Roth C soilassesment}
+\NormalTok{Model3_spin=}\KeywordTok{carbonTurnover}\NormalTok{(}\DataTypeTok{tt=}\NormalTok{years,}\DataTypeTok{C0=}\KeywordTok{c}\NormalTok{(DPMptf, RPMptf, BIOptf, HUMptf, FallIOM),}\DataTypeTok{In=}\NormalTok{Cinputs,}\DataTypeTok{Dr=}\NormalTok{DR,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{effcts=}\NormalTok{xi.frame, }\StringTok{"euler"}\NormalTok{) }
+\NormalTok{Ct3_spin=Model3_spin[,}\DecValTok{2}\OperatorTok{:}\DecValTok{6}\NormalTok{]}
+
+\CommentTok{# RUN THE MODEL FROM SOILR}
+\CommentTok{#Model3_spin=RothCModel(t=years,C0=c(DPMptf, RPMptf, BIOptf, HUMptf, FallIOM),In=Cinputs,DR=DR,clay=clay,xi=xi.frame, pass=TRUE) }
+\CommentTok{#Ct3_spin=getC(Model3_spin)}
+
+\CommentTok{# Get the final pools of the time series}
+\NormalTok{poolSize3_spin=}\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{tail}\NormalTok{(Ct3_spin,}\DecValTok{1}\NormalTok{))}
+
+\KeywordTok{return}\NormalTok{(poolSize3_spin)}
+\NormalTok{\}}
+\CommentTok{########## function set up ends###############}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3894,7 +3957,7 @@ Finally, we will set the output directory and save the output vector:
 \hypertarget{script-number-14.-roth_c_warm_up_v4.r}{%
 \section{Script Number 14. ``ROTH\_C\_WARM\_UP\_v4.R''}\label{script-number-14.-roth_c_warm_up_v4.r}}
 
-Script number 14 implements the second modelling phase (``Warm up'' phase). In this script we will load the stack of different layers generated in script number 11 and the target points. We also will load the output vector of the phase 1 (spin up), the climate layers from script number 2, the NPP layer from script number 5, and the land use layer stack from script number 9. This script runs the Roth C model for 18 years (2000-2018) with the possibility to be modified to 20 years if data is available (2000-2020). The final outputs are SOC stocks of the five C pools of the RothC model (DPM, RPM, BIO, HUM and IOM), and the total SOC stock. This information will be saved to a shapefile vector.
+Script number 14 implements the second modeling phase (``Warm up'' phase). In this script we will load the stack of different layers generated in script number 11 and the target points. We also will load the output vector of the phase 1 (spin up), the climate layers from script number 2, the NPP layer from script number 5, and the land use layer stack from script number 9. This script runs the Roth C model for 18 years (2000-2018) with the possibility to be modified to 20 years if data is available (2000-2020). The final outputs are SOC stocks of the five C pools of the RothC model (DPM, RPM, BIO, HUM and IOM), and the total SOC stock. This information will be saved to a shapefile vector.
 
 \textbf{Table 10.2} \emph{Script Number 14. Warm Up phase. Inputs and Outputs}
 
@@ -3989,9 +4052,75 @@ We will need to set the RothC function to be ready to be used in the ``Warm Up''
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# ROTH C MODEL FUNCTION . }
 \CommentTok{###########function set up starts################}
-\NormalTok{Roth_C<-}\ControlFlowTok{function}\NormalTok{(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1)\{}
+\NormalTok{Roth_C<-}\ControlFlowTok{function}\NormalTok{(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1,LU)}
+
+\NormalTok{\{}
+
+\CommentTok{# Paddy fields coefficent fPR = 0.4 if the target point is class = 13 , else fPR=1}
+\CommentTok{# From Shirato and Yukozawa 2004}
+
+\NormalTok{fPR=(LU }\OperatorTok{==}\StringTok{ }\DecValTok{13}\NormalTok{)}\OperatorTok{*}\FloatTok{0.4} \OperatorTok{+}\StringTok{ }\NormalTok{(LU}\OperatorTok{!=}\DecValTok{13}\NormalTok{)}\OperatorTok{*}\DecValTok{1}
+
+\CommentTok{#Temperature effects per month}
+\NormalTok{fT=}\KeywordTok{fT.RothC}\NormalTok{(Temp[,}\DecValTok{2}\NormalTok{]) }
+
+\CommentTok{#Moisture effects per month . Si se usa evapotranspiracion pE=1}
+
+\NormalTok{fw1func<-}\ControlFlowTok{function}\NormalTok{(P, E, }\DataTypeTok{S.Thick =} \DecValTok{30}\NormalTok{, }\DataTypeTok{pClay =} \FloatTok{32.0213}\NormalTok{, }\DataTypeTok{pE =} \DecValTok{1}\NormalTok{, bare) }
+\NormalTok{\{}
+   
+\NormalTok{    M =}\StringTok{ }\NormalTok{P }\OperatorTok{-}\StringTok{ }\NormalTok{E }\OperatorTok{*}\StringTok{ }\NormalTok{pE}
+\NormalTok{    Acc.TSMD =}\StringTok{ }\OtherTok{NULL}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\KeywordTok{length}\NormalTok{(M)) \{}
+\NormalTok{ 	B =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(bare[i] }\OperatorTok{==}\StringTok{ }\OtherTok{FALSE}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{1.8}\NormalTok{)}
+\NormalTok{	 Max.TSMD =}\StringTok{ }\OperatorTok{-}\NormalTok{(}\DecValTok{20} \OperatorTok{+}\StringTok{ }\FloatTok{1.3} \OperatorTok{*}\StringTok{ }\NormalTok{pClay }\OperatorTok{-}\StringTok{ }\FloatTok{0.01} \OperatorTok{*}\StringTok{ }\NormalTok{(pClay}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{(S.Thick}\OperatorTok{/}\DecValTok{23}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{B)}
+\NormalTok{        Acc.TSMD[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(M[}\DecValTok{1}\NormalTok{] }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, M[}\DecValTok{1}\NormalTok{])}
+        \ControlFlowTok{if}\NormalTok{ (Acc.TSMD[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{M[i] }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+\NormalTok{            Acc.TSMD[i] =}\StringTok{ }\NormalTok{Acc.TSMD[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{M[i]}
+\NormalTok{        \}}
+        \ControlFlowTok{else}\NormalTok{ (Acc.TSMD[i] =}\StringTok{ }\DecValTok{0}\NormalTok{)}
+        \ControlFlowTok{if}\NormalTok{ (Acc.TSMD[i] }\OperatorTok{<=}\StringTok{ }\NormalTok{Max.TSMD) \{}
+\NormalTok{            Acc.TSMD[i] =}\StringTok{ }\NormalTok{Max.TSMD}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    b =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(Acc.TSMD }\OperatorTok{>}\StringTok{ }\FloatTok{0.444} \OperatorTok{*}\StringTok{ }\NormalTok{Max.TSMD, }\DecValTok{1}\NormalTok{, (}\FloatTok{0.2} \OperatorTok{+}\StringTok{ }\FloatTok{0.8} \OperatorTok{*}\StringTok{ }\NormalTok{((Max.TSMD }\OperatorTok{-}\StringTok{ }
+\StringTok{        }\NormalTok{Acc.TSMD)}\OperatorTok{/}\NormalTok{(Max.TSMD }\OperatorTok{-}\StringTok{ }\FloatTok{0.444} \OperatorTok{*}\StringTok{ }\NormalTok{Max.TSMD))))}
+\NormalTok{	b<-}\KeywordTok{clamp}\NormalTok{(b,}\DataTypeTok{lower=}\FloatTok{0.2}\NormalTok{)}
+    \KeywordTok{return}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(b))}
+\NormalTok{\}}
+
+
+\NormalTok{fW_}\DecValTok{2}\NormalTok{<-}\StringTok{ }\KeywordTok{fw1func}\NormalTok{(}\DataTypeTok{P=}\NormalTok{(Precip[,}\DecValTok{2}\NormalTok{]), }\DataTypeTok{E=}\NormalTok{(Evp[,}\DecValTok{2}\NormalTok{]), }\DataTypeTok{S.Thick =}\NormalTok{ soil.thick, }\DataTypeTok{pClay =}\NormalTok{ clay, }\DataTypeTok{pE =} \DecValTok{1}\NormalTok{, }\DataTypeTok{bare=}\NormalTok{bare1)}\OperatorTok{$}\NormalTok{b }
+
+\CommentTok{#Vegetation Cover effects  C1: No till Agriculture, C2: Conventional Agriculture, C3: Grasslands and Forests, C4 bareland and Urban}
+
+\NormalTok{fC<-Cov2[,}\DecValTok{2}\NormalTok{]}
+
+\CommentTok{# Set the factors frame for Model calculations}
+
+\NormalTok{xi.frame=}\KeywordTok{data.frame}\NormalTok{(years,}\KeywordTok{rep}\NormalTok{(fT}\OperatorTok{*}\NormalTok{fW_}\DecValTok{2}\OperatorTok{*}\NormalTok{fC}\OperatorTok{*}\NormalTok{fPR,}\DataTypeTok{length.out=}\KeywordTok{length}\NormalTok{(years)))}
+
+\CommentTok{# RUN THE MODEL from SoilR}
+\CommentTok{#Loads the model Si pass=TRUE genera calcula el modelo aunque sea invalido. }
+\CommentTok{#Model3_spin=RothCModel(t=years,C0=c(DPMptf, RPMptf, BIOptf, HUMptf, FallIOM),In=Cinputs,DR=DR,clay=clay,xi=xi.frame, pass=TRUE) }
+\CommentTok{#Calculates stocks for each pool per month}
+\CommentTok{#Ct3_spin=getC(Model3_spin)}
+
+\CommentTok{# RUN THE MODEL from soilassesment}
+
+\NormalTok{Model3_spin=}\KeywordTok{carbonTurnover}\NormalTok{(}\DataTypeTok{tt=}\NormalTok{years,}\DataTypeTok{C0=}\KeywordTok{c}\NormalTok{(DPMptf, RPMptf, BIOptf, HUMptf, FallIOM),}\DataTypeTok{In=}\NormalTok{Cinputs,}\DataTypeTok{Dr=}\NormalTok{DR,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{effcts=}\NormalTok{xi.frame, }\StringTok{"euler"}\NormalTok{) }
+
+\NormalTok{Ct3_spin=Model3_spin[,}\DecValTok{2}\OperatorTok{:}\DecValTok{6}\NormalTok{]}
+
+\CommentTok{# Get the final pools of the time series}
+
+\NormalTok{poolSize3_spin=}\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{tail}\NormalTok{(Ct3_spin,}\DecValTok{1}\NormalTok{))}
+
+\KeywordTok{return}\NormalTok{(poolSize3_spin)}
+
+\NormalTok{\}}
+\CommentTok{##############funtion set up ends##########}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4206,13 +4335,13 @@ Finally, we will have to save the output vector and the name of that vector.
 \hypertarget{script-number-15.-roth_c_forward_v2.r}{%
 \subsection{Script Number 15. ``ROTH\_C\_forward\_v2.R''}\label{script-number-15.-roth_c_forward_v2.r}}
 
-Script number 15 implements the third modelling phase (``forward'' phase). We will need to load the stack of layers generated in script number 12 and the target points. We will also need to load the output vector of the phase 2 (``warm up'') as an input. This script will run the Roth C model for 20 years, projecting SOC stocks for the 2020-2040 period under different management scenarios (``BAU'' scenario and the three SSM scenarios: low, medium and high input carbon). C inputs will vary according to the SSM scenarios. Standard default values of 5-10-20\% increase in C inputs are defined for the three SSM scenarios (low, medium, high, respectively). Users can modify these inputs based on local expertise and available information, and generate alternative maps using this data. The final outputs will be the final SOC stocks after 20 years for the different scenarios. This information will be saved to a shapefile.
+Script number 15 implements the third modeling phase (``forward'' phase). We will need to load the stack of layers generated in script number 12 and the target points. We will also need to load the output vector of the phase 2 (``warm up'') as an input. This script will run the Roth C model for 20 years, projecting SOC stocks for the 2020-2040 period under different management scenarios (``BAU'' scenario and the three SSM scenarios: low, medium and high input carbon). C inputs will vary according to the SSM scenarios. Standard default values of 5-10-20\% increase in C inputs are defined for the three SSM scenarios (low, medium, high, respectively). Users can modify these inputs based on local expertise and available information, and generate alternative maps using this data. The final outputs will be the final SOC stocks after 20 years for the different scenarios. This information will be saved to a shapefile.
 
 \textbf{Table 10.3} \emph{Script Number 15. forward phase. Inputs and Outputs}
 
 \includegraphics{tables/Table_10.3.png}
 
-The `Forward' modelling phase requires (as in the previous phases) the target points (generated from the Qgis procedure number 1), the stack of layers (from script number 12), and the output vector from the previous phase (warm up). We will need to load the R packages, the target points, the stack for this phase (Stack\_Set\_forward\_{[}country\_code{]}.tif), and vector from the `Warm up' phase (WARM\_UP.shp).
+The `Forward' modeling phase requires (as in the previous phases) the target points (generated from the Qgis procedure number 1), the stack of layers (from script number 12), and the output vector from the previous phase (warm up). We will need to load the R packages, the target points, the stack for this phase (Stack\_Set\_forward\_{[}country\_code{]}.tif), and vector from the `Warm up' phase (WARM\_UP.shp).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4249,6 +4378,10 @@ We can set the SSM carbon input increment of each land use class.
 \NormalTok{Low_Forest<-}\FloatTok{1.05}
 \NormalTok{Med_Forest<-}\FloatTok{1.10}
 \NormalTok{High_Forest<-}\FloatTok{1.2}
+\CommentTok{#Paddy Fields}
+\NormalTok{Low_PaddyFields<-}\FloatTok{1.05}
+\NormalTok{Med_PaddyFields<-}\FloatTok{1.10}
+\NormalTok{High_PaddyFields<-}\FloatTok{1.2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4283,7 +4416,7 @@ We will extract some of the variables needed in the model to individual variable
 \end{Highlighting}
 \end{Shaded}
 
-Next, we will define the number of years for the modelling runs.
+Next, we will define the number of years for the modeling runs.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4292,11 +4425,74 @@ Next, we will define the number of years for the modelling runs.
 \end{Highlighting}
 \end{Shaded}
 
-Then, we will set the RothC function as we did for the previous modelling phases.
+Then, we will set the RothC function as we did for the previous modeling phases.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Roth_C<-}\ControlFlowTok{function}\NormalTok{(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1)\{}
+\CommentTok{#############function set up starts###############}
+\NormalTok{Roth_C<-}\ControlFlowTok{function}\NormalTok{(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1,LU)}
+\NormalTok{\{}
+\CommentTok{# Paddy Fields coefficent fPR = 0.4 if the target point is class = 13 , else fPR=1}
+\CommentTok{# From Shirato and Yukozawa 2004}
+
+\NormalTok{fPR=(LU }\OperatorTok{==}\StringTok{ }\DecValTok{13}\NormalTok{)}\OperatorTok{*}\FloatTok{0.4} \OperatorTok{+}\StringTok{ }\NormalTok{(LU}\OperatorTok{!=}\DecValTok{13}\NormalTok{)}\OperatorTok{*}\DecValTok{1}
+
+\CommentTok{#Temperature effects per month}
+\NormalTok{fT=}\KeywordTok{fT.RothC}\NormalTok{(Temp[,}\DecValTok{2}\NormalTok{]) }
+
+\CommentTok{#Moisture effects per month . }
+
+\NormalTok{fw1func<-}\ControlFlowTok{function}\NormalTok{(P, E, }\DataTypeTok{S.Thick =} \DecValTok{30}\NormalTok{, }\DataTypeTok{pClay =} \FloatTok{32.0213}\NormalTok{, }\DataTypeTok{pE =} \DecValTok{1}\NormalTok{, bare) }
+\NormalTok{\{}
+   
+\NormalTok{    M =}\StringTok{ }\NormalTok{P }\OperatorTok{-}\StringTok{ }\NormalTok{E }\OperatorTok{*}\StringTok{ }\NormalTok{pE}
+\NormalTok{    Acc.TSMD =}\StringTok{ }\OtherTok{NULL}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\KeywordTok{length}\NormalTok{(M)) \{}
+\NormalTok{ 	B =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(bare[i] }\OperatorTok{==}\StringTok{ }\OtherTok{FALSE}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{1.8}\NormalTok{)}
+\NormalTok{	 Max.TSMD =}\StringTok{ }\OperatorTok{-}\NormalTok{(}\DecValTok{20} \OperatorTok{+}\StringTok{ }\FloatTok{1.3} \OperatorTok{*}\StringTok{ }\NormalTok{pClay }\OperatorTok{-}\StringTok{ }\FloatTok{0.01} \OperatorTok{*}\StringTok{ }\NormalTok{(pClay}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{(S.Thick}\OperatorTok{/}\DecValTok{23}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{B)}
+\NormalTok{        Acc.TSMD[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(M[}\DecValTok{1}\NormalTok{] }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, M[}\DecValTok{1}\NormalTok{])}
+        \ControlFlowTok{if}\NormalTok{ (Acc.TSMD[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{M[i] }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+\NormalTok{            Acc.TSMD[i] =}\StringTok{ }\NormalTok{Acc.TSMD[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{M[i]}
+\NormalTok{        \}}
+        \ControlFlowTok{else}\NormalTok{ (Acc.TSMD[i] =}\StringTok{ }\DecValTok{0}\NormalTok{)}
+        \ControlFlowTok{if}\NormalTok{ (Acc.TSMD[i] }\OperatorTok{<=}\StringTok{ }\NormalTok{Max.TSMD) \{}
+\NormalTok{            Acc.TSMD[i] =}\StringTok{ }\NormalTok{Max.TSMD}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    b =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(Acc.TSMD }\OperatorTok{>}\StringTok{ }\FloatTok{0.444} \OperatorTok{*}\StringTok{ }\NormalTok{Max.TSMD, }\DecValTok{1}\NormalTok{, (}\FloatTok{0.2} \OperatorTok{+}\StringTok{ }\FloatTok{0.8} \OperatorTok{*}\StringTok{ }\NormalTok{((Max.TSMD }\OperatorTok{-}\StringTok{ }
+\StringTok{        }\NormalTok{Acc.TSMD)}\OperatorTok{/}\NormalTok{(Max.TSMD }\OperatorTok{-}\StringTok{ }\FloatTok{0.444} \OperatorTok{*}\StringTok{ }\NormalTok{Max.TSMD))))}
+\NormalTok{	b<-}\KeywordTok{clamp}\NormalTok{(b,}\DataTypeTok{lower=}\FloatTok{0.2}\NormalTok{)}
+    \KeywordTok{return}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(b))}
+\NormalTok{\}}
+
+\NormalTok{fW_}\DecValTok{2}\NormalTok{<-}\StringTok{ }\KeywordTok{fw1func}\NormalTok{(}\DataTypeTok{P=}\NormalTok{(Precip[,}\DecValTok{2}\NormalTok{]), }\DataTypeTok{E=}\NormalTok{(Evp[,}\DecValTok{2}\NormalTok{]), }\DataTypeTok{S.Thick =}\NormalTok{ soil.thick, }\DataTypeTok{pClay =}\NormalTok{ clay, }\DataTypeTok{pE =} \DecValTok{1}\NormalTok{, }\DataTypeTok{bare=}\NormalTok{bare1)}\OperatorTok{$}\NormalTok{b }
+
+\CommentTok{#Vegetation Cover effects  }
+
+\NormalTok{fC<-Cov2[,}\DecValTok{2}\NormalTok{]}
+
+\CommentTok{# Set the factors frame for Model calculations}
+
+\NormalTok{xi.frame=}\KeywordTok{data.frame}\NormalTok{(years,}\KeywordTok{rep}\NormalTok{(fT}\OperatorTok{*}\NormalTok{fW_}\DecValTok{2}\OperatorTok{*}\NormalTok{fC}\OperatorTok{*}\NormalTok{fPR,}\DataTypeTok{length.out=}\KeywordTok{length}\NormalTok{(years)))}
+
+\CommentTok{# RUN THE MODEL from SoilR}
+\CommentTok{#Loads the model }
+\CommentTok{#Model3_spin=RothCModel(t=years,C0=c(DPMptf[[1]], RPMptf[[1]], BIOptf[[1]], HUMptf[[1]], FallIOM[[1]]),In=Cinputs,DR=DR,clay=clay,xi=xi.frame, pass=TRUE) }
+\CommentTok{#Ct3_spin=getC(Model3_spin)}
+
+\CommentTok{# RUN THE MODEL from soilassesment}
+
+\NormalTok{Model3_spin=}\KeywordTok{carbonTurnover}\NormalTok{(}\DataTypeTok{tt=}\NormalTok{years,}\DataTypeTok{C0=}\KeywordTok{c}\NormalTok{(DPMptf[[}\DecValTok{1}\NormalTok{]], RPMptf[[}\DecValTok{1}\NormalTok{]], BIOptf[[}\DecValTok{1}\NormalTok{]], HUMptf[[}\DecValTok{1}\NormalTok{]], FallIOM[[}\DecValTok{1}\NormalTok{]]),}\DataTypeTok{In=}\NormalTok{Cinputs,}\DataTypeTok{Dr=}\NormalTok{DR,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{effcts=}\NormalTok{xi.frame, }\StringTok{"euler"}\NormalTok{) }
+
+\NormalTok{Ct3_spin=Model3_spin[,}\DecValTok{2}\OperatorTok{:}\DecValTok{6}\NormalTok{]}
+
+\CommentTok{# Get the final pools of the time series}
+
+\NormalTok{poolSize3_spin=}\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{tail}\NormalTok{(Ct3_spin,}\DecValTok{1}\NormalTok{))}
+
+\KeywordTok{return}\NormalTok{(poolSize3_spin)}
+\NormalTok{\}}
+\CommentTok{################function set up ends#############}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4336,67 +4532,91 @@ Now we can run the model for the business as usual (BAU) scenario. The ``f\_bau\
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Final calculation of SOC  20 years in the future  (Business as usual)}
-\NormalTok{f_bau<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{Cinputs,}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_bau<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{Cinputs,}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_bau_t<-f_bau[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau[}\DecValTok{5}\NormalTok{]}
+
 \CommentTok{#Unc BAU minimum }
 \NormalTok{Cinputs_min<-WARM_UP}\OperatorTok{@}\NormalTok{data[i,}\DecValTok{23}\NormalTok{]}
 \NormalTok{Cinputs_max<-WARM_UP}\OperatorTok{@}\NormalTok{data[i,}\DecValTok{24}\NormalTok{]}
-\NormalTok{SOC_}\DecValTok{2018}\NormalTok{_min<-WARM_UP}\OperatorTok{@}\NormalTok{data[i,}\DecValTok{11}\NormalTok{]}
-\NormalTok{SOC_}\DecValTok{2018}\NormalTok{_max<-WARM_UP}\OperatorTok{@}\NormalTok{data[i,}\DecValTok{17}\NormalTok{]}
-\NormalTok{f_bau_min<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{Cinputs_min,}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{12}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{13}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{14}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{15}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{16}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{1.02}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{0.95}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{0.9}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+\NormalTok{SOC_t0_min<-WARM_UP}\OperatorTok{@}\NormalTok{data[i,}\DecValTok{11}\NormalTok{]}
+\NormalTok{SOC_t0_max<-WARM_UP}\OperatorTok{@}\NormalTok{data[i,}\DecValTok{17}\NormalTok{]}
+
+\NormalTok{f_bau_min<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{Cinputs_min,}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{12}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{13}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{14}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{15}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{16}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{1.02}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{0.95}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{0.9}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_bau_t_min<-f_bau_min[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau_min[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau_min[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau_min[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau_min[}\DecValTok{5}\NormalTok{]}
+
 \CommentTok{#Unc BAU maximum}
-\NormalTok{f_bau_max<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{Cinputs_max,}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{18}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{19}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{20}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{21}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{22}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{0.98}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{1.05}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{1.2}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_bau_max<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{Cinputs_max,}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{18}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{19}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{20}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{21}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{22}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{0.98}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{1.05}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{1.2}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_bau_t_max<-f_bau_max[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau_max[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau_max[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau_max[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_bau_max[}\DecValTok{5}\NormalTok{]}
-\NormalTok{In this block, we will run the model }\ControlFlowTok{for}\NormalTok{ the three SSM scenarios. }
+
 \CommentTok{# Crops and Tree crops}
 \ControlFlowTok{if}\NormalTok{ (LU}\OperatorTok{==}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{LU}\OperatorTok{==}\DecValTok{12}\NormalTok{)\{}
-\NormalTok{f_low<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Low_Crops),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+\NormalTok{f_low<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Low_Crops),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_low_t<-f_low[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{5}\NormalTok{]}
-\NormalTok{f_med<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Med_Crops),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_med<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Med_Crops),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_med_t<-f_med[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{5}\NormalTok{]}
-\NormalTok{f_high<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{High_Crops),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_high<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{High_Crops),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_high_t<-f_high[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{5}\NormalTok{]}
+
 \CommentTok{# SSM croplands unc min}
-\NormalTok{f_med_min<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_min}\OperatorTok{*}\NormalTok{(Med_Crops}\FloatTok{-0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{12}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{13}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{14}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{15}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{16}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{1.02}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{0.95}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{0.9}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_med_min<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_min}\OperatorTok{*}\NormalTok{(Med_Crops}\FloatTok{-0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{12}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{13}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{14}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{15}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{16}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{1.02}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{0.95}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{0.9}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_med_t_min<-f_med_min[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{5}\NormalTok{]}
+
 \CommentTok{# SSM croplands unc max}
 
-\NormalTok{f_med_max<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_max}\OperatorTok{*}\NormalTok{(Med_Crops}\FloatTok{+0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{18}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{19}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{20}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{21}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{22}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{0.98}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{1.05}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{1.2}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+\NormalTok{f_med_max<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_max}\OperatorTok{*}\NormalTok{(Med_Crops}\FloatTok{+0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{18}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{19}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{20}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{21}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{22}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{0.98}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{1.05}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{1.2}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_med_t_max<-f_med_max[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{5}\NormalTok{]}
+
 \NormalTok{\}}
 \CommentTok{#Shrublands, grasslands, and sparce vegetation}
 \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (LU}\OperatorTok{==}\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{LU}\OperatorTok{==}\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{LU}\OperatorTok{==}\DecValTok{6} \OperatorTok{|}\StringTok{ }\NormalTok{LU}\OperatorTok{==}\DecValTok{8}\NormalTok{) \{}
-\NormalTok{f_low<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Low_Grass),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+\NormalTok{f_low<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Low_Grass),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_low_t<-f_low[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{5}\NormalTok{]}
-\NormalTok{f_med<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Med_Grass),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_med<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Med_Grass),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_med_t<-f_med[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{5}\NormalTok{]}
-\NormalTok{f_high<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{High_Grass),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_high<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{High_Grass),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_high_t<-f_high[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{5}\NormalTok{]}
+
 \CommentTok{#SSM Shrublands unc min}
-\NormalTok{f_med_min<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_min}\OperatorTok{*}\NormalTok{(Med_Grass}\FloatTok{-0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{12}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{13}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{14}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{15}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{16}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{1.02}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{0.95}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{0.9}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_med_min<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_min}\OperatorTok{*}\NormalTok{(Med_Grass}\FloatTok{-0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{12}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{13}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{14}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{15}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{16}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{1.02}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{0.95}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{0.9}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_med_t_min<-f_med_min[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{5}\NormalTok{]}
 
 \CommentTok{#SSM Shrublands unc max}
-\NormalTok{f_med_max<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_max}\OperatorTok{*}\NormalTok{(Med_Grass}\FloatTok{+0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{18}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{19}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{20}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{21}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{22}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{0.98}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{1.05}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{1.2}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_med_max<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_max}\OperatorTok{*}\NormalTok{(Med_Grass}\FloatTok{+0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{18}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{19}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{20}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{21}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{22}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{0.98}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{1.05}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{1.2}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_med_t_max<-f_med_max[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{5}\NormalTok{]}
+
 \NormalTok{\}}
-\CommentTok{# Forest }
-\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (LU}\OperatorTok{==}\DecValTok{4}\NormalTok{) \{}
-\NormalTok{f_low<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Low_Forest),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+\CommentTok{# Paddy Fields }
+\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (LU}\OperatorTok{==}\DecValTok{13}\NormalTok{) \{}
+\NormalTok{f_low<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Low_PaddyFields),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_low_t<-f_low[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_low[}\DecValTok{5}\NormalTok{]}
-\NormalTok{f_med<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Med_Forest),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_med<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{Med_PaddyFields),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_med_t<-f_med[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med[}\DecValTok{5}\NormalTok{]}
-\NormalTok{f_high<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{High_Forest),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_high<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs}\OperatorTok{*}\NormalTok{High_PaddyFields),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{5}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{6}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{7}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{8}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{9}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp,}\DataTypeTok{Precip=}\NormalTok{Precip,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC,}\DataTypeTok{clay=}\NormalTok{clay,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_high_t<-f_high[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_high[}\DecValTok{5}\NormalTok{]}
+
 \CommentTok{#SSM Forest unc min}
-\NormalTok{f_med_min<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_min}\OperatorTok{*}\NormalTok{(Med_Forest}\FloatTok{-0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{12}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{13}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{14}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{15}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{16}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{1.02}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{0.95}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{0.9}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_med_min<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_min}\OperatorTok{*}\NormalTok{(Med_PaddyFields}\FloatTok{-0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{12}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{13}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{14}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{15}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{16}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{1.02}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{0.95}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{0.9}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_med_t_min<-f_med_min[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_min[}\DecValTok{5}\NormalTok{]}
 
 \CommentTok{#SSM Forest unc max}
-\NormalTok{f_med_max<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_max}\OperatorTok{*}\NormalTok{(Med_Forest}\FloatTok{+0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{18}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{19}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{20}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{21}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{22}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{0.98}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{1.05}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{1.2}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1)}
+
+\NormalTok{f_med_max<-}\KeywordTok{Roth_C}\NormalTok{(}\DataTypeTok{Cinputs=}\NormalTok{(Cinputs_max}\OperatorTok{*}\NormalTok{(Med_PaddyFields}\FloatTok{+0.15}\NormalTok{)),}\DataTypeTok{years=}\NormalTok{years,}\DataTypeTok{DPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{18}\NormalTok{], }\DataTypeTok{RPMptf=}\NormalTok{WARM_UP[i,}\DecValTok{19}\NormalTok{], }\DataTypeTok{BIOptf=}\NormalTok{WARM_UP[i,}\DecValTok{20}\NormalTok{], }\DataTypeTok{HUMptf=}\NormalTok{WARM_UP[i,}\DecValTok{21}\NormalTok{], }\DataTypeTok{FallIOM=}\NormalTok{WARM_UP[i,}\DecValTok{22}\NormalTok{],}\DataTypeTok{Temp=}\NormalTok{Temp}\OperatorTok{*}\FloatTok{0.98}\NormalTok{,}\DataTypeTok{Precip=}\NormalTok{Precip}\OperatorTok{*}\FloatTok{1.05}\NormalTok{,}\DataTypeTok{Evp=}\NormalTok{Evp,}\DataTypeTok{Cov=}\NormalTok{Cov,}\DataTypeTok{Cov1=}\NormalTok{Cov1,}\DataTypeTok{Cov2=}\NormalTok{Cov2,}\DataTypeTok{soil.thick=}\NormalTok{soil.thick,}\DataTypeTok{SOC=}\NormalTok{SOC}\OperatorTok{*}\FloatTok{1.2}\NormalTok{,}\DataTypeTok{clay=}\NormalTok{clay}\OperatorTok{*}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{DR=}\NormalTok{DR,}\DataTypeTok{bare1=}\NormalTok{bare1,}\DataTypeTok{LU=}\NormalTok{LU)}
 \NormalTok{f_med_t_max<-f_med_max[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{3}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{4}\NormalTok{]}\OperatorTok{+}\NormalTok{f_med_max[}\DecValTok{5}\NormalTok{]}
+
 \NormalTok{\}}
+
 \ControlFlowTok{else}\NormalTok{\{}
 \NormalTok{f_bau_t<-}\DecValTok{0}
 \NormalTok{f_low_t<-}\DecValTok{0}
@@ -4406,16 +4626,12 @@ Now we can run the model for the business as usual (BAU) scenario. The ``f\_bau\
 \NormalTok{f_bau_t_max<-}\DecValTok{0}
 \NormalTok{f_med_t_min<-}\DecValTok{0}
 \NormalTok{f_med_t_max<-}\DecValTok{0}
-\NormalTok{SOC_}\DecValTok{2018}\NormalTok{_min<-}\DecValTok{0}
-\NormalTok{SOC_}\DecValTok{2018}\NormalTok{_max<-}\DecValTok{0}
+\NormalTok{SOC_t0_min<-}\DecValTok{0}
+\NormalTok{SOC_t0_max<-}\DecValTok{0}
+
 \NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
 
-Now we will save the results to the ``FOWARD'' variables. We also are going to save the initial SOC stock (2018) and the land use.
 
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{FOWARD[i,}\DecValTok{2}\NormalTok{]<-SOC}
 \NormalTok{FOWARD[i,}\DecValTok{3}\NormalTok{]<-f_bau_t}
 \NormalTok{FOWARD[i,}\DecValTok{4}\NormalTok{]<-f_bau[}\DecValTok{1}\NormalTok{]}
@@ -4431,18 +4647,24 @@ Now we will save the results to the ``FOWARD'' variables. We also are going to s
 \NormalTok{FOWARD[i,}\DecValTok{14}\NormalTok{]<-f_bau_t_max}
 \NormalTok{FOWARD[i,}\DecValTok{15}\NormalTok{]<-f_med_t_min}
 \NormalTok{FOWARD[i,}\DecValTok{16}\NormalTok{]<-f_med_t_max}
-\NormalTok{FOWARD[i,}\DecValTok{17}\NormalTok{]<-SOC_}\DecValTok{2018}\NormalTok{_min}
-\NormalTok{FOWARD[i,}\DecValTok{18}\NormalTok{]<-SOC_}\DecValTok{2018}\NormalTok{_max}
+\NormalTok{FOWARD[i,}\DecValTok{17}\NormalTok{]<-SOC_t0_min}
+\NormalTok{FOWARD[i,}\DecValTok{18}\NormalTok{]<-SOC_t0_max}
+
+
+
 \KeywordTok{print}\NormalTok{(}\KeywordTok{c}\NormalTok{(i,SOC,f_bau_t,f_low_t,f_med_t,f_high_t,f_bau_t_min,f_bau_t_max))}
-\ErrorTok{\}\}}
-\CommentTok{##################for loop ends###############}
+
+\ErrorTok{\}}
+\ErrorTok{\}}
+
+\CommentTok{############for loop ends##############}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Next , we will change the names of the fields }\ControlFlowTok{in}\NormalTok{ the output vector layer.}
-\KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{2}\NormalTok{]=}\StringTok{"SOC_i_2018"}
+\KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{2}\NormalTok{]=}\StringTok{"SOC_t0"}
 \KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{3}\NormalTok{]=}\StringTok{"SOC_BAU_20"}
 \KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{4}\NormalTok{]=}\StringTok{"DPM_BAU_20"}
 \KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{5}\NormalTok{]=}\StringTok{"RPM_BAU_20"}
@@ -4457,8 +4679,8 @@ Now we will save the results to the ``FOWARD'' variables. We also are going to s
 \KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{14}\NormalTok{]=}\StringTok{"SOC_BAU_20_max"}
 \KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{15}\NormalTok{]=}\StringTok{"Med_Scen_min"}
 \KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{16}\NormalTok{]=}\StringTok{"Med_Scen_max"}
-\KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{17}\NormalTok{]=}\StringTok{"SOC_2018_min"}
-\KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{18}\NormalTok{]=}\StringTok{"SOC_2018_max"}
+\KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{17}\NormalTok{]=}\StringTok{"SOC_t0_min"}
+\KeywordTok{colnames}\NormalTok{(FOWARD}\OperatorTok{@}\NormalTok{data)[}\DecValTok{18}\NormalTok{]=}\StringTok{"SOC_t0_max"}
 \end{Highlighting}
 \end{Shaded}
 
