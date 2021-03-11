@@ -6,7 +6,7 @@
 
 # Install Packages
 
-#install.packages(c("raster","rgdal","SoilR","Formula","soilassessment","abind","ncdf4"))
+install.packages(c("raster","rgdal","SoilR","Formula","soilassessment","abind","ncdf4"))
 
 #Load packages
 
