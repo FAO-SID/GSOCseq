@@ -1,0 +1,46 @@
+var dataset = ee.ImageCollection('MODIS/006/MOD13A2')
+                  .filter(ee.Filter.date('2015-01-01', '2020-12-01'))
+                  .filter(ee.Filter.calendarRange(12,12,'month')); // Change number of month<<<<<<<<<<<<<<
+
+var ndvi = dataset.select('NDVI');
+
+
+var mask06= function(image) {
+  
+  var mask = image.select('NDVI').gt(6000); // change ndvi mask <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  
+  return image.updateMask(mask);
+  };
+
+var ndvi_06=ndvi.map(mask06); 
+
+var ndvi_06_nn=ndvi_06.reduce(ee.Reducer.count());
+
+var ndvi_nn=ndvi.reduce(ee.Reducer.count());
+
+var prop_cover= ndvi_06_nn.divide(ndvi_nn);
+
+var ndviVis = {
+  min: 0.0,
+  max: 1.0,
+  palette: [
+    'FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163', '99B718', '74A901',
+    '66A000', '529400', '3E8601', '207401', '056201', '004C00', '023B01',
+    '012E01', '011D01', '011301'
+ ],
+};
+
+var Recorte = prop_cover.clip(geometry);
+Map.addLayer(Recorte, ndviVis, 'Recorte_CR')
+
+
+var regionJSON = JSON.stringify(Recorte.getInfo());
+Export.image.toDrive({
+          image: Recorte.select("NDVI_count"),
+          folder: "trabajo",
+          description: 'NDVI_2015-2019_prop_gt03_M12', //change number of month & ndvi <<<<<<<<<<<<<<<<<
+          scale: 1000,
+          region:geometry,
+          maxPixels: 1e9
+          
+});
