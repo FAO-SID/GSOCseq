@@ -1,13 +1,14 @@
 FAO Land aggregated  cover class;Land Cover code number;Default DPM/RPM ratio
- Artificial surfaces;1;-
+ Artificial surfaces;1;/
 Cropland;2;1.44
 Grassland;3;0.67
 Tree covered;4;0.25
 Shrub covered;5;0.67
 Herbaceous vegetation;6;0.67
-Mangroves ;7;-
+Mangroves ;7;/
 Spare vegetation;8;0.67
-Bare soil;9;-
-Snow and Glaciers;10;-
-Water bodies;11;-
+Bare soil;9;/
+Snow and Glaciers;10;/
+Water bodies;11;/
 Cropland-Tree crops*;12;1.44
+Paddy fields;13;1.44

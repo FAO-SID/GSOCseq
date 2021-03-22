@@ -25,10 +25,7 @@ The sample data set provided with this Technical Manual was compiled to model an
 
 This Technical Manual used in combination with the provided sample data set and scripts can be used as a step-by-step guide, which covers data preparation and harmonization, modeling potential soil organic carbon sequestration, rasterizing the results, estimating the uncertainty and finally data sharing.  
 
-The sample data set and scripts can be found in the following repository: https://github.com/FAO-GSP/GSOCseq  
-
-The contents of this repository and especially the Training Material folder, which contains the scripts and input data folder, can be downloaded as a .zip file through the the *Code* button on the GitHub page. Figure 1.0 illustrates how the material can be downloaded. 
-
-![**Figure 1.1** **Overviw on how to download the Training Material from the FAO-GSP GitHub repository.**](images/Figure_1.1.png)  
+The sample data set and scripts can be found in the following repository: 
+https://drive.google.com/drive/folders/1Jonn17LAiCyaUSpUn6W63o16bjTg1P0E?usp=sharing 
 
 More information on the necessary data and the provided data set can be found in Chapter 6, while an overview of the different steps and scripts needed is presented in Chapter 8.  
