@@ -1,5 +1,6 @@
 ﻿Type;Source;Address;Resolution
-Climatic monthly data;CRU – Climate Research Unit , University of East Anglia;https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.03/cruts.1905011326.v4.03/;50 km x 50 km
+Climatic monthly data;CRU – Climate Research Unit , University of East Anglia;https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.03/cruts.1905011326.v4.03/;4 km x 4 km
+;TerraClimate;https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE;51 km x 50 km
 ;;;
 SOC stocks 0-30 cm;GSOCmap - FAO-ITPS;http://54.229.242.119/GSOCmap/;1 x 1 km
 ;;;

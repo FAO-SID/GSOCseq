@@ -9,7 +9,7 @@ Soil data;Topsoil clay content (0-30 cm);-;%;Raster;1 x 1 km
 ;Current Soil organic carbon stocks (0-30 cm);Latest version of national FAO-GSOC map;tC ha-1;Raster;1 x 1 km
 Land use/cover;Predominant land use/cover, re-classified into:;Minimum: 2000 and 2020 (or last year available);01-mar;Raster;1 x 1 km
 ;Minimum: 3 default classes required by model: agricultural crops, grassland/shrubland/savannas and forestry;Optimum: annual land use 2000 to 2020;01-nov;;
-;Optimum: 11 classes defined in the FAO Global Land Cover - SHARE (GLC-SHARE);;;;
+;Optimum: 13 classes defined in the FAO Global Land Cover - SHARE (GLC-SHARE);;;;
 ;Monthly vegetation cover.;Minimum: average 2000- 2020 (or last year available) Optimum: annual land use 2000 to 2020;0-1;Raster;1 x 1 km
 ;"Obtained from national statistics/local expert knowledge; or derived from NDVI or spectral indexes (see section 3.3.4)";;;;
 ; ;;;;
