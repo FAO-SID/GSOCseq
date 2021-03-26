@@ -228,9 +228,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-2-running-the-model"><i class="fa fa-check"></i><b>10</b> | Stage 2: running the model</a><ul>
 <li class="chapter" data-level="10.1" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html"><i class="fa fa-check"></i><b>10.1</b> Script Number 13. “ROTH_C_SPIN_UP_v2.R”</a></li>
 <li class="chapter" data-level="10.2" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-no-land-use-change"><i class="fa fa-check"></i><b>10.2</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” No Land use change</a></li>
-<li class="chapter" data-level="10.3" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-land-use-change-simulation"><i class="fa fa-check"></i><b>10.3</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” Land use change simulation</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-15.-roth_c_forward_v2.r"><i class="fa fa-check"></i><b>10.3.1</b> Script Number 15. “ROTH_C_forward_v2.R”</a></li>
-</ul></li>
+<li class="chapter" data-level="10.3" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-land-use-change-simulation"><i class="fa fa-check"></i><b>10.3</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” Land use change simulation</a></li>
+<li class="chapter" data-level="10.4" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-15.-roth_c_forward_v2.r"><i class="fa fa-check"></i><b>10.4</b> Script Number 15. “ROTH_C_forward_v2.R”</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html"><i class="fa fa-check"></i><b>11</b> | Stage 3: Map generation</a><ul>
 <li class="chapter" data-level="11.1" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html#script-number-16-points_to_raster.r"><i class="fa fa-check"></i><b>11.1</b> Script Number 16: “Points_to_Raster.R”</a></li>
@@ -1235,8 +1234,9 @@ b&lt;-1</p>
 <span id="cb83-381"><a href="stage-2-running-the-model.html#cb83-381"></a><span class="co"># SAVE the Points (shapefile)</span></span>
 <span id="cb83-382"><a href="stage-2-running-the-model.html#cb83-382"></a><span class="kw">setwd</span>(<span class="st">&quot;C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/OUTPUTS/2_WARM_UP&quot;</span>)</span>
 <span id="cb83-383"><a href="stage-2-running-the-model.html#cb83-383"></a><span class="kw">writeOGR</span>(WARM_UP,<span class="st">&quot;.&quot;</span>, <span class="st">&quot;WARM_UP_County_AOI_LUsim&quot;</span>, <span class="dt">driver=</span><span class="st">&quot;ESRI Shapefile&quot;</span>,<span class="dt">overwrite=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<div id="script-number-15.-roth_c_forward_v2.r" class="section level3">
-<h3><span class="header-section-number">10.3.1</span> Script Number 15. “ROTH_C_forward_v2.R”</h3>
+</div>
+<div id="script-number-15.-roth_c_forward_v2.r" class="section level2">
+<h2><span class="header-section-number">10.4</span> Script Number 15. “ROTH_C_forward_v2.R”</h2>
 <p>Script number 15 implements the third modeling phase (“forward” phase). We will need to load the stack of layers generated in script number 12 and the target points. We will also need to load the output vector of the phase 2 (“warm up”) as an input. This script will run the Roth C model for 20 years, projecting SOC stocks for the 2020-2040 period under different management scenarios (“BAU” scenario and the three SSM scenarios: low, medium and high input carbon). C inputs will vary according to the SSM scenarios. Standard default values of 5-10-20% increase in C inputs are defined for the three SSM scenarios (low, medium, high, respectively). Users can modify these inputs based on local expertise and available information, and generate alternative maps using this data. The final outputs will be the final SOC stocks after 20 years for the different scenarios. This information will be saved to a shapefile.</p>
 <p><strong>Table 10.3</strong> <em>Script Number 15. forward phase. Inputs and Outputs</em></p>
 <p><img src="tables/Table_10.3.png" /></p>
@@ -1555,7 +1555,6 @@ b&lt;-1</p>
 <span id="cb95-14"><a href="stage-2-running-the-model.html#cb95-14"></a><span class="co"># SAVE the Points (shapefile)</span></span>
 <span id="cb95-15"><a href="stage-2-running-the-model.html#cb95-15"></a> <span class="kw">writeOGR</span>(FOWARD, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;FOWARD_County_AOI&quot;</span>, <span class="dt">driver=</span><span class="st">&quot;ESRI Shapefile&quot;</span>) </span></code></pre></div>
 
-</div>
 </div>
 </div>
             </section>

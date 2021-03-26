@@ -228,9 +228,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-2-running-the-model"><i class="fa fa-check"></i><b>10</b> | Stage 2: running the model</a><ul>
 <li class="chapter" data-level="10.1" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html"><i class="fa fa-check"></i><b>10.1</b> Script Number 13. “ROTH_C_SPIN_UP_v2.R”</a></li>
 <li class="chapter" data-level="10.2" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-no-land-use-change"><i class="fa fa-check"></i><b>10.2</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” No Land use change</a></li>
-<li class="chapter" data-level="10.3" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-land-use-change-simulation"><i class="fa fa-check"></i><b>10.3</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” Land use change simulation</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-15.-roth_c_forward_v2.r"><i class="fa fa-check"></i><b>10.3.1</b> Script Number 15. “ROTH_C_forward_v2.R”</a></li>
-</ul></li>
+<li class="chapter" data-level="10.3" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-land-use-change-simulation"><i class="fa fa-check"></i><b>10.3</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” Land use change simulation</a></li>
+<li class="chapter" data-level="10.4" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-15.-roth_c_forward_v2.r"><i class="fa fa-check"></i><b>10.4</b> Script Number 15. “ROTH_C_forward_v2.R”</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html"><i class="fa fa-check"></i><b>11</b> | Stage 3: Map generation</a><ul>
 <li class="chapter" data-level="11.1" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html#script-number-16-points_to_raster.r"><i class="fa fa-check"></i><b>11.1</b> Script Number 16: “Points_to_Raster.R”</a></li>
@@ -362,8 +361,8 @@ Artificial surfaces
 1
 </td>
 <td style="text-align:left;">
-<ul>
-<li></td>
+/
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -428,8 +427,8 @@ Mangroves
 7
 </td>
 <td style="text-align:left;">
-<ul>
-<li></td>
+/
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -450,8 +449,8 @@ Bare soil
 9
 </td>
 <td style="text-align:left;">
-<ul>
-<li></td>
+/
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -461,8 +460,8 @@ Snow and Glaciers
 10
 </td>
 <td style="text-align:left;">
-<ul>
-<li></td>
+/
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -472,8 +471,8 @@ Water bodies
 11
 </td>
 <td style="text-align:left;">
-<ul>
-<li></td>
+/
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -486,13 +485,19 @@ Cropland-Tree crops*
 1.44
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+Paddy fields
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+1.44
+</td>
+</tr>
 </tbody>
-</table></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+</table>
 <p>As a minimum, land use for the year 2000 and land use for the year 2020 (or last available year) at 1x1 km resolution shall be defined. The predominant land use category in each cell of the 1x1 km grid shall be selected if finer resolutions are available.</p>
 </div>
 <div id="monthly-vegetation-cover" class="section level2">
@@ -809,7 +814,7 @@ Optimum: annual land use 2000 to 2020
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Optimum: 11 classes defined in the FAO Global Land Cover - SHARE (GLC-SHARE)
+Optimum: 13 classes defined in the FAO Global Land Cover - SHARE (GLC-SHARE)
 </td>
 <td style="text-align:left;">
 </td>
@@ -901,7 +906,20 @@ CRU – Climate Research Unit , University of East Anglia
 <a href="https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.03/cruts.1905011326.v4.03/" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.03/cruts.1905011326.v4.03/</a>
 </td>
 <td style="text-align:left;">
-50 km x 50 km
+4 km x 4 km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TerraClimate
+</td>
+<td style="text-align:left;">
+<a href="https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE" class="uri">https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE</a>
+</td>
+<td style="text-align:left;">
+51 km x 50 km
 </td>
 </tr>
 <tr>
@@ -1471,7 +1489,7 @@ Sparse vegetation tree-shrub-herbaceous (&lt;15%)
 150
 </td>
 <td style="text-align:left;">
-Others - No data-10000
+Others - No data-9999
 </td>
 </tr>
 <tr>
@@ -1482,7 +1500,7 @@ Sparse tree (&lt;15%)
 151
 </td>
 <td style="text-align:left;">
-Others - No data-10001
+Others - No data-9999
 </td>
 </tr>
 <tr>
@@ -1493,7 +1511,7 @@ Sparse Shrub (&lt;15%)
 152
 </td>
 <td style="text-align:left;">
-Others - No data-10002
+Others - No data-9999
 </td>
 </tr>
 <tr>
@@ -1504,7 +1522,7 @@ Sparse herbaceous (&lt;15%)
 153
 </td>
 <td style="text-align:left;">
-Others - No data-10003
+Others - No data-9999
 </td>
 </tr>
 <tr>
@@ -1515,7 +1533,7 @@ Consolidated bare areas
 201
 </td>
 <td style="text-align:left;">
-Others - No data-10004
+Others - No data-9999
 </td>
 </tr>
 <tr>
@@ -1526,7 +1544,7 @@ Unconsolidated bare areas
 202
 </td>
 <td style="text-align:left;">
-Others - No data-10005
+Others - No data-9999
 </td>
 </tr>
 <tr>
@@ -1537,7 +1555,7 @@ Permanent snow/ice
 220
 </td>
 <td style="text-align:left;">
-Others - No data-10006
+Others - No data-9999
 </td>
 </tr>
 <tr>
@@ -1548,7 +1566,7 @@ Water bodies
 210
 </td>
 <td style="text-align:left;">
-Others - No data-10007
+Others - No data-9999
 </td>
 </tr>
 <tr>
@@ -1559,7 +1577,7 @@ No data
 0
 </td>
 <td style="text-align:left;">
-Others - No data-10008
+Others - No data-9999
 </td>
 </tr>
 </tbody>
