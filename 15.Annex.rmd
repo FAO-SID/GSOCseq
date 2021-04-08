@@ -1,4 +1,4 @@
-# Annex Troubleshooting
+# Annex I Troubleshooting
 
 ## Coastal and small countries not fully covered by the CRU layers  
 Due to the coarse resolution of the CRU layers a lot of points close to the country boarders can be lost (Figure 15.1).
@@ -12,7 +12,8 @@ To overcome this, we provided two options:
 
 In the following a small guide for option 2 on how to select and run the model for points that fall outside the CRU layers is provided:
 
-### Step 1    Create a single CRU layer cropped and masked to the extent of your AOI using the following R script.
+### Step 1 Create a single CRU layer cropped and masked to the extent of your AOI using the following R script{-}
+
 
 ```{r, eval = FALSE}
 #+++++++++++++++++++++++++++++++++++++++++
@@ -57,29 +58,33 @@ writeRaster(CRU, "CRU_AOI_QGIS.tif" )
 ```
 
 
-### Step 2    Open QGIS and generate the empty points
+### Step 2 Open QGIS and generate the empty points{-}
 
 *   Repeat section 9.5.1 QGIS Procedure number 1 (model) in the technical manual to generate the empty points
 *   Load the cropped CRU layer created previously 
 
-### Step 3    Polygonize the raster
+### Step 3 Polygonize the raster{-}
 
 *   Go to.. Raster/Conversion/Polygonize (Raster to Vector)
 *   Select CRU layer as input and click on Run (Figure 15.2)
 
 ![Figure 15.2 Raster to Vector](images/Figure_11.png)
-### Step 4    Select points outside of the polygon
+
+### Step 4 Select points outside of the polygon{-} 
 
 *   Type: "select by location" in the processing toolbox search bar and open the Select by Location tool
 *   Select the Points as input and click on the disjoint check box and click on Run (Figure 15.3)
 
 ![Figure 15.3 Select points outside a polygon](images/Figure_12.png) 
-### Step 5    Export the extracted points
+
+### Step 5 Export the extracted points{-}
 
 *   Right click on the newly create layer. Got to Export/Save Features As "AOI_Empty_points_borders" (Figure 15.3)
+
 ![Figure 15.3 Export the extracted points](images/Figure_13.png) 
 
-### Step 6 Run the Spin up phase for points outside the CRU layer (Script 13B)
+
+### Step 6 Run the Spin up phase for points outside the CRU layer (Script 13B){-}
 
 Scripts 13B, 14B and 15B are modified versions of script 13 (Spin up phase), 14 (Warm up phase) and 15 (Forward phase) which include lines of code that fill NA pixel values from the CRU layers with the average of all surrounding pixel values. The same raster stacks created for the original map can be used as input to run the model over the points that fall outside the CRU layers.
 
@@ -518,7 +523,7 @@ writeOGR(C_INPUT_EQ, ".", "SPIN_UP_County_AOI", driver="ESRI Shapefile",overwrit
 
 
 ```
-### Step 7 Run the Warm up phase for points outside the CRU layer (Script 14B)
+### Step 7 Run the Warm up phase for points outside the CRU layer (Script 14B){-}
 
 ```{r, eval = FALSE}
 #12/11/2020
@@ -926,7 +931,7 @@ writeOGR(WARM_UP,".", "WARM_UP_County_AOI", driver="ESRI Shapefile",overwrite=TR
 
 ```
 
-### Step 8 Run the Forward phase for points outside the CRU layer (Script 15B)
+### Step 8 Run the Forward phase for points outside the CRU layer (Script 15B){-}
 ```{r, eval = FALSE}
 #12/11/2020
 
@@ -1309,5 +1314,6 @@ writeOGR(FOWARD, ".", "FOWARD_County_AOI", driver="ESRI Shapefile",overwrite=TRU
 
 
 ```
+
 
 
