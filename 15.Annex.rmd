@@ -1379,7 +1379,7 @@ The provided ranges can be compared in QGIS, R,  or any preferred platform. Desc
 
 ### Soil Organic Carbon at T0 (2020){-}
 
-The product *ISO_GSOCseq_T0_Map030* refers to the SOC stocks 0-30 cm in t/ha used as input in the Forward phase. This map should not significantly differ from the national FAO GSOCmap.
+The product *ISO_GSOCseq_T0_Map030* refers to the SOC stocks 0-30 cm in t/ha used as input in the Forward phase. 
 
 Check statistics of ISO_GSOCseq_T0_Map030 file. The provided reference values may vary for each country depending on external factors that need to be carefully evaluated. However, the following values can be generally expected: 
 
@@ -1428,14 +1428,16 @@ The provided reference values may vary for each country depending on external fa
 *   -999 values should be masked out
 *   Negative values other than -999 values should usually not exceed -80 
 *   Maximum values should usually not exceed +80 
-*   Check if extreme values (values > +80 and values < -80) are grouped or dispersed (refert to Annex I)
+*   Check if extreme values (values > +80 and values < -80) are grouped or dispersed (refer to Annex I, Common errors and considerations)
 *   Mean values in order of size SSM3 > SSM 2 > SSM 1 > BAU
 
 
 ### Relative differences in SOC stocks{-}
 
 These products refer to the SOC change 0-30 cm in t/ha (Final SOC stocks in SSM scenarios vs Final stocks BAU scenario) for the SSM1, SSM2, and SSM3 scenarios.
+
 Check the statistics of:
+
 1.    ISO_GSOCseq_RelDiff_SSM1_Map030
 2.    ISO_GSOCseq_RelDiff_SSM2_Map030
 3.    ISO_GSOCseq_RelDiff_SSM3_Map030
@@ -1446,7 +1448,7 @@ The provided reference values may vary for each country depending on external fa
 *   -999 values should be masked out
 *   There should not be negative values other than -999 
 *   Maximum values should usually not exceed +80
-*   Check if extreme values (values > +80) are grouped or dispersed (refert to Annex I)
+*   Check if extreme values (values > +80) are grouped or dispersed (refer to Annex I, Common errors and considerations)
 *   Mean values SSM3 > SSM 2 > SSM 1 
 
 ### Absolute sequestration rates (ASR) {-}
@@ -1471,7 +1473,7 @@ The provided reference values may vary for each country depending on external fa
 *   -999 and -49.95 Values (-999/20) indicate no data values. Values <= -49.95 should be masked out
 *   Negative values other than -999 and -49.95 (meaning SOC losses between 2020 and 2040) should not exceed -4
 *   Maximum values should usually not exceed +4.
-*   Check if extreme values (> +4; <-4) are grouped or dispersed (refert to Annex I)
+*   Check if extreme values (> +4; <-4) are grouped or dispersed (refer to Annex I, Common errors and considerations)
 *   Mean values SSM3 > SSM 2 > SSM 1 > BAU  
 
 ### Relative sequestration rates (RSR){-}
@@ -1501,6 +1503,7 @@ The provided reference values may vary for each country depending on external fa
 ### Uncertainties{-}
 
 Check the statistics of:
+
 1.    ISO_GSOCseq_ASR_BAU_UncertaintyMap030
 2.    ISO_GSOCseq_ASR_SSM1_UncertaintyMap030
 3.    ISO_GSOCseq_ASR_SSM2_UncertaintyMap030
@@ -1517,7 +1520,7 @@ The provided reference values may vary for each country depending on external fa
 *   Expected range all maps,  usually between 0 to +200 % (most data generally between 15  to 50%)
 *   -999 indicates no data values. Negative values and -999 values should be masked out
 *   Maximum values should usually not exceed +200%. 
-*   Check if extreme values (>200 % and <0 %) are grouped or dispersed (refert to Annex I)
+*   Check if extreme values (>200 % and <0 %) are grouped or dispersed (refer to Annex I, Common errors and considerations)
 
 
 

@@ -327,7 +327,7 @@ identifying defects and errors while quality assurance is a proactive approach a
 </div>
 <div id="soil-organic-carbon-at-t0-2020" class="section level3 unnumbered">
 <h3>Soil Organic Carbon at T0 (2020)</h3>
-<p>The product <em>ISO_GSOCseq_T0_Map030</em> refers to the SOC stocks 0-30 cm in t/ha used as input in the Forward phase. This map should not significantly differ from the national FAO GSOCmap.</p>
+<p>The product <em>ISO_GSOCseq_T0_Map030</em> refers to the SOC stocks 0-30 cm in t/ha used as input in the Forward phase.</p>
 <p>Check statistics of ISO_GSOCseq_T0_Map030 file. The provided reference values may vary for each country depending on external factors that need to be carefully evaluated. However, the following values can be generally expected:</p>
 <ul>
 <li>Most of the values should fall between 15-100 t/ha</li>
@@ -374,24 +374,26 @@ identifying defects and errors while quality assurance is a proactive approach a
 <li>-999 values should be masked out</li>
 <li>Negative values other than -999 values should usually not exceed -80</li>
 <li>Maximum values should usually not exceed +80</li>
-<li>Check if extreme values (values &gt; +80 and values &lt; -80) are grouped or dispersed (refert to Annex I)</li>
+<li>Check if extreme values (values &gt; +80 and values &lt; -80) are grouped or dispersed (refer to Annex I, Common errors and considerations)</li>
 <li>Mean values in order of size SSM3 &gt; SSM 2 &gt; SSM 1 &gt; BAU</li>
 </ul>
 </div>
 <div id="relative-differences-in-soc-stocks" class="section level3 unnumbered">
 <h3>Relative differences in SOC stocks</h3>
-<p>These products refer to the SOC change 0-30 cm in t/ha (Final SOC stocks in SSM scenarios vs Final stocks BAU scenario) for the SSM1, SSM2, and SSM3 scenarios.
-Check the statistics of:
-1. ISO_GSOCseq_RelDiff_SSM1_Map030
-2. ISO_GSOCseq_RelDiff_SSM2_Map030
-3. ISO_GSOCseq_RelDiff_SSM3_Map030</p>
+<p>These products refer to the SOC change 0-30 cm in t/ha (Final SOC stocks in SSM scenarios vs Final stocks BAU scenario) for the SSM1, SSM2, and SSM3 scenarios.</p>
+<p>Check the statistics of:</p>
+<ol style="list-style-type: decimal">
+<li>ISO_GSOCseq_RelDiff_SSM1_Map030</li>
+<li>ISO_GSOCseq_RelDiff_SSM2_Map030</li>
+<li>ISO_GSOCseq_RelDiff_SSM3_Map030</li>
+</ol>
 <p>The provided reference values may vary for each country depending on external factors that need to be carefully evaluated. However, the following values can be generally expected:</p>
 <ul>
 <li>Expected range usually falls between 0 to +80 t/ha</li>
 <li>-999 values should be masked out</li>
 <li>There should not be negative values other than -999</li>
 <li>Maximum values should usually not exceed +80</li>
-<li>Check if extreme values (values &gt; +80) are grouped or dispersed (refert to Annex I)</li>
+<li>Check if extreme values (values &gt; +80) are grouped or dispersed (refer to Annex I, Common errors and considerations)</li>
 <li>Mean values SSM3 &gt; SSM 2 &gt; SSM 1</li>
 </ul>
 </div>
@@ -415,7 +417,7 @@ Check the statistics of:
 <li>-999 and -49.95 Values (-999/20) indicate no data values. Values &lt;= -49.95 should be masked out</li>
 <li>Negative values other than -999 and -49.95 (meaning SOC losses between 2020 and 2040) should not exceed -4</li>
 <li>Maximum values should usually not exceed +4.</li>
-<li>Check if extreme values (&gt; +4; &lt;-4) are grouped or dispersed (refert to Annex I)</li>
+<li>Check if extreme values (&gt; +4; &lt;-4) are grouped or dispersed (refer to Annex I, Common errors and considerations)</li>
 <li>Mean values SSM3 &gt; SSM 2 &gt; SSM 1 &gt; BAU</li>
 </ul>
 </div>
@@ -445,23 +447,25 @@ Check the statistics of:
 </div>
 <div id="uncertainties" class="section level3 unnumbered">
 <h3>Uncertainties</h3>
-<p>Check the statistics of:
-1. ISO_GSOCseq_ASR_BAU_UncertaintyMap030
-2. ISO_GSOCseq_ASR_SSM1_UncertaintyMap030
-3. ISO_GSOCseq_ASR_SSM2_UncertaintyMap030
-4. ISO_GSOCseq_ASR_SSM3_UncertaintyMap030
-5. ISO_GSOCseq_BAU_UncertaintyMap030
-6. ISO_GSOCseq_RSR_SSM1_UncertaintyMap030
-7. ISO_GSOCseq_RSR_SSM2_UncertaintyMap030
-8. ISO_GSOCseq_RSR_SSM3_UncertaintyMap030
-9. ISO_GSOCseq_SSM_UncertaintyMap030
-10. ISO_GSOCseq_T0_UncertaintyMap030</p>
+<p>Check the statistics of:</p>
+<ol style="list-style-type: decimal">
+<li>ISO_GSOCseq_ASR_BAU_UncertaintyMap030</li>
+<li>ISO_GSOCseq_ASR_SSM1_UncertaintyMap030</li>
+<li>ISO_GSOCseq_ASR_SSM2_UncertaintyMap030</li>
+<li>ISO_GSOCseq_ASR_SSM3_UncertaintyMap030</li>
+<li>ISO_GSOCseq_BAU_UncertaintyMap030</li>
+<li>ISO_GSOCseq_RSR_SSM1_UncertaintyMap030</li>
+<li>ISO_GSOCseq_RSR_SSM2_UncertaintyMap030</li>
+<li>ISO_GSOCseq_RSR_SSM3_UncertaintyMap030</li>
+<li>ISO_GSOCseq_SSM_UncertaintyMap030</li>
+<li>ISO_GSOCseq_T0_UncertaintyMap030</li>
+</ol>
 <p>The provided reference values may vary for each country depending on external factors that need to be carefully evaluated. However, the following values can be generally expected:</p>
 <ul>
 <li>Expected range all maps, usually between 0 to +200 % (most data generally between 15 to 50%)</li>
 <li>-999 indicates no data values. Negative values and -999 values should be masked out</li>
 <li>Maximum values should usually not exceed +200%.</li>
-<li>Check if extreme values (&gt;200 % and &lt;0 %) are grouped or dispersed (refert to Annex I)</li>
+<li>Check if extreme values (&gt;200 % and &lt;0 %) are grouped or dispersed (refer to Annex I, Common errors and considerations)</li>
 </ul>
 
 </div>
