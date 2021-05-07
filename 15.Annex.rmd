@@ -1361,7 +1361,7 @@ The following Table (Table 16.1) gives an overview of all the GSOCseq products i
 All 29 products must be georeferenced TIF (.tif) files.
 
 *Table 16.1* Overview of the 29 GSOCseq Products
-![](tables/Table_16.1.PNG)
+![](tables/Table_16.1.PNG)  
 
 ## Step 2 Check the Projection and resolution of all products{-}
 Open the products in QGIS or any other preferred GIS platform. Check that the projection of all products is EPSG:4326 - WGS 84 (Layer properties). Check that the spatial resolution (pixel size) (Layer properties) is equal to ~0.00833 degrees ; 1 km x 1km at the equator.
