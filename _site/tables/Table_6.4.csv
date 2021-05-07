@@ -1,0 +1,39 @@
+ESA Land Cover Class;ESA class Number;RothC Land Use type
+Cropland rainfed;10;Agricultural crops/improved grassland
+Cropland rainfed herbaceous cover;11;Agricultural crops/improved grassland
+Mosaic Cropland > 50%;30;Agricultural crops/improved grassland
+Cropland  - Tree/shrub cover;12;Forest/Deciduous/tropical woodland
+Cropland irrigated flooding;20;Waterlogged soils
+Grasslands;130;-9999
+Mosaic Natural vegetation herbaceous > 50% /cropland;40;Unimproved grassland and scrub (including Savanna)
+Mosaic herbaceous cover >50%/trees-shrubs;110;Agricultural crops/improved grassland
+Shrubland;120;Unimproved grassland and scrub/ Savanna
+Shrubland evergreen;121;Unimproved grassland and scrub/ Savanna
+Shrubland deciduous;122;Unimproved grassland and scrub/ Savanna
+Tree cover broadleaved deciduous open 15-40%;62;Unimproved grassland and scrub/ Savanna
+Tree cover needle leaved deciduous  open 15-40%;82;Unimproved grassland and scrub/ Savanna
+Tree cover broadleaved evergreen closed to open >15%;50;Unimproved grassland and scrub/ Savanna
+Tree cover broadleaved deciduous closed to open >15%;60;Forest/Deciduous/tropical woodland 
+Tree cover broadleaved deciduous closed >40%;61;Forest/Deciduous/tropical woodland 
+Tree cover needle leaved evergreen closed to open >15%;70;Forest/Deciduous/tropical woodland 
+Tree cover needle leaved evergreen closed >40%;71;Forest/Deciduous/tropical woodland 
+Tree cover needle leaved evergreen  open >40%;72;Forest/Deciduous/tropical woodland 
+Tree cover needle leaved deciduous closed to open >15%;80;Forest/Deciduous/tropical woodland 
+Tree cover needle leaved deciduous closed >40%;81;Forest/Deciduous/tropical woodland 
+Tree cover mixed leave type;90;Forest/Deciduous/tropical woodland 
+Mosaic tree-shrub >50%/herbaceous cover;100;Forest/Deciduous/tropical woodland 
+Shrub or herbaceous flooded fresh/saline/brackish water;180;Forest/Deciduous/tropical woodland
+Tree cover flooded fresh or brackish water;160;Waterlogged
+Tree cover flooded saline water;170;-9999
+Urban areas;190;-9999
+Lichens and mosses;140;-9999
+Bare areas;200;Others  - No data-9999
+Sparse vegetation tree-shrub-herbaceous (<15%);150;Others  - No data-9999
+Sparse tree (<15%);151;Others  - No data-9999
+Sparse Shrub (<15%);152;Others  - No data-9999
+Sparse herbaceous (<15%);153;Others  - No data-9999
+Consolidated bare areas;201;Others  - No data-9999
+Unconsolidated bare areas;202;Others  - No data-9999
+Permanent snow/ice;220;Others  - No data-9999
+Water bodies;210;Others  - No data-9999
+No data;0;Others  - No data-9999

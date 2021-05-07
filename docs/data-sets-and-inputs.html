@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 | data sets and inputs | Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq</title>
+  <title>Chapter 6 | Data sets and inputs | Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq</title>
   <meta name="description" content="The GSOCseq Technical Manual" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 | data sets and inputs | Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq" />
+  <meta property="og:title" content="Chapter 6 | Data sets and inputs | Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 | data sets and inputs | Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq" />
+  <meta name="twitter:title" content="Chapter 6 | Data sets and inputs | Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq" />
   
   <meta name="twitter:description" content="The GSOCseq Technical Manual" />
   
@@ -32,6 +32,7 @@
   
 <link rel="prev" href="modelling-approach-for-the-gsocseq.html"/>
 <link rel="next" href="software-environment.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,23 +50,24 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -118,6 +120,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -131,111 +156,134 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>List of contributors</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>List of contributors</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributers-and-reviewers"><i class="fa fa-check"></i>Contributers and Reviewers</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#special-advisor"><i class="fa fa-check"></i>Special Advisor</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#github-page"><i class="fa fa-check"></i>GitHub Page</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="presentation.html"><a href="presentation.html"><i class="fa fa-check"></i><b>1</b> | Presentation</a><ul>
+<li class="chapter" data-level="1" data-path="presentation.html"><a href="presentation.html"><i class="fa fa-check"></i><b>1</b> | Presentation</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="presentation.html"><a href="presentation.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
 <li class="chapter" data-level="1.2" data-path="presentation.html"><a href="presentation.html#the-sample-data-set"><i class="fa fa-check"></i><b>1.2</b> The sample data set</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html"><i class="fa fa-check"></i><b>2</b> | Soil Organic Carbon (SOC) sequestration</a><ul>
+<li class="chapter" data-level="2" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html"><i class="fa fa-check"></i><b>2</b> | Soil Organic Carbon (SOC) sequestration</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html#soil-carbon"><i class="fa fa-check"></i><b>2.1</b> Soil carbon</a></li>
 <li class="chapter" data-level="2.2" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html#soc-sequestration"><i class="fa fa-check"></i><b>2.2</b> SOC sequestration</a></li>
 <li class="chapter" data-level="2.3" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html#factors-affecting-soc-sequestration"><i class="fa fa-check"></i><b>2.3</b> Factors affecting SOC sequestration</a></li>
 <li class="chapter" data-level="2.4" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html#estimating-soc-sequestration-potential"><i class="fa fa-check"></i><b>2.4</b> Estimating SOC sequestration potential</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="soc-modelling.html"><a href="soc-modelling.html"><i class="fa fa-check"></i><b>3</b> | SOC Modelling</a><ul>
+<li class="chapter" data-level="3" data-path="soc-modelling.html"><a href="soc-modelling.html"><i class="fa fa-check"></i><b>3</b> | SOC Modelling</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="soc-modelling.html"><a href="soc-modelling.html#process-oriented-models"><i class="fa fa-check"></i><b>3.1</b> Process-oriented models</a></li>
 <li class="chapter" data-level="3.2" data-path="soc-modelling.html"><a href="soc-modelling.html#examples-of-process-oriented-models"><i class="fa fa-check"></i><b>3.2</b> Examples of process-oriented models</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="the-rothc-model.html"><a href="the-rothc-model.html"><i class="fa fa-check"></i><b>4</b> | The RothC model</a><ul>
+<li class="chapter" data-level="4" data-path="the-rothc-model.html"><a href="the-rothc-model.html"><i class="fa fa-check"></i><b>4</b> | The RothC model</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="the-rothc-model.html"><a href="the-rothc-model.html#model-description"><i class="fa fa-check"></i><b>4.1</b> Model description</a></li>
 <li class="chapter" data-level="4.2" data-path="the-rothc-model.html"><a href="the-rothc-model.html#rothc-general-data-requirements"><i class="fa fa-check"></i><b>4.2</b> RothC general data requirements</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html"><i class="fa fa-check"></i><b>5</b> | Modelling approach for the GSOCseq</a><ul>
+<li class="chapter" data-level="5" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html"><i class="fa fa-check"></i><b>5</b> | Modelling approach for the GSOCseq</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#general-framework"><i class="fa fa-check"></i><b>5.1</b> General framework</a></li>
 <li class="chapter" data-level="5.2" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#potential-soc-sequestration-estimates-after-the-implementation-of-ssm-practices"><i class="fa fa-check"></i><b>5.2</b> Potential SOC sequestration estimates after the implementation of SSM practices</a></li>
 <li class="chapter" data-level="5.3" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#business-as-usual-and-sustainable-soil-management-scenarios"><i class="fa fa-check"></i><b>5.3</b> Business as usual and sustainable soil management scenarios</a></li>
-<li class="chapter" data-level="5.4" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#general-modeling-procedures"><i class="fa fa-check"></i><b>5.4</b> General modeling procedures</a><ul>
+<li class="chapter" data-level="5.4" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#general-modeling-procedures"><i class="fa fa-check"></i><b>5.4</b> General modeling procedures</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#initialization-long-spin-up"><i class="fa fa-check"></i><b>5.4.1</b> Initialization: Long spin-up</a></li>
 <li class="chapter" data-level="5.4.2" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#short-spin-up"><i class="fa fa-check"></i><b>5.4.2</b> Short spin-up</a></li>
 <li class="chapter" data-level="5.4.3" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#forward-runs"><i class="fa fa-check"></i><b>5.4.3</b> Forward runs</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#summary"><i class="fa fa-check"></i><b>5.5</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html"><i class="fa fa-check"></i><b>6</b> | data sets and inputs</a><ul>
+<li class="chapter" data-level="6" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html"><i class="fa fa-check"></i><b>6</b> | Data sets and inputs</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#climate-data-sets"><i class="fa fa-check"></i><b>6.1</b> Climate data sets</a></li>
-<li class="chapter" data-level="6.2" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#soil-data-sets"><i class="fa fa-check"></i><b>6.2</b> Soil data sets</a><ul>
+<li class="chapter" data-level="6.2" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#soil-data-sets"><i class="fa fa-check"></i><b>6.2</b> Soil data sets</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#initial-total-soc-stocks"><i class="fa fa-check"></i><b>6.2.1</b> Initial total SOC stocks</a></li>
 <li class="chapter" data-level="6.2.2" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#initial-c-pools"><i class="fa fa-check"></i><b>6.2.2</b> Initial C pools</a></li>
 <li class="chapter" data-level="6.2.3" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#soil-texture-clay-content"><i class="fa fa-check"></i><b>6.2.3</b> Soil texture: clay content</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#land-cover-data-sets"><i class="fa fa-check"></i><b>6.3</b> Land cover data sets</a></li>
 <li class="chapter" data-level="6.4" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#monthly-vegetation-cover"><i class="fa fa-check"></i><b>6.4</b> Monthly vegetation cover</a></li>
-<li class="chapter" data-level="6.5" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#monthly-carbon-inputs"><i class="fa fa-check"></i><b>6.5</b> Monthly carbon inputs:</a><ul>
+<li class="chapter" data-level="6.5" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#monthly-carbon-inputs"><i class="fa fa-check"></i><b>6.5</b> Monthly carbon inputs:</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#c-inputs-under-bau-practices"><i class="fa fa-check"></i><b>6.5.1</b> C inputs under BAU practices:</a></li>
 <li class="chapter" data-level="6.5.2" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#c-inputs-under-ssm-practices"><i class="fa fa-check"></i><b>6.5.2</b> C inputs under SSM practices:</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#residue-decomposability-decomposable-to-resistant-plant-material-ratio-dpmrpm"><i class="fa fa-check"></i><b>6.6</b> Residue decomposability: decomposable to resistant plant material ratio (DPM/RPM)</a></li>
 <li class="chapter" data-level="6.7" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#required-data-sets-and-global-data-sources.-summary"><i class="fa fa-check"></i><b>6.7</b> Required data sets and global data sources. Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="software-environment.html"><a href="software-environment.html"><i class="fa fa-check"></i><b>7</b> | Software environment</a><ul>
-<li class="chapter" data-level="7.1" data-path="software-environment.html"><a href="software-environment.html#setting-up-the-software-environment-r-rstudio-and-r-packages"><i class="fa fa-check"></i><b>7.1</b> Setting up the software environment: R, RStudio and R Packages</a><ul>
+<li class="chapter" data-level="7" data-path="software-environment.html"><a href="software-environment.html"><i class="fa fa-check"></i><b>7</b> | Software environment</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="software-environment.html"><a href="software-environment.html#setting-up-the-software-environment-r-rstudio-and-r-packages"><i class="fa fa-check"></i><b>7.1</b> Setting up the software environment: R, RStudio and R Packages</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="software-environment.html"><a href="software-environment.html#obtaining-and-installing-r"><i class="fa fa-check"></i><b>7.1.1</b> Obtaining and installing R</a></li>
 <li class="chapter" data-level="7.1.2" data-path="software-environment.html"><a href="software-environment.html#obtaining-and-installing-rstudio"><i class="fa fa-check"></i><b>7.1.2</b> Obtaining and installing RStudio</a></li>
 <li class="chapter" data-level="7.1.3" data-path="software-environment.html"><a href="software-environment.html#getting-started-with-r"><i class="fa fa-check"></i><b>7.1.3</b> Getting started with R</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="software-environment.html"><a href="software-environment.html#r-packages"><i class="fa fa-check"></i><b>7.2</b> R packages</a><ul>
+<li class="chapter" data-level="7.2" data-path="software-environment.html"><a href="software-environment.html#r-packages"><i class="fa fa-check"></i><b>7.2</b> R packages</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="software-environment.html"><a href="software-environment.html#finding-r-packages"><i class="fa fa-check"></i><b>7.2.1</b> Finding R packages</a></li>
 <li class="chapter" data-level="7.2.2" data-path="software-environment.html"><a href="software-environment.html#some-useful-r-packages-for-the-socseq-maps"><i class="fa fa-check"></i><b>7.2.2</b> Some useful R-packages for the SOCseq maps</a></li>
 <li class="chapter" data-level="7.2.3" data-path="software-environment.html"><a href="software-environment.html#installation-of-r-packages-used-in-this-technical-manual"><i class="fa fa-check"></i><b>7.2.3</b> Installation of R-Packages used in this technical manual</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="software-environment.html"><a href="software-environment.html#considerations-when-using-r"><i class="fa fa-check"></i><b>7.3</b> Considerations when using R</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html"><i class="fa fa-check"></i><b>8</b> | Running the scripts: overview</a><ul>
+<li class="chapter" data-level="8" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html"><i class="fa fa-check"></i><b>8</b> | Running the scripts: overview</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#summary-of-steps-and-scripts"><i class="fa fa-check"></i><b>8.1</b> Summary of steps and scripts</a></li>
 <li class="chapter" data-level="8.2" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-1-preparation-of-data"><i class="fa fa-check"></i><b>8.2</b> Stage 1: Preparation of data</a></li>
 <li class="chapter" data-level="8.3" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-2-running-the-model"><i class="fa fa-check"></i><b>8.3</b> Stage 2: Running the model</a></li>
 <li class="chapter" data-level="8.4" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-3-generation-of-the-map"><i class="fa fa-check"></i><b>8.4</b> Stage 3: generation of the map</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html"><i class="fa fa-check"></i><b>9</b> | Stage 1: preparation of input data</a><ul>
-<li class="chapter" data-level="9.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparation-of-soc-layer"><i class="fa fa-check"></i><b>9.1</b> Preparation of SOC layer</a><ul>
+<li class="chapter" data-level="9" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html"><i class="fa fa-check"></i><b>9</b> | Stage 1: preparation of input data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparation-of-soc-layer"><i class="fa fa-check"></i><b>9.1</b> Preparation of SOC layer</a>
+<ul>
 <li class="chapter" data-level="9.1.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-0.soc_map_aoi.r"><i class="fa fa-check"></i><b>9.1.1</b> Script Number 0.“SOC_MAP_AOI.R”</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparation-of-climate-layers"><i class="fa fa-check"></i><b>9.2</b> Preparation of climate Layers</a><ul>
+<li class="chapter" data-level="9.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparation-of-climate-layers"><i class="fa fa-check"></i><b>9.2</b> Preparation of climate Layers</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#option-a-preparation-of-the-cru-climatic-variables"><i class="fa fa-check"></i><b>9.2.1</b> <em>Option A</em> Preparation of the CRU climatic variables</a></li>
 <li class="chapter" data-level="9.2.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#option-b-preparation-of-the-terraclimate-climatic-variables"><i class="fa fa-check"></i><b>9.2.2</b> <em>Option B</em> Preparation of the TerraClimate climatic variables</a></li>
 <li class="chapter" data-level="9.2.3" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-6.-monthly_vegetation_cover-vegetation-cover-from-google-earth-engine."><i class="fa fa-check"></i><b>9.2.3</b> Script Number 6. “Monthly_vegetation_cover” vegetation cover from Google Earth Engine.</a></li>
 <li class="chapter" data-level="9.2.4" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-7.-vegetation_cover_stack.r"><i class="fa fa-check"></i><b>9.2.4</b> Script Number 7. “Vegetation_Cover_stack.R”</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparing-the-land-use-layer"><i class="fa fa-check"></i><b>9.3</b> Preparing the land use layer</a><ul>
+<li class="chapter" data-level="9.3" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparing-the-land-use-layer"><i class="fa fa-check"></i><b>9.3</b> Preparing the land use layer</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-9-land_use_esa_to_fao_classes.r-no-land-use-change"><i class="fa fa-check"></i><b>9.3.1</b> Script Number 9 “Land_Use_ESA_to_FAO_classes.R” No land use change</a></li>
 <li class="chapter" data-level="9.3.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-9-land_use_esa_to_fao_classes_lusim.r-land-use-change-simulation"><i class="fa fa-check"></i><b>9.3.2</b> Script Number 9 “Land_Use_ESA_to_FAO_classes_LUsim.R” Land use change simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#harmonization-of-soil-climate-and-vegetation-layers."><i class="fa fa-check"></i><b>9.4</b> Harmonization of soil, climate and vegetation layers.</a><ul>
+<li class="chapter" data-level="9.4" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#harmonization-of-soil-climate-and-vegetation-layers."><i class="fa fa-check"></i><b>9.4</b> Harmonization of soil, climate and vegetation layers.</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-10.-spin_up_stack.v3.r"><i class="fa fa-check"></i><b>9.4.1</b> Script Number 10. “SPIN_UP_STACK.v3.R”</a></li>
 <li class="chapter" data-level="9.4.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-11.-warm_up_stack_v5.r-no-land-use-change"><i class="fa fa-check"></i><b>9.4.2</b> Script Number 11. “WARM_UP_STACK_V5.R” No Land use change</a></li>
 <li class="chapter" data-level="9.4.3" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-11.-warm_up_stack_v5_lusim.r-land-use-change-simulation"><i class="fa fa-check"></i><b>9.4.3</b> Script Number 11. WARM_UP_STACK_V5_LUsim.R Land use change simulation</a></li>
 <li class="chapter" data-level="9.4.4" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-12.-forward_stack.r"><i class="fa fa-check"></i><b>9.4.4</b> Script Number 12. “FORWARD_STACK.R”</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#defining-target-points-to-run-the-model"><i class="fa fa-check"></i><b>9.5</b> Defining target points to run the model</a><ul>
+<li class="chapter" data-level="9.5" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#defining-target-points-to-run-the-model"><i class="fa fa-check"></i><b>9.5</b> Defining target points to run the model</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#qgis-procedure-number-1-model"><i class="fa fa-check"></i><b>9.5.1</b> QGIS Procedure number 1 (model)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-2-running-the-model"><i class="fa fa-check"></i><b>10</b> | Stage 2: running the model</a><ul>
-<li class="chapter" data-level="10.1" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html"><i class="fa fa-check"></i><b>10.1</b> Script Number 13. “ROTH_C_SPIN_UP_v2.R”</a></li>
-<li class="chapter" data-level="10.2" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-no-land-use-change"><i class="fa fa-check"></i><b>10.2</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” No Land use change</a></li>
-<li class="chapter" data-level="10.3" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-land-use-change-simulation"><i class="fa fa-check"></i><b>10.3</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” Land use change simulation</a></li>
-<li class="chapter" data-level="10.4" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-15.-roth_c_forward_v2.r"><i class="fa fa-check"></i><b>10.4</b> Script Number 15. “ROTH_C_forward_v2.R”</a></li>
+<li class="chapter" data-level="10" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html"><i class="fa fa-check"></i><b>10</b> | Stage 2: running the model</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html#script-number-13.-roth_c_spin_up_v2.r"><i class="fa fa-check"></i><b>10.1</b> Script Number 13. “ROTH_C_SPIN_UP_v2.R”</a></li>
+<li class="chapter" data-level="10.2" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html#script-number-14.-roth_c_warm_up_v4.r-no-land-use-change"><i class="fa fa-check"></i><b>10.2</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” No Land use change</a></li>
+<li class="chapter" data-level="10.3" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html#script-number-14.-roth_c_warm_up_v4.r-land-use-change-simulation"><i class="fa fa-check"></i><b>10.3</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” Land use change simulation</a></li>
+<li class="chapter" data-level="10.4" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html#script-number-15.-roth_c_forward_v2.r"><i class="fa fa-check"></i><b>10.4</b> Script Number 15. “ROTH_C_forward_v2.R”</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html"><i class="fa fa-check"></i><b>11</b> | Stage 3: Map generation</a><ul>
+<li class="chapter" data-level="11" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html"><i class="fa fa-check"></i><b>11</b> | Stage 3: Map generation</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html#script-number-16-points_to_raster.r"><i class="fa fa-check"></i><b>11.1</b> Script Number 16: “Points_to_Raster.R”</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="uncertainty-and-validation.html"><a href="uncertainty-and-validation.html"><i class="fa fa-check"></i><b>12</b> | Uncertainty and validation</a></li>
-<li class="chapter" data-level="13" data-path="data-sharing.html"><a href="data-sharing.html"><i class="fa fa-check"></i><b>13</b> | Data sharing</a><ul>
+<li class="chapter" data-level="13" data-path="data-sharing.html"><a href="data-sharing.html"><i class="fa fa-check"></i><b>13</b> | Data sharing</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="data-sharing.html"><a href="data-sharing.html#general-principles"><i class="fa fa-check"></i><b>13.1</b> General principles</a></li>
 <li class="chapter" data-level="13.2" data-path="data-sharing.html"><a href="data-sharing.html#data-formats-and-integrity"><i class="fa fa-check"></i><b>13.2</b> Data formats and integrity</a></li>
 <li class="chapter" data-level="13.3" data-path="data-sharing.html"><a href="data-sharing.html#data-correctness"><i class="fa fa-check"></i><b>13.3</b> Data correctness</a></li>
@@ -243,8 +291,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="data-sharing.html"><a href="data-sharing.html#other-modes-of-data-sharing"><i class="fa fa-check"></i><b>13.5</b> Other modes of data sharing</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="limitations-knowledge-gaps-and-way-forward.html"><a href="limitations-knowledge-gaps-and-way-forward.html"><i class="fa fa-check"></i><b>14</b> | Limitations, knowledge gaps and way forward</a></li>
-<li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html"><i class="fa fa-check"></i>Annex I Troubleshooting</a><ul>
-<li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#coastal-and-small-countries-not-fully-covered-by-the-cru-layers"><i class="fa fa-check"></i>Coastal and small countries not fully covered by the CRU layers</a><ul>
+<li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html"><i class="fa fa-check"></i>Annex I Troubleshooting</a>
+<ul>
+<li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#coastal-and-small-countries-not-fully-covered-by-the-cru-layers"><i class="fa fa-check"></i>Coastal and small countries not fully covered by the CRU layers</a>
+<ul>
 <li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#step-1-create-a-single-cru-layer-cropped-and-masked-to-the-extent-of-your-aoi-using-the-following-r-script"><i class="fa fa-check"></i>Step 1 Create a single CRU layer cropped and masked to the extent of your AOI using the following R script</a></li>
 <li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#step-2-open-qgis-and-generate-the-empty-points"><i class="fa fa-check"></i>Step 2 Open QGIS and generate the empty points</a></li>
 <li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#step-3-polygonize-the-raster"><i class="fa fa-check"></i>Step 3 Polygonize the raster</a></li>
@@ -256,11 +306,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#common-errors-and-considerations"><i class="fa fa-check"></i>Common errors and considerations</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html"><i class="fa fa-check"></i>Annex II Quality assurance and quality control</a><ul>
+<li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html"><i class="fa fa-check"></i>Annex II Quality assurance and quality control</a>
+<ul>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-1-check-that-29-products-have-been-labeled-appropriately-and-are-in-the-correct-format"><i class="fa fa-check"></i>Step 1 Check that 29 products have been labeled appropriately and are in the correct format</a></li>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-2-check-the-projection-and-resolution-of-all-products"><i class="fa fa-check"></i>Step 2 Check the Projection and resolution of all products</a></li>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-3-check-that-the-products-were-generated-for-agricultural-and-grazing-areas-only"><i class="fa fa-check"></i>Step 3 Check that the products were generated for agricultural and grazing areas only</a></li>
-<li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-4-check-for-units-range-and-outliers"><i class="fa fa-check"></i>Step 4 Check for units, range, and outliers</a><ul>
+<li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-4-check-for-units-range-and-outliers"><i class="fa fa-check"></i>Step 4 Check for units, range, and outliers</a>
+<ul>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#soil-organic-carbon-at-t0-2020"><i class="fa fa-check"></i>Soil Organic Carbon at T0 (2020)</a></li>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#final-soc-stocks-after-20-simulation-years-for-all-scenarios-bau-ssm1-ssm2-ssm3"><i class="fa fa-check"></i>Final SOC stocks after 20 simulation years for all scenarios (BAU, SSM1, SSM2, SSM3)</a></li>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#absolute-differences-in-soc-stocks"><i class="fa fa-check"></i>Absolute differences in SOC stocks</a></li>
@@ -291,10 +343,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-sets-and-inputs" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> | data sets and inputs</h1>
+<div id="data-sets-and-inputs" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> | Data sets and inputs</h1>
 <p>A careful harmonization of data sets and input estimation procedures is essential to obtain consistent results across regions and countries. This Chapter describes the required data sets, the potential data sources and the methodologies to estimate required inputs for the modeling approach described in Chapter 5. Procedures for the preparation and harmonization of input data are explained in Chapter 9.</p>
-<div id="climate-data-sets" class="section level2">
+<div id="climate-data-sets" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Climate data sets</h2>
 <p>Gridded climate data shall be obtained from:</p>
 <p>a.) National Sources or a preferred regional data source;<br />
@@ -313,18 +365,18 @@ TerraClimate is a data set of monthly climate and climatic water balance for glo
 </ul>
 <p>The same data sources must be used in all modeling phases.</p>
 </div>
-<div id="soil-data-sets" class="section level2">
+<div id="soil-data-sets" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Soil data sets</h2>
-<div id="initial-total-soc-stocks" class="section level3">
+<div id="initial-total-soc-stocks" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Initial total SOC stocks</h3>
 <p>Initial total SOC stocks to 30cm depth (in t C ha<sup>-1</sup>) are to be derived from the GSOCmap (30 arc seconds; ~ 1km x 1km resolution grid), latest revised version (FAO-ITPS, 2019). Countries wishing to include an updated or improved estimate of current SOC stocks, compared to the latest version of the GSOCmap, are encouraged to submit their updated national SOCmap to the GSP Secretariat and use it for modeling.
 Since the GSOCmap was generated from national measurements taken between the 1960s and the 2000s, and no temporal corrections have been developed in many countries, GSOCmap values will represent SOC stocks for the year 2000. A ‘short spin-up’ model run (20 years) with climate variables and management forcing for the period 2000-2020 shall be performed to reduce the effect of temporal deviations. Thus, the simulated SOC content at 2020 after the ‘short spin-up’ run will represent the initial SOC stocks prior to implementation of SSM practices (See Chapter 6, General modeling procedures). If recent national SOC monitoring campaigns (2015-2020) have been undertaken to generate the latest version of the FAO-IPS GSOC map, the SOC stocks from the GSOCmap can be considered as the current stocks (t = 0 y; i.e. year 2020), and the ‘short spin-up’ phase is not required.</p>
 </div>
-<div id="initial-c-pools" class="section level3">
+<div id="initial-c-pools" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Initial C pools</h3>
 <p>The initial C stocks in the different pools (in t C ha<sup>-1</sup>) considered in the RothC model (DPM, RPM, BIO, HUM and IOM, Fig. 4.1) shall be estimated following the ‘long spin-up’ and ‘short spin-up’ procedure described in Chapter 6.</p>
 </div>
-<div id="soil-texture-clay-content" class="section level3">
+<div id="soil-texture-clay-content" class="section level3" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Soil texture: clay content</h3>
 <p>The average clay contents over 0-30 cm depth is to be obtained from gridded data (raster format) from:</p>
 <ul>
@@ -340,11 +392,11 @@ Average clay contents over a 0-30 cm depth interval can be derived by taking a w
 <p>where N is the number of depths; b is 30 cm, a is 0 cm, xk is the k-th depth and f(xk) is the value of the target variable (i.e., clay content) at depth xk. For example, for the 0-30 cm depth interval, with soil clay values at the first four standard depths (0, 5, 15 and 30 cm) equal to 14.5, 25.0, 25.3 and 25.0, clay content 0-30 cm equals:</p>
 <p><span class="math display">\[\begin{equation}
 \tag{6.2}
-	\frac{(5-0) \times(14.5+25.0)+(15-5) \times(25.0 + 25.3) + (30 - 15) \times (25.3 + 25.0)} {30\times 0.5} = 24.25
+    \frac{(5-0) \times(14.5+25.0)+(15-5) \times(25.0 + 25.3) + (30 - 15) \times (25.3 + 25.0)} {30\times 0.5} = 24.25
 \end{equation}\]</span></p>
 </div>
 </div>
-<div id="land-cover-data-sets" class="section level2">
+<div id="land-cover-data-sets" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Land cover data sets</h2>
 <p>The gridded land cover data layers shall be obtained from:</p>
 <ul>
@@ -517,7 +569,7 @@ Paddy fields
 </table>
 <p>As a minimum, land use for the year 2000 and land use for the year 2020 (or last available year) at 1x1 km resolution shall be defined. The predominant land use category in each cell of the 1x1 km grid shall be selected if finer resolutions are available.</p>
 </div>
-<div id="monthly-vegetation-cover" class="section level2">
+<div id="monthly-vegetation-cover" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Monthly vegetation cover</h2>
 <p>It is required to indicate the approximate annual distribution of monthly vegetation cover for the simulations in order to:</p>
 <ul>
@@ -542,9 +594,9 @@ P_{veg} = \frac{Number\ of \ images \ NDVI &gt; 0.6}{Total \ images}
 \end{equation}\]</span></p>
 <p>NDVI is proposed as an alternative for estimating vegetation cover when no vegetation cover data or local knowledge is available. The proposed threshold may vary according to local conditions. Global monthly vegetation cover data sets estimated by NDVI (2000-2020) will be provided by the GSP Secretariat. However, NDVI may be a biased indicator in areas with low vegetation cover (e.g. drylands, shrublands), or high nubosity. In these cases, countries are encouraged to use other locally validated spectral indices to accurately estimate monthly vegetation cover (e.g. Multi Sensor Vegetation Index; Moradizadeh and Saradjian, 2016).</p>
 </div>
-<div id="monthly-carbon-inputs" class="section level2">
+<div id="monthly-carbon-inputs" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Monthly carbon inputs:</h2>
-<div id="c-inputs-under-bau-practices" class="section level3">
+<div id="c-inputs-under-bau-practices" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> C inputs under BAU practices:</h3>
 <p>Carbon inputs for the BAU scenarios shall be estimated using the approach proposed by Smith et al. (2005; 2006; 2007) and Gottschalk et al. (2012). Total plant C inputs to the soil, which include plant litter, root exudates and fine root turnover, are rarely known. To overcome this problem, RothC shall be run in ‘equilibrium mode’ to calculate the initial plant carbon inputs to the soil (or ‘equilibrium Carbon inputs’, Ceq), which led to the initial SOC stocks (GSOCmap), under historic forcing conditions. The Ceq thus represents the historical average of annual carbon input of the BAU scenario up to the year 2000. For further details on the equilibrium run and initialization to estimate Ceq, refer to section 3.2 (General modeling procedures).
 Once these initial carbon inputs have been established (from the year 2000 onwards), year-to-year changes can be adjusted in accordance with changes in Net Primary Production (NPP), as changes in C inputs to the soil are assumed to be associated with changes in NPP (Smith et al., 2005). Thus, annual C inputs for the BAU scenario can be adjusted as:</p>
@@ -580,24 +632,24 @@ NPP_{MIAMI} \ tC ha^1 yr^{-1} = NPP_{MIAMI} (DM; g m^{-2} yr^{-1}) \times 0.01 \
 The change in NPP is used as a surrogate for estimating the change in C input and assumes that a similar proportion remains in the field (e.g. Smith et al., 2005; Gottschalk et al., 2012). In a first instance, countries should focus on C inputs in agricultural lands in 2020, the use of which has not changed since the year 2000. Changes in land use and management over the period 2000-2020 and associated changes in C inputs can nevertheless be taken into account, if trends in biomass removal are known, in order to adjust C inputs (e.g. Schulze et al., 2010; Plutzar et al., 2016; Neumann and Smith, 2018). Thus, the annual changes in C inputs by equations 7 and 8 can be adjusted using annual land cover data. For example, by assuming and approving an NPP of 12, 28 and 47% for forests, grasslands and croplands (Schulze et al., 2010), the annual NPP of a specific year (NPPt) can be adjusted using these coefficients (equations 6.9 to 6.11), and the annual C inputs can then be estimated by equations 6.3 and 6.4:</p>
 <p><span class="math display">\[\begin{equation}
 \tag{6.10}
-NPPt_{forests} = NPP_{MIAMI} \times 0.88				 
+NPPt_{forests} = NPP_{MIAMI} \times 0.88                 
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
 \tag{6.11}
-NPPt_{grasslands} = NPP_{MIAMI} \times 0.72	
+NPPt_{grasslands} = NPP_{MIAMI} \times 0.72 
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
 \tag{6.12}
 NPPt_{croplands} = NPP_{MIAMI} \times 0.53
 \end{equation}\]</span></p>
 </div>
-<div id="c-inputs-under-ssm-practices" class="section level3">
+<div id="c-inputs-under-ssm-practices" class="section level3" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> C inputs under SSM practices:</h3>
 <p>SSM practices shall be grouped into three scenarios as a standard method, based on their expected relative effects on C inputs compared to BAU: Low, Medium and High C inputs. The SSM practices considered in this approach are practices that affect C inputs to the soil, as changes in C inputs have been identified as one of the factors to which models are most sensitive when projecting changes in SOC stocks (FAO, 2019).
 As with estimates of BAU C inputs, total plant C inputs to the soil, including plant litter, root exudates and fine root turnover, are rarely known. Thus, C inputs of SSM scenarios will represent a % increase from BAU C inputs:</p>
 <p><span class="math display">\[\begin{equation}
 \tag{6.13}
-	\Delta \% CSSM-BAU = (Cinputs_{SSM} - Cinputs_{BAU}) \times Cinputs_{BAU}
+    \Delta \% CSSM-BAU = (Cinputs_{SSM} - Cinputs_{BAU}) \times Cinputs_{BAU}
 \end{equation}\]</span></p>
 <p>As a standard, the expected effects (% increase in C inputs) of 3 scenarios have been conservatively set at:</p>
 <ul>
@@ -616,11 +668,11 @@ SSM_{Ct} t C ha^-1 yr^-1 = BAU_{Ct} + \% \Delta CSSM_i - BAU \times  BAU_{Ct}
 <span class="math inline">\(\% \Delta CSSM_i - BAU\)</span> is the representative % increase in C inputs for a specific scenario (<span class="math inline">\(i\)</span>=Low, Medium, High).</p>
 </div>
 </div>
-<div id="residue-decomposability-decomposable-to-resistant-plant-material-ratio-dpmrpm" class="section level2">
+<div id="residue-decomposability-decomposable-to-resistant-plant-material-ratio-dpmrpm" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Residue decomposability: decomposable to resistant plant material ratio (DPM/RPM)</h2>
 <p>Default values for the DPM/RPM ratio (decomposability of incoming plant material) can be used (e.g. 1.44 for crops and improved grasslands; 0.67 for unimproved grasslands and shrublands, and 0.25 for forests, woodlands and tree crops; Falloon and Smith, 2009). Table 6.1 (Land cover data sets) show default DPM/RPM for FAO land use classes. These default values can be modified according to region-specific data and local knowledge.</p>
 </div>
-<div id="required-data-sets-and-global-data-sources.-summary" class="section level2">
+<div id="required-data-sets-and-global-data-sources.-summary" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> Required data sets and global data sources. Summary</h2>
 <p>The required data sets described in this chapter are summarized in Table 6.2. The proposed regional and global data sources to obtain the required input data when no quality national or regional data is available are described in Table 6.3.</p>
 <strong>Table 6.2</strong> <em>Summary of the input data requirements for the proposed modeling approach to generate national SOCseq maps</em>
@@ -1632,6 +1684,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

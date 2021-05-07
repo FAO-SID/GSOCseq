@@ -1,4 +1,4 @@
-# | data sets and inputs   
+# | Data sets and inputs   
 A careful harmonization of data sets and input estimation procedures is essential to obtain consistent results across regions and countries. This Chapter describes the required data sets, the potential data sources and the methodologies to estimate required  inputs for the modeling approach described in Chapter 5. Procedures for the preparation and harmonization of input data are explained in Chapter 9.
 
 ## Climate data sets

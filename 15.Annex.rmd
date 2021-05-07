@@ -1488,7 +1488,6 @@ Check the statistics of:
 The provided reference values may vary for each country depending on external factors that need to be carefully evaluated. However, the following values can be generally expected: 
 
 *   The expected range should fall between 0 to +4 t C/ha (with most data being distributed between 0  to +1)
-*   RSR BAU: most values range from 0 to + 0.5, with median values near 0 or lower
 *   RSR SSM1: usually most values range from 0  to + 0.6, with median near 0 or higher (similar to BAU)
 *   RSR SSM2: usually most values range from 0 to + 0.7
 *   RSR SSM3: usually most values range 0 to + 0.8

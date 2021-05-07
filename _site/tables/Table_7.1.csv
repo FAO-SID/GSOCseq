@@ -1,0 +1,9 @@
+﻿Protocol application area;R package;Reference
+Import and export raster data;raster;Hijmans et col. (2020)
+Import and export raster data;ncdf4;David Pierce (2019)
+Import and export vector data;rgdal;Bivand et col (2019)
+Harmonization;raster;Hijmans et col. (2020)
+Harmonization;rgdal;Bivand et col (2019)
+RothC model;SoilR;Sierra and Mueller (2014)
+Data manipulation;abind;Plate (2016)
+RothC model, NPP MIAMI model;soilassessment;Omuto (2020)

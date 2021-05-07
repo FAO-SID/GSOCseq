@@ -1,0 +1,6 @@
+Parameter;Uncertainty in the input;Minimum value;Maximum value
+Temperature;± 2 %;Monthly Temp * 0.98;Monthly Temp * 1.02
+Precipitation;± 5 %;Monthly PP * 0.95;Monthly PP * 1.05
+Clay content;± 10 %;Clay * 0.90;Clay * 1.10
+FAO SOC;± 20 %;SOC FAO *0.8;SOC FAO *  1.2
+C input increase in SSM scenario; ± 15 %;C eq * (SSM1 % increase - 15%);C eq * (SSM % increase + 15%)

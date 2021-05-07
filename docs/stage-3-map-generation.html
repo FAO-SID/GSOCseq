@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 | Stage 3: Map generation | Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq</title>
   <meta name="description" content="The GSOCseq Technical Manual" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 | Stage 3: Map generation | Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="stage-2-running-the-model.html"/>
+<link rel="prev" href="stage-2-running-the-model-1.html"/>
 <link rel="next" href="uncertainty-and-validation.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,23 +50,24 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -118,6 +120,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -131,111 +156,134 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>List of contributors</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>List of contributors</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributers-and-reviewers"><i class="fa fa-check"></i>Contributers and Reviewers</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#special-advisor"><i class="fa fa-check"></i>Special Advisor</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#github-page"><i class="fa fa-check"></i>GitHub Page</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="presentation.html"><a href="presentation.html"><i class="fa fa-check"></i><b>1</b> | Presentation</a><ul>
+<li class="chapter" data-level="1" data-path="presentation.html"><a href="presentation.html"><i class="fa fa-check"></i><b>1</b> | Presentation</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="presentation.html"><a href="presentation.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
 <li class="chapter" data-level="1.2" data-path="presentation.html"><a href="presentation.html#the-sample-data-set"><i class="fa fa-check"></i><b>1.2</b> The sample data set</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html"><i class="fa fa-check"></i><b>2</b> | Soil Organic Carbon (SOC) sequestration</a><ul>
+<li class="chapter" data-level="2" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html"><i class="fa fa-check"></i><b>2</b> | Soil Organic Carbon (SOC) sequestration</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html#soil-carbon"><i class="fa fa-check"></i><b>2.1</b> Soil carbon</a></li>
 <li class="chapter" data-level="2.2" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html#soc-sequestration"><i class="fa fa-check"></i><b>2.2</b> SOC sequestration</a></li>
 <li class="chapter" data-level="2.3" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html#factors-affecting-soc-sequestration"><i class="fa fa-check"></i><b>2.3</b> Factors affecting SOC sequestration</a></li>
 <li class="chapter" data-level="2.4" data-path="soil-organic-carbon-soc-sequestration.html"><a href="soil-organic-carbon-soc-sequestration.html#estimating-soc-sequestration-potential"><i class="fa fa-check"></i><b>2.4</b> Estimating SOC sequestration potential</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="soc-modelling.html"><a href="soc-modelling.html"><i class="fa fa-check"></i><b>3</b> | SOC Modelling</a><ul>
+<li class="chapter" data-level="3" data-path="soc-modelling.html"><a href="soc-modelling.html"><i class="fa fa-check"></i><b>3</b> | SOC Modelling</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="soc-modelling.html"><a href="soc-modelling.html#process-oriented-models"><i class="fa fa-check"></i><b>3.1</b> Process-oriented models</a></li>
 <li class="chapter" data-level="3.2" data-path="soc-modelling.html"><a href="soc-modelling.html#examples-of-process-oriented-models"><i class="fa fa-check"></i><b>3.2</b> Examples of process-oriented models</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="the-rothc-model.html"><a href="the-rothc-model.html"><i class="fa fa-check"></i><b>4</b> | The RothC model</a><ul>
+<li class="chapter" data-level="4" data-path="the-rothc-model.html"><a href="the-rothc-model.html"><i class="fa fa-check"></i><b>4</b> | The RothC model</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="the-rothc-model.html"><a href="the-rothc-model.html#model-description"><i class="fa fa-check"></i><b>4.1</b> Model description</a></li>
 <li class="chapter" data-level="4.2" data-path="the-rothc-model.html"><a href="the-rothc-model.html#rothc-general-data-requirements"><i class="fa fa-check"></i><b>4.2</b> RothC general data requirements</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html"><i class="fa fa-check"></i><b>5</b> | Modelling approach for the GSOCseq</a><ul>
+<li class="chapter" data-level="5" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html"><i class="fa fa-check"></i><b>5</b> | Modelling approach for the GSOCseq</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#general-framework"><i class="fa fa-check"></i><b>5.1</b> General framework</a></li>
 <li class="chapter" data-level="5.2" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#potential-soc-sequestration-estimates-after-the-implementation-of-ssm-practices"><i class="fa fa-check"></i><b>5.2</b> Potential SOC sequestration estimates after the implementation of SSM practices</a></li>
 <li class="chapter" data-level="5.3" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#business-as-usual-and-sustainable-soil-management-scenarios"><i class="fa fa-check"></i><b>5.3</b> Business as usual and sustainable soil management scenarios</a></li>
-<li class="chapter" data-level="5.4" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#general-modeling-procedures"><i class="fa fa-check"></i><b>5.4</b> General modeling procedures</a><ul>
+<li class="chapter" data-level="5.4" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#general-modeling-procedures"><i class="fa fa-check"></i><b>5.4</b> General modeling procedures</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#initialization-long-spin-up"><i class="fa fa-check"></i><b>5.4.1</b> Initialization: Long spin-up</a></li>
 <li class="chapter" data-level="5.4.2" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#short-spin-up"><i class="fa fa-check"></i><b>5.4.2</b> Short spin-up</a></li>
 <li class="chapter" data-level="5.4.3" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#forward-runs"><i class="fa fa-check"></i><b>5.4.3</b> Forward runs</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="modelling-approach-for-the-gsocseq.html"><a href="modelling-approach-for-the-gsocseq.html#summary"><i class="fa fa-check"></i><b>5.5</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html"><i class="fa fa-check"></i><b>6</b> | data sets and inputs</a><ul>
+<li class="chapter" data-level="6" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html"><i class="fa fa-check"></i><b>6</b> | Data sets and inputs</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#climate-data-sets"><i class="fa fa-check"></i><b>6.1</b> Climate data sets</a></li>
-<li class="chapter" data-level="6.2" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#soil-data-sets"><i class="fa fa-check"></i><b>6.2</b> Soil data sets</a><ul>
+<li class="chapter" data-level="6.2" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#soil-data-sets"><i class="fa fa-check"></i><b>6.2</b> Soil data sets</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#initial-total-soc-stocks"><i class="fa fa-check"></i><b>6.2.1</b> Initial total SOC stocks</a></li>
 <li class="chapter" data-level="6.2.2" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#initial-c-pools"><i class="fa fa-check"></i><b>6.2.2</b> Initial C pools</a></li>
 <li class="chapter" data-level="6.2.3" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#soil-texture-clay-content"><i class="fa fa-check"></i><b>6.2.3</b> Soil texture: clay content</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#land-cover-data-sets"><i class="fa fa-check"></i><b>6.3</b> Land cover data sets</a></li>
 <li class="chapter" data-level="6.4" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#monthly-vegetation-cover"><i class="fa fa-check"></i><b>6.4</b> Monthly vegetation cover</a></li>
-<li class="chapter" data-level="6.5" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#monthly-carbon-inputs"><i class="fa fa-check"></i><b>6.5</b> Monthly carbon inputs:</a><ul>
+<li class="chapter" data-level="6.5" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#monthly-carbon-inputs"><i class="fa fa-check"></i><b>6.5</b> Monthly carbon inputs:</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#c-inputs-under-bau-practices"><i class="fa fa-check"></i><b>6.5.1</b> C inputs under BAU practices:</a></li>
 <li class="chapter" data-level="6.5.2" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#c-inputs-under-ssm-practices"><i class="fa fa-check"></i><b>6.5.2</b> C inputs under SSM practices:</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#residue-decomposability-decomposable-to-resistant-plant-material-ratio-dpmrpm"><i class="fa fa-check"></i><b>6.6</b> Residue decomposability: decomposable to resistant plant material ratio (DPM/RPM)</a></li>
 <li class="chapter" data-level="6.7" data-path="data-sets-and-inputs.html"><a href="data-sets-and-inputs.html#required-data-sets-and-global-data-sources.-summary"><i class="fa fa-check"></i><b>6.7</b> Required data sets and global data sources. Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="software-environment.html"><a href="software-environment.html"><i class="fa fa-check"></i><b>7</b> | Software environment</a><ul>
-<li class="chapter" data-level="7.1" data-path="software-environment.html"><a href="software-environment.html#setting-up-the-software-environment-r-rstudio-and-r-packages"><i class="fa fa-check"></i><b>7.1</b> Setting up the software environment: R, RStudio and R Packages</a><ul>
+<li class="chapter" data-level="7" data-path="software-environment.html"><a href="software-environment.html"><i class="fa fa-check"></i><b>7</b> | Software environment</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="software-environment.html"><a href="software-environment.html#setting-up-the-software-environment-r-rstudio-and-r-packages"><i class="fa fa-check"></i><b>7.1</b> Setting up the software environment: R, RStudio and R Packages</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="software-environment.html"><a href="software-environment.html#obtaining-and-installing-r"><i class="fa fa-check"></i><b>7.1.1</b> Obtaining and installing R</a></li>
 <li class="chapter" data-level="7.1.2" data-path="software-environment.html"><a href="software-environment.html#obtaining-and-installing-rstudio"><i class="fa fa-check"></i><b>7.1.2</b> Obtaining and installing RStudio</a></li>
 <li class="chapter" data-level="7.1.3" data-path="software-environment.html"><a href="software-environment.html#getting-started-with-r"><i class="fa fa-check"></i><b>7.1.3</b> Getting started with R</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="software-environment.html"><a href="software-environment.html#r-packages"><i class="fa fa-check"></i><b>7.2</b> R packages</a><ul>
+<li class="chapter" data-level="7.2" data-path="software-environment.html"><a href="software-environment.html#r-packages"><i class="fa fa-check"></i><b>7.2</b> R packages</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="software-environment.html"><a href="software-environment.html#finding-r-packages"><i class="fa fa-check"></i><b>7.2.1</b> Finding R packages</a></li>
 <li class="chapter" data-level="7.2.2" data-path="software-environment.html"><a href="software-environment.html#some-useful-r-packages-for-the-socseq-maps"><i class="fa fa-check"></i><b>7.2.2</b> Some useful R-packages for the SOCseq maps</a></li>
 <li class="chapter" data-level="7.2.3" data-path="software-environment.html"><a href="software-environment.html#installation-of-r-packages-used-in-this-technical-manual"><i class="fa fa-check"></i><b>7.2.3</b> Installation of R-Packages used in this technical manual</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="software-environment.html"><a href="software-environment.html#considerations-when-using-r"><i class="fa fa-check"></i><b>7.3</b> Considerations when using R</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html"><i class="fa fa-check"></i><b>8</b> | Running the scripts: overview</a><ul>
+<li class="chapter" data-level="8" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html"><i class="fa fa-check"></i><b>8</b> | Running the scripts: overview</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#summary-of-steps-and-scripts"><i class="fa fa-check"></i><b>8.1</b> Summary of steps and scripts</a></li>
 <li class="chapter" data-level="8.2" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-1-preparation-of-data"><i class="fa fa-check"></i><b>8.2</b> Stage 1: Preparation of data</a></li>
 <li class="chapter" data-level="8.3" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-2-running-the-model"><i class="fa fa-check"></i><b>8.3</b> Stage 2: Running the model</a></li>
 <li class="chapter" data-level="8.4" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-3-generation-of-the-map"><i class="fa fa-check"></i><b>8.4</b> Stage 3: generation of the map</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html"><i class="fa fa-check"></i><b>9</b> | Stage 1: preparation of input data</a><ul>
-<li class="chapter" data-level="9.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparation-of-soc-layer"><i class="fa fa-check"></i><b>9.1</b> Preparation of SOC layer</a><ul>
+<li class="chapter" data-level="9" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html"><i class="fa fa-check"></i><b>9</b> | Stage 1: preparation of input data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparation-of-soc-layer"><i class="fa fa-check"></i><b>9.1</b> Preparation of SOC layer</a>
+<ul>
 <li class="chapter" data-level="9.1.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-0.soc_map_aoi.r"><i class="fa fa-check"></i><b>9.1.1</b> Script Number 0.“SOC_MAP_AOI.R”</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparation-of-climate-layers"><i class="fa fa-check"></i><b>9.2</b> Preparation of climate Layers</a><ul>
+<li class="chapter" data-level="9.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparation-of-climate-layers"><i class="fa fa-check"></i><b>9.2</b> Preparation of climate Layers</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#option-a-preparation-of-the-cru-climatic-variables"><i class="fa fa-check"></i><b>9.2.1</b> <em>Option A</em> Preparation of the CRU climatic variables</a></li>
 <li class="chapter" data-level="9.2.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#option-b-preparation-of-the-terraclimate-climatic-variables"><i class="fa fa-check"></i><b>9.2.2</b> <em>Option B</em> Preparation of the TerraClimate climatic variables</a></li>
 <li class="chapter" data-level="9.2.3" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-6.-monthly_vegetation_cover-vegetation-cover-from-google-earth-engine."><i class="fa fa-check"></i><b>9.2.3</b> Script Number 6. “Monthly_vegetation_cover” vegetation cover from Google Earth Engine.</a></li>
 <li class="chapter" data-level="9.2.4" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-7.-vegetation_cover_stack.r"><i class="fa fa-check"></i><b>9.2.4</b> Script Number 7. “Vegetation_Cover_stack.R”</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparing-the-land-use-layer"><i class="fa fa-check"></i><b>9.3</b> Preparing the land use layer</a><ul>
+<li class="chapter" data-level="9.3" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#preparing-the-land-use-layer"><i class="fa fa-check"></i><b>9.3</b> Preparing the land use layer</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-9-land_use_esa_to_fao_classes.r-no-land-use-change"><i class="fa fa-check"></i><b>9.3.1</b> Script Number 9 “Land_Use_ESA_to_FAO_classes.R” No land use change</a></li>
 <li class="chapter" data-level="9.3.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-9-land_use_esa_to_fao_classes_lusim.r-land-use-change-simulation"><i class="fa fa-check"></i><b>9.3.2</b> Script Number 9 “Land_Use_ESA_to_FAO_classes_LUsim.R” Land use change simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#harmonization-of-soil-climate-and-vegetation-layers."><i class="fa fa-check"></i><b>9.4</b> Harmonization of soil, climate and vegetation layers.</a><ul>
+<li class="chapter" data-level="9.4" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#harmonization-of-soil-climate-and-vegetation-layers."><i class="fa fa-check"></i><b>9.4</b> Harmonization of soil, climate and vegetation layers.</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-10.-spin_up_stack.v3.r"><i class="fa fa-check"></i><b>9.4.1</b> Script Number 10. “SPIN_UP_STACK.v3.R”</a></li>
 <li class="chapter" data-level="9.4.2" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-11.-warm_up_stack_v5.r-no-land-use-change"><i class="fa fa-check"></i><b>9.4.2</b> Script Number 11. “WARM_UP_STACK_V5.R” No Land use change</a></li>
 <li class="chapter" data-level="9.4.3" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-11.-warm_up_stack_v5_lusim.r-land-use-change-simulation"><i class="fa fa-check"></i><b>9.4.3</b> Script Number 11. WARM_UP_STACK_V5_LUsim.R Land use change simulation</a></li>
 <li class="chapter" data-level="9.4.4" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#script-number-12.-forward_stack.r"><i class="fa fa-check"></i><b>9.4.4</b> Script Number 12. “FORWARD_STACK.R”</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#defining-target-points-to-run-the-model"><i class="fa fa-check"></i><b>9.5</b> Defining target points to run the model</a><ul>
+<li class="chapter" data-level="9.5" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#defining-target-points-to-run-the-model"><i class="fa fa-check"></i><b>9.5</b> Defining target points to run the model</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="stage-1-preparation-of-input-data.html"><a href="stage-1-preparation-of-input-data.html#qgis-procedure-number-1-model"><i class="fa fa-check"></i><b>9.5.1</b> QGIS Procedure number 1 (model)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="running-the-scripts-overview.html"><a href="running-the-scripts-overview.html#stage-2-running-the-model"><i class="fa fa-check"></i><b>10</b> | Stage 2: running the model</a><ul>
-<li class="chapter" data-level="10.1" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html"><i class="fa fa-check"></i><b>10.1</b> Script Number 13. “ROTH_C_SPIN_UP_v2.R”</a></li>
-<li class="chapter" data-level="10.2" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-no-land-use-change"><i class="fa fa-check"></i><b>10.2</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” No Land use change</a></li>
-<li class="chapter" data-level="10.3" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-14.-roth_c_warm_up_v4.r-land-use-change-simulation"><i class="fa fa-check"></i><b>10.3</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” Land use change simulation</a></li>
-<li class="chapter" data-level="10.4" data-path="stage-2-running-the-model.html"><a href="stage-2-running-the-model.html#script-number-15.-roth_c_forward_v2.r"><i class="fa fa-check"></i><b>10.4</b> Script Number 15. “ROTH_C_forward_v2.R”</a></li>
+<li class="chapter" data-level="10" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html"><i class="fa fa-check"></i><b>10</b> | Stage 2: running the model</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html#script-number-13.-roth_c_spin_up_v2.r"><i class="fa fa-check"></i><b>10.1</b> Script Number 13. “ROTH_C_SPIN_UP_v2.R”</a></li>
+<li class="chapter" data-level="10.2" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html#script-number-14.-roth_c_warm_up_v4.r-no-land-use-change"><i class="fa fa-check"></i><b>10.2</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” No Land use change</a></li>
+<li class="chapter" data-level="10.3" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html#script-number-14.-roth_c_warm_up_v4.r-land-use-change-simulation"><i class="fa fa-check"></i><b>10.3</b> Script Number 14. “ROTH_C_WARM_UP_v4.R” Land use change simulation</a></li>
+<li class="chapter" data-level="10.4" data-path="stage-2-running-the-model-1.html"><a href="stage-2-running-the-model-1.html#script-number-15.-roth_c_forward_v2.r"><i class="fa fa-check"></i><b>10.4</b> Script Number 15. “ROTH_C_forward_v2.R”</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html"><i class="fa fa-check"></i><b>11</b> | Stage 3: Map generation</a><ul>
+<li class="chapter" data-level="11" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html"><i class="fa fa-check"></i><b>11</b> | Stage 3: Map generation</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="stage-3-map-generation.html"><a href="stage-3-map-generation.html#script-number-16-points_to_raster.r"><i class="fa fa-check"></i><b>11.1</b> Script Number 16: “Points_to_Raster.R”</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="uncertainty-and-validation.html"><a href="uncertainty-and-validation.html"><i class="fa fa-check"></i><b>12</b> | Uncertainty and validation</a></li>
-<li class="chapter" data-level="13" data-path="data-sharing.html"><a href="data-sharing.html"><i class="fa fa-check"></i><b>13</b> | Data sharing</a><ul>
+<li class="chapter" data-level="13" data-path="data-sharing.html"><a href="data-sharing.html"><i class="fa fa-check"></i><b>13</b> | Data sharing</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="data-sharing.html"><a href="data-sharing.html#general-principles"><i class="fa fa-check"></i><b>13.1</b> General principles</a></li>
 <li class="chapter" data-level="13.2" data-path="data-sharing.html"><a href="data-sharing.html#data-formats-and-integrity"><i class="fa fa-check"></i><b>13.2</b> Data formats and integrity</a></li>
 <li class="chapter" data-level="13.3" data-path="data-sharing.html"><a href="data-sharing.html#data-correctness"><i class="fa fa-check"></i><b>13.3</b> Data correctness</a></li>
@@ -243,8 +291,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="data-sharing.html"><a href="data-sharing.html#other-modes-of-data-sharing"><i class="fa fa-check"></i><b>13.5</b> Other modes of data sharing</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="limitations-knowledge-gaps-and-way-forward.html"><a href="limitations-knowledge-gaps-and-way-forward.html"><i class="fa fa-check"></i><b>14</b> | Limitations, knowledge gaps and way forward</a></li>
-<li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html"><i class="fa fa-check"></i>Annex I Troubleshooting</a><ul>
-<li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#coastal-and-small-countries-not-fully-covered-by-the-cru-layers"><i class="fa fa-check"></i>Coastal and small countries not fully covered by the CRU layers</a><ul>
+<li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html"><i class="fa fa-check"></i>Annex I Troubleshooting</a>
+<ul>
+<li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#coastal-and-small-countries-not-fully-covered-by-the-cru-layers"><i class="fa fa-check"></i>Coastal and small countries not fully covered by the CRU layers</a>
+<ul>
 <li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#step-1-create-a-single-cru-layer-cropped-and-masked-to-the-extent-of-your-aoi-using-the-following-r-script"><i class="fa fa-check"></i>Step 1 Create a single CRU layer cropped and masked to the extent of your AOI using the following R script</a></li>
 <li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#step-2-open-qgis-and-generate-the-empty-points"><i class="fa fa-check"></i>Step 2 Open QGIS and generate the empty points</a></li>
 <li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#step-3-polygonize-the-raster"><i class="fa fa-check"></i>Step 3 Polygonize the raster</a></li>
@@ -256,11 +306,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="annex-i-troubleshooting.html"><a href="annex-i-troubleshooting.html#common-errors-and-considerations"><i class="fa fa-check"></i>Common errors and considerations</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html"><i class="fa fa-check"></i>Annex II Quality assurance and quality control</a><ul>
+<li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html"><i class="fa fa-check"></i>Annex II Quality assurance and quality control</a>
+<ul>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-1-check-that-29-products-have-been-labeled-appropriately-and-are-in-the-correct-format"><i class="fa fa-check"></i>Step 1 Check that 29 products have been labeled appropriately and are in the correct format</a></li>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-2-check-the-projection-and-resolution-of-all-products"><i class="fa fa-check"></i>Step 2 Check the Projection and resolution of all products</a></li>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-3-check-that-the-products-were-generated-for-agricultural-and-grazing-areas-only"><i class="fa fa-check"></i>Step 3 Check that the products were generated for agricultural and grazing areas only</a></li>
-<li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-4-check-for-units-range-and-outliers"><i class="fa fa-check"></i>Step 4 Check for units, range, and outliers</a><ul>
+<li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#step-4-check-for-units-range-and-outliers"><i class="fa fa-check"></i>Step 4 Check for units, range, and outliers</a>
+<ul>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#soil-organic-carbon-at-t0-2020"><i class="fa fa-check"></i>Soil Organic Carbon at T0 (2020)</a></li>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#final-soc-stocks-after-20-simulation-years-for-all-scenarios-bau-ssm1-ssm2-ssm3"><i class="fa fa-check"></i>Final SOC stocks after 20 simulation years for all scenarios (BAU, SSM1, SSM2, SSM3)</a></li>
 <li class="chapter" data-level="" data-path="annex-ii-quality-assurance-and-quality-control.html"><a href="annex-ii-quality-assurance-and-quality-control.html#absolute-differences-in-soc-stocks"><i class="fa fa-check"></i>Absolute differences in SOC stocks</a></li>
@@ -291,126 +343,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="stage-3-map-generation" class="section level1">
+<div id="stage-3-map-generation" class="section level1" number="11">
 <h1><span class="header-section-number">Chapter 11</span> | Stage 3: Map generation</h1>
 <p>Once the model is run through the three proposed phases, we have all the information required for generating the maps. We need to transform the output vector to raster layers. We will obtain the SOC stocks after 20 years of SSM practices for the three scenarios (low, medium and high carbon inputs increments), and SOC stocks under the business as usual scenario (no carbon input increment). We will estimate four absolute carbon sequestration rates (considering the 2018 or 2020 SOC as a baseline), and three relative carbon sequestration rates (considering the SOC stocks under the business as usual as the baseline).</p>
-<div id="script-number-16-points_to_raster.r" class="section level2">
+<div id="script-number-16-points_to_raster.r" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Script Number 16: “Points_to_Raster.R”</h2>
 <p>We will use script number 16 to transform the output vector from script number 15 to raster layers. The inputs for this script are the output vector from script 15, the FAO SOC layer and the country boundary polygon. The outputs of the script number 16 are the SOC stocks for the future scenarios (20 years): BAU, low, medium and high carbon inputs, three relative sequestration rates (SOC stock SSM scenario - BAU scenario)/20 , and four absolute sequestration rates: (SOC stock SSM or BAU scenario - SOC stocks 2018/20)/20.</p>
 <p><strong>Table 11.1</strong> <em>Script Number 16. Target Points to Rasters Products. Inputs and Outputs</em></p>
 <p><img src="tables/Table_11.1.png" /></p>
 <p>We will open the script “Points_to_Raster.R” and load the required packages; then set the directories of the required files: Forward outputs, SOC, AOI, and the outputs maps folder.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="stage-3-map-generation.html#cb96-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>()) </span>
-<span id="cb96-2"><a href="stage-3-map-generation.html#cb96-2"></a><span class="kw">library</span>(raster)</span>
-<span id="cb96-3"><a href="stage-3-map-generation.html#cb96-3"></a><span class="kw">library</span>(rgdal)</span>
-<span id="cb96-4"><a href="stage-3-map-generation.html#cb96-4"></a>WD_F&lt;-(<span class="st">&quot;C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/OUTPUTS/3_FOWARD&quot;</span>)</span>
-<span id="cb96-5"><a href="stage-3-map-generation.html#cb96-5"></a>WD_SOC&lt;-(<span class="st">&quot;C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/INPUTS/SOC_MAP&quot;</span>)</span>
-<span id="cb96-6"><a href="stage-3-map-generation.html#cb96-6"></a>WD_AOI&lt;-(<span class="st">&quot;C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/INPUTS/AOI_POLYGON&quot;</span>)</span>
-<span id="cb96-7"><a href="stage-3-map-generation.html#cb96-7"></a>WD_MAPS&lt;-(<span class="st">&quot;C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/OUTPUTS/4_MAPS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="stage-3-map-generation.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>()) </span>
+<span id="cb97-2"><a href="stage-3-map-generation.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb97-3"><a href="stage-3-map-generation.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
+<span id="cb97-4"><a href="stage-3-map-generation.html#cb97-4" aria-hidden="true" tabindex="-1"></a>WD_F<span class="ot">&lt;-</span>(<span class="st">&quot;C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/OUTPUTS/3_FOWARD&quot;</span>)</span>
+<span id="cb97-5"><a href="stage-3-map-generation.html#cb97-5" aria-hidden="true" tabindex="-1"></a>WD_SOC<span class="ot">&lt;-</span>(<span class="st">&quot;C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/INPUTS/SOC_MAP&quot;</span>)</span>
+<span id="cb97-6"><a href="stage-3-map-generation.html#cb97-6" aria-hidden="true" tabindex="-1"></a>WD_AOI<span class="ot">&lt;-</span>(<span class="st">&quot;C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/INPUTS/AOI_POLYGON&quot;</span>)</span>
+<span id="cb97-7"><a href="stage-3-map-generation.html#cb97-7" aria-hidden="true" tabindex="-1"></a>WD_MAPS<span class="ot">&lt;-</span>(<span class="st">&quot;C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/OUTPUTS/4_MAPS&quot;</span>)</span></code></pre></div>
 <p>Now we will define the name of the output area of interest / country or region. In this example, “Pergamino”.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="stage-3-map-generation.html#cb97-1"></a><span class="co">#Define the name of the Country (&quot;ISO3CountryCode&quot;)</span></span>
-<span id="cb97-2"><a href="stage-3-map-generation.html#cb97-2"></a>name&lt;-<span class="st">&quot;Pergamino&quot;</span> </span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="stage-3-map-generation.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Define the name of the Country (&quot;ISO3CountryCode&quot;)</span></span>
+<span id="cb98-2"><a href="stage-3-map-generation.html#cb98-2" aria-hidden="true" tabindex="-1"></a>name<span class="ot">&lt;-</span><span class="st">&quot;Pergamino&quot;</span> </span></code></pre></div>
 <p>Then open the layers:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="stage-3-map-generation.html#cb98-1"></a><span class="co">#Open FORWARD vector</span></span>
-<span id="cb98-2"><a href="stage-3-map-generation.html#cb98-2"></a><span class="kw">setwd</span>(WD_F)</span>
-<span id="cb98-3"><a href="stage-3-map-generation.html#cb98-3"></a>FOWARD&lt;-<span class="kw">readOGR</span>(<span class="st">&quot;FOWARD_County_AOI.shp&quot;</span>)</span>
-<span id="cb98-4"><a href="stage-3-map-generation.html#cb98-4"></a><span class="co">#Open SOC MAP (master layer)</span></span>
-<span id="cb98-5"><a href="stage-3-map-generation.html#cb98-5"></a><span class="kw">setwd</span>(WD_SOC)</span>
-<span id="cb98-6"><a href="stage-3-map-generation.html#cb98-6"></a>SOC_MAP&lt;-<span class="kw">raster</span>(<span class="st">&quot;SOC_MAP_AOI.tif&quot;</span>)</span>
-<span id="cb98-7"><a href="stage-3-map-generation.html#cb98-7"></a><span class="co">#Creates emtpy raster </span></span>
-<span id="cb98-8"><a href="stage-3-map-generation.html#cb98-8"></a>empty_raster&lt;-SOC_MAP<span class="op">*</span><span class="dv">0</span></span>
-<span id="cb98-9"><a href="stage-3-map-generation.html#cb98-9"></a><span class="co"># Open the country vector boundaries</span></span>
-<span id="cb98-10"><a href="stage-3-map-generation.html#cb98-10"></a><span class="kw">setwd</span>(WD_AOI)</span>
-<span id="cb98-11"><a href="stage-3-map-generation.html#cb98-11"></a>Country&lt;-<span class="kw">readOGR</span>(<span class="st">&quot;Departamento_Pergamino.shp&quot;</span>)</span>
-<span id="cb98-12"><a href="stage-3-map-generation.html#cb98-12"></a><span class="co"># Cut the raster with the country vector</span></span>
-<span id="cb98-13"><a href="stage-3-map-generation.html#cb98-13"></a>Country_raster&lt;-<span class="kw">crop</span>(empty_raster,Country)</span>
-<span id="cb98-14"><a href="stage-3-map-generation.html#cb98-14"></a><span class="co"># Replace Na values for zero values</span></span>
-<span id="cb98-15"><a href="stage-3-map-generation.html#cb98-15"></a>FOWARD<span class="op">@</span>data[<span class="kw">is.na</span>(FOWARD<span class="op">@</span>data)] &lt;-<span class="st"> </span><span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="stage-3-map-generation.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Open FORWARD vector</span></span>
+<span id="cb99-2"><a href="stage-3-map-generation.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(WD_F)</span>
+<span id="cb99-3"><a href="stage-3-map-generation.html#cb99-3" aria-hidden="true" tabindex="-1"></a>FOWARD<span class="ot">&lt;-</span><span class="fu">readOGR</span>(<span class="st">&quot;FOWARD_County_AOI.shp&quot;</span>)</span>
+<span id="cb99-4"><a href="stage-3-map-generation.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Open SOC MAP (master layer)</span></span>
+<span id="cb99-5"><a href="stage-3-map-generation.html#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(WD_SOC)</span>
+<span id="cb99-6"><a href="stage-3-map-generation.html#cb99-6" aria-hidden="true" tabindex="-1"></a>SOC_MAP<span class="ot">&lt;-</span><span class="fu">raster</span>(<span class="st">&quot;SOC_MAP_AOI.tif&quot;</span>)</span>
+<span id="cb99-7"><a href="stage-3-map-generation.html#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Creates emtpy raster </span></span>
+<span id="cb99-8"><a href="stage-3-map-generation.html#cb99-8" aria-hidden="true" tabindex="-1"></a>empty_raster<span class="ot">&lt;-</span>SOC_MAP<span class="sc">*</span><span class="dv">0</span></span>
+<span id="cb99-9"><a href="stage-3-map-generation.html#cb99-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the country vector boundaries</span></span>
+<span id="cb99-10"><a href="stage-3-map-generation.html#cb99-10" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(WD_AOI)</span>
+<span id="cb99-11"><a href="stage-3-map-generation.html#cb99-11" aria-hidden="true" tabindex="-1"></a>Country<span class="ot">&lt;-</span><span class="fu">readOGR</span>(<span class="st">&quot;Departamento_Pergamino.shp&quot;</span>)</span>
+<span id="cb99-12"><a href="stage-3-map-generation.html#cb99-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Cut the raster with the country vector</span></span>
+<span id="cb99-13"><a href="stage-3-map-generation.html#cb99-13" aria-hidden="true" tabindex="-1"></a>Country_raster<span class="ot">&lt;-</span><span class="fu">crop</span>(empty_raster,Country)</span>
+<span id="cb99-14"><a href="stage-3-map-generation.html#cb99-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace Na values for zero values</span></span>
+<span id="cb99-15"><a href="stage-3-map-generation.html#cb99-15" aria-hidden="true" tabindex="-1"></a>FOWARD<span class="sc">@</span>data[<span class="fu">is.na</span>(FOWARD<span class="sc">@</span>data)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
 <p>Next, we will transform the vector points from the FORWARD phase of the model to raster files using the “rasterize” function.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="stage-3-map-generation.html#cb99-1"></a><span class="co"># Points to Raster BAU</span></span>
-<span id="cb99-2"><a href="stage-3-map-generation.html#cb99-2"></a><span class="kw">setwd</span>(WD_MAPS)</span>
-<span id="cb99-3"><a href="stage-3-map-generation.html#cb99-3"></a>Country_BAU_<span class="dv">2040</span>_Map&lt;-<span class="kw">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="op">$</span>SOC_BAU_<span class="dv">20</span>, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb99-4"><a href="stage-3-map-generation.html#cb99-4"></a><span class="kw">writeRaster</span>(Country_BAU_<span class="dv">2040</span>_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_finalSOC_BAU_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb99-5"><a href="stage-3-map-generation.html#cb99-5"></a><span class="co"># Points to Raster Low Scenario</span></span>
-<span id="cb99-6"><a href="stage-3-map-generation.html#cb99-6"></a>Country_Lwr_<span class="dv">2040</span>_Map&lt;-<span class="kw">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="op">$</span>Lw_Sc, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb99-7"><a href="stage-3-map-generation.html#cb99-7"></a><span class="kw">writeRaster</span>(Country_Lwr_<span class="dv">2040</span>_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_finalSOC_SSM1_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb99-8"><a href="stage-3-map-generation.html#cb99-8"></a><span class="co"># Points to Raster Med Scenario</span></span>
-<span id="cb99-9"><a href="stage-3-map-generation.html#cb99-9"></a>Country_Med_<span class="dv">2040</span>_Map&lt;-<span class="kw">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="op">$</span>Md_Sc, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb99-10"><a href="stage-3-map-generation.html#cb99-10"></a><span class="kw">writeRaster</span>(Country_Med_<span class="dv">2040</span>_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_finalSOC_SSM2_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb99-11"><a href="stage-3-map-generation.html#cb99-11"></a><span class="co"># Points to Raster High Scenario</span></span>
-<span id="cb99-12"><a href="stage-3-map-generation.html#cb99-12"></a>Country_Hgh_<span class="dv">2040</span>_Map&lt;-<span class="kw">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="op">$</span>Hgh_S, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb99-13"><a href="stage-3-map-generation.html#cb99-13"></a><span class="kw">writeRaster</span>(Country_Hgh_<span class="dv">2040</span>_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_finalSOC_SSM3_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb99-14"><a href="stage-3-map-generation.html#cb99-14"></a></span>
-<span id="cb99-15"><a href="stage-3-map-generation.html#cb99-15"></a><span class="co"># Points to Raster initial SOC (t0) 2018/2020</span></span>
-<span id="cb99-16"><a href="stage-3-map-generation.html#cb99-16"></a>Country_SOC_<span class="dv">2018</span>_Map&lt;-<span class="kw">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="op">$</span>SOC__, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb99-17"><a href="stage-3-map-generation.html#cb99-17"></a><span class="kw">writeRaster</span>(Country_SOC_<span class="dv">2018</span>_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_T0_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="stage-3-map-generation.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Points to Raster BAU</span></span>
+<span id="cb100-2"><a href="stage-3-map-generation.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(WD_MAPS)</span>
+<span id="cb100-3"><a href="stage-3-map-generation.html#cb100-3" aria-hidden="true" tabindex="-1"></a>Country_BAU_2040_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="sc">$</span>SOC_BAU_20, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb100-4"><a href="stage-3-map-generation.html#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Country_BAU_2040_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_finalSOC_BAU_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb100-5"><a href="stage-3-map-generation.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Points to Raster Low Scenario</span></span>
+<span id="cb100-6"><a href="stage-3-map-generation.html#cb100-6" aria-hidden="true" tabindex="-1"></a>Country_Lwr_2040_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="sc">$</span>Lw_Sc, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb100-7"><a href="stage-3-map-generation.html#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Country_Lwr_2040_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_finalSOC_SSM1_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb100-8"><a href="stage-3-map-generation.html#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Points to Raster Med Scenario</span></span>
+<span id="cb100-9"><a href="stage-3-map-generation.html#cb100-9" aria-hidden="true" tabindex="-1"></a>Country_Med_2040_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="sc">$</span>Md_Sc, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb100-10"><a href="stage-3-map-generation.html#cb100-10" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Country_Med_2040_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_finalSOC_SSM2_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb100-11"><a href="stage-3-map-generation.html#cb100-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Points to Raster High Scenario</span></span>
+<span id="cb100-12"><a href="stage-3-map-generation.html#cb100-12" aria-hidden="true" tabindex="-1"></a>Country_Hgh_2040_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="sc">$</span>Hgh_S, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb100-13"><a href="stage-3-map-generation.html#cb100-13" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Country_Hgh_2040_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_finalSOC_SSM3_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb100-14"><a href="stage-3-map-generation.html#cb100-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-15"><a href="stage-3-map-generation.html#cb100-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Points to Raster initial SOC (t0) 2018/2020</span></span>
+<span id="cb100-16"><a href="stage-3-map-generation.html#cb100-16" aria-hidden="true" tabindex="-1"></a>Country_SOC_2018_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="sc">$</span>SOC__, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb100-17"><a href="stage-3-map-generation.html#cb100-17" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Country_SOC_2018_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_T0_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
 <p>Now, we will calculate the absolute differences and the absolute rates (SSM - SOC 2018).</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="stage-3-map-generation.html#cb100-1"></a><span class="co"># Difference BAU 2040 - SOC 2018</span></span>
-<span id="cb100-2"><a href="stage-3-map-generation.html#cb100-2"></a>Diff_BAU_SOC_<span class="dv">2018</span>&lt;-Country_BAU_<span class="dv">2040</span>_Map<span class="op">-</span>Country_SOC_<span class="dv">2018</span>_Map</span>
-<span id="cb100-3"><a href="stage-3-map-generation.html#cb100-3"></a><span class="kw">writeRaster</span>(Diff_BAU_SOC_<span class="dv">2018</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_AbsDiff_BAU_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb100-4"><a href="stage-3-map-generation.html#cb100-4"></a><span class="kw">writeRaster</span>(Diff_BAU_SOC_<span class="dv">2018</span><span class="op">/</span><span class="dv">20</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_BAU_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb100-5"><a href="stage-3-map-generation.html#cb100-5"></a><span class="co"># Difference Low Scenario - SOC 2018</span></span>
-<span id="cb100-6"><a href="stage-3-map-generation.html#cb100-6"></a>Diff_Lw_SOC_<span class="dv">2018</span>&lt;-Country_Lwr_<span class="dv">2040</span>_Map<span class="op">-</span>Country_SOC_<span class="dv">2018</span>_Map</span>
-<span id="cb100-7"><a href="stage-3-map-generation.html#cb100-7"></a><span class="kw">writeRaster</span>(Diff_Lw_SOC_<span class="dv">2018</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_AbsDiff_SSM1_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb100-8"><a href="stage-3-map-generation.html#cb100-8"></a><span class="kw">writeRaster</span>(Diff_Lw_SOC_<span class="dv">2018</span><span class="op">/</span><span class="dv">20</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM1_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb100-9"><a href="stage-3-map-generation.html#cb100-9"></a><span class="co"># Difference Med Scenario - SOC 2018</span></span>
-<span id="cb100-10"><a href="stage-3-map-generation.html#cb100-10"></a>Diff_Md_SOC_<span class="dv">2018</span>&lt;-Country_Med_<span class="dv">2040</span>_Map<span class="op">-</span>Country_SOC_<span class="dv">2018</span>_Map</span>
-<span id="cb100-11"><a href="stage-3-map-generation.html#cb100-11"></a><span class="kw">writeRaster</span>(Diff_Md_SOC_<span class="dv">2018</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_AbsDiff_SSM2_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb100-12"><a href="stage-3-map-generation.html#cb100-12"></a><span class="kw">writeRaster</span>(Diff_Md_SOC_<span class="dv">2018</span><span class="op">/</span><span class="dv">20</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM2_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb100-13"><a href="stage-3-map-generation.html#cb100-13"></a><span class="co"># Difference High Scenario - SOC 2018</span></span>
-<span id="cb100-14"><a href="stage-3-map-generation.html#cb100-14"></a>Diff_Hg_SOC_<span class="dv">2018</span>&lt;-Country_Hgh_<span class="dv">2040</span>_Map<span class="op">-</span>Country_SOC_<span class="dv">2018</span>_Map</span>
-<span id="cb100-15"><a href="stage-3-map-generation.html#cb100-15"></a><span class="kw">writeRaster</span>(Diff_Hg_SOC_<span class="dv">2018</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_AbsDiff_SSM3_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb100-16"><a href="stage-3-map-generation.html#cb100-16"></a><span class="kw">writeRaster</span>(Diff_Hg_SOC_<span class="dv">2018</span><span class="op">/</span><span class="dv">20</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM3_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="stage-3-map-generation.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference BAU 2040 - SOC 2018</span></span>
+<span id="cb101-2"><a href="stage-3-map-generation.html#cb101-2" aria-hidden="true" tabindex="-1"></a>Diff_BAU_SOC_2018<span class="ot">&lt;-</span>Country_BAU_2040_Map<span class="sc">-</span>Country_SOC_2018_Map</span>
+<span id="cb101-3"><a href="stage-3-map-generation.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_BAU_SOC_2018,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_AbsDiff_BAU_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb101-4"><a href="stage-3-map-generation.html#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_BAU_SOC_2018<span class="sc">/</span><span class="dv">20</span>,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_BAU_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb101-5"><a href="stage-3-map-generation.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference Low Scenario - SOC 2018</span></span>
+<span id="cb101-6"><a href="stage-3-map-generation.html#cb101-6" aria-hidden="true" tabindex="-1"></a>Diff_Lw_SOC_2018<span class="ot">&lt;-</span>Country_Lwr_2040_Map<span class="sc">-</span>Country_SOC_2018_Map</span>
+<span id="cb101-7"><a href="stage-3-map-generation.html#cb101-7" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Lw_SOC_2018,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_AbsDiff_SSM1_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb101-8"><a href="stage-3-map-generation.html#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Lw_SOC_2018<span class="sc">/</span><span class="dv">20</span>,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM1_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb101-9"><a href="stage-3-map-generation.html#cb101-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference Med Scenario - SOC 2018</span></span>
+<span id="cb101-10"><a href="stage-3-map-generation.html#cb101-10" aria-hidden="true" tabindex="-1"></a>Diff_Md_SOC_2018<span class="ot">&lt;-</span>Country_Med_2040_Map<span class="sc">-</span>Country_SOC_2018_Map</span>
+<span id="cb101-11"><a href="stage-3-map-generation.html#cb101-11" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Md_SOC_2018,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_AbsDiff_SSM2_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb101-12"><a href="stage-3-map-generation.html#cb101-12" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Md_SOC_2018<span class="sc">/</span><span class="dv">20</span>,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM2_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb101-13"><a href="stage-3-map-generation.html#cb101-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference High Scenario - SOC 2018</span></span>
+<span id="cb101-14"><a href="stage-3-map-generation.html#cb101-14" aria-hidden="true" tabindex="-1"></a>Diff_Hg_SOC_2018<span class="ot">&lt;-</span>Country_Hgh_2040_Map<span class="sc">-</span>Country_SOC_2018_Map</span>
+<span id="cb101-15"><a href="stage-3-map-generation.html#cb101-15" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Hg_SOC_2018,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_AbsDiff_SSM3_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb101-16"><a href="stage-3-map-generation.html#cb101-16" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Hg_SOC_2018<span class="sc">/</span><span class="dv">20</span>,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM3_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
 <p>Next, we will calculate the relative differences and rates (SSM - SOC BAU).</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="stage-3-map-generation.html#cb101-1"></a><span class="co"># Difference Low Scenario - BAU 2040</span></span>
-<span id="cb101-2"><a href="stage-3-map-generation.html#cb101-2"></a>Diff_Lw_BAU_<span class="dv">2040</span>&lt;-Country_Lwr_<span class="dv">2040</span>_Map<span class="op">-</span>Country_BAU_<span class="dv">2040</span>_Map</span>
-<span id="cb101-3"><a href="stage-3-map-generation.html#cb101-3"></a><span class="kw">writeRaster</span>(Diff_Lw_BAU_<span class="dv">2040</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_RelDiff_SSM1_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb101-4"><a href="stage-3-map-generation.html#cb101-4"></a><span class="kw">writeRaster</span>(Diff_Lw_BAU_<span class="dv">2040</span><span class="op">/</span><span class="dv">20</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM1_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb101-5"><a href="stage-3-map-generation.html#cb101-5"></a><span class="co"># Difference Med Scenario - BAU 2040</span></span>
-<span id="cb101-6"><a href="stage-3-map-generation.html#cb101-6"></a>Diff_Md_BAU_<span class="dv">2040</span>&lt;-Country_Med_<span class="dv">2040</span>_Map<span class="op">-</span>Country_BAU_<span class="dv">2040</span>_Map</span>
-<span id="cb101-7"><a href="stage-3-map-generation.html#cb101-7"></a><span class="kw">writeRaster</span>(Diff_Md_BAU_<span class="dv">2040</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_RelDiff_SSM2_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb101-8"><a href="stage-3-map-generation.html#cb101-8"></a><span class="kw">writeRaster</span>(Diff_Md_BAU_<span class="dv">2040</span><span class="op">/</span><span class="dv">20</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM2_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb101-9"><a href="stage-3-map-generation.html#cb101-9"></a><span class="co"># Difference High Scenario - BAU 2040</span></span>
-<span id="cb101-10"><a href="stage-3-map-generation.html#cb101-10"></a>Diff_Hg_BAU_<span class="dv">2040</span>&lt;-Country_Hgh_<span class="dv">2040</span>_Map<span class="op">-</span>Country_BAU_<span class="dv">2040</span>_Map</span>
-<span id="cb101-11"><a href="stage-3-map-generation.html#cb101-11"></a><span class="kw">writeRaster</span>(Diff_Hg_BAU_<span class="dv">2040</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_RelDiff_SSM3_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb101-12"><a href="stage-3-map-generation.html#cb101-12"></a><span class="kw">writeRaster</span>(Diff_Hg_BAU_<span class="dv">2040</span><span class="op">/</span><span class="dv">20</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM3_Map030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="stage-3-map-generation.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference Low Scenario - BAU 2040</span></span>
+<span id="cb102-2"><a href="stage-3-map-generation.html#cb102-2" aria-hidden="true" tabindex="-1"></a>Diff_Lw_BAU_2040<span class="ot">&lt;-</span>Country_Lwr_2040_Map<span class="sc">-</span>Country_BAU_2040_Map</span>
+<span id="cb102-3"><a href="stage-3-map-generation.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Lw_BAU_2040,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_RelDiff_SSM1_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb102-4"><a href="stage-3-map-generation.html#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Lw_BAU_2040<span class="sc">/</span><span class="dv">20</span>,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM1_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb102-5"><a href="stage-3-map-generation.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference Med Scenario - BAU 2040</span></span>
+<span id="cb102-6"><a href="stage-3-map-generation.html#cb102-6" aria-hidden="true" tabindex="-1"></a>Diff_Md_BAU_2040<span class="ot">&lt;-</span>Country_Med_2040_Map<span class="sc">-</span>Country_BAU_2040_Map</span>
+<span id="cb102-7"><a href="stage-3-map-generation.html#cb102-7" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Md_BAU_2040,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_RelDiff_SSM2_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb102-8"><a href="stage-3-map-generation.html#cb102-8" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Md_BAU_2040<span class="sc">/</span><span class="dv">20</span>,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM2_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb102-9"><a href="stage-3-map-generation.html#cb102-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference High Scenario - BAU 2040</span></span>
+<span id="cb102-10"><a href="stage-3-map-generation.html#cb102-10" aria-hidden="true" tabindex="-1"></a>Diff_Hg_BAU_2040<span class="ot">&lt;-</span>Country_Hgh_2040_Map<span class="sc">-</span>Country_BAU_2040_Map</span>
+<span id="cb102-11"><a href="stage-3-map-generation.html#cb102-11" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Hg_BAU_2040,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_RelDiff_SSM3_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb102-12"><a href="stage-3-map-generation.html#cb102-12" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(Diff_Hg_BAU_2040<span class="sc">/</span><span class="dv">20</span>,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM3_Map030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
 <p>Now, we will rasterize the values of the uncertainties of SOC BAU, SOC 2018 and one SSM (one for the three scenarios).</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="stage-3-map-generation.html#cb102-1"></a><span class="co"># Uncertainties SOC 2018</span></span>
-<span id="cb102-2"><a href="stage-3-map-generation.html#cb102-2"></a>UNC_<span class="dv">2018</span>&lt;-<span class="kw">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="op">$</span>UNC_<span class="dv">2</span>, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb102-3"><a href="stage-3-map-generation.html#cb102-3"></a><span class="kw">writeRaster</span>(UNC_<span class="dv">2018</span>,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_T0_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb102-4"><a href="stage-3-map-generation.html#cb102-4"></a><span class="co"># Uncertainties SOC BAU 2038</span></span>
-<span id="cb102-5"><a href="stage-3-map-generation.html#cb102-5"></a>UNC_BAU&lt;-<span class="kw">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="op">$</span>UNC_B, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb102-6"><a href="stage-3-map-generation.html#cb102-6"></a><span class="kw">writeRaster</span>(UNC_BAU,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_BAU_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb102-7"><a href="stage-3-map-generation.html#cb102-7"></a><span class="co"># Uncertainties SOC SSM </span></span>
-<span id="cb102-8"><a href="stage-3-map-generation.html#cb102-8"></a>UNC_SSM&lt;-<span class="kw">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="op">$</span>UNC_S, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb102-9"><a href="stage-3-map-generation.html#cb102-9"></a><span class="kw">writeRaster</span>(UNC_SSM,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_SSM_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="stage-3-map-generation.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncertainties SOC 2018</span></span>
+<span id="cb103-2"><a href="stage-3-map-generation.html#cb103-2" aria-hidden="true" tabindex="-1"></a>UNC_2018<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="sc">$</span>UNC_2, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb103-3"><a href="stage-3-map-generation.html#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_2018,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_T0_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb103-4"><a href="stage-3-map-generation.html#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncertainties SOC BAU 2038</span></span>
+<span id="cb103-5"><a href="stage-3-map-generation.html#cb103-5" aria-hidden="true" tabindex="-1"></a>UNC_BAU<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="sc">$</span>UNC_B, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb103-6"><a href="stage-3-map-generation.html#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_BAU,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_BAU_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb103-7"><a href="stage-3-map-generation.html#cb103-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncertainties SOC SSM </span></span>
+<span id="cb103-8"><a href="stage-3-map-generation.html#cb103-8" aria-hidden="true" tabindex="-1"></a>UNC_SSM<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD, Country_raster ,FOWARD<span class="sc">$</span>UNC_S, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb103-9"><a href="stage-3-map-generation.html#cb103-9" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_SSM,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_SSM_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
 <p>Now we will calculate the uncertainties for the absolute rates.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="stage-3-map-generation.html#cb103-1"></a><span class="co"># Uncertainties for the Absolute difference SSM_ - SOC2018</span></span>
-<span id="cb103-2"><a href="stage-3-map-generation.html#cb103-2"></a>UNC_abs_rate_BAU&lt;-<span class="kw">sqrt</span>((FOWARD<span class="op">$</span>UNC_B<span class="op">*</span>FOWARD<span class="op">$</span>SOC_BAU_<span class="dv">20</span>)<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="st"> </span>(FOWARD<span class="op">$</span>UNC_<span class="dv">2</span><span class="op">*</span>FOWARD<span class="op">$</span>SOC__)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">abs</span>(FOWARD<span class="op">$</span>SOC__<span class="op">+</span>FOWARD<span class="op">$</span>SOC_BAU_<span class="dv">20</span>)</span>
-<span id="cb103-3"><a href="stage-3-map-generation.html#cb103-3"></a>UNC_abs_rate_BAU_Map&lt;-<span class="kw">rasterize</span>(FOWARD,Country_raster,UNC_abs_rate_BAU, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb103-4"><a href="stage-3-map-generation.html#cb103-4"></a><span class="kw">writeRaster</span>(UNC_abs_rate_BAU_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_BAU_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb103-5"><a href="stage-3-map-generation.html#cb103-5"></a>UNC_abs_rate_Lw&lt;-<span class="kw">sqrt</span>((FOWARD<span class="op">$</span>UNC_S<span class="op">*</span>FOWARD<span class="op">$</span>Lw_Sc)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>(FOWARD<span class="op">$</span>UNC_<span class="dv">2</span><span class="op">*</span>FOWARD<span class="op">$</span>SOC__)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">abs</span>(FOWARD<span class="op">$</span>SOC__<span class="op">+</span>FOWARD<span class="op">$</span>Lw_Sc)</span>
-<span id="cb103-6"><a href="stage-3-map-generation.html#cb103-6"></a>UNC_abs_rate_Lw_Map&lt;-<span class="kw">rasterize</span>(FOWARD,Country_raster,UNC_abs_rate_Lw, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb103-7"><a href="stage-3-map-generation.html#cb103-7"></a><span class="kw">writeRaster</span>(UNC_abs_rate_Lw_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM1_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb103-8"><a href="stage-3-map-generation.html#cb103-8"></a></span>
-<span id="cb103-9"><a href="stage-3-map-generation.html#cb103-9"></a>UNC_abs_rate_Md&lt;-<span class="kw">sqrt</span>((FOWARD<span class="op">$</span>UNC_S<span class="op">*</span>FOWARD<span class="op">$</span>Md_Sc)<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="st"> </span>(FOWARD<span class="op">$</span>UNC_<span class="dv">2</span><span class="op">*</span>FOWARD<span class="op">$</span>SOC__)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">abs</span>(FOWARD<span class="op">$</span>SOC__<span class="op">+</span>FOWARD<span class="op">$</span>Md_Sc)</span>
-<span id="cb103-10"><a href="stage-3-map-generation.html#cb103-10"></a>UNC_abs_rate_Md_Map&lt;-<span class="kw">rasterize</span>(FOWARD,Country_raster,UNC_abs_rate_Md, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb103-11"><a href="stage-3-map-generation.html#cb103-11"></a><span class="kw">writeRaster</span>(UNC_abs_rate_Md_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM2_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb103-12"><a href="stage-3-map-generation.html#cb103-12"></a>UNC_abs_rate_Hg&lt;-<span class="kw">sqrt</span>((FOWARD<span class="op">$</span>UNC_S<span class="op">*</span>FOWARD<span class="op">$</span>Hgh_S)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>(FOWARD<span class="op">$</span>UNC_<span class="dv">2</span><span class="op">*</span>FOWARD<span class="op">$</span>SOC__)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">abs</span>(FOWARD<span class="op">$</span>SOC__<span class="op">+</span>FOWARD<span class="op">$</span>Hgh_S)</span>
-<span id="cb103-13"><a href="stage-3-map-generation.html#cb103-13"></a>UNC_abs_rate_Hg_Map&lt;-<span class="kw">rasterize</span>(FOWARD,Country_raster,UNC_abs_rate_Hg, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb103-14"><a href="stage-3-map-generation.html#cb103-14"></a><span class="kw">writeRaster</span>(UNC_abs_rate_Hg_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM3_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="stage-3-map-generation.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncertainties for the Absolute difference SSM_ - SOC2018</span></span>
+<span id="cb104-2"><a href="stage-3-map-generation.html#cb104-2" aria-hidden="true" tabindex="-1"></a>UNC_abs_rate_BAU<span class="ot">&lt;-</span><span class="fu">sqrt</span>((FOWARD<span class="sc">$</span>UNC_B<span class="sc">*</span>FOWARD<span class="sc">$</span>SOC_BAU_20)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span> (FOWARD<span class="sc">$</span>UNC_2<span class="sc">*</span>FOWARD<span class="sc">$</span>SOC__)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">abs</span>(FOWARD<span class="sc">$</span>SOC__<span class="sc">+</span>FOWARD<span class="sc">$</span>SOC_BAU_20)</span>
+<span id="cb104-3"><a href="stage-3-map-generation.html#cb104-3" aria-hidden="true" tabindex="-1"></a>UNC_abs_rate_BAU_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD,Country_raster,UNC_abs_rate_BAU, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb104-4"><a href="stage-3-map-generation.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_abs_rate_BAU_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_BAU_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb104-5"><a href="stage-3-map-generation.html#cb104-5" aria-hidden="true" tabindex="-1"></a>UNC_abs_rate_Lw<span class="ot">&lt;-</span><span class="fu">sqrt</span>((FOWARD<span class="sc">$</span>UNC_S<span class="sc">*</span>FOWARD<span class="sc">$</span>Lw_Sc)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (FOWARD<span class="sc">$</span>UNC_2<span class="sc">*</span>FOWARD<span class="sc">$</span>SOC__)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">abs</span>(FOWARD<span class="sc">$</span>SOC__<span class="sc">+</span>FOWARD<span class="sc">$</span>Lw_Sc)</span>
+<span id="cb104-6"><a href="stage-3-map-generation.html#cb104-6" aria-hidden="true" tabindex="-1"></a>UNC_abs_rate_Lw_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD,Country_raster,UNC_abs_rate_Lw, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb104-7"><a href="stage-3-map-generation.html#cb104-7" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_abs_rate_Lw_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM1_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb104-8"><a href="stage-3-map-generation.html#cb104-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-9"><a href="stage-3-map-generation.html#cb104-9" aria-hidden="true" tabindex="-1"></a>UNC_abs_rate_Md<span class="ot">&lt;-</span><span class="fu">sqrt</span>((FOWARD<span class="sc">$</span>UNC_S<span class="sc">*</span>FOWARD<span class="sc">$</span>Md_Sc)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span> (FOWARD<span class="sc">$</span>UNC_2<span class="sc">*</span>FOWARD<span class="sc">$</span>SOC__)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">abs</span>(FOWARD<span class="sc">$</span>SOC__<span class="sc">+</span>FOWARD<span class="sc">$</span>Md_Sc)</span>
+<span id="cb104-10"><a href="stage-3-map-generation.html#cb104-10" aria-hidden="true" tabindex="-1"></a>UNC_abs_rate_Md_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD,Country_raster,UNC_abs_rate_Md, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb104-11"><a href="stage-3-map-generation.html#cb104-11" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_abs_rate_Md_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM2_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb104-12"><a href="stage-3-map-generation.html#cb104-12" aria-hidden="true" tabindex="-1"></a>UNC_abs_rate_Hg<span class="ot">&lt;-</span><span class="fu">sqrt</span>((FOWARD<span class="sc">$</span>UNC_S<span class="sc">*</span>FOWARD<span class="sc">$</span>Hgh_S)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (FOWARD<span class="sc">$</span>UNC_2<span class="sc">*</span>FOWARD<span class="sc">$</span>SOC__)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">abs</span>(FOWARD<span class="sc">$</span>SOC__<span class="sc">+</span>FOWARD<span class="sc">$</span>Hgh_S)</span>
+<span id="cb104-13"><a href="stage-3-map-generation.html#cb104-13" aria-hidden="true" tabindex="-1"></a>UNC_abs_rate_Hg_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD,Country_raster,UNC_abs_rate_Hg, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb104-14"><a href="stage-3-map-generation.html#cb104-14" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_abs_rate_Hg_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_ASR_SSM3_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
 <p>Now we will calculate the uncertainties for the relative rates.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="stage-3-map-generation.html#cb104-1"></a><span class="co"># Uncertainties for the Relative difference  SSM_ - SOCBAU</span></span>
-<span id="cb104-2"><a href="stage-3-map-generation.html#cb104-2"></a>UNC_Rel_rate_Lw&lt;-<span class="kw">sqrt</span>((FOWARD<span class="op">$</span>UNC_S<span class="op">*</span>FOWARD<span class="op">$</span>Lw_Sc)<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="st"> </span>(FOWARD<span class="op">$</span>UNC_B<span class="op">*</span>FOWARD<span class="op">$</span>SOC_BAU_<span class="dv">20</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">abs</span>(FOWARD<span class="op">$</span>SOC_BAU_<span class="dv">20</span><span class="op">+</span>FOWARD<span class="op">$</span>Lw_Sc)</span>
-<span id="cb104-3"><a href="stage-3-map-generation.html#cb104-3"></a>UNC_Rel_rate_Lw_Map&lt;-<span class="kw">rasterize</span>(FOWARD,Country_raster,UNC_Rel_rate_Lw, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb104-4"><a href="stage-3-map-generation.html#cb104-4"></a><span class="kw">writeRaster</span>(UNC_Rel_rate_Lw_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM1_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb104-5"><a href="stage-3-map-generation.html#cb104-5"></a>UNC_Rel_rate_Md&lt;-<span class="kw">sqrt</span>((FOWARD<span class="op">$</span>UNC_S<span class="op">*</span>FOWARD<span class="op">$</span>Md_Sc)<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="st"> </span>(FOWARD<span class="op">$</span>UNC_B<span class="op">*</span>FOWARD<span class="op">$</span>SOC_BAU_<span class="dv">20</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">abs</span>(FOWARD<span class="op">$</span>SOC_BAU_<span class="dv">20</span><span class="op">+</span>FOWARD<span class="op">$</span>Md_Sc)</span>
-<span id="cb104-6"><a href="stage-3-map-generation.html#cb104-6"></a>UNC_Rel_rate_Md_Map&lt;-<span class="kw">rasterize</span>(FOWARD,Country_raster,UNC_Rel_rate_Md, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb104-7"><a href="stage-3-map-generation.html#cb104-7"></a><span class="kw">writeRaster</span>(UNC_Rel_rate_Md_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM2_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
-<span id="cb104-8"><a href="stage-3-map-generation.html#cb104-8"></a></span>
-<span id="cb104-9"><a href="stage-3-map-generation.html#cb104-9"></a>UNC_Rel_rate_Hg&lt;-<span class="kw">sqrt</span>((FOWARD<span class="op">$</span>UNC_S<span class="op">*</span>FOWARD<span class="op">$</span>Hgh_S)<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="st"> </span>(FOWARD<span class="op">$</span>UNC_B<span class="op">*</span>FOWARD<span class="op">$</span>SOC_BAU_<span class="dv">20</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">abs</span>(FOWARD<span class="op">$</span>SOC_BAU_<span class="dv">20</span><span class="op">+</span>FOWARD<span class="op">$</span>Hgh_S)</span>
-<span id="cb104-10"><a href="stage-3-map-generation.html#cb104-10"></a>UNC_Rel_rate_Hg_Map&lt;-<span class="kw">rasterize</span>(FOWARD,Country_raster,UNC_Rel_rate_Hg, <span class="dt">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
-<span id="cb104-11"><a href="stage-3-map-generation.html#cb104-11"></a><span class="kw">writeRaster</span>(UNC_Rel_rate_Hg_Map,<span class="dt">filename=</span><span class="kw">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM3_UncertaintyMap030&quot;</span>),<span class="dt">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="stage-3-map-generation.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncertainties for the Relative difference  SSM_ - SOCBAU</span></span>
+<span id="cb105-2"><a href="stage-3-map-generation.html#cb105-2" aria-hidden="true" tabindex="-1"></a>UNC_Rel_rate_Lw<span class="ot">&lt;-</span><span class="fu">sqrt</span>((FOWARD<span class="sc">$</span>UNC_S<span class="sc">*</span>FOWARD<span class="sc">$</span>Lw_Sc)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span> (FOWARD<span class="sc">$</span>UNC_B<span class="sc">*</span>FOWARD<span class="sc">$</span>SOC_BAU_20)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">abs</span>(FOWARD<span class="sc">$</span>SOC_BAU_20<span class="sc">+</span>FOWARD<span class="sc">$</span>Lw_Sc)</span>
+<span id="cb105-3"><a href="stage-3-map-generation.html#cb105-3" aria-hidden="true" tabindex="-1"></a>UNC_Rel_rate_Lw_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD,Country_raster,UNC_Rel_rate_Lw, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb105-4"><a href="stage-3-map-generation.html#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_Rel_rate_Lw_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM1_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb105-5"><a href="stage-3-map-generation.html#cb105-5" aria-hidden="true" tabindex="-1"></a>UNC_Rel_rate_Md<span class="ot">&lt;-</span><span class="fu">sqrt</span>((FOWARD<span class="sc">$</span>UNC_S<span class="sc">*</span>FOWARD<span class="sc">$</span>Md_Sc)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span> (FOWARD<span class="sc">$</span>UNC_B<span class="sc">*</span>FOWARD<span class="sc">$</span>SOC_BAU_20)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">abs</span>(FOWARD<span class="sc">$</span>SOC_BAU_20<span class="sc">+</span>FOWARD<span class="sc">$</span>Md_Sc)</span>
+<span id="cb105-6"><a href="stage-3-map-generation.html#cb105-6" aria-hidden="true" tabindex="-1"></a>UNC_Rel_rate_Md_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD,Country_raster,UNC_Rel_rate_Md, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb105-7"><a href="stage-3-map-generation.html#cb105-7" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_Rel_rate_Md_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM2_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span>
+<span id="cb105-8"><a href="stage-3-map-generation.html#cb105-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-9"><a href="stage-3-map-generation.html#cb105-9" aria-hidden="true" tabindex="-1"></a>UNC_Rel_rate_Hg<span class="ot">&lt;-</span><span class="fu">sqrt</span>((FOWARD<span class="sc">$</span>UNC_S<span class="sc">*</span>FOWARD<span class="sc">$</span>Hgh_S)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span> (FOWARD<span class="sc">$</span>UNC_B<span class="sc">*</span>FOWARD<span class="sc">$</span>SOC_BAU_20)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">abs</span>(FOWARD<span class="sc">$</span>SOC_BAU_20<span class="sc">+</span>FOWARD<span class="sc">$</span>Hgh_S)</span>
+<span id="cb105-10"><a href="stage-3-map-generation.html#cb105-10" aria-hidden="true" tabindex="-1"></a>UNC_Rel_rate_Hg_Map<span class="ot">&lt;-</span><span class="fu">rasterize</span>(FOWARD,Country_raster,UNC_Rel_rate_Hg, <span class="at">updateValue=</span><span class="st">&#39;all&#39;</span>)</span>
+<span id="cb105-11"><a href="stage-3-map-generation.html#cb105-11" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(UNC_Rel_rate_Hg_Map,<span class="at">filename=</span><span class="fu">paste0</span>(name,<span class="st">&quot;_GSOCseq_RSR_SSM3_UncertaintyMap030&quot;</span>),<span class="at">format=</span><span class="st">&quot;GTiff&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -419,7 +471,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="stage-2-running-the-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="stage-2-running-the-model-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="uncertainty-and-validation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -443,6 +495,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

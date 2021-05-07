@@ -2,12 +2,8 @@
 title: "Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq"
 author: "Food and Agriculture Organization of the United Nations, Rome, 2020"
 date: "25/11/2020"
-output:
-  word_document: default
-  html_document:
-    df_print: paged
-  pdf_document: default
 site: bookdown::bookdown_site
+output: bookdown::gitbook
 css: justify.css
 documentclass: book
 papersize: b5
