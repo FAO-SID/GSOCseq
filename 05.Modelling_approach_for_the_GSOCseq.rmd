@@ -73,7 +73,7 @@ Where $C_0$ is the initial SOC stock (which corresponds to  $SOC_{GSOCmap}$, the
 C_0 = \sum_{i=1}^{N} I_i (\gamma_{DPM_i}u_{DPM}+\gamma_{HUM_i}u_{HUM})+f_{IOM}C_0
 \end{equation}
  
-First, the fractions $f_i$ of the DPM, RPM, BIO  and HUM pools at equilibrium are estimated following the set of equations described in in the supplementary material of Dechow et al., 2019 (link to supplementary material). The estimated fractions of each SOC pool at equilibrium will depend on:
+First, the fractions $f_i$ of the DPM, RPM, BIO  and HUM pools at equilibrium are estimated following the set of equations described in in the supplementary material of Dechow et al., 2019 (https://www.fao.org/fileadmin/user_upload/GSP/GSOCseq/supplementary_material_analytical_spinup.pdf). The estimated fractions of each SOC pool at equilibrium will depend on:
 
 *   the decomposition rates constants (k) of the different carbon pools
 *   an average of the different modifying factors (temperature, soil moisture,  vegetation factors)
@@ -112,7 +112,7 @@ f_{HUM}=\frac{u_{HUM\ DPM}\gamma_{DPM} + u_{HUM \ RPM} \gamma_{RPM}+ u_{HUM}\gam
 f_{IOM}= \frac{IOM}{C_0}
 \end{equation}
 
-Where $\gamma$ are the partition coefficients of the incoming carbon inputs as explained in equation 5.3, and $u$ coefficients are the result of functions integrating model structure and parametrization of RothC, following the equations in the supplementary material of Dechow et el. (2019). 
+Where $\gamma$ are the partition coefficients of the incoming carbon inputs as explained in equation 5.3, and $u$ coefficients are the result of functions integrating model structure and parametrization of RothC, following the equations in the supplementary material of Dechow et el. (2019) (https://www.fao.org/fileadmin/user_upload/GSP/GSOCseq/supplementary_material_analytical_spinup.pdf). 
 Once the fractions of the different pools are estimated, the  amount of Carbon (tC ha^-1^) in each pool is estimated from the total and active (other than IOM) SOC stocks:
 
 \begin{equation}
