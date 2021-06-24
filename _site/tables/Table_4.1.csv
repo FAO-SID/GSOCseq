@@ -1,6 +1,0 @@
-Climate Data;Soil Data;Land Use- Management Data 
-1.      Monthly rainfall(mm);1.      Total initial 0-30cm SOC stocks (t C ha-1);1.      Monthly Soil cover (binary: bare vs. vegetated) 
-2.      Average monthly mean air temperature (ºC);2.      Initial C stocks of the different pools (t C ha-1): DPM, RPM, BIO, HUM, IOM ;2.      Irrigation (to be added to rainfall amounts)
-3.      Monthly open pan evaporation (mm)/evapotranspiration (mm);3.      Clay content (%) at simulation depth.;3.      Monthly Carbon inputs from plant residue (aboveground + roots + rhizodeposition), (t C ha-1) 
-;;4.      Monthly Carbon inputs from organic fertilizers and grazing animals’ excretion (t C ha-1)
-;;5.      DPM/RPM ratio, an estimate of the decomposability of the incoming plant material 

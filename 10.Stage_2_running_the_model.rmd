@@ -1,8 +1,16 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
 # | Stage 2: running the model  
 
-Once all input layers are prepared, harmonized and stacked, we will run the three modeling phases. At this stage, we will run the model three times, once for each phase, so we will need three different scripts (scripts 13, 14 and 15), which use the same RothC function.  For each script we will need the created raster stacks (in the case of the warm up phase we will also include the climate stacks), and the created target points. Each script will generate output vector points (containing the modeling results, i.e. SOC stocks of the different carbon pools of the RothC model). The output vector of each phase will be used as an input of the next modeling phase. Finally, after running the 'forward' phase, we will obtain an output vector file containing the SOC data for each projected scenario. This output vector will be used in the final script to generate the raster files to build the sequestration potential maps.   
+Once all input layers are prepared, harmonized and stacked, we will run the three modeling phases (spin up, warm up and forward phase). At this stage, we will run the model three times, once for each phase using three different scripts (scripts 13 A -equilibrium run or 13 B-analytical solution, 14 and 15), which use the same RothC function. For each script we will need the previously created raster stacks and target points. Each script will generate output vector points (containing the modeling results, i.e. SOC stocks of the different carbon pools of the RothC model). The output vector of each phase will be used as an input of the next modeling phase. Finally, after running the final modeling phase, the forward phase, we will obtain an output vector containing the SOC data for each projected scenario. This output vector will be used as input for the final script (script 16) to generate the raster files to build the sequestration potential maps.
 
-In each phase and script we will use the same RothC function. The RothC function is the core of the next three scripts and will be used to simulate the different C pools over the defined time periods. In the following a brief overview of the commands we will be running to perform the RothC calculations.
+
+## Overview of the main commands to perform the RothC calculations
+The RothC function is the core of the next three scripts and will be used to simulate the different C pools over the defined time periods. In the following a brief overview of the commands we will be running to perform the RothC calculations will be provided. 
 
 ```{r, eval = FALSE}
 
@@ -75,14 +83,15 @@ return(poolSize3_spin)
 }
 ########## function set up ends###############
 ```
-## Script Number 13. "ROTH_C_SPIN_UP_v2.R"
-Script number 13 implements the first modeling phase (long spin up phase). In this script we will load the stack generated in script number 10 and the target points (Section 9.7, QGIS model number 1). We will obtain an output vector containing our target points. This script runs the RothC model for 500 years to calculate the equilibrium carbon inputs (the carbon inputs needed to reach the 2001 SOC stocks) and the SOC stocks for the different pools. It first runs using a standard C input of 1 tC ha^-1^ yr^-1^, and then equilibrium inputs are estimated from the obtained results and GSOCmap stocks (See Chapters 5 and 6). In this script we will use pedotransfer functions to estimate the SOC stocks of the different pools from the total SOC stock (Weiherm&uuller et al., 2013) to accelerate the spin up process. All that information will be saved to the output vector (shapefile file).
-Table 10.1 Script Number 13. Spin Up phase. Inputs and Outputs.
- 
 
-The SPIN UP Phase will allow us to calculate two outputs that will be saved to a point vector layer called "C_INPUT_EQ.shp": equilibrium carbon inputs (Ceq) and  the carbon stocks of the different soil C pools to run the 
-second phase (WARM UP phase). 
-First, the following packages are loaded into R:
+## Initialization - Spin up phase
+To estimate initial carbon pools and equilibrium carbon inputs, two alternatives are provided.  Users can run the initialization phase using the equilibrium procedure (explained in section 5.4.1.1) implemented in Script 13 A; or use the analytical procedure (explained in section 5.4.1.2) implemented in Script 13 B. Users may be more familiar with the equilibrium procedure (e.g. Smith et al. 2005; 2006; 2007; Gottschalk et al., 2012) and run Script 13A However, depending on the size of the target area and selected equilibrium period this approach might require a  considerable execution time. A minimum of 500 years is suggested to reach equilibrium with reduced computational time. However, it must be noted that spin up runs for 500 years may not necessarily end up in equilibrium SOC stocks, depending on soil, climate and land use conditions. Increasing the duration (1000-2000 years) will reduce deviations with the cost of additional computation time. The analytical approach implemented in Script 13.B (see section 10.1.2) was developed as a time-effective and precise alternative to overcome these issues. 
+
+
+### "ROTH_C_SPIN_UP_UNC_v2.R" (equilibrium runs)
+Script number 13.A implements the first modeling phase (spin up) using the original equilibrium run approach (see section 5.4.1.1). In this script we will load the stack generated in script number 10 and the target points (Section 9.7, QGIS model number 1). We will obtain an output vector containing our target points. This script runs the RothC model for a minimum of 500 years to calculate the equilibrium carbon inputs (the carbon inputs needed to reach the 2001 SOC stocks) and the SOC stocks for the different pools. It first runs using a standard C input of 1 tC ha^-1^ yr^-1^, and then equilibrium inputs are estimated from the obtained results and GSOCmap stocks (See Chapters 5 and 6). In this script we will use pedotransfer functions to estimate the SOC stocks of the different pools from the total SOC stock (Weiherm&uuml;ller et al., 2013) to accelerate the spin up process. All that information will be saved to the output vector (shapefile file). 
+The SPIN UP Phase will allow us to calculate two outputs that will be saved to a point vector layer called "C_INPUT_EQ.shp": equilibrium carbon inputs (Ceq) and the carbon stocks of the different soil C pools to run the second phase (WARM UP phase). First, the following packages are loaded into R:
+
 ```{r, eval = FALSE}
 rm(list=ls()) 
 library(SoilR)
@@ -138,7 +147,7 @@ Roth_C<-function(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Prec
 
 {
 
-# Paddy fields coefficent fPR = 0.4 if the target point is class = 13 , else fPR=1
+# Paddy fields coefficient fPR = 0.4 if the target point is class = 13 , else fPR=1
 # From Shirato and Yukozawa 2004
 
 fPR=(LU == 13)*0.4 + (LU!=13)*1
@@ -360,7 +369,626 @@ Finally, we will set the output directory and save the output vector:
 writeOGR(C_INPUT_EQ, ".", "OUTPUTS/1_SPIN_UP/SPIN_UP_County_AOI", driver="ESRI Shapefile") 
 ```
 
-## Script Number 14. "ROTH_C_WARM_UP_v4.R" No Land use change
+### Script Number 13.B. "ROTH_C_SPIN_UP_UNC_v66.R" (analytical solution)
+Script number 13.B implements the first modeling phase (spin up) using the analytical solution approach (see section 5.4.1.2), developed by Dechow et al. (2019) and adapted to spatial simulations. 
+
+```{r, eval = FALSE}
+#12/11/2020
+
+# SPATIAL SOIL R  for VECTORS
+
+###### SPIN UP ################
+
+# MSc Ing Agr Luciano E Di Paolo
+# Dr Ing Agr Guillermo E Peralta
+# Dr. Ing Rene Dechow
+################################
+
+################################################################################
+#13_1_ROTHC_C_SPIN_UP_UNC_v66.R
+################################################################################
+# This script does some regionalized uncertainty runs with RothC it quantifies
+# Pool distributions and equilibrium C input for a minimum and maximum scenario
+#Input:
+#   a point.shp file with SOC and un
+
+
+###################################
+# SOilR from Sierra, C.A., M. Mueller, S.E. Trumbore (2012). 
+#Models of soil organic matter decomposition: the SoilR package, version 1.0 Geoscientific Model Development, 5(4), 
+#1045--1060. URL http://www.geosci-model-dev.net/5/1045/2012/gmd-5-1045-2012.html.
+#####################################
+
+```
+
+In this script we will load the stack generated in script number 10 and the target points (Section 9.7, QGIS model number 1). We will obtain an output vector containing our target points. This script estimates the SOC stocks for the different pools and the equilibrium carbon inputs (the carbon inputs needed to reach the 2001 SOC stocks),assuming homogeneous soil, climatic and management conditions. 
+First, the script estimates the fractions (fi) of DPM, RPM, BIO  and HUM pools at equilibrium following the set of equations and intermediate coefficients  described in the supplementary material of Dechow et el. (2019). Once the fractions of the different pools are estimated, the  amount of Carbon (tC ha^-1^) in each pool is estimated from the total SOC stock. Finally, Carbon inputs (Ci) at equilibrium are estimated from the generated results.
+All results will be saved to the output vector (shapefile file). Using this approach, the spin up phase will allow us to obtain two key outputs that will be saved to a point vector layer called "C_INPUT_EQ.shp": equilibrium carbon inputs (Ceq) and the carbon stocks of the different soil C pools to run the second phase (warm up phase). 
+First, we need to load the packages into R:
+
+```{r, eval=FALSE}
+rm(list=ls()) 
+
+library(SoilR)
+library(raster)
+library(rgdal)
+library(soilassessment)
+
+```
+
+Then we define the function to estimate the Inert Organic Carbon content (IOM; t C ha^-1^) according to the equation (see eq. 5.2) given by Falloon et al. (1998):
+
+```{r, eval=FALSE}
+########################################################
+# calculates some iom in t / ha
+# input
+# 1. c total carbpn stock in t /ha
+#####################################################
+fIOM.Falloon.RothC =function(c, par1=-1.31, par2=1.139)
+{
+  
+ # IOM=10^(par1+par2*log10(c))
+  IOM=0.049*SOC^(1.139) 
+  IOM
+}
+```
+
+Then from lines 61-176  we will define the main function that will estimate the fraction of each carbon pool at equilibrium and the carbon inputs at equilibrium ("fget_equilibrium_factions.RothC_input"). 
+
+The inputs of this function are (line 61): 
+
+*   *xi* = is a scalar representing an averaged rate modifying factor (rmf; average of temperature, soil moisture, vegetation cover and anaerobic/paddy rice factors).  
+*   *C.tot* = represents the initial C stock (and therefore C stock in equilibrium; that will correspond to the FAO GSOCmap)  
+*   *clay* = clay content in %
+*   *fractI* = vector of Cinput fractions  (these fractions 1, 2 and 3 correspond to the $\gamma_{DPM}$, $\gamma_{RPM}$, $\gamma_{HUM}$ partition coefficients, that represent the proportion of DPM, RPM and HUM of the incoming residues. The fractions are derived from the decomposability of incoming C inputs (e.g. DPM/RPM ratio). The way to estimate these $\gamma_{DPM}$, $\gamma_{RPM}$, $\gamma_{HUM}$ partition coefficients (named as "fractI" in the script) is going to be defined later at line 229.
+
+```{r, eval = FALSE}
+#################################################################################
+# fget_equilibrium_fractions.RothC_input 
+# brief: quantifies pool distribution and C input for RothC at equilibrium
+#Input
+# xi= scalar representing an averaged modifying factor
+# C.tot = initial C stock (and C stock in equilibrium)
+# clay = clay content
+# fractI = vector of Cinput fractions that enter the DPM, RPM, HUM  
+#          with a DR of 1.44 fractI becomes [1] 0.5901639 0.4098361 0.0000000
+#          by fractI=c((DR)/(DR+1),1-(DR)/(DR+1),0)
+#Output
+# list with pools at equilibrium and C input at equilibrium
+################################################################################
+
+fget_equilibrium_fractions.RothC_input=function(xi=1,C.tot,clay, fractI)
+{   
+  rmf=xi
+  IOM= fIOM.Falloon.RothC(c = C.tot)
+  C.active=C.tot-IOM 
+  
+  
+```
+
+The output of this function (at line 174) will be  a list of two  elements: the first element is a vector of 5 elements containing the C  stocks of the different SOC pools and the second element is the carbon input at equilibrium.
+
+From lines 67-175, the analytical solution to estimate SOC pools and estimate equilibrium Carbon inputs is implemented. First we will need to define the proportion of decomposed carbon that goes to the BIO pool (46%; "fract.rooted.to.bio") or to the HUM pool (54%; "fract.rooted.to.hum") using the default coefficients from the original RothC model. At lines 76-82 we will define  the decomposition rates (k) for each pool (using the default k values of the original RothC model). 
+
+```{r, eval = FALSE}
+########################################################################
+  #The analytical solution of RothC
+  ########################################################################
+  
+  ########################################################################
+  # Parameter
+  ########################################################################
+  fract.rooted.to.bio = 0.46
+  fract.rooted.to.hum = 0.54
+  ks = c(k.DPM = 10, k.RPM = 0.3, k.BIO = 0.66, k.HUM = 0.02, 
+         k.IOM = 0)
+  ks=as.numeric(ks)
+  k.dpm=ks[1]
+  k.rpm=ks[2]
+  k.bio=ks[3]
+  k.hum=ks[4]
+```
+
+Then we will define the Carbon Use Efficiency (CUE) at line 86. We will require the CUE later to estimate intermediate coefficients ($\alpha$).  The CUE represents the amount of carbon that goes to the BIO + HUM pools (from the total decomposed carbon). The amount of carbon that is outputted in form of CO2 or stored in  the BIO and HUM pools is determined by the clay content of the soil (following the original equation in the RothC model), so the CUE is dependent on clay content.
+
+```{r, eval = FALSE}
+  ########################################################################
+  # the carbon use efficiency
+  ########################################################################
+  cue=  1/(1+ 1.67 * (1.85 + 1.6 * exp(-0.0786 * clay)))
+```
+
+
+From lines 88-113, we will need to define a number of intermediate coefficients (referred as $\alpha$, $\lambda$, and c in the equations detailed in the supplementary material of Dechow et el. (2019)). These coefficients will then allow us to estimate the fraction of each carbon pool at equilibrium. $\alpha$ 1 and $\alpha$ 2 coefficients will be estimated from the carbon use efficiency and from the proportion of carbon that goes to BIO or HUM (defined in lines 74-75). The intermediate coefficients $\alpha$ 1.1 to $\alpha$ 2.2 will be derived from the decomposition rates of each pool already defined in lines 76-82; and from the average rate modifying factor (rmf; average of temperature, soil moisture, vegetation cover and anaerobic/paddy rice factors). The c coefficient will be estimated from the previously estimated $\alpha$ coefficients (lines 111-113).  $\lambda$ (Lambda) intermediate  coefficients (lines  106-107) are not required in this stationary version and are currently disabled. 
+
+```{r, eval=FALSE}
+########################################################################
+  # All the coefficients alpha.1 und alpha.2
+  ########################################################################
+  alpha.1=cue*fract.rooted.to.bio
+  alpha.2=cue*fract.rooted.to.hum
+  
+  ########################################################################
+  # All the coefficients a.1.1, a.1.2, a.2.1, a2.2
+  ########################################################################
+  a.1.1=k.bio*rmf*(alpha.1-1)
+  a.1.2=alpha.1*k.hum*rmf
+  a.2.1=alpha.2*k.bio*rmf
+  a.2.2=k.hum*rmf*(alpha.2-1)
+  
+  #########################################################################
+  #########################################################################
+  # The Eigenvalues lambda 1 and lambda 2
+  #########################################################################
+  lambda.1= (a.1.1+a.2.2)/2-sqrt(((a.1.1+a.2.2)/2)*((a.1.1+a.2.2)/2)+a.1.2*a.2.1-a.1.1*a.2.2)
+  lambda.2= (a.1.1+a.2.2)/2+sqrt(((a.1.1+a.2.2)/2)*((a.1.1+a.2.2)/2)+a.1.2*a.2.1-a.1.1*a.2.2)
+  #########################################################################
+  # The c.0.1; c.0.2; c.0.3 values
+  #########################################################################
+  c.0.1= (alpha.2 * a.1.2 - alpha.1 * a.2.2)/(a.1.1*a.2.2-a.1.2*a.2.1)
+  c.0.2= (alpha.2 * a.1.2 - alpha.1 * a.2.2)/(a.1.1*a.2.2-a.1.2*a.2.1)
+  c.0.3= (a.1.2)/(a.1.1*a.2.2-a.1.2*a.2.1)
+```
+
+Then, from lines 115-155, we will define the u coefficients (see intermediate equations in the supplementary material of Dechow et el. (2019)), which are functions integrating model structure and related to the proportion of C of each pool entering other pools. These u coefficients will be estimated from the previously defined $\alpha$ and c coefficients, from the decomposition rates (k) and from the rate modifying factor (rmf). We will define in total a set of 11 u coefficients, that we will finally require to estimate the SOC fraction of each pool. 
+
+
+```{r, eval = FALSE}
+ ######################################################################################################
+  # BIO pool quantification
+  ######################################################################################################
+  u.bio.dpm=(c.0.2) #65
+  u.bio.rpm=(c.0.1) #66
+  u.bio.hum=(c.0.3) #67
+  
+  
+  ######################################################################################################
+  # HUM pool quantification ( is all C.78)
+  ######################################################################################################
+  u.hum.dpm= 1/a.1.2*((-c.0.2*a.1.1-alpha.1))
+  u.hum.rpm= 1/a.1.2*(-c.0.2*a.1.1-alpha.1)
+  u.hum.hum= 1/a.1.2*(-c.0.3*a.1.1)
+  
+ 
+  ######################################################################################################
+  # DPM C ( is all C.79)
+  ######################################################################################################
+  u.dpm.dpm=1/k.dpm/rmf 
+  
+  #C.dpm=i.dpm * u.dpm.dpm + C0 * s.dpm
+  
+  ######################################################################################################
+  ######################################################################################################
+  # RPM C ( is all C.80)
+  ######################################################################################################
+  u.rpm.rpm=1/k.rpm/rmf
+  
+  #C.rpm=i.rpm * u.rpm.rpm + C0 *s.rpm
+  
+  ######################################################################################################
+  # Total C ( is all C.78)
+  ######################################################################################################
+  u.dpm=u.dpm.dpm+u.bio.dpm+u.hum.dpm
+  u.rpm=u.rpm.rpm+u.bio.rpm+u.hum.rpm
+  u.hum=u.bio.hum+u.hum.hum
+```
+To end the "fget_equilibrium_factions.RothC_input" function, we will define how to estimate the fraction (fi) of each active SOC pool to the total SOC at equilibrium. These fractions are going to be estimated following the equations 5.5 to 5.8 already explained in section 5.4.1.2, from the u coefficients and the $\gamma_{DPM}$, $\gamma_{RPM}$, $\gamma_{HUM}$ partition coefficients (fract I):
+
+\begin{equation}
+\tag{5.5}
+f_{DPM} = \frac{DPM\ u_{DPM}}{DPM\ u_{DPM} + RPM\ u_{RPM}+ HUM\ u_{HUM}}  
+\end{equation}
+
+\begin{equation}
+\tag{5.6}
+f_{RPM} = \frac{RPM\ u_{RPM}}{DPM\ u_{DPM}+ RPM\ u_{RPM} +HUM\ u_{HUM}}
+\end{equation}
+
+\begin{equation}
+\tag{5.7}
+f_{BIO} = \frac{DPM\ u_{BIO}  DPM + RPM\ u_{BIO}  RPM + HUM\ u_{BIO}  HUM}{DPM \ u_{DPM} + RPM\ u_{RPM} +HUM\ u_{HUM}}
+\end{equation}
+
+\begin{equation}
+\tag{5.8}
+f_{HUM} = \frac{\gamma_{DPM} \ u_{HUM} DPM+ RPM\ u_{HUM} RPM + HUM\ u_{HUM} HUM}{DPM\ u_{DPM} + RPM\ u_{RPM}+ HUM u_{HUM}}
+\end{equation}
+
+As all pool fractions will be estimated by dividing by the same term ($\gamma_{DPM}u_{DPM}+RPM\ u_{RPM}+HUM\ u_{HUM}$) we will define it in line 157. Then we will define the equations to estimate the fraction of each pool in lines 159-162. Finally, at line 164 we will create a vector containing the fraction of each active pool ($f_{DPM}$, $d_{RPM}$, $f_{BIO}$, $f_{HUM}$). 
+
+```{r, eval = FALSE}
+denominator= fractI[1]*u.dpm+fractI[2]*u.rpm+fractI[3]*u.hum
+  
+  fract.dpm= fractI[1]*u.dpm.dpm/denominator
+  fract.rpm= fractI[2]*u.rpm.rpm/denominator
+  fract.bio= (fractI[1]*u.bio.dpm+fractI[2]*u.bio.rpm+fractI[3]*u.bio.hum)/denominator
+  fract.hum= (fractI[1]*u.hum.dpm+fractI[2]*u.hum.rpm+fractI[3]*u.hum.hum)/denominator   
+  
+  fract.all=c(fract.dpm,fract.rpm,fract.bio,fract.hum)
+  
+```
+The SOC stocks (t C/ha) of each pool will be estimated by multiplying the fraction of each active pool by the total  active SOC stock (t C/ha) (line 169). We will define a vector containing all four active fractions (line 170), plus the IOM fraction (line 171) (total 5 fractions); and a vector containing the SOC stocks of all five pools (line 172). 
+
+
+```{r, eval=FALSE}
+###################################################
+  # IOM
+  ###################################################
+  fract.all_stock=(fract.all*C.active)
+  fract.all=fract.all_stock/C.tot
+  fract.all=append(fract.all,IOM/C.tot)
+  pools=fract.all*C.tot
+```
+
+In the last step of this function, we will define how to estimate C inputs following equation 5.11 explained in section 5.4.1.2 (line 173); and we will define the output of this function as a list containing the C inputs at equilibrium plus the SOC stocks of all five pools of the RothC model (line 174). 
+
+```{r, eval=FALSE}
+Cin=(C.tot-pools[5])/denominator
+  list(pools,Cin)
+}
+```
+
+From lines 180-217, we will set the working directory, and create a vector that contains the results and extract the data from the already created spin up stack (total SOC stocks, clay content, DPR/RPM ratio, Land use class)
+
+```{r, eval=FALSE}
+# Set working directory 
+
+WD_FOLDER=("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020")
+
+# Vector must be an empty points vector. 
+
+setwd(WD_FOLDER)
+Vector<-readOGR("INPUTS/TARGET_POINTS/target_points_World_SouthAmerica.shp")
+#Vector2<-readOGR("INPUTS/TARGET_POINTS/Deutschland/target_points.shp")
+# Stack_Set_1 is a stack that contains the spatial variables 
+
+Stack_Set_1<- stack("INPUTS/STACK/Stack_Set_SPIN_UP_AOI.tif")
+
+# Create A vector to save the results
+
+C_INPUT_EQ<-Vector
+
+# use this only for backup
+
+# C_INPUT_EQ<-readOGR("OUTPUTS/1_SPIN_UP/SPIN_UP_BSAS_27-03-2020_332376.shp")
+
+# extract variables to points
+
+Vector_variables<-extract(Stack_Set_1,Vector,df=TRUE)
+# Extract the layers from the Vector
+
+SOC_im<-Vector_variables[[2]] # primera banda del stack
+
+clay_im<-Vector_variables[[3]] # segunda banda del stack 
+
+DR_im<-Vector_variables[[40]]
+
+LU_im<-Vector_variables[[41]]
+
+# Define Years for Cinputs calculations
+
+#years=seq(1/12,2000,by=1/12)
+
+```
+At line 221 , we will set the function  called " Roth_C_equi_analy " . This function will be iterated over the target points, calculating the soil carbon pools defined in the Roth C model. The inputs of this function are: 
+
+*   C inputs (carbon inputs), 
+*   Temp (temperature)
+*   Precip (precipitation)
+*   Evp (evapotranspiration)
+*   Cov2 (vegetation cover)
+soil.thick (soil thickness = 30 cm)
+*   SOC (initial total SOC stocks)
+*   clay (clay content at 0-30cm) 
+*   DR (the DPM/RPM ratio)
+*   bare1 (coefficient indicating whether the soil is covered or vegetated)
+*   LU (land use class)
+
+The outputs of this function are two: 1) The five soil carbon pools (result[[1]]), 2)  the carbon inputs of equilibrium (result[[2]]). The previous function "fget_equilibrium_factions.RothC_input" is inside this function is . The main purpose of this function is to get the values of the input variables for the "fget_equilibrium_factions.RothC_input" function. 
+
+```{r, eval= FALSE}
+# ROTH C MODEL FUNCTION . 
+
+########## function set up starts###############
+Roth_C_equi_analy<-function(Cinputs,Temp,Precip,Evp,Cov2,soil.thick,SOC,clay,DR,bare1,LU)
+  
+{
+  
+```
+So , first, at line 228 we calculate a vector of three elements, called "FractI". This variable represents the carbon input fraction of DPM , RPM and HUM (the $\gamma_{DPM}$, $\gamma_{RPM}$, $\gamma_{HUM}$ partition coefficients). Normally, if we do not have organic amendments , the Humic fraction is set to 0. 
+
+```{r, eval = FALSE}
+  #------------------------
+  # c input distribution
+  #-------------------------
+  fractI=c((DR)/(DR+1),1-(DR)/(DR+1),0)
+  
+```
+
+Then from lines 234 to 268 , the rate modifying factors  are calculated :  Paddy Field coefficient (fPR), Temperature coefficient (fT), Soil Moisture coefficient (fW_2), and Vegetation cover coefficient (fC). 
+
+```{r, eval = FALSE}
+ # Paddy fields coefficent fPR = 0.4 if the target point is class = 13 , else fPR=1
+  # From Shirato and Yukozawa 2004
+  
+  
+  fPR=(LU == 13)*0.4 + (LU!=13)*1
+  
+  #Temperature effects per month
+  fT=fT.RothC(Temp[,2]) 
+  
+  #Moisture effects per month . 
+  
+  fw1func<-function(P, E, S.Thick = 30, pClay = 32.0213, pE = 1, bare) 
+  {
+    
+    M = P - E * pE
+    Acc.TSMD = NULL
+    for (i in 2:length(M)) {
+      B = ifelse(bare[i] == FALSE, 1, 1.8)
+      Max.TSMD = -(20 + 1.3 * pClay - 0.01 * (pClay^2)) * (S.Thick/23) * (1/B)
+      Acc.TSMD[1] = ifelse(M[1] > 0, 0, M[1])
+      if (Acc.TSMD[i - 1] + M[i] < 0) {
+        Acc.TSMD[i] = Acc.TSMD[i - 1] + M[i]
+      }
+      else (Acc.TSMD[i] = 0)
+      if (Acc.TSMD[i] <= Max.TSMD) {
+        Acc.TSMD[i] = Max.TSMD
+      }
+    }
+    b = ifelse(Acc.TSMD > 0.444 * Max.TSMD, 1, (0.2 + 0.8 * ((Max.TSMD - 
+                                                                Acc.TSMD)/(Max.TSMD - 0.444 * Max.TSMD))))
+    b<-clamp(b,lower=0.2)
+    return(data.frame(b))	
+  }
+  
+  fW_2<- fw1func(P=(Precip[,2]), E=(Evp[,2]), S.Thick = soil.thick, pClay = clay, pE = 1, bare=bare1)$b 
+  
+  #Vegetation Cover effects 
+  
+  fC<-Cov2[,2]
+  
+```
+
+After that, the "xi" variable is calculated as the mean of the product of the four modifying factors. 
+
+```{r, eval=FALSE}
+  
+  # Set the factors frame for Model calculations
+
+  xi=mean(fT*fW_2*fC*fPR)
+```
+
+Finally, we calculate the "result" variable using the "fget_equilibrium_fractions.RothC_input" function. We have already calculated or set the input variables for that function. 
+The output of the function  " Roth_C_equi_analy "  is a two element list containing both the soil carbon pools and the carbon input of equilibrium. 
+
+```{r, eval= FALSE}
+# RUN THE MODEL 
+  
+  result=fget_equilibrium_fractions.RothC_input(xi=xi,C.tot=SOC,clay=clay, fractI)
+  
+  # RUN THE MODEL FROM SOILR
+  #Model3_spin=RothCModel(t=years,C0=c(DPMptf, RPMptf, BIOptf, HUMptf, FallIOM),In=Cinputs,DR=DR,clay=clay,xi=xi.frame, pass=TRUE) 
+  #Ct3_spin=getC(Model3_spin)
+  
+  # Get the final pools of the time series
+ 
+  
+  return(result)
+}
+```
+After setting the  " Roth_C_equi_analy "  function we can now iterate that function over our target points (line 293) .
+
+```{r, eval= FALSE}
+######### function set up ends###############
+
+# Iterates over the area of interest
+#source("D:/projecte/Rlibs/dataframe_ops.R")
+
+########for loop starts###############3
+for (i in 1:dim(Vector_variables)[1]) {
+```
+
+From lines 297-310 we will extract the climate and vegetation cover variables. At line 297 we will create a vector called "Vect". This variable is a vector of 53 elements containing all the variables we need to run the model over a specific target point. At lines 299-300 we extract from the "Vect" variable the temperature information for the ith target point. At lines 302-303 we extract from the "Vect" variable the precipitation information for the ith target point. At lines 305-306 we extract from the "Vect" variable the potential evapotranspiration information for the ith target point. At lines 308-310 we extract from the "Vect" variable the vegetation cover information for the ith target point. 
+
+```{r, eval = FALSE}
+# Extract the variables 
+  
+  Vect<-as.data.frame(Vector_variables[i,])
+  
+  Temp<-as.data.frame(t(Vect[4:15]))
+  Temp<-data.frame(Month=1:12, Temp=Temp[,1])
+  
+  Precip<-as.data.frame(t(Vect[16:27]))
+  Precip<-data.frame(Month=1:12, Precip=Precip[,1])
+  
+  Evp<-as.data.frame(t(Vect[28:39]))
+  Evp<-data.frame(Month=1:12, Evp=Evp[,1])
+  	
+  Cov<-as.data.frame(t(Vect[42:53]))
+  Cov1<-data.frame(Cov=Cov[,1])
+  Cov2<-data.frame(Month=1:12, Cov=Cov[,1])
+```
+
+To avoid calculus over points with null or odd inputs values, we will introduce and "if" statement at line 314:
+
+```{r, eval = FALSE}
+ #Avoid calculus over Na values 
+  
+  if (any(is.na(Evp[,2])) | any(is.na(Temp[,2])) | any(is.na(SOC_im[i])) | any(is.na(clay_im[i])) | 
+      any(is.na(Precip[,2]))  |  any(is.na(Cov2[,2]))  |  any(is.na(Cov1[,1]))  | any(is.na(DR_im[i])) |  
+      (SOC_im[i]<0) | (clay_im[i]<0) ) {C_INPUT_EQ[i,2]<-0
+  }else{
+```
+From line 321 to line 327 we will set the environmental variables for the ith target point. 
+```{r, eval = FALSE}
+    # Set the variables from the images
+    
+    soil.thick=30  #Soil thickness (organic layer topsoil), in cm
+    SOC<-SOC_im[i]      #Soil organic carbon in Mg/ha 
+    clay<-clay_im[i]        #Percent clay %
+    
+    DR<-DR_im[i]              # DPM/RPM (decomplosable vs resistant plant material.)
+    bare1<-(Cov1>0.8)           # If the surface is bare or vegetated
+    LU<-LU_im[i]
+```
+
+At line 330 we will calculate the inert organic carbon with the Falloon method.
+
+```{r, eval = FALSE}
+    #IOM using Falloon method
+    FallIOM=0.049*SOC^(1.139) 
+```
+From line 339 to line 342 we will define the maximum and minimum values for the confidence interval for the variables SOC and Clay, in order to estimate the uncertainties. 
+
+```{r, eval = FALSE}
+  # If you use a SOC uncertainty layer turn on this. First open the layer SOC_UNC 
+    #(it must have the same extent and resolution of the SOC layer)
+    
+    #SOC_min<-(1-(SOC_UNC/100))*SOC
+    #SOC_max<-(1+(SOC_UNC/100))*SOC
+    
+    # Define SOC min, max Clay min and max. 
+    SOC_min<-SOC*0.8
+    SOC_max<-SOC*1.2
+    clay_min<-clay*0.9
+    clay_max<-clay*1.1
+```
+
+At line 358 we will calculate the "result" object by using the "Roth_C_equi_analy" function. The "result" object is a list of two elements, the first one is a vector of five elements representing the five soil carbon pools, the second element is the carbon input of equilibrium. Then, at line 364 and 370 we will apply again the "Roth_C_equi_analy" function for the minimum and maximum  inputs values, to get the uncertainties. 
+```{r, eval=FALSE}
+ ##############################################################################  
+  # C input equilibrium. (Ceq) + Ceq_MIN + Ceq_MAX are quantified here
+  ##############################################################################  
+    
+    #fb<-Roth_C(Cinputs=b,years=years,DPMptf=0, RPMptf=0, BIOptf=0, HUMptf=0, FallIOM=FallIOM,Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
+    #fb_t<-fb[1]+fb[2]+fb[3]+fb[4]+fb[5]
+    #pool.equi.goodi[i,]=fb
+    #m<-(fb_t-FallIOM)/(b)
+    
+    #Ceq<-(SOC-FallIOM)/m
+    
+    #Cin.equi$spinup[i]=Ceq;
+    
+    result=Roth_C_equi_analy(Cinputs=b,Temp=Temp,Precip=Precip,Evp=Evp,Cov2=Cov2,soil.thick,SOC,clay,DR,bare1,LU)
+    Ceq = result[[2]]
+    pool.equi.mean = result[[1]]
+    
+    # UNCERTAINTIES C input equilibrium (MINIMUM)
+    
+    result=Roth_C_equi_analy(Cinputs=b,Temp=Temp,Precip=Precip,Evp=Evp,Cov2=Cov2,soil.thick,SOC_min,clay_min,DR,bare1,LU)
+    Ceq_MIN = result[[2]]
+    pool.equi.min = result[[1]]
+```
+From line 374 to line 430 we will save all the results in the vector called "C_INPUT_EQ". 
+
+```{r, eval = FALSE}
+ # UNCERTAINTIES C input equilibrium (MAXIMUM)
+    
+    result=Roth_C_equi_analy(Cinputs=b,Temp=Temp,Precip=Precip,Evp=Evp,Cov2=Cov2,soil.thick,SOC_max,clay_max,DR,bare1,LU)
+    Ceq_MAX = result[[2]]
+    pool.equi.max = result[[1]]
+  
+    # SOC POOLS AFTER 500 YEARS RUN WITH C INPUT EQUILIBRIUM
+    good_landuse_classes=c(2,12,13,4,3,5,6,8)
+    if (LU %in% good_landuse_classes){
+     
+      C_INPUT_EQ[i,2]<-SOC
+      C_INPUT_EQ[i,3]<-Ceq
+      C_INPUT_EQ[i,4]<-sum(pool.equi.mean)
+      C_INPUT_EQ[i,5]<-pool.equi.mean[1] #DPM
+      C_INPUT_EQ[i,6]<-pool.equi.mean[2] #RPM
+      C_INPUT_EQ[i,7]<-pool.equi.mean[3] #BIO
+      C_INPUT_EQ[i,8]<-pool.equi.mean[4] #HUM
+      C_INPUT_EQ[i,9]<-pool.equi.mean[5] #IOM
+      C_INPUT_EQ[i,10]<-Ceq_MIN
+      C_INPUT_EQ[i,11]<-Ceq_MAX
+      C_INPUT_EQ[i,12]<-sum(pool.equi.min)
+      C_INPUT_EQ[i,13]<-pool.equi.min[1] #DPM
+      C_INPUT_EQ[i,14]<-pool.equi.min[2] #RPM
+      C_INPUT_EQ[i,15]<-pool.equi.min[3] #BIO
+      C_INPUT_EQ[i,16]<-pool.equi.min[4] #HUM
+      C_INPUT_EQ[i,17]<-pool.equi.min[5] #IOM
+      C_INPUT_EQ[i,18]<-sum(pool.equi.max)
+      C_INPUT_EQ[i,19]<-pool.equi.max[1] #DPM 
+      C_INPUT_EQ[i,20]<-pool.equi.max[2] #RPM 
+      C_INPUT_EQ[i,21]<-pool.equi.max[3] #BIO 
+      C_INPUT_EQ[i,22]<-pool.equi.max[4] #HUM 
+      C_INPUT_EQ[i,23]<-pool.equi.max[5] #IOM 
+    
+    }else {
+      C_INPUT_EQ[i,2]<-SOC
+      C_INPUT_EQ[i,3]<-Ceq
+      C_INPUT_EQ[i,4]<-0
+      C_INPUT_EQ[i,5]<-0
+      C_INPUT_EQ[i,6]<-0
+      C_INPUT_EQ[i,7]<-0
+      C_INPUT_EQ[i,8]<-0
+      C_INPUT_EQ[i,9]<-0
+      C_INPUT_EQ[i,10]<-0
+      C_INPUT_EQ[i,11]<-0
+      C_INPUT_EQ[i,12]<-0
+      C_INPUT_EQ[i,13]<-0
+      C_INPUT_EQ[i,14]<-0
+      C_INPUT_EQ[i,15]<-0
+      C_INPUT_EQ[i,16]<-0
+      C_INPUT_EQ[i,17]<-0
+      C_INPUT_EQ[i,18]<-0
+      C_INPUT_EQ[i,19]<-0
+      C_INPUT_EQ[i,20]<-0
+      C_INPUT_EQ[i,21]<-0
+      C_INPUT_EQ[i,22]<-0
+      C_INPUT_EQ[i,23]<-0
+    
+    }
+    print(c(i,SOC,Ceq))
+    
+  } # NA problems
+}
+###############for loop ends##############
+
+```
+From line 434 to line 455 we will change the names of the columns of the vector files "C_INPUT_EQ" to the variables we want to obtain.
+
+```{r, eval = FALSE}
+#rename de columns
+
+colnames(C_INPUT_EQ@data)[2]="SOC_FAO"
+colnames(C_INPUT_EQ@data)[3]="Cinput_EQ"
+colnames(C_INPUT_EQ@data)[4]="SOC_pedotransfer"
+colnames(C_INPUT_EQ@data)[5]="DPM_pedotransfer"
+colnames(C_INPUT_EQ@data)[6]="RPM_pedotransfer"
+colnames(C_INPUT_EQ@data)[7]="BIO_pedotransfer"
+colnames(C_INPUT_EQ@data)[8]="HUM_pedotransfer"
+colnames(C_INPUT_EQ@data)[9]="IOM_pedotransfer"
+colnames(C_INPUT_EQ@data)[10]="CIneq_min"
+colnames(C_INPUT_EQ@data)[11]="CIneq_max"
+colnames(C_INPUT_EQ@data)[12]="SOC_min"
+colnames(C_INPUT_EQ@data)[13]="DPM_min"
+colnames(C_INPUT_EQ@data)[14]="RPM_min"
+colnames(C_INPUT_EQ@data)[15]="BIO_min"
+colnames(C_INPUT_EQ@data)[16]="HUM_min"
+colnames(C_INPUT_EQ@data)[17]="IOM_min"
+colnames(C_INPUT_EQ@data)[18]="SOC_max"
+colnames(C_INPUT_EQ@data)[19]="DPM_max"
+colnames(C_INPUT_EQ@data)[20]="RPM_max"
+colnames(C_INPUT_EQ@data)[21]="BIO_max"
+colnames(C_INPUT_EQ@data)[22]="HUM_max"
+colnames(C_INPUT_EQ@data)[23]="IOM_max"
+
+```
+Finally,  at line 459 we will set the working directory where we are going to savethe output file, and at line 460 we save the vector to an ESRI shapefile file. 
+
+```{r, eval = FALSE}
+# SAVE the Points (shapefile)
+
+setwd("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/OUTPUTS/1_SPIN_UP")
+writeOGR(C_INPUT_EQ, ".", "SPIN_UP_Country_AOI", driver="ESRI Shapefile",overwrite=TRUE)
+```
+
+## Warm up phase 
+
+### Script Number 14A. "ROTH_C_WARM_UP_v4.R" No Land use change
 Script number 14 implements the second modeling phase ("Warm up" phase). In this script we will load the stack of different layers generated in script number 11 and the target points. We also will load the output vector of the phase 1 (spin up), the climate layers from script number 2, the NPP layer from script number 5, and the land use layer stack from script number 9. This script runs the Roth C model for 18 years (2000-2018) with the possibility to be modified to 20 years if data is available (2000-2020). The final outputs are SOC stocks of the five C pools of the RothC model (DPM, RPM, BIO, HUM and IOM), and the total SOC stock. This information will be saved to a shapefile vector.
  
 **Table 10.2** *Script Number 14. Warm Up phase. Inputs and Outputs*
@@ -701,7 +1329,7 @@ Finally, we will have to save the output vector and the name of that vector.
  # SAVE the Points (shapefile) 
 writeOGR(WARM_UP,".", "OUTPUTS/2_WARM_UP/WARM_UP_County_AOI", driver="ESRI Shapefile")
 ```
-## Script Number 14. "ROTH_C_WARM_UP_v4.R" Land use change simulation
+### Script Number 14B. "ROTH_C_WARM_UP_v4.R" Land use change simulation
 This script is provided as an alternative in the case that yearly land use layers are available as input for the the warm up phase to account form land use change. 
 
 ```{r, eval = FALSE}
@@ -1092,7 +1720,7 @@ writeOGR(WARM_UP,".", "WARM_UP_County_AOI_LUsim", driver="ESRI Shapefile",overwr
 ```
 
 
-## Script Number 15. "ROTH_C_forward_v2.R"
+## Forward phase: Script Number 15. "ROTH_C_forward_v2.R"
 Script number 15 implements the third modeling phase ("forward" phase). We will need to load the stack of layers generated in script number 12 and the target points. We will also need to load the output vector of the phase 2 ("warm up") as an input.  This script will run the Roth C model for 20 years, projecting SOC stocks for the 2020-2040 period under different management scenarios ("BAU" scenario and the three SSM scenarios: low, medium and high input carbon). C inputs will vary according to the SSM scenarios. Standard default values of 5-10-20% increase in C inputs are defined for the three SSM scenarios (low, medium, high, respectively). Users can modify these inputs based on local expertise and available information, and generate alternative maps using this data. The final outputs will be the final SOC stocks after 20 years for the different scenarios. This information will be saved to a shapefile.
  
 **Table 10.3** *Script Number 15. forward phase. Inputs and Outputs*
