@@ -32,7 +32,7 @@
   
 <link rel="prev" href="the-rothc-model.html"/>
 <link rel="next" href="data-sets-and-inputs.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +52,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -419,7 +423,7 @@ C_0 f_{IOM}[Mg \ C \ ha^{-1}]
 \tag{5.4}
 C_0 = \sum_{i=1}^{N} I_i (\gamma_{DPM_i}u_{DPM}+\gamma_{HUM_i}u_{HUM})+f_{IOM}C_0
 \end{equation}\]</span></p>
-<p>First, the fractions <span class="math inline">\(f_i\)</span> of the DPM, RPM, BIO and HUM pools at equilibrium are estimated following the set of equations described in in the supplementary material of Dechow et al., 2019 (link to supplementary material). The estimated fractions of each SOC pool at equilibrium will depend on:</p>
+<p>First, the fractions <span class="math inline">\(f_i\)</span> of the DPM, RPM, BIO and HUM pools at equilibrium are estimated following the set of equations described in in the supplementary material of Dechow et al., 2019 (<a href="https://www.fao.org/fileadmin/user_upload/GSP/GSOCseq/supplementary_material_analytical_spinup.pdf" class="uri">https://www.fao.org/fileadmin/user_upload/GSP/GSOCseq/supplementary_material_analytical_spinup.pdf</a>). The estimated fractions of each SOC pool at equilibrium will depend on:</p>
 <ul>
 <li>the decomposition rates constants (k) of the different carbon pools</li>
 <li>an average of the different modifying factors (temperature, soil moisture, vegetation factors)</li>
@@ -451,7 +455,7 @@ f_{HUM}=\frac{u_{HUM\ DPM}\gamma_{DPM} + u_{HUM \ RPM} \gamma_{RPM}+ u_{HUM}\gam
 \tag{5.9}
 f_{IOM}= \frac{IOM}{C_0}
 \end{equation}\]</span></p>
-<p>Where <span class="math inline">\(\gamma\)</span> are the partition coefficients of the incoming carbon inputs as explained in equation 5.3, and <span class="math inline">\(u\)</span> coefficients are the result of functions integrating model structure and parametrization of RothC, following the equations in the supplementary material of Dechow et el. (2019).
+<p>Where <span class="math inline">\(\gamma\)</span> are the partition coefficients of the incoming carbon inputs as explained in equation 5.3, and <span class="math inline">\(u\)</span> coefficients are the result of functions integrating model structure and parametrization of RothC, following the equations in the supplementary material of Dechow et el. (2019) (<a href="https://www.fao.org/fileadmin/user_upload/GSP/GSOCseq/supplementary_material_analytical_spinup.pdf" class="uri">https://www.fao.org/fileadmin/user_upload/GSP/GSOCseq/supplementary_material_analytical_spinup.pdf</a>).
 Once the fractions of the different pools are estimated, the amount of Carbon (tC ha<sup>-1</sup>) in each pool is estimated from the total and active (other than IOM) SOC stocks:</p>
 <p><span class="math display">\[\begin{equation}
 \tag{5.10}
@@ -495,6 +499,364 @@ The absolute SOC sequestration is estimated as the difference between the corres
 <p class="caption"><strong>Figure 5.1.</strong> <em>SOC stocks simulated in the different phases according to the proposed general modeling procedure.</em></p>
 </div>
 <p><strong>Table 5.1</strong> <em>Summary of the different modeling phases and data requirements.</em></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Variables
+</th>
+<th style="text-align:left;">
+Phase 1 Long spin up Equilibrium
+</th>
+<th style="text-align:left;">
+Phase 2 Short spin up
+</th>
+<th style="text-align:left;">
+Phase 3 Forward modeling
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Time span
+</td>
+<td style="text-align:left;">
+Minimum 500 years (using equilibrium runs procedure)
+</td>
+<td style="text-align:left;">
+20 years
+</td>
+<td style="text-align:left;">
+20 years
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Infinite (Analytical solution procedure)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Climatic inputs
+</td>
+<td style="text-align:left;">
+1980-2000 series monthly average:
+</td>
+<td style="text-align:left;">
+2001-2020 year to year monthly data:
+</td>
+<td style="text-align:left;">
+2001-2020 series monthly average:
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Rain, Temperature, Evaporation/
+</td>
+<td style="text-align:left;">
+Rain, Temperature, Evaporation/
+</td>
+<td style="text-align:left;">
+Rain, Temperature ,Evaporation/
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Evapotranspiration
+</td>
+<td style="text-align:left;">
+Evapotranspiration
+</td>
+<td style="text-align:left;">
+Evapotranspiration
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soil inputs
+</td>
+<td style="text-align:left;">
+Topsoil clay content
+</td>
+<td style="text-align:left;">
+Topsoil clay content
+</td>
+<td style="text-align:left;">
+Topsoil clay content
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Initial SOC stocks and pools
+</td>
+<td style="text-align:left;">
+Inert organic matter (IOM)  as determined by equation 5.2
+</td>
+<td style="text-align:left;">
+Inert organic matter (IOM  as determined by equation 5.2
+</td>
+<td style="text-align:left;">
+Inert organic matter (IOM)  as determined by equation 5.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+“= 0” for all other fractions (when using equilibrium runs)
+</td>
+<td style="text-align:left;">
+Other fractions equal to the  final SOC pools modeled in  phase 1
+</td>
+<td style="text-align:left;">
+Other fractions equal to the  final SOC pools modeled in  phase 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Carbon inputs
+</td>
+<td style="text-align:left;">
+First run : 1tC.ha-1
+</td>
+<td style="text-align:left;">
+NPP
+</td>
+<td style="text-align:left;">
+NPP year-to year
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Adjusted C inputs from equation 5.1 (using equilibrium runs)
+</td>
+<td style="text-align:left;">
+year-to year adjusted C inputs, from equation 7
+</td>
+<td style="text-align:left;">
+adjusted C inputs for the BAU, from equation 7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+From equation 5.12 (using analytical solution)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Estimated from % increase vs. 
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+BAU for SSM scenarios
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vegetation cover
+</td>
+<td style="text-align:left;">
+Monthly cover determined: by expert opinion, NDVI 2000-2020 or preferred spectral index (see section 3.3.4)
+</td>
+<td style="text-align:left;">
+Monthly cover determined: by expert opinion, NDVI 2000-2020 or preferred spectral index (see section 3.3.4)
+</td>
+<td style="text-align:left;">
+Monthly cover determined: by expert opinion, NDVI 2000-2020 or preferred spectral index (see section 3.3.4)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Land Use
+</td>
+<td style="text-align:left;">
+Representative land use of the 1980-2000 period (or layer for year 2000; or best available layer)
+</td>
+<td style="text-align:left;">
+Year to year Land use 2000-2020 (or representative land use of the period; or best available layer)
+</td>
+<td style="text-align:left;">
+Last available land use layer (e.g. 2015, 2018; 2020) (or best available layer)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Modeled Scenarios
+</td>
+<td style="text-align:left;">
+BAU
+</td>
+<td style="text-align:left;">
+BAU
+</td>
+<td style="text-align:left;">
+BAU
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+SSM Low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+SSM Medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+SSM High
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Expected Results
+</td>
+<td style="text-align:left;">
+C inputs at equilibrium
+</td>
+<td style="text-align:left;">
+Total SOC and SOC pools at year t=0 (2020)
+</td>
+<td style="text-align:left;">
+Total SOC and SOC pools at year t=+20 (2040) for the BAU, and SSMs scenarios
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Total          SOC and SOC pools at year t= -20 (2000)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Absolute and relative Total Sequestration (3 SSMs)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Absolute and relative Sequestration rates (3 SSMs)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
 <p>The different data sets required to run the RothC model for the different modeling phases are described in Chapter 6.</p>
 
 </div>

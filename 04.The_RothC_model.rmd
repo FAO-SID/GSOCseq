@@ -38,6 +38,8 @@ The model requires climatic, soil and management data that are relatively easy t
 **Table 4.1** *Roth-C model minimum data requirements*
 
 ```{r, echo = FALSE}
+library(kableExtra)
+library(dplyr)
 dt <- read.csv("tables/Table_4.1.csv", sep = ";")
 kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
 kable_styling("striped", full_width = F)

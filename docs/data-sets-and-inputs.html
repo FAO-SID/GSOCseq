@@ -32,7 +32,7 @@
   
 <link rel="prev" href="modeling-approach-for-the-gsocseq.html"/>
 <link rel="next" href="software-environment.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +52,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -414,6 +418,166 @@ Average clay contents over a 0-30 cm depth interval can be derived by taking a w
 The ESA (European Space Agency) land cover Global dataset (See Table 6.2), and its reclassification into FAO Global Land Cover - SHARE (GLC-SHARE; See Table 6.2) classes will be provided by the GSP Secretariat, if no national land use dataset is available. However, users should estimate land use from the source that best reflects national and subnational conditions. Other global and regional data sets are provided in Table 6.2 at the end of this Chapter.
 The land cover classes will affect the decomposability of the incoming plant material (DPM/RPM ratio; See Section 6.6). A spatialized R-version of RothC is provided by the GSP Secretariat (See Chapter 7, software environment) and runs considering the 13 classes defined in the FAO Global Land Cover - SHARE (GLC-SHARE). A default DPM/RPM value is assigned to each class (Table 6.1). Thus, when using this spatialized R-version of RothC without modifying its scripts, the land use classes from the possible different data sets need to be re-classified into FAO Global Land Cover - SHARE (GLC-SHARE) land use classes. However, users can model alternative land use classes, and modify these default DPM/RPM values. If so, modifications in the R-version must be then introduced (See Chapter 7). Examples of land cover reclassification from the ESA land cover database into the RothC land use categories are presented (Table 6.4) at the end of this Chapter.</p>
 <p><strong>Table 6.1</strong> <em>FAO Land cover classes, land cover number and default DPM/RPM ratios. An extra land use class (*Tree-crops) is shown as an example of the disaggregation of a land use class.</em></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+FAO Land aggregated cover class
+</th>
+<th style="text-align:right;">
+Land Cover code number
+</th>
+<th style="text-align:left;">
+Default DPM RPM ratio
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Artificial surfaces
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+/
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cropland
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+1.44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Grassland
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+0.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree covered
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shrub covered
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+0.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Herbaceous vegetation
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+0.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mangroves
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+/
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Spare vegetation
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+0.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bare soil
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+/
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Snow and Glaciers
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+/
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Water bodies
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+/
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cropland-Tree crops*
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+1.44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Paddy fields
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+1.44
+</td>
+</tr>
+</tbody>
+</table>
 <p>As a minimum, land use for the year 2000 and land use for the year 2020 (or last available year) at 1x1 km resolution shall be defined. The predominant land use category in each cell of the 1x1 km grid shall be selected if finer resolutions are available.</p>
 </div>
 <div id="monthly-vegetation-cover" class="section level2" number="6.4">
@@ -523,8 +687,981 @@ SSM_{Ct} t C ha^-1 yr^-1 = BAU_{Ct} + \% \Delta CSSM_i - BAU \times  BAU_{Ct}
 <h2><span class="header-section-number">6.7</span> Required data sets and global data sources. Summary</h2>
 <p>The required data sets described in this chapter are summarized in Table 6.2. The proposed regional and global data sources to obtain the required input data when no quality national or regional data is available are described in Table 6.3.</p>
 <strong>Table 6.2</strong> <em>Summary of the input data requirements for the proposed modeling approach to generate national SOCseq maps</em>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Data
+</th>
+<th style="text-align:left;">
+Variables
+</th>
+<th style="text-align:left;">
+Time series
+</th>
+<th style="text-align:left;">
+Units
+</th>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:left;">
+Resolution
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Climatic data
+</td>
+<td style="text-align:left;">
+Monthly air temperature
+</td>
+<td style="text-align:left;">
+1980-2000; 2001-2020
+</td>
+<td style="text-align:left;">
+°C
+</td>
+<td style="text-align:left;">
+Raster
+</td>
+<td style="text-align:left;">
+50 x 50 km or finer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+(or until last year available)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Monthly evapotranspiration/pan evaporation
+</td>
+<td style="text-align:left;">
+1980-2000; 2001-2020
+</td>
+<td style="text-align:left;">
+mm
+</td>
+<td style="text-align:left;">
+Raster
+</td>
+<td style="text-align:left;">
+50 x 50 km or finer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+(or until last year available)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Monthly precipitation + irrigation
+</td>
+<td style="text-align:left;">
+1980-2000; 2001-2020
+</td>
+<td style="text-align:left;">
+mm
+</td>
+<td style="text-align:left;">
+Raster
+</td>
+<td style="text-align:left;">
+50 x 50 km or finer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+(or until last year available)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soil data
+</td>
+<td style="text-align:left;">
+Topsoil clay content (0-30 cm)
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+%
+</td>
+<td style="text-align:left;">
+Raster
+</td>
+<td style="text-align:left;">
+1 x 1 km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Current Soil organic carbon stocks (0-30 cm)
+</td>
+<td style="text-align:left;">
+Latest version of national FAO-GSOC map
+</td>
+<td style="text-align:left;">
+tC ha-1
+</td>
+<td style="text-align:left;">
+Raster
+</td>
+<td style="text-align:left;">
+1 x 1 km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Land use/cover
+</td>
+<td style="text-align:left;">
+Predominant land use/cover, re-classified into:
+</td>
+<td style="text-align:left;">
+Minimum: 2000 and 2020 (or last year available)
+</td>
+<td style="text-align:left;">
+01-mar
+</td>
+<td style="text-align:left;">
+Raster
+</td>
+<td style="text-align:left;">
+1 x 1 km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Minimum: 3 default classes required by model: agricultural crops, grassland/shrubland/savannas and forestry
+</td>
+<td style="text-align:left;">
+Optimum: annual land use 2000 to 2020
+</td>
+<td style="text-align:left;">
+01-nov
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Optimum: 13 classes defined in the FAO Global Land Cover - SHARE (GLC-SHARE)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Monthly vegetation cover.
+</td>
+<td style="text-align:left;">
+Minimum: average 2000- 2020 (or last year available) Optimum: annual land use 2000 to 2020
+</td>
+<td style="text-align:left;">
+0-1
+</td>
+<td style="text-align:left;">
+Raster
+</td>
+<td style="text-align:left;">
+1 x 1 km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Obtained from national statistics/local expert knowledge; or derived from NDVI or spectral indexes (see section 3.3.4)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
 <p><strong>Table 6.3</strong> <em>Global and regional data sources to generate national SOCseq maps</em></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:left;">
+Address
+</th>
+<th style="text-align:left;">
+Resolution
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Climatic monthly data
+</td>
+<td style="text-align:left;">
+CRU – Climate Research Unit , University of East Anglia
+</td>
+<td style="text-align:left;">
+<a href="https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.03/cruts.1905011326.v4.03/" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.03/cruts.1905011326.v4.03/</a>
+</td>
+<td style="text-align:left;">
+4 km x 4 km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TerraClimate
+</td>
+<td style="text-align:left;">
+<a href="https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE" class="uri">https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE</a>
+</td>
+<td style="text-align:left;">
+51 km x 50 km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SOC stocks 0-30 cm
+</td>
+<td style="text-align:left;">
+GSOCmap - FAO-ITPS
+</td>
+<td style="text-align:left;">
+<a href="http://54.229.242.119/GSOCmap/" class="uri">http://54.229.242.119/GSOCmap/</a>
+</td>
+<td style="text-align:left;">
+1 x 1 km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soil Texture
+</td>
+<td style="text-align:left;">
+Harmonized World Soil Database v1.2
+</td>
+<td style="text-align:left;">
+<a href="http://www.fao.org/soils-portal/" class="uri">http://www.fao.org/soils-portal/</a>
+</td>
+<td style="text-align:left;">
+1 km (30 arc seconds by 30 arc seconds)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soil Texture
+</td>
+<td style="text-align:left;">
+OpenGeoHub Foundation - OpenLandMap
+</td>
+<td style="text-align:left;">
+<a href="https://doi.org/10.5281/zenodo.1476854" class="uri">https://doi.org/10.5281/zenodo.1476854</a>
+</td>
+<td style="text-align:left;">
+250m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soil texture, including uncertainties
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<a href="http://soilgrids.isric.org" class="uri">http://soilgrids.isric.org</a>
+</td>
+<td style="text-align:left;">
+250 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Soil Grids -ISRIC
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NDVI- Historic images (2001-2020) every 16 days
+</td>
+<td style="text-align:left;">
+MODIS - MOD13A2 datasets
+</td>
+<td style="text-align:left;">
+<a href="https://lpdaac.usgs.gov/products/mod13a2v006/" class="uri">https://lpdaac.usgs.gov/products/mod13a2v006/</a>
+</td>
+<td style="text-align:left;">
+1 x 1km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Land Cover
+</td>
+<td style="text-align:left;">
+MODIS
+</td>
+<td style="text-align:left;">
+<a href="https://modis.gsfc.nasa.gov/data/dataprod/mod12.php" class="uri">https://modis.gsfc.nasa.gov/data/dataprod/mod12.php</a>
+</td>
+<td style="text-align:left;">
+500 x 500m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Land Cover Dynamics MCD12Q2
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1 x 1 km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Land Cover
+</td>
+<td style="text-align:left;">
+European Space Agency (ESA) Climate Change Initiative (CCI)- Copernicus Climate Change Service (C3S)
+</td>
+<td style="text-align:left;">
+<a href="https://www.esa-landcover-cci.org/" class="uri">https://www.esa-landcover-cci.org/</a>
+</td>
+<td style="text-align:left;">
+300 x 300m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Land Cover – Land Use
+</td>
+<td style="text-align:left;">
+FAO. Global Land Cover SHARE
+</td>
+<td style="text-align:left;">
+<a href="http://www.fao.org/land-water/land/land-governance/land-resources-planning-toolbox/category/details/en/c/1036355/" class="uri">http://www.fao.org/land-water/land/land-governance/land-resources-planning-toolbox/category/details/en/c/1036355/</a>
+</td>
+<td style="text-align:left;">
+~1 x 1km
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Land Cover
+</td>
+<td style="text-align:left;">
+USGS Global Land Survey
+</td>
+<td style="text-align:left;">
+<a href="https://lta.cr.usgs.gov/GLS" class="uri">https://lta.cr.usgs.gov/GLS</a>
+</td>
+<td style="text-align:left;">
+30 x 30m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Land Cover
+</td>
+<td style="text-align:left;">
+CORINE land cover (Europe only)
+</td>
+<td style="text-align:left;">
+<a href="https://land.copernicus.eu/pan-european/corine-land-cover" class="uri">https://land.copernicus.eu/pan-european/corine-land-cover</a>
+</td>
+<td style="text-align:left;">
+100 x 100 m
+</td>
+</tr>
+</tbody>
+</table>
 <strong>Table 6.4</strong> <em>Land cover aggregation schemes into RothC land use classes. Example from ESA</em>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+ESA Land Cover Class
+</th>
+<th style="text-align:right;">
+ESA class Number
+</th>
+<th style="text-align:left;">
+RothC Land Use type
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Cropland rainfed
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Agricultural crops/improved grassland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cropland rainfed herbaceous cover
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+Agricultural crops/improved grassland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mosaic Cropland &gt; 50%
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+Agricultural crops/improved grassland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cropland - Tree/shrub cover
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cropland irrigated flooding
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+Waterlogged soils
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Grasslands
+</td>
+<td style="text-align:right;">
+130
+</td>
+<td style="text-align:left;">
+-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mosaic Natural vegetation herbaceous &gt; 50% /cropland
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub (including Savanna)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mosaic herbaceous cover &gt;50%/trees-shrubs
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+Agricultural crops/improved grassland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shrubland
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shrubland evergreen
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shrubland deciduous
+</td>
+<td style="text-align:right;">
+122
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover broadleaved deciduous open 15-40%
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved deciduous open 15-40%
+</td>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover broadleaved evergreen closed to open &gt;15%
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+Unimproved grassland and scrub/ Savanna
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover broadleaved deciduous closed to open &gt;15%
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover broadleaved deciduous closed &gt;40%
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved evergreen closed to open &gt;15%
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved evergreen closed &gt;40%
+</td>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved evergreen open &gt;40%
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved deciduous closed to open &gt;15%
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover needle leaved deciduous closed &gt;40%
+</td>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover mixed leave type
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mosaic tree-shrub &gt;50%/herbaceous cover
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shrub or herbaceous flooded fresh/saline/brackish water
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:left;">
+Forest/Deciduous/tropical woodland
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover flooded fresh or brackish water
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:left;">
+Waterlogged
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tree cover flooded saline water
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:left;">
+-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Urban areas
+</td>
+<td style="text-align:right;">
+190
+</td>
+<td style="text-align:left;">
+-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lichens and mosses
+</td>
+<td style="text-align:right;">
+140
+</td>
+<td style="text-align:left;">
+-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bare areas
+</td>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sparse vegetation tree-shrub-herbaceous (&lt;15%)
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sparse tree (&lt;15%)
+</td>
+<td style="text-align:right;">
+151
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sparse Shrub (&lt;15%)
+</td>
+<td style="text-align:right;">
+152
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sparse herbaceous (&lt;15%)
+</td>
+<td style="text-align:right;">
+153
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Consolidated bare areas
+</td>
+<td style="text-align:right;">
+201
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unconsolidated bare areas
+</td>
+<td style="text-align:right;">
+202
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Permanent snow/ice
+</td>
+<td style="text-align:right;">
+220
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Water bodies
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No data
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Others - No data-9999
+</td>
+</tr>
+</tbody>
+</table>
 <p><em>cover classes= “-9999” denotes areas to be excluded without local adaptations in the RothC model.</em></p>
 
 </div>

@@ -159,6 +159,8 @@ The different modeling phases and their data requirements are summarized in in F
 **Table 5.1** *Summary of the different modeling phases and data requirements.*
 
 ```{r, echo = FALSE}
+library(kableExtra)
+library(dplyr)
 
 dt <- read.csv("tables/Table_5.1.csv", sep = ",")
 kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%

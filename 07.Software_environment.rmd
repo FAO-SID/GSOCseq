@@ -64,6 +64,8 @@ Alternatively, the code for the installation of the needed packages is included 
 **Table 7.1** *Required R-packages for the national SOC sequestration potential maps using an R-environment*
 
 ```{r,echo=FALSE}
+library(kableExtra)
+library(dplyr)
 dt <- read.csv("tables/Table_7.1.csv", sep = ";",fileEncoding = 'UTF-8-BOM')
 kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
 kable_styling("striped", full_width = F)

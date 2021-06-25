@@ -32,7 +32,7 @@
   
 <link rel="prev" href="software-environment.html"/>
 <link rel="next" href="stage-1-preparation-of-input-data.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +52,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -391,6 +395,180 @@ Finally, we will create target points over the land use classes of interest (agr
 <h2><span class="header-section-number">8.4</span> Stage 3: generation of the map</h2>
 <p>After the “forward” modeling phase, in the final step we will calculate the average absolute and relative SOC sequestration rates over a 20-years period for each scenario and for each target point. The vector target points will be then rasterized and saved to geotiff format to obtain the final product, using a specific R script. All the provided scripts are summarized in Table 8.1.</p>
 <p><strong>Table 8.1</strong> <em>Summary of the scripts for the complete modelling process</em></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Type of Layer
+</th>
+<th style="text-align:left;">
+Script
+</th>
+<th style="text-align:left;">
+Objective
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+SOC layer
+</td>
+<td style="text-align:left;">
+R- Script number 0
+</td>
+<td style="text-align:left;">
+Cut the SOC layer by the area of interest polygon
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Climate layers
+</td>
+<td style="text-align:left;">
+R- Script number 1
+R- Script number 2
+R- Script number 3
+</td>
+<td style="text-align:left;">
+Rearrangement of climate layers (CRU layers from .ncd to .tif)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPP layers
+</td>
+<td style="text-align:left;">
+R- Script number 5
+</td>
+<td style="text-align:left;">
+Creation of NPP layers
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vegetation Cover (VC)
+</td>
+<td style="text-align:left;">
+GEE Script number (Google Earth Engine)
+R- Script number 7
+</td>
+<td style="text-align:left;">
+Creation of VC layers
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Clay layers
+</td>
+<td style="text-align:left;">
+R-Script number 8
+</td>
+<td style="text-align:left;">
+Obtaining clay contents 0-30 cm from different depths (ISRIC)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Land Use layer
+</td>
+<td style="text-align:left;">
+R-Script number 9
+</td>
+<td style="text-align:left;">
+Re-classification into FAO land cover classes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+STACK for SPIN UP
+</td>
+<td style="text-align:left;">
+R-Script number 10
+</td>
+<td style="text-align:left;">
+Stack input data layers for the spin up phase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+STACK for WARM UP
+</td>
+<td style="text-align:left;">
+R-Script number 11
+</td>
+<td style="text-align:left;">
+Stack input data layers for the warm up phase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+STACK for FORWARD
+</td>
+<td style="text-align:left;">
+R-Script number 12
+</td>
+<td style="text-align:left;">
+Stack input data layers for the forward phase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Target points
+</td>
+<td style="text-align:left;">
+QGis model script
+</td>
+<td style="text-align:left;">
+Creation of target points
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SPIN UP
+</td>
+<td style="text-align:left;">
+R- Script number 13
+</td>
+<td style="text-align:left;">
+Run long spin up phase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WARM UP
+</td>
+<td style="text-align:left;">
+R- Script number 14
+</td>
+<td style="text-align:left;">
+Run warm up phase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FORWARD
+</td>
+<td style="text-align:left;">
+R- Script number 15
+</td>
+<td style="text-align:left;">
+Run forward phase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+POINTS TO RASTER
+</td>
+<td style="text-align:left;">
+R- Script number 16
+</td>
+<td style="text-align:left;">
+Rasterize points
+</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>

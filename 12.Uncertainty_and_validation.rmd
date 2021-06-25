@@ -61,6 +61,8 @@ where $SOC_{max}$ corresponds to the upper limit of simulated the SOC stocks (in
 **Table 12.1** *General uncertainties of main parameters affecting SOC dynamics. Derived from Gottschalk et al. (2007) and Hastings et al. (2010).*
 
 ```{r,echo=FALSE}
+library(kableExtra)
+library(dplyr)
 dt <- read.csv("tables/Table_12.1.csv", sep = ";")
 kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
 kable_styling("striped", full_width = F)

@@ -67,6 +67,8 @@ The land cover classes will affect the decomposability of the incoming plant mat
 **Table 6.1** *FAO Land cover classes, land cover number and default DPM/RPM ratios. An extra land use class (&#42;Tree-crops) is shown as an example of the disaggregation of a land use class.*
 
 ```{r, echo = FALSE}
+library(kableExtra)
+library(dplyr)
 dt <- read.csv("tables/Table_6.1.csv", sep = ";")
 kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
 kable_styling("striped", full_width = F)
@@ -202,6 +204,8 @@ The required data sets described in this chapter are summarized in Table 6.2. Th
 
 **Table 6.2** *Summary of the input data requirements for the proposed modeling approach to generate national SOCseq maps*
 ```{r, echo = FALSE}
+library(kableExtra)
+library(dplyr)
 dt <- read.csv("tables/Table_6.2.csv", sep = ";")
 kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
 kable_styling("striped", full_width = F)
@@ -210,6 +214,8 @@ kable_styling("striped", full_width = F)
 **Table 6.3** *Global and regional data sources to generate national SOCseq maps*
 
 ```{r, echo = FALSE}
+library(kableExtra)
+library(dplyr)
 dt <- read.csv("tables/Table_6.3.csv", sep = ";", fileEncoding = 'UTF-8-BOM')
 kable(dt, col.names = gsub("[.]", " ", names(dt)))  %>%
 kable_styling("striped", full_width = F)
@@ -217,6 +223,8 @@ kable_styling("striped", full_width = F)
 
 **Table 6.4** *Land cover aggregation schemes into RothC land use classes. Example from ESA*
 ```{r, echo = FALSE}
+library(kableExtra)
+library(dplyr)
 dt <- read.csv("tables/Table_6.4.csv", sep = ";")
 kable(dt, col.names = gsub("[.]", " ", names(dt)))  %>%
 kable_styling("striped", full_width = F)

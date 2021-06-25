@@ -32,7 +32,7 @@
   
 <link rel="prev" href="data-sets-and-inputs.html"/>
 <link rel="next" href="running-the-scripts-overview.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +52,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -417,6 +421,111 @@ Users are required to download the following open source software:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="software-environment.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Install.packages</span>(<span class="st">&quot;name_of_the_package&quot;</span>)</span></code></pre></div>
 <p>Alternatively, the code for the installation of the needed packages is included at the beginning of each Chapter.</p>
 <p><strong>Table 7.1</strong> <em>Required R-packages for the national SOC sequestration potential maps using an R-environment</em></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Protocol application area
+</th>
+<th style="text-align:left;">
+R package
+</th>
+<th style="text-align:left;">
+Reference
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Import and export raster data
+</td>
+<td style="text-align:left;">
+raster
+</td>
+<td style="text-align:left;">
+Hijmans et col. (2020)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Import and export raster data
+</td>
+<td style="text-align:left;">
+ncdf4
+</td>
+<td style="text-align:left;">
+David Pierce (2019)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Import and export vector data
+</td>
+<td style="text-align:left;">
+rgdal
+</td>
+<td style="text-align:left;">
+Bivand et col (2019)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Harmonization
+</td>
+<td style="text-align:left;">
+raster
+</td>
+<td style="text-align:left;">
+Hijmans et col. (2020)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Harmonization
+</td>
+<td style="text-align:left;">
+rgdal
+</td>
+<td style="text-align:left;">
+Bivand et col (2019)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RothC model
+</td>
+<td style="text-align:left;">
+SoilR
+</td>
+<td style="text-align:left;">
+Sierra and Mueller (2014)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Data manipulation
+</td>
+<td style="text-align:left;">
+abind
+</td>
+<td style="text-align:left;">
+Plate (2016)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RothC model, NPP MIAMI model
+</td>
+<td style="text-align:left;">
+soilassessment
+</td>
+<td style="text-align:left;">
+Omuto (2020)
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="considerations-when-using-r" class="section level2" number="7.3">

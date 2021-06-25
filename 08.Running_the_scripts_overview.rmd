@@ -36,6 +36,8 @@ After the "forward" modeling phase, in the final step we will calculate the aver
 **Table 8.1** *Summary of the scripts for the complete modelling process*
 
 ```{r,echo=FALSE}
+library(kableExtra)
+library(dplyr)
 dt <- read.csv("tables/Table_8.1.csv", sep = ";")
 kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
 kable_styling("striped", full_width = F)

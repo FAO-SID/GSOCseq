@@ -32,7 +32,7 @@
   
 <link rel="prev" href="stage-3-map-generation.html"/>
 <link rel="next" href="data-sharing.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +52,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -398,6 +402,96 @@ U \%=\frac{100 \times (SOC_{max} - SOC_{min})}{2 \times SOC}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(SOC_{max}\)</span> corresponds to the upper limit of simulated the SOC stocks (in tC ha<sup>-1</sup>) at the end of the forward modelling phase using the combination of inputs in equation 12.3, <span class="math inline">\(SOC_{min}\)</span> corresponds to the lower limit of the simulated SOC stocks ( in tC ha<sup>-1</sup>) at the end of the forward modelling phase using the combination of inputs in equation 12.4; and SOC the average simulated SOC stocks (tC ha<sup>-1</sup>), for each scenario, after 20 years of the forward modeling phase. Uncertainties for the absolute and relative sequestration rates can be then estimated using equation 12.2, for each scenario.</p>
 <p><strong>Table 12.1</strong> <em>General uncertainties of main parameters affecting SOC dynamics. Derived from Gottschalk et al. (2007) and Hastings et al. (2010).</em></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Parameter
+</th>
+<th style="text-align:left;">
+Uncertainty in the input
+</th>
+<th style="text-align:left;">
+Minimum value
+</th>
+<th style="text-align:left;">
+Maximum value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Temperature
+</td>
+<td style="text-align:left;">
+± 2 %
+</td>
+<td style="text-align:left;">
+Monthly Temp * 0.98
+</td>
+<td style="text-align:left;">
+Monthly Temp * 1.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Precipitation
+</td>
+<td style="text-align:left;">
+± 5 %
+</td>
+<td style="text-align:left;">
+Monthly PP * 0.95
+</td>
+<td style="text-align:left;">
+Monthly PP * 1.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Clay content
+</td>
+<td style="text-align:left;">
+± 10 %
+</td>
+<td style="text-align:left;">
+Clay * 0.90
+</td>
+<td style="text-align:left;">
+Clay * 1.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FAO SOC
+</td>
+<td style="text-align:left;">
+± 20 %
+</td>
+<td style="text-align:left;">
+SOC FAO *0.8
+</td>
+<td style="text-align:left;">
+SOC FAO * 1.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C input increase in SSM scenario
+</td>
+<td style="text-align:left;">
+± 15 %
+</td>
+<td style="text-align:left;">
+C eq * (SSM1 % increase - 15%)
+</td>
+<td style="text-align:left;">
+C eq * (SSM % increase + 15%)
+</td>
+</tr>
+</tbody>
+</table>
 <p>The model should be validated for the conditions in which it will be applied when possible. The use of models for prediction involves a series of problems for validation, as data required to quantify the accuracy of the estimates do not yet exist. Nonetheless, predictive models can be validated if they explain past events (ex-post validation). If local results from different SSM practices on SOC stocks are available (a meta-analysis of local SSM practices can be conducted), and the collected activity data allow to perform simulations with these records, model-produced estimates shall be compared with the observed results. The RMSE shall be used to compare the divergence between model estimates and field observations. The RMSE can be expressed as:</p>
 <p><span class="math display">\[\begin{equation}
 \tag{12.8}

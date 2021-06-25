@@ -21,6 +21,7 @@ always_allow_html: yes
 ```{r set-options, echo=FALSE, cache=FALSE}
 options(width = 65,kableExtra.latex.load_packages = FALSE)
 library(kableExtra)
+library(dplyr)
 ## redefine str for the width option
 str <- function(...){
   utils::str(..., strict.width = "cut")}
@@ -38,6 +39,7 @@ knitr::opts_chunk$set(cache=T)
 \addtocontents{lot}{\protect\hypersetup{hidelinks}}
 \addtocontents{lof}{\protect\hypersetup{hidelinks}}
 \mainmatter
+
 
 
 # List of contributors{-}
