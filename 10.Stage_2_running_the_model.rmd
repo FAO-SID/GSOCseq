@@ -1012,11 +1012,28 @@ Stack_Set_warmup<- stack("INPUTS/STACK/Stack_Set_WARM_UP_AOI.tif")
 # Open Result from SPIN UP PROCESS. A vector with 5 columns , one for each pool
 Spin_up<-readOGR("OUTPUTS/1_SPIN_UP/SPIN_UP_County_AOI.shp")
 Spin_up<-as.data.frame(Spin_up)
+
+Spin_up<-as.data.frame(Spin_up)
+
 # Open Precipitation , temperature, and EVapotranspiration file 20 anios x 12 = 240 layers x 3
-PREC<-stack("INPUTS/CRU_LAYERS/Prec_Stack_216_01-18_CRU.tif")
-TEMP<-stack("INPUTS/CRU_LAYERS/Temp_Stack_216_01-18_CRU.tif")
-PET<-stack("INPUTS/CRU_LAYERS/PET_Stack_216_01-18_CRU.tif")
+# 216 layer stack
+# CRU LAYERS
+#PREC<-stack("INPUTS/CRU_LAYERS/Prec_Stack_216_01-18_CRU.tif")
+#TEMP<-stack("INPUTS/CRU_LAYERS/Temp_Stack_216_01-18_CRU.tif")
+#PET<-stack("INPUTS/CRU_LAYERS/PET_Stack_216_01-18_CRU.tif")
+
+# TERRA CLIMATE LAYERS
+PREC<-stack("INPUTS/TERRA_CLIME/Precipitation_2001-2021_Pergamino.tif")
+TEMP<-stack("INPUTS/TERRA_CLIME/AverageTemperature_2001-2021_Pergamino.tif")*0.1
+PET<-stack("INPUTS/TERRA_CLIME/PET_2001-2021_Pergamino.tif")*0.1
+
+#Also check that the number of layers of DR and Land use are the same as the years of climate data. 
+
+
 #Open Mean NPP MIAMI 1981 - 2000
+
+
+
 NPP<-raster("INPUTS/NPP/NPP_MIAMI_MEAN_81-00_AOI.tif")
 NPP_MEAN_MIN<-raster("INPUTS/NPP/NPP_MIAMI_MEAN_81-00_AOI_MIN.tif")
 NPP_MEAN_MAX<-raster("INPUTS/NPP/NPP_MIAMI_MEAN_81-00_AOI_MAX.tif")
@@ -1370,13 +1387,21 @@ Spin_up<-readOGR("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/OUTPUTS/1_SPIN_U
 Spin_up<-as.data.frame(Spin_up)
 
 # Open Precipitation , temperature, and EVapotranspiration file 20 anios x 12 = 240 layers x 3
+# 216 layer stack
+# CRU LAYERS
+#PREC<-stack("INPUTS/CRU_LAYERS/Prec_Stack_216_01-18_CRU.tif")
+#TEMP<-stack("INPUTS/CRU_LAYERS/Temp_Stack_216_01-18_CRU.tif")
+#PET<-stack("INPUTS/CRU_LAYERS/PET_Stack_216_01-18_CRU.tif")
 
-PREC<-stack("INPUTS/CRU_LAYERS/Prec_Stack_216_01-18_CRU.tif")
-TEMP<-stack("INPUTS/CRU_LAYERS/Temp_Stack_216_01-18_CRU.tif")
-PET<-stack("INPUTS/CRU_LAYERS/PET_Stack_216_01-18_CRU.tif")
+# TERRA CLIMATE LAYERS
+PREC<-stack("INPUTS/TERRA_CLIME/Precipitation_2001-2021_Pergamino.tif")
+TEMP<-stack("INPUTS/TERRA_CLIME/AverageTemperature_2001-2021_Pergamino.tif")*0.1
+PET<-stack("INPUTS/TERRA_CLIME/PET_2001-2021_Pergamino.tif")*0.1
+
+#Also check that the number of layers of DR and Land use are the same as the years of climate data. 
+
 
 #Open Mean NPP MIAMI 1981 - 2000
-
 NPP<-raster("INPUTS/NPP/NPP_MIAMI_MEAN_81-00_AOI.tif")
 
 NPP_MEAN_MIN<-raster("INPUTS/NPP/NPP_MIAMI_MEAN_81-00_AOI_MIN.tif")
