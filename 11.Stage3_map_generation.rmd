@@ -6,10 +6,21 @@ Once the model is run through the three proposed phases, we have all the informa
 We will use script number 16 to transform the output vector from script number 15 to raster layers. The inputs for this script are the output vector from script 15, the FAO SOC layer and the country boundary polygon.  The outputs of the script number 16 are the SOC stocks for the future scenarios (20 years): BAU, low, medium and high carbon inputs, three relative sequestration rates (SOC stock SSM scenario - BAU scenario)/20 , and four absolute sequestration rates: (SOC stock SSM or BAU scenario -  SOC stocks 2018/20)/20.
  
  
- 
-**Table 11.1** *Script Number 16. Target Points to Rasters Products. Inputs and Outputs*
- 
-![](tables/Table_11.1.png)
+**Table 11.1** *Script number 16. Target points to raster products. Inputs and outputs.*
+* **Input:**
+  * COUNTRY-POLYGON.shp (ROI)
+  * FORWARD_BAU_3E_20YEARS_[code_country].shp (from script number 15)
+  * Layer:
+    * SOC_MAP_[country_code].tif (from script number 10)
+* **Output:**
+  * 3 raster scenarios (low, medium, and high)
+  * 1 raster BAU (business as usual)
+  * 4 absolute rates (scenario - 2018 SOC)/20
+  * 3 absolute differences (Scenario - 2018SOC)
+  * 3 relative rates (scenario - BAU)
+  * 3 relative differences (scenario -BAU)
+  * Uncertainties maps (BAU, SSM, SOC2018, UNC for absolute and relative rates)
+
 
 We will open the script "Points_to_Raster.R" and load the required packages; then set the directories of the required files: Forward outputs, SOC, AOI, and the outputs maps folder. 
 ```{r, eval = FALSE}
@@ -17,10 +28,14 @@ We will open the script "Points_to_Raster.R" and load the required packages; the
 rm(list=ls()) 
 library(raster)
 library(rgdal)
-WD_F<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/OUTPUTS/3_FOWARD")
-WD_SOC<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/INPUTS/SOC_MAP")
-WD_AOI<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/INPUTS/AOI_POLYGON")
-WD_MAPS<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/OUTPUTS/4_MAPS")
+WD_F<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/
+       OUTPUTS/3_FOWARD")
+WD_SOC<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/
+         INPUTS/SOC_MAP")
+WD_AOI<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/
+         INPUTS/AOI_POLYGON")
+WD_MAPS<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_28-09-2020/
+          OUTPUTS/4_MAPS")
 ```
 
 

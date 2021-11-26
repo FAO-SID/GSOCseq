@@ -3,7 +3,7 @@
 ## Coastal and small countries not fully covered by the CRU layers{-}  
 Due to the coarse resolution of the CRU layers a lot of points close to the country boarders can be lost (Figure 15.1).
 
-![Figure 15.1 Points outside of a given CRU layer for Panama.](images/Figure_9.7.png)
+![Points outside of a given CRU layer for Panama.](images/Figure_9.7.png)
 
 To overcome this, we provided two options: 
 
@@ -35,8 +35,10 @@ library(raster)
 library(rgdal)
 
 #Define paths to the single folder locations
-WD_AOI<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/AOI_POLYGON")
-WD_CRU<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/CRU_LAYERS")
+WD_AOI<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/AOI_POLYGON")
+WD_CRU<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/CRU_LAYERS")
 
 #Load any of the CRU tif layers created with script N. 1
 setwd(WD_CRU)
@@ -68,20 +70,20 @@ writeRaster(CRU, "CRU_AOI_QGIS.tif" )
 *   Go to.. Raster/Conversion/Polygonize (Raster to Vector)
 *   Select CRU layer as input and click on Run (Figure 15.2)
 
-![Figure 15.2 Raster to Vector](images/Figure_11.png)
+![Raster to Vector](images/Figure_11.png)
 
 ### Step 4 Select points outside of the polygon{-} 
 
 *   Type: "select by location" in the processing toolbox search bar and open the Select by Location tool
 *   Select the Points as input and click on the disjoint check box and click on Run (Figure 15.3)
 
-![Figure 15.3 Select points outside a polygon](images/Figure_12.png) 
+![Select points outside a polygon](images/Figure_12.png) 
 
 ### Step 5 Export the extracted points{-}
 
 *   Right click on the newly created layer. Got to Export/Save Features As "AOI_Empty_points_borders" (Figure 15.3)
 
-![Figure 15.3 Export the extracted points](images/Figure_13.png) 
+![Export the extracted points](images/Figure_13.png) 
 
 
 ### Step 6 Run the Spin up phase for points outside the CRU layer (Script 13B){-}
@@ -101,7 +103,8 @@ Scripts 13B, 14B and 15B are modified versions of script 13 (Spin up phase), 14 
 ###################################
 # SOilR from Sierra, C.A., M. Mueller, S.E. Trumbore (2012). 
 #Models of soil organic matter decomposition: the SoilR package, version 1.0 Geoscientific Model Development, 5(4), 
-#1045--1060. URL http://www.geosci-model-dev.net/5/1045/2012/gmd-5-1045-2012.html.
+#1045--1060. 
+# URL http://www.geosci-model-dev.net/5/1045/2012/gmd-5-1045-2012.html.
 #####################################
 
 rm(list=ls()) 
@@ -119,7 +122,8 @@ WD_FOLDER<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020")
 # Vector must be an empty points vector. 
 
 setwd(WD_FOLDER)
-Vector<-readOGR("INPUTS/TARGET_POINTS/AOI_Empty_points_borders.shp")
+Vector<-readOGR("INPUTS/TARGET_POINTS/
+                AOI_Empty_points_borders.shp")
 
 # Stack_Set_1 is a stack that contains the spatial variables 
 
@@ -137,7 +141,8 @@ C_INPUT_EQ<-Vector
 
 # use this only for backup
 
-# C_INPUT_EQ<-readOGR("OUTPUTS/1_SPIN_UP/SPIN_UP_BSAS_27-03-2020_332376.shp")
+# C_INPUT_EQ<-readOGR("OUTPUTS/1_SPIN_UP/
+  # SPIN_UP_BSAS_27-03-2020_332376.shp")
 
 # extract variables to points
 
@@ -251,12 +256,13 @@ if (any(is.na(Evp[,2])) | any(is.na(Temp[,2])) | any(is.na(SOC_im[i])) | any(is.
 
 # Set the variables from the images
 
-soil.thick=30  #Soil thickness (organic layer topsoil), in cm
-SOC<-SOC_im[i]      #Soil organic carbon in Mg/ha 
+soil.thick=30 #Soil thickness (org. layer topsoil, cm)
+SOC<-SOC_im[i]     #Soil organic carbon in Mg/ha 
 clay<-clay_im[i]        #Percent clay %
 
-DR<-DR_im[i]              # DPM/RPM (decomplosable vs resistant plant material.)
-bare1<-(Cov1>0.8)           # If the surface is bare or vegetated
+DR<-DR_im[i]  # DPM/RPM (decomposable vs 
+    # resistant plant material.)
+bare1<-(Cov1>0.8)     # If surface is bare or vegetated
 LU<-LU_im[i]
 
 #IOM using Falloon method
@@ -517,7 +523,8 @@ colnames(C_INPUT_EQ@data)[23]="IOM_max"
 
 # SAVE the Points (shapefile)
 
-setwd("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/OUTPUTS/1_SPIN_UP")
+setwd("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+      OUTPUTS/1_SPIN_UP")
 writeOGR(C_INPUT_EQ, ".", "SPIN_UP_County_AOI", driver="ESRI Shapefile",overwrite=TRUE) 
 
 
@@ -547,15 +554,18 @@ library(raster)
 library(rgdal)
 library(soilassessment)
 
-working_dir<-setwd("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020")
+working_dir<-setwd("D:/TRAINING_MATERIALS_
+                   GSOCseq_MAPS_12-11-2020")
 
 #Open empty vector
 
-Vector<-readOGR("INPUTS/TARGET_POINTS/AOI_Empty_points_borders.shp")
+Vector<-readOGR("INPUTS/TARGET_POINTS/
+                AOI_Empty_points_borders.shp")
 
 #Open Warm Up Stack
 
-Stack_Set_warmup<- stack("INPUTS/STACK/Stack_Set_WARM_UP_AOI.tif")
+Stack_Set_warmup<- stack("INPUTS/STACK/
+                         Stack_Set_WARM_UP_AOI.tif")
 
 # Add pixels to the borders to avoid removing costal areas
 
@@ -565,10 +575,11 @@ for (i in 1:nlayers(Stack_Set_warmup)){
 
 # Open Result from SPIN UP PROCESS. A vector with 5 columns , one for each pool
 
-Spin_up<-readOGR("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/OUTPUTS/1_SPIN_UP/SPIN_UP_County_AOI.shp")
+Spin_up<-readOGR("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+                 OUTPUTS/1_SPIN_UP/SPIN_UP_County_AOI.shp")
 Spin_up<-as.data.frame(Spin_up)
 
-# Open Precipitation , temperature, and EVapotranspiration file 20 anios x 12 = 240 layers x 3
+# Open Precipitation , temperature, and EVapotranspiration file 20 yrs x 12 = 240 layers x 3
 
 # CRU LAYERS
 PREC<-stack("INPUTS/CRU_LAYERS/Prec_Stack_216_01-18_CRU.tif")
@@ -588,24 +599,30 @@ for (i in 1:nlayers(PET)){
 
 
 # TERRA CLIMATE LAYERS
-#PREC<-stack("INPUTS/TERRA_CLIME/Precipitation_2001-2021_Pergamino.tif")
-#TEMP<-stack("INPUTS/TERRA_CLIME/AverageTemperature_2001-2021_Pergamino.tif")*0.1
-#PET<-stack("INPUTS/TERRA_CLIME/PET_2001-2021_Pergamino.tif")*0.1
+#PREC<-stack("INPUTS/TERRA_CLIME/
+  # Precipitation_2001-2021_Pergamino.tif")
+#TEMP<-stack("INPUTS/TERRA_CLIME/
+  # AverageTemperature_2001-2021_Pergamino.tif")*0.1
+#PET<-stack("INPUTS/TERRA_CLIME/
+  # PET_2001-2021_Pergamino.tif")*0.1
 
 #Open Mean NPP MIAMI 1981 - 2000
 
 NPP<-raster("INPUTS/NPP/NPP_MIAMI_MEAN_81-00_AOI.tif")
 NPP<-focal(NPP, w = matrix(1,3,3), fun= mean,  na.rm = TRUE, NAonly=TRUE , pad=TRUE)
 
-NPP_MEAN_MIN<-raster("INPUTS/NPP/NPP_MIAMI_MEAN_81-00_AOI_MIN.tif")
+NPP_MEAN_MIN<-raster("INPUTS/NPP/
+                     NPP_MIAMI_MEAN_81-00_AOI_MIN.tif")
 NPP_MEAN_MIN<-focal(NPP_MEAN_MIN, w = matrix(1,3,3), fun= mean,  na.rm = TRUE, NAonly=TRUE , pad=TRUE)
 
-NPP_MEAN_MAX<-raster("INPUTS/NPP/NPP_MIAMI_MEAN_81-00_AOI_MAX.tif")
+NPP_MEAN_MAX<-raster("INPUTS/NPP/
+                     NPP_MIAMI_MEAN_81-00_AOI_MAX.tif")
 NPP_MEAN_MAX<-focal(NPP_MEAN_MAX, w = matrix(1,3,3), fun= mean,  na.rm = TRUE, NAonly=TRUE , pad=TRUE)
 
 #Open LU layer (year 2000).
 
-LU_AOI<-raster("INPUTS/LAND_USE/ESA_Land_Cover_12clases_FAO_AOI.tif")
+LU_AOI<-raster("INPUTS/LAND_USE/
+               ESA_Land_Cover_12clases_FAO_AOI.tif")
 
 #Apply NPP coeficientes
 NPP<-(LU_AOI==2 | LU_AOI==12 | LU_AOI==13)*NPP*0.53+ (LU_AOI==4)*NPP*0.88 + (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*NPP*0.72
@@ -773,7 +790,8 @@ Cov<-as.data.frame(t(Vect[4:15]))
 Cov1<-data.frame(Cov=Cov[,1])
 Cov2<-data.frame(Month=1:12, Cov=Cov[,1])
 
-DR_im<-as.data.frame(t(Vect[nDR_beg:nDR_end])) # DR one per year according to LU
+DR_im<-as.data.frame(t(Vect[nDR_beg:nDR_end])) # DR one
+      # per year according to LU
 DR_im<-data.frame(DR_im=DR_im[,1])
 
 gt<-gt+12
@@ -786,12 +804,13 @@ if (any(is.na(Evp[,2])) | any(is.na(Temp[,2])) | any(is.na(SOC_im[i])) | any(is.
 
 # Get the variables from the vector
 
-soil.thick=30  #Soil thickness (organic layer topsoil), in cm
-SOC<-SOC_im[i]      #Soil organic carbon in Mg/ha 
-clay<-clay_im[i]        #Percent clay %
+soil.thick=30 #Soil thickness (org. layer topsoil,cm)
+SOC<-SOC_im[i]  #Soil organic carbon in Mg/ha 
+clay<-clay_im[i]      #Percent clay %
 
-DR<-DR_im[w,1]              # DPM/RPM (decomplosable vs resistant plant material.)
-bare1<-(Cov1>0.8)           # If the surface is bare or vegetated
+DR<-DR_im[w,1]   # DPM/RPM (decomposable vs 
+        # resistant plant material.)
+bare1<-(Cov1>0.8) # If the surface is bare or vegetated
 NPP_81_00<-NPP_im[i]
 NPP_81_00_MIN<-NPP_im_MIN[i]
 NPP_81_00_MAX<-NPP_im_MAX[i]
@@ -855,7 +874,8 @@ f_wp_max<-Roth_C(Cinputs=Cinputs_max[w],years=years,DPMptf=f_wp_max[1], RPMptf=f
 f_wp_t_max<-f_wp_max[1]+f_wp_max[2]+f_wp_max[3]+f_wp_max[4]+f_wp_max[5]
 
 print(w)
-#print(c(i,SOC,Spin_up[i,3],NPP_81_00,Cinputs[w],f_wp_t))
+#print(c(i,SOC,Spin_up[i,3],
+  # NPP_81_00,Cinputs[w],f_wp_t))
 print(c(NPP_M[w],Cinputs[w]))
 }
 }
@@ -926,7 +946,8 @@ colnames(WARM_UP@data)[24]="Cin_max"
 
 
 # SAVE the Points (shapefile)
-setwd("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/OUTPUTS/2_WARM_UP")
+setwd("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+      OUTPUTS/2_WARM_UP")
 writeOGR(WARM_UP,".", "WARM_UP_County_AOI", driver="ESRI Shapefile",overwrite=TRUE)
 
 ```
@@ -943,8 +964,10 @@ writeOGR(WARM_UP,".", "WARM_UP_County_AOI", driver="ESRI Shapefile",overwrite=TR
 # Dr Ing Agr Guillermo E Peralta
 ###################################
 # SOilR from Sierra, C.A., M. Mueller, S.E. Trumbore (2012). 
-#Models of soil organic matter decomposition: the SoilR package, version 1.0 Geoscientific Model Development, 5(4), 
-#1045--1060. URL http://www.geosci-model-dev.net/5/1045/2012/gmd-5-1045-2012.html.
+#Models of soil organic matter decomposition: the SoilR package,
+# version 1.0 Geoscientific Model Development, 5(4), 
+#1045--1060. 
+# URL http://www.geosci-model-dev.net/5/1045/2012/gmd-5-1045-2012.html.
 #####################################
 
 rm(list=ls()) 
@@ -954,9 +977,11 @@ library(raster)
 library(rgdal)
 library(soilassessment)
 
-WD_OUT<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/OUTPUTS/3_FOWARD")
+WD_OUT<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         OUTPUTS/3_FOWARD")
 
-working_dir<-setwd("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020")
+working_dir<-setwd("C:/TRAINING_MATERIALS_
+                   GSOCseq_MAPS_12-11-2020")
 
 # OPEN THE VECTOR OF POINTS
 
@@ -971,18 +996,21 @@ WARM_UP<-readOGR("OUTPUTS/2_WARM_UP/WARM_UP_County_AOI.shp")
 Stack_Set_1<- stack("INPUTS/STACK/Stack_Set_FOWARD.tif")
 
 for (i in 1:nlayers(Stack_Set_1)){
-  Stack_Set_1[[i]]<-focal(Stack_Set_1[[i]], w = matrix(1,25,25), fun= mean,  na.rm = TRUE, NAonly=TRUE , pad=TRUE)
+  Stack_Set_1[[i]]<-focal(Stack_Set_1[[i]], w = matrix(1,25,25), 
+          fun= mean,  na.rm = TRUE, NAonly=TRUE , pad=TRUE)
 }
 
 
-# Set the increase in Carbon input for each land use and each scenario
+# Set the increase in Carbon input 
+# for each land use and each scenario
 
 #Crops and Crop trees
 Low_Crops<-1.05
 Med_Crops<-1.10
 High_Crops<-1.2
 
-#Shrublands, Grasslands , Herbaceous vegetation flooded & Sparse Vegetation
+#Shrublands, Grasslands , Herbaceous vegetation
+# flooded & Sparse Vegetation
 Low_Grass<-1.05
 Med_Grass<-1.10
 High_Grass<-1.2
@@ -1001,7 +1029,8 @@ Variables<-extract(Stack_Set_1,Vector,sp=TRUE)
 FOWARD<-Vector
 
 # use it only for backup
-#FOWARD<-readOGR("OUTPUTS/3_FOWARD/FOWARD_ARGENTINA_BSAS_17-04-2020_352671.shp")
+#FOWARD<-readOGR("OUTPUTS/3_FOWARD/
+# FOWARD_ARGENTINA_BSAS_17-04-2020_352671.shp")
 
 # Extract the layers from the Vector
 
@@ -1022,9 +1051,12 @@ years=seq(1/12,20,by=1/12)
 # ROTH C MODEL FUNCTION . 
 
 #############function set up starts###############
-Roth_C<-function(Cinputs,years,DPMptf, RPMptf, BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,Cov2,soil.thick,SOC,clay,DR,bare1,LU)
+Roth_C<-function(Cinputs,years,DPMptf, RPMptf, 
+BIOptf, HUMptf, FallIOM,Temp,Precip,Evp,Cov,Cov1,
+Cov2,soil.thick,SOC,clay,DR,bare1,LU)
 {
-# Paddy Fields coefficent fPR = 0.4 if the target point is class = 13 , else fPR=1
+# Paddy Fields coefficent fPR = 0.4 if the target point is 
+  # class = 13 , else fPR=1
 # From Shirato and Yukozawa 2004
 
 fPR=(LU == 13)*0.4 + (LU!=13)*1
@@ -1034,14 +1066,16 @@ fT=fT.RothC(Temp[,2])
 
 #Moisture effects per month . 
 
-fw1func<-function(P, E, S.Thick = 30, pClay = 32.0213, pE = 1, bare) 
+fw1func<-function(P, E, S.Thick = 30, 
+        pClay = 32.0213, pE = 1, bare) 
 {
    
     M = P - E * pE
     Acc.TSMD = NULL
     for (i in 2:length(M)) {
  	B = ifelse(bare[i] == FALSE, 1, 1.8)
-	 Max.TSMD = -(20 + 1.3 * pClay - 0.01 * (pClay^2)) * (S.Thick/23) * (1/B)
+	 Max.TSMD = -(20 + 1.3 * pClay - 0.01 * 
+	                (pClay^2)) * (S.Thick/23) * (1/B)
         Acc.TSMD[1] = ifelse(M[1] > 0, 0, M[1])
         if (Acc.TSMD[i - 1] + M[i] < 0) {
             Acc.TSMD[i] = Acc.TSMD[i - 1] + M[i]
@@ -1057,7 +1091,8 @@ fw1func<-function(P, E, S.Thick = 30, pClay = 32.0213, pE = 1, bare)
     return(data.frame(b))
 }
 
-fW_2<- fw1func(P=(Precip[,2]), E=(Evp[,2]), S.Thick = soil.thick, pClay = clay, pE = 1, bare=bare1)$b 
+fW_2<- fw1func(P=(Precip[,2]), E=(Evp[,2]), 
+      S.Thick = soil.thick, pClay = clay, pE = 1, bare=bare1)$b 
 
 #Vegetation Cover effects  
 
@@ -1065,16 +1100,21 @@ fC<-Cov2[,2]
 
 # Set the factors frame for Model calculations
 
-xi.frame=data.frame(years,rep(fT*fW_2*fC*fPR,length.out=length(years)))
+xi.frame=data.frame(years,
+          rep(fT*fW_2*fC*fPR,length.out=length(years)))
 
 # RUN THE MODEL from SoilR
 #Loads the model 
-#Model3_spin=RothCModel(t=years,C0=c(DPMptf[[1]], RPMptf[[1]], BIOptf[[1]], HUMptf[[1]], FallIOM[[1]]),In=Cinputs,DR=DR,clay=clay,xi=xi.frame, pass=TRUE) 
+#Model3_spin=RothCModel(t=years,C0=c(DPMptf[[1]], 
+  #RPMptf[[1]], BIOptf[[1]], HUMptf[[1]], FallIOM[[1]]),
+  #In=Cinputs,DR=DR,clay=clay,xi=xi.frame, pass=TRUE) 
 #Ct3_spin=getC(Model3_spin)
 
 # RUN THE MODEL from soilassesment
 
-Model3_spin=carbonTurnover(tt=years,C0=c(DPMptf[[1]], RPMptf[[1]], BIOptf[[1]], HUMptf[[1]], FallIOM[[1]]),In=Cinputs,Dr=DR,clay=clay,effcts=xi.frame, "euler") 
+Model3_spin=carbonTurnover(tt=years,C0=c(DPMptf[[1]], 
+RPMptf[[1]], BIOptf[[1]], HUMptf[[1]], FallIOM[[1]]),
+In=Cinputs,Dr=DR,clay=clay,effcts=xi.frame, "euler") 
 
 Ct3_spin=Model3_spin[,2:6]
 
@@ -1110,24 +1150,34 @@ Cov2<-data.frame(Month=1:12, Cov=Cov[,1])
 
 #Avoid calculus over Na values 
 
-if (any(is.na(Evp[,2])) | any(is.na(Temp[,2])) | any(is.na(SOC_im[i])) | any(is.na(clay_im[i])) | any(is.na(Precip[,2]))  |  any(is.na(Cov2[,2]))  |  any(is.na(Cov1[,1])) | any(is.na(Cinputs_im[i])) | any(is.na(DR_im[i])) | (Cinputs_im[i]<0) |  (SOC_im[i]<0) | (clay_im[i]<0) ) {FOWARD[i,2]<-0}else{
-
+if (any(is.na(Evp[,2])) | any(is.na(Temp[,2])) | 
+    any(is.na(SOC_im[i])) | any(is.na(clay_im[i])) | 
+    any(is.na(Precip[,2]))  |  any(is.na(Cov2[,2])) | 
+    any(is.na(Cov1[,1])) | any(is.na(Cinputs_im[i])) | 
+    any(is.na(DR_im[i])) | (Cinputs_im[i]<0) |  
+    (SOC_im[i]<0) | (clay_im[i]<0) ) {FOWARD[i,2]<-0}else{
 
 # Set the variables from the images
 
-soil.thick=30  #Soil thickness (organic layer topsoil), in cm
-SOC<-SOC_im[i]      #Soil organic carbon in Mg/ha 
+soil.thick=30  #Soil thickness (organic layer topsoil, cm)
+SOC<-SOC_im[i]  #Soil organic carbon in Mg/ha 
 clay<-clay_im[i]        #Percent clay %
 Cinputs<-Cinputs_im[i]    #Annual C inputs to soil in Mg/ha/yr
 
-DR<-DR_im[i]              # DPM/RPM (decomplosable vs resistant plant material.)
-bare1<-(Cov1>0.8)           # If the surface is bare or vegetated
+DR<-DR_im[i] # DPM/RPM (decomposable vs 
+      # resistant plant material.)
+bare1<-(Cov1>0.8) # If the surface is bare or vegetated
 LU<-LU_im[i]
 
-# Final calculation of SOC  20 years in the future  (Business as usual)
+# Final calculation of SOC  20 years in the future  (BAU)
 
-f_bau<-Roth_C(Cinputs=Cinputs,years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_bau_t<-f_bau[1]+f_bau[2]+f_bau[3]+f_bau[4]+f_bau[5]
+f_bau<-Roth_C(Cinputs=Cinputs,years=years,DPMptf=WARM_UP[i,5], 
+    RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8],
+    FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,
+    Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,
+    DR=DR,bare1=bare1,LU=LU)
+f_bau_t<-f_bau[1]+f_bau[2]+f_bau[3]+
+  f_bau[4]+f_bau[5]
 
 #Unc BAU minimum 
 Cinputs_min<-WARM_UP@data[i,23]
@@ -1135,78 +1185,176 @@ Cinputs_max<-WARM_UP@data[i,24]
 SOC_t0_min<-WARM_UP@data[i,11]
 SOC_t0_max<-WARM_UP@data[i,17]
 
-f_bau_min<-Roth_C(Cinputs=Cinputs_min,years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
-f_bau_t_min<-f_bau_min[1]+f_bau_min[2]+f_bau_min[3]+f_bau_min[4]+f_bau_min[5]
+f_bau_min<-Roth_C(Cinputs=Cinputs_min,years=years,
+  DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], 
+  BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], 
+  FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,
+  Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,
+  SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
+f_bau_t_min<-f_bau_min[1]+f_bau_min[2]+f_bau_min[3]+
+  f_bau_min[4]+f_bau_min[5]
 
 #Unc BAU maximum
 
-f_bau_max<-Roth_C(Cinputs=Cinputs_max,years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
-f_bau_t_max<-f_bau_max[1]+f_bau_max[2]+f_bau_max[3]+f_bau_max[4]+f_bau_max[5]
+f_bau_max<-Roth_C(Cinputs=Cinputs_max,years=years,
+    DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], 
+    BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21],
+    FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,
+    Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,
+    SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
+f_bau_t_max<-f_bau_max[1]+f_bau_max[2]+f_bau_max[3]+
+  f_bau_max[4]+f_bau_max[5]
 
 # Crops and Tree crops
 if (LU==2 | LU==12){
-f_low<-Roth_C(Cinputs=(Cinputs*Low_Crops),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_low_t<-f_low[1]+f_low[2]+f_low[3]+f_low[4]+f_low[5]
+f_low<-Roth_C(Cinputs=(Cinputs*Low_Crops),years=years,
+    DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], 
+    HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,
+    Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,
+    soil.thick=soil.thick,SOC=SOC,clay=clay,
+    DR=DR,bare1=bare1,LU=LU)
+f_low_t<-f_low[1]+f_low[2]+f_low[3]+
+  f_low[4]+f_low[5]
 
-f_med<-Roth_C(Cinputs=(Cinputs*Med_Crops),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_med_t<-f_med[1]+f_med[2]+f_med[3]+f_med[4]+f_med[5]
+f_med<-Roth_C(Cinputs=(Cinputs*Med_Crops),years=years,
+  DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], 
+  HUMptf=WARM_UP[i,8],FallIOM=WARM_UP[i,9],Temp=Temp,
+  Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,
+  soil.thick=soil.thick,SOC=SOC,clay=clay,
+  DR=DR,bare1=bare1,LU=LU)
+f_med_t<-f_med[1]+f_med[2]+f_med[3]+
+  f_med[4]+f_med[5]
 
-f_high<-Roth_C(Cinputs=(Cinputs*High_Crops),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_high_t<-f_high[1]+f_high[2]+f_high[3]+f_high[4]+f_high[5]
+f_high<-Roth_C(Cinputs=(Cinputs*High_Crops),years=years,
+  DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], 
+  HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,
+  Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,
+  soil.thick=soil.thick,SOC=SOC,clay=clay,
+  DR=DR,bare1=bare1,LU=LU)
+f_high_t<-f_high[1]+f_high[2]+f_high[3]+
+  f_high[4]+f_high[5]
 
 # SSM croplands unc min
 
-f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_Crops-0.15)),years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
-f_med_t_min<-f_med_min[1]+f_med_min[2]+f_med_min[3]+f_med_min[4]+f_med_min[5]
+f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_Crops-0.15)),
+  years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], 
+  BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], 
+  FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,
+  Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,
+  SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
+f_med_t_min<-f_med_min[1]+f_med_min[2]+f_med_min[3]+
+  f_med_min[4]+f_med_min[5]
 
 # SSM croplands unc max
 
-f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_Crops+0.15)),years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
-f_med_t_max<-f_med_max[1]+f_med_max[2]+f_med_max[3]+f_med_max[4]+f_med_max[5]
+f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_Crops+0.15)),
+  years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], 
+  BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], 
+  FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,
+  Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,
+  SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
+f_med_t_max<-f_med_max[1]+f_med_max[2]+f_med_max[3]+
+  f_med_max[4]+f_med_max[5]
 
 }
 #Shrublands, grasslands, and sparce vegetation
 else if (LU==3 | LU==5 | LU==6 | LU==8) {
-f_low<-Roth_C(Cinputs=(Cinputs*Low_Grass),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_low_t<-f_low[1]+f_low[2]+f_low[3]+f_low[4]+f_low[5]
+f_low<-Roth_C(Cinputs=(Cinputs*Low_Grass),years=years,
+  DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], 
+  BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],
+  Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,
+  soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
+f_low_t<-f_low[1]+f_low[2]+f_low[3]+
+  f_low[4]+f_low[5]
 
-f_med<-Roth_C(Cinputs=(Cinputs*Med_Grass),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_med_t<-f_med[1]+f_med[2]+f_med[3]+f_med[4]+f_med[5]
+f_med<-Roth_C(Cinputs=(Cinputs*Med_Grass),years=years,
+  DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], 
+  HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,
+  Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,
+  SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
+f_med_t<-f_med[1]+f_med[2]+f_med[3]+
+  f_med[4]+f_med[5]
 
-f_high<-Roth_C(Cinputs=(Cinputs*High_Grass),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_high_t<-f_high[1]+f_high[2]+f_high[3]+f_high[4]+f_high[5]
+f_high<-Roth_C(Cinputs=(Cinputs*High_Grass),years=years,
+  DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], 
+  HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,
+  Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,
+  soil.thick=soil.thick,SOC=SOC,clay=clay,
+  DR=DR,bare1=bare1,LU=LU)
+f_high_t<-f_high[1]+f_high[2]+
+  f_high[3]+f_high[4]+f_high[5]
 
 #SSM Shrublands unc min
 
-f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_Grass-0.15)),years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
-f_med_t_min<-f_med_min[1]+f_med_min[2]+f_med_min[3]+f_med_min[4]+f_med_min[5]
+f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_Grass-0.15)),years=years,
+  DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], 
+  HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,
+  Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,
+  soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,
+  DR=DR,bare1=bare1,LU=LU)
+f_med_t_min<-f_med_min[1]+f_med_min[2]+f_med_min[3]+
+  f_med_min[4]+f_med_min[5]
 
 #SSM Shrublands unc max
 
-f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_Grass+0.15)),years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
-f_med_t_max<-f_med_max[1]+f_med_max[2]+f_med_max[3]+f_med_max[4]+f_med_max[5]
+f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_Grass+0.15)),years=years,
+  DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], 
+  HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,
+  Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,
+  soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,
+  DR=DR,bare1=bare1,LU=LU)
+f_med_t_max<-f_med_max[1]+f_med_max[2]+f_med_max[3]+
+  f_med_max[4]+f_med_max[5]
 
 }
 # Paddy Fields 
 else if (LU==13) {
-f_low<-Roth_C(Cinputs=(Cinputs*Low_PaddyFields),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_low_t<-f_low[1]+f_low[2]+f_low[3]+f_low[4]+f_low[5]
+f_low<-Roth_C(Cinputs=(Cinputs*Low_PaddyFields),years=years,
+  DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], 
+  HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,
+  Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,
+  soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
+f_low_t<-f_low[1]+f_low[2]+f_low[3]+
+  f_low[4]+f_low[5]
 
-f_med<-Roth_C(Cinputs=(Cinputs*Med_PaddyFields),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_med_t<-f_med[1]+f_med[2]+f_med[3]+f_med[4]+f_med[5]
+f_med<-Roth_C(Cinputs=(Cinputs*Med_PaddyFields),years=years,
+  DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], 
+  HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,
+  Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,
+  soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,
+  bare1=bare1,LU=LU)
+f_med_t<-f_med[1]+f_med[2]+f_med[3]+
+  f_med[4]+f_med[5]
 
-f_high<-Roth_C(Cinputs=(Cinputs*High_PaddyFields),years=years,DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
-f_high_t<-f_high[1]+f_high[2]+f_high[3]+f_high[4]+f_high[5]
+f_high<-Roth_C(Cinputs=(Cinputs*High_PaddyFields),years=years,
+  DPMptf=WARM_UP[i,5], RPMptf=WARM_UP[i,6], BIOptf=WARM_UP[i,7], 
+  HUMptf=WARM_UP[i,8], FallIOM=WARM_UP[i,9],Temp=Temp,Precip=Precip,
+  Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,
+  SOC=SOC,clay=clay,DR=DR,bare1=bare1,LU=LU)
+f_high_t<-f_high[1]+f_high[2]+f_high[3]+
+  f_high[4]+f_high[5]
 
 #SSM Forest unc min
 
-f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_PaddyFields-0.15)),years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,DR=DR,bare1=bare1,LU=LU)
-f_med_t_min<-f_med_min[1]+f_med_min[2]+f_med_min[3]+f_med_min[4]+f_med_min[5]
+f_med_min<-Roth_C(Cinputs=(Cinputs_min*(Med_PaddyFields-0.15)),
+  years=years,DPMptf=WARM_UP[i,12], RPMptf=WARM_UP[i,13], 
+  BIOptf=WARM_UP[i,14], HUMptf=WARM_UP[i,15], FallIOM=WARM_UP[i,16],
+  Temp=Temp*1.02,Precip=Precip*0.95,Evp=Evp,Cov=Cov,Cov1=Cov1,
+  Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*0.8,clay=clay*0.9,
+  DR=DR,bare1=bare1,LU=LU)
+f_med_t_min<-f_med_min[1]+f_med_min[2]+f_med_min[3]+
+  f_med_min[4]+f_med_min[5]
 
 #SSM Forest unc max
 
-f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_PaddyFields+0.15)),years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
-f_med_t_max<-f_med_max[1]+f_med_max[2]+f_med_max[3]+f_med_max[4]+f_med_max[5]
+f_med_max<-Roth_C(Cinputs=(Cinputs_max*(Med_PaddyFields+0.15)),
+  years=years,DPMptf=WARM_UP[i,18], RPMptf=WARM_UP[i,19], 
+  BIOptf=WARM_UP[i,20], HUMptf=WARM_UP[i,21], FallIOM=WARM_UP[i,22],
+  Temp=Temp*0.98,Precip=Precip*1.05,Evp=Evp,Cov=Cov,Cov1=Cov1,
+  Cov2=Cov2,soil.thick=soil.thick,SOC=SOC*1.2,
+  clay=clay*1.1,DR=DR,bare1=bare1,LU=LU)
+f_med_t_max<-f_med_max[1]+f_med_max[2]+
+  f_med_max[3]+f_med_max[4]+f_med_max[5]
 
 }
 
@@ -1245,7 +1393,8 @@ FOWARD[i,18]<-SOC_t0_max
 
 
 
-print(c(i,SOC,f_bau_t,f_low_t,f_med_t,f_high_t,f_bau_t_min,f_bau_t_max))
+print(c(i,SOC,f_bau_t,f_low_t,f_med_t,
+        f_high_t,f_bau_t_min,f_bau_t_max))
 
 }
 }
@@ -1294,11 +1443,17 @@ setwd(WD_OUT)
 
 # UNCERTAINTIES
 
-UNC_SOC<-((FOWARD@data$SOC_BAU_20_max-FOWARD@data$SOC_BAU_20_min)/(2*FOWARD@data$SOC_BAU_20))*100
+UNC_SOC<-((FOWARD@data$SOC_BAU_20_max-
+        FOWARD@data$SOC_BAU_20_min)/
+          (2*FOWARD@data$SOC_BAU_20))*100
 
-UNC_t0<-((FOWARD@data$SOC_t0_max-FOWARD@data$SOC_t0_min)/(2*FOWARD@data$SOC_t0))*100
+UNC_t0<-((FOWARD@data$SOC_t0_max-
+        FOWARD@data$SOC_t0_min)/
+          (2*FOWARD@data$SOC_t0))*100
 
-UNC_SSM<-((FOWARD@data$Med_Scen_max-FOWARD@data$Med_Scen_min)/(2*FOWARD@data$Med_Scenario))*100
+UNC_SSM<-((FOWARD@data$Med_Scen_max-
+        FOWARD@data$Med_Scen_min)/
+          (2*FOWARD@data$Med_Scenario))*100
 
 FOWARD[[19]]<-UNC_SOC
 FOWARD[[20]]<-UNC_t0
@@ -1310,7 +1465,8 @@ colnames(FOWARD@data)[21]="UNC_SSM"
 
 # SAVE the Points (shapefile)
  
-writeOGR(FOWARD, ".", "FOWARD_County_AOI", driver="ESRI Shapefile",overwrite=TRUE) 
+writeOGR(FOWARD, ".", "FOWARD_County_AOI", 
+         driver="ESRI Shapefile",overwrite=TRUE) 
 
 
 ```
@@ -1361,6 +1517,7 @@ The following Table (Table 16.1) gives an overview of all the GSOCseq products i
 All 29 products must be georeferenced TIF (.tif) files.
 
 *Table 16.1* Overview of the 29 GSOCseq Products
+
 ![](tables/Table_16.1.PNG)  
 
 ## Step 2 Check the projection and resolution of all products{-}
@@ -1375,7 +1532,7 @@ In the following section expected value ranges for each product category are pre
 
 The provided ranges can be compared in QGIS, R,  or any preferred platform. Descriptive layer statistics can be viewed in QGIS under Layer Properties in the Information tab (Figure 16.2).
 
-![Figure 16.2 Layer statistics in QGIS](images/Figure_16.2.png)
+![Layer statistics in QGIS](images/Figure_16.2.png)
 
 ### Soil Organic Carbon at T0 (2020){-}
 

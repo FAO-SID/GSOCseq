@@ -11,11 +11,15 @@ During this stage we will need to arrange and prepare climate datasets for the d
 ## Preparation of SOC layer
 As a default option, users are invited to use the GSOCmap to retrieve their SOC data for their area of interest (AOI). This can be achieved easily, by clipping the GSOCmap to the extent of a shapefile making up the borders of the chosen study area or country. All data sources can be found in Table 6.3 of Chapter 6.   
 
-### Script Number 0."SOC_MAP_AOI.R"
+### Script Number 0: "SOC_MAP_AOI.R". Preparation of the SOC layer. Inputs and Outputs
 
-**Table 9.1** *Script Number 0. Preparation of the Soil Organic Carbon SOC layer. Inputs and Outputs*
-
-![](tables/Table_9.0.png)
+* **Inputs:**
+  * **FAO SOC map:** GSOCmap_v1.5.0.tif
+  * **Area of interest (AOI):** COUNTRY_POLYGON.SHP (ROI)
+* **Outputs:**
+  * SOC map cut by the AOI
+  
+    SOC_MAP_[country_code].tiff
  
 First, open the scrip SOC_MAP_AOI.R in RStudio. If you haven't done so previously install the necessary packages. Then create two user-defined variables containing the paths to the two working directories:
 *   "WD_AOI" which contains the vector polygon of the AOI;
@@ -23,7 +27,8 @@ First, open the scrip SOC_MAP_AOI.R in RStudio. If you haven't done so previousl
 
 ```{r,eval=FALSE}
 #Install all necessary packages
-install.packages(c("raster","rgdal","SoilR","Formula","soilassessment","abind","ncdf4"))
+install.packages(c("raster","rgdal","SoilR",
+                   "Formula","soilassessment","abind","ncdf4"))
 
 #Load the packages into R
 library(raster)
@@ -39,7 +44,7 @@ AOI<-readOGR("Departamento_Pergamino.shp")
 
 #Open FAO GSOC MAP 
 setwd(WD_GSOC)
-SOC_MAP<-raster("GSOCmap_1.6.1.tif")
+SOC_MAP<-raster("GSOCmap_1.5.0.tif")
 ```
 Finally, we clip the SOC layer with the vector polygon of the AOI and save the result to the WD_SOC folder. This layer will become the master layer of the process. 
 ```{r,eval=FALSE}
@@ -79,7 +84,7 @@ For both cases a detailed step by step guideline is provided.
 The preparation of the climate data depending on whether a user selects the CRU (Option A) or TerraClimate (option B) data set is presented in the flowchart below (Figure 9.0). To make use of the TerraClimate dataset, users need to first download the data for the time periods 1980-2000 and 2001-2018 using two scripts for Google Earth Egine (GEE) and subsequently prepare the target climatic variables using two R scripts.
 
 
-![Figure 9.0 Script order to follow depending on wether CRU or TerraClimate data sets are selected](images/Figure_9.0.png)
+![Script order to follow depending on wether CRU or TerraClimate data sets are selected](images/Figure_9.0.png)
 
 Additionally, in the ANNEX a small guide is provided to overcome issues linked to the use of CRU layers in coastal and small countries.  
 
@@ -87,12 +92,29 @@ Additionally, in the ANNEX a small guide is provided to overcome issues linked t
 
 ***
 ### *Option A* Preparation of the CRU climatic variables 
-#### Script Number 1. "CRU_variables_SPIN_UP.R"
+#### Script Number 1: "CRU_variables_SPIN_UP.R". Preparation of CRU datasets for the "Long Spin Up phase".
 For each modelling phase we will need a different selection of climate layers. For phase 1 ("Long Spin up"), we will need to stack 12 spatial layers (the output file will be a multiband raster layer) for each climate variable mentioned above (temperature, precipitation and evapotranspiration). The time series for this initial phase goes from 1981 to 2000. The script number 1 will transform the downloaded CRU files to geotiff raster files  and obtain monthly averages (temperature, precipitation, evapotranspiration) for the 1981-2000 series, ready to be used in the spin up modelling phase. 
 
-**Table 9.2** *Script Number 1.1 Preparation of CRU datasets for the "Long Spin Up phase". Inputs and Outputs*
+**Time series: 1981-1990 and 1991-2000**
 
-![](tables/Table_9.1.png)
+* **Temperature code block**
+  * **Inputs:**
+    * cru_ts4.03.1981.1990.tmp.dat.nc
+    * cru_ts4.03.1991.2000.tmp.dat.nc
+  * **Outputs:**
+    * Temp_Stack_81-00_CRU.tif (12 layers. 20 year average per month)
+* **Precipitation code block**
+  * **Inputs:**
+    * cru_ts4.03.1981.1990.pre.dat.nc
+    * cru_ts4.03.1991.2000.pre.dat.nc
+  * **Outputs:**
+    * Prec_Stack_81-00_CRU.tif (12 layers. 20 year average per month)
+* **Potential evapotranspiration (PET) code block**
+  * **Inputs:**
+    * cru_ts4.03.1981.1990.pet.dat.nc
+    * cru_ts4.03.1991.2000.pet.dat.nc
+  * **Outputs:**
+    * PET_Stack_81-00_CRU.tif (12 layers. 20 year average per month)
 
 Open the script CRU_variables_SPIN_UP.R in RStudio.  
 The first lines begin with "#", which indicates that these lines are commented. From line 7 to line 10, the script loads the required packages into R.
@@ -140,7 +162,8 @@ Now, all the settings for this part of the script are done. The user just has to
 The code below will generate one temperature file, consisting of a stack of 12 raster files with an average of 20 years for each month. Each raster corresponds to a month. 
 ```{r,eval=FALSE}
 # Create empty list
-r<-raster(ncol=3,nrow=3)
+library(raster)
+r <- raster(ncol=3,nrow=3)
 Rlist<-list(r,r,r,r,r,r,r,r,r,r,r,r)
  # Average of 20 years (j)  and 12 months (i) 
 ######for loop starts#######
@@ -156,7 +179,9 @@ var_sum<-(var_sum + tmp[,,k])
  var_avg<-var_sum/20
 name<-paste0('Temp_1981_2000_years_avg_',i,'.tif')
  # Make a raster r from each average
-ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), 
+  ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84+
+  datum=WGS84+no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 writeRaster(ra,filename=name, format="GTiff")
 Rlist[[i]]<-ra
@@ -164,12 +189,13 @@ Rlist[[i]]<-ra
 ######for loop ends#######
  #save a stack of months averages
  Temp_Stack<-stack(Rlist)
-writeRaster(Temp_Stack,filename='Temp_Stack_81-00_CRU.tif',"GTiff")
+writeRaster(Temp_Stack,
+            filename='Temp_Stack_81-00_CRU.tif',"GTiff")
 ```
 
 The first line of the "Precipitation" code block will delete all the variables that have been created until that moment. This will free up memory and increase the execution speed of the rest of the script running.
 ```{r,eval=FALSE}
- #######################################################################################
+ ########################
 #PRECIPITATION
  rm(list = ls())
 WD<-("C:/Training_Material/INPUTS/CRU_LAYERS")
@@ -219,7 +245,10 @@ var_sum<-(var_sum + pre_81_00[,,k])
  var_avg<-var_sum/20
 name<-paste0('Prec_1981_2000_years_avg_',i,'.tif')
  # Make a raster r from the each average
-ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), 
+  ymn=min(lat), ymx=max(lat),
+  crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +
+          no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 writeRaster(ra,filename=name, format="GTiff")
 Rlist[[i]]<-ra
@@ -227,17 +256,18 @@ Rlist[[i]]<-ra
 ######for loop ends#######
  #save a stack of months averages
 Prec_Stack<-stack(Rlist)
-writeRaster(Prec_Stack,filename='Prec_Stack_81-00_CRU.tif',"GTiff")
+writeRaster(Prec_Stack,
+            filename='Prec_Stack_81-00_CRU.tif',"GTiff")
 ```
 Finally, we must run the "Potential Evapotranspiration" block of the script. First, as we did before, we should delete the variables created in the "Precipitation" code block.
 
 ```{r,eval=FALSE}
-########################################################################
-# POTENTIAL EVAPOTRANSPIRATION 
+################# POTENTIAL EVAPOTRANSPIRATION 
  rm(list = ls())
 WD<-("C:/Training_Material/INPUTS/CRU_LAYERS")
 setwd(WD)
-The same commands are repeated as the ones executed for the previous code blocks: "Temperature" and "Precipitation". 
+The same commands are repeated as the ones executed for the
+previous code blocks: "Temperature" and "Precipitation". 
 # Open nc temperature file 81 - 90
 nc_pet_81_90<-nc_open("cru_ts4.03.1981.1990.pet.dat.nc")
  lon <- ncvar_get(nc_pet_81_90, "lon")
@@ -277,7 +307,10 @@ var_sum<-(var_sum + pet_81_00[,,k])
  var_avg<-var_sum*30/20
 name<-paste0('PET_1981_2000_years_avg_',i,'.tif')
  # Make a raster r from the each average
-ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), 
+  ymn=min(lat),ymx=max(lat),
+  crs=CRS("+proj=longlat+ellps=WGS84+
+          datum=WGS84+no_defs+towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 writeRaster(ra,filename=name, format="GTiff")
 Rlist[[i]]<-ra
@@ -285,19 +318,39 @@ Rlist[[i]]<-ra
 ######for loop ends#######
  #save a stack of months averages
  PET_Stack<-stack(Rlist)
-writeRaster(PET_Stack,filename='PET_Stack_81-00_CRU.tif',"GTiff") 
+writeRaster(PET_Stack,
+            filename='PET_Stack_81-00_CRU.tif',"GTiff") 
 ```
 Script number 1 is completed. The user should have created two files for the Temperature variable, two for the Precipitation variable and one for ETP variable. All these files will be used to create a raster stack of all layers needed to run the "long spin up" phase.
 
 
-#### Script Number 2.  "CRU_variables_WARM_UP.R"
+#### Script Number 2: "CRU_variables_WARM_UP.R". CRU files for warm-up stack
 The purpose of the "Warm up" phase is to adjust the initial SOC stock and initial pools for the "forward" phase.  Once the input climate layers have been harmonized, the model will run for each year from 2001 to 2018/20,  using the monthly climate  data of each year of the series (for 216/240 values for each month of the time series). The script number 2 is prepared to arrange the necessary CRU climate files for this phase. We will need to generate one raster stack of 216/240 spatial layers for each climate variable mentioned above (216 spatial layers if we use just 18 years period instead of a 20 year period; from 2001 to 2018, depending on the available climate data). Each stack will have one layer for each month from 2001 to 2018/2020.
 For phase number 3, the "Forward" phase, we will need monthly averages of the time series 2001-2018/20. We will use the same arrangement as used in phase number one (one stack of 12 bands for each variable) but instead of using the averages of the 1981-2000 period we will use the climatic data of the 2001-2018/20 period. We will assume that there is no climate change in the next 20 years.  Thus, script number 2 will also prepare the climate files for the "forward phase".
  
+**Time series: 1981-1990 and 1991-2000**
 
-**Table 9.3**  *Overview of the input and output files in script number 1.2 used for the files for Warm Up and Forward Phases.*
-
-![](tables/Table_9.2.png)
+* **Temperature code block**
+  * **Inputs:**
+    * cru_ts4.03.2001.2010.tmp.dat.nc
+    * cru_ts4.03.2011.2018.tmp.dat.nc
+  * **Outputs:**
+    * Temp_Stack_01-18_CRU.tif (12 layers. 20 year average per month)
+    * Temp_Stack_216_01-18_CRU.tif (216 layers. 1 layer per month per year)
+* **Precipitation code block**
+  * **Inputs:**
+    * cru_ts4.03.2001.2010.pre.dat.nc
+    * cru_ts4.03.2011.2018.pre.dat.nc
+  * **Outputs:**
+    * Prec_Stack_01-18_CRU.tif (12 layers. 20 year average per month)
+    * Prec_Stack_216_01-18_CRU.tif (216 layers. 1 layer per month per year)
+* **Potential evapotranspiration (PET) code block**
+  * **Inputs:**
+    * cru_ts4.03.2001.2010.pet.dat.nc
+    * cru_ts4.03.2011.2018.pet.dat.nc
+  * **Outputs:**
+    * PET_Stack_01-18_CRU.tif (12 layers. 20 year average per month)
+    * PET_Stack_216_01-18_CRU.tif (216 layers. 1 layer per month per year)
 
 First, we must  load the required R packages.
 
@@ -356,7 +409,9 @@ var_sum<-(var_sum + tmp[,,k])
  var_avg<-var_sum/(dim(tmp)[3]/12)
 name<-paste0('Temp_2001_2018_years_avg_',i,'.tif')
  # Make a raster r from each average
-ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), 
+  ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +
+              datum=WGS84 +no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 #writeRaster(ra,filename=name, format="GTiff")
 Rlist[[i]]<-ra
@@ -364,7 +419,8 @@ Rlist[[i]]<-ra
 ##########for loop ends###############
  #save a stack of months averages
  Temp_Stack<-stack(Rlist)
-writeRaster(Temp_Stack,filename='Temp_Stack_01-18_CRU.tif',"GTiff")
+writeRaster(Temp_Stack,
+            filename='Temp_Stack_01-18_CRU.tif',"GTiff")
  # SAVE 1 layer per month per year
  Rlist2-Rlist
 ##########for loop starts###############
@@ -374,7 +430,9 @@ var<-(tmp[,,q])
  #Save each month average. 
  name<-paste0('Temp_2001-2018',q,'.tif')
  # Make a raster r from each average
-ra<- raster(t(var), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var), xmn=min(lon), xmx=max(lon), 
+  ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84+
+  datum=WGS84 +no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 #writeRaster(ra,filename=name, format="GTiff")
 Rlist2[[q]]<-ra
@@ -382,7 +440,8 @@ Rlist2[[q]]<-ra
 ##########for loop ends###############
 
 Temp_Stack_2<-stack(Rlist2)
-writeRaster(Temp_Stack_2,filename='Temp_Stack_216_01-18_CRU.tif',"GTiff") 
+writeRaster(Temp_Stack_2,
+            filename='Temp_Stack_216_01-18_CRU.tif',"GTiff") 
  #PRECIPITATION
  rm(list = ls())
 WD<-("C:/Training_Material/INPUTS/CRU_LAYERS")
@@ -427,7 +486,9 @@ var_sum<-(var_sum + pre_01_18[,,k])
  var_avg<-var_sum/(dim(pre_01_18)[3]/12)
  name<-paste0('Prec_2001_2018_years_avg_',i,'.tif')
  # Make a raster r from  each average
-ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), 
+  ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84+
+  datum=WGS84 +no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 #writeRaster(ra,filename=name, format="GTiff")
 Rlist[[i]]<-ra
@@ -435,7 +496,8 @@ Rlist[[i]]<-ra
 #########for loop ends############
  #save a stack of months averages
  Prec_Stack<-stack(Rlist)
-writeRaster(Prec_Stack,filename='Prec_Stack_01-18_CRU.tif',"GTiff")
+writeRaster(Prec_Stack,
+            filename='Prec_Stack_01-18_CRU.tif',"GTiff")
  # SAVE 1 layer per month per year
 #########for loop starts############
  for (q in 1:(dim(pre_01_18)[3])) {
@@ -444,19 +506,22 @@ var<-(pre_01_18[,,q])
  #Save each month average. 
  name<-paste0('Prec_2001-2018',q,'.tif')
  # Make a raster r from each average
-ra<- raster(t(var), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var), xmn=min(lon), xmx=max(lon), ymn=min(lat), 
+  ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +
+  datum=WGS84 +no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 #writeRaster(ra,filename=name, format="GTiff")
 Rlist2[[q]]<-ra
 }
 #########for loop ends############
 Prec_Stack_2<-stack(Rlist2)
-writeRaster(Prec_Stack_2,filename='Prec_Stack_216_01-18_CRU.tif',"GTiff") 
+writeRaster(Prec_Stack_2,
+            filename='Prec_Stack_216_01-18_CRU.tif',"GTiff") 
 ```
 Now we must run the PET block. We will then run the rest of the code to create the necessary tif files.
 
 ```{r, eval = FALSE}
- ########################################################################
+ ###################
  # POTENTIAL EVAPOTRANSPIRATION 
  rm(list = ls())
 WD<-("C:/Training_Material/INPUTS/CRU_LAYERS")
@@ -469,7 +534,8 @@ t <- ncvar_get(nc_pet_01_10, "time")
  pet_01_10<-ncvar_get(nc_pet_01_10, "pet")
  #close de nc temperature file
  nc_close(nc_pet_01_10) 
- # Open nc temperature file 11 - 18 nc_pet_11_18<-nc_open("cru_ts4.03.2011.2018.pet.dat.nc")
+ # Open nc temperature file 11 - 
+ #    18 nc_pet_11_18<-nc_open("cru_ts4.03.2011.2018.pet.dat.nc")
  lon <- ncvar_get(nc_pet_11_18, "lon")
 lat <- ncvar_get(nc_pet_11_18, "lat", verbose = F)
 t <- ncvar_get(nc_pet_11_18, "time")
@@ -499,7 +565,9 @@ var_sum<-(var_sum + pet_01_18[,,k])
  var_avg<-var_sum*30/(dim(pet_01_18)[3]/12)
 name<-paste0('PET_2001_2018_years_avg_',i,'.tif')
  # Make a raster r from the each average
-ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var_avg), xmn=min(lon), xmx=max(lon), ymn=min(lat), 
+  ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +
+              datum=WGS84 +no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 #writeRaster(ra,filename=name, format="GTiff")
 Rlist[[i]]<-ra
@@ -507,7 +575,8 @@ Rlist[[i]]<-ra
 ############for loop ends##############
  #save a stack of months averages
  PET_Stack<-stack(Rlist)
-writeRaster(PET_Stack,filename='PET_Stack_01-18_CRU.tif',"GTiff")
+writeRaster(PET_Stack,
+          filename='PET_Stack_01-18_CRU.tif',"GTiff")
  # SAVE 1 layer per month per year
 ############for loop starts##############
  for (q in 1:(dim(pet_01_18)[3])) {
@@ -516,25 +585,37 @@ var<-(pet_01_18[,,q])*30
  #Save each month average. 
  name<-paste0('PET_2001-2018',q,'.tif')
  # Make a raster r from each average
-ra<- raster(t(var), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var), xmn=min(lon), xmx=max(lon), ymn=min(lat), 
+  ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +
+          datum=WGS84 +no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 writeRaster(ra,filename=name, format="GTiff")
 Rlist2[[q]]<-ra
 }
 ############for loop starts##############
 PET_Stack_2<-stack(Rlist2)
-writeRaster(PET_Stack_2,filename='PET_Stack_216_01-18_CRU.tif',"GTiff") 
+writeRaster(PET_Stack_2,
+          filename='PET_Stack_216_01-18_CRU.tif',"GTiff") 
 
 ```
 
 #### Script Number 3. Preparation of CRU files to estimate NPP 1981-2000 
 We will need to convert the CRU monthly climate data 1981-2000 into annual data to estimate annual NPP 1981-2000.The script number 3 will process the CRU files from the 1981-2000 series to generate the climate inputs files required to estimate NPP by the MIAMI model. 
 
-  
+**Time series: 1981-1990 and 1991-2000**
 
-**Table 9.4.** *Script Number 1.3. CRU files for MIAMI MODEL. Inputs and Outputs*
-
-![](tables/Table_9.3.png)
+* **Temperature code block**
+  * **Inputs:**
+    * cru_ts4.03.1981.1990.tmp.dat.nc
+    * cru_ts4.03.1991.2000.tmp.dat.nc
+  * **Outputs:**
+    * Temp_Stack_216_81-00_CRU.tif (240 layers. 1 layer per month per year)
+* **Precipitation code block**
+  * **Inputs:**
+    * cru_ts4.03.1981.1990.pre.dat.nc
+    * cru_ts4.03.1991.2000.pre.dat.nc
+  * **Outputs:**
+    * Prec_Stack_216_81-00_CRU.tif (240 layers. 1 layer per month per year)
  
 We will first open the R file: "CRU_variables_for_NPP_MIAMI_MEAN_81-00.R" and load the required packages:
 
@@ -584,14 +665,17 @@ var<-(tmp[,,q])
  #Save each month average. 
  name<-paste0('Temp_1981-2000',q,'.tif')
  # Make a raster r from each average
-ra<- raster(t(var), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var), xmn=min(lon), xmx=max(lon), ymn=min(lat), 
+  ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +
+            datum=WGS84 +no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 #writeRaster(ra,filename=name, format="GTiff")
 Rlist2[[q]]<-ra
 }
 ############for loop ends###########
 Temp_Stack_2<-stack(Rlist2)
-writeRaster(Temp_Stack_2,filename='Temp_Stack_240_81-00_CRU.tif',"GTiff")
+writeRaster(Temp_Stack_2,
+    filename='Temp_Stack_240_81-00_CRU.tif',"GTiff")
 ```  
 After that, the "precipitation" block begins.
 ```{r, eval = FALSE}
@@ -628,24 +712,32 @@ var<-(pre_81_00[,,q])
  #Save each month average. 
  #name<-paste0('Prec_2001-2018',q,'.tif')
  # Make a raster r from each average
-ra<- raster(t(var), xmn=min(lon), xmx=max(lon), ymn=min(lat), ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+ra<- raster(t(var), xmn=min(lon), xmx=max(lon), ymn=min(lat), 
+  ymx=max(lat), crs=CRS("+proj=longlat +ellps=WGS84 +
+  datum=WGS84 +no_defs+ towgs84=0,0,0"))
 ra<-flip(ra, direction='y')
 #writeRaster(ra,filename=name, format="GTiff")
 Rlist2[[q]]<-ra
 }
 ##############for loop ends############
 Prec_Stack_2<-stack(Rlist2)
-writeRaster(Prec_Stack_2,filename='Prec_Stack_240_81-00_CRU.tif',"GTiff")
+writeRaster(Prec_Stack_2,
+    filename='Prec_Stack_240_81-00_CRU.tif',"GTiff")
 ```  
 
 
 
 #### Script Number 5. CRU MIAMI model NPP mean (1981-2000)
 To adjust yearly C inputs during the warm up phase according to annual NPP values,  we will need to estimate an average annual NPP 1981-2000, that will be used as the starting point to adjust C inputs during the "warm up" phase  (See chapter 6). Script number 5 uses the climate raster outputs from script number 3 and estimates an annual NPP mean 1981-2000 value.
-  
-**Table 9.5** *Script Number 5. CRU Miami Model 81-00 Mean. Inputs and Outputs*
 
-![](tables/Table_9.4.png)
+* **Inputs:**
+  * COUNTRY_POLYGON.SHP (ROI)
+  * CRU layers from script 3:
+    * Temp_Stack_240_81-00_CRU.tif (WORLD)
+    * Prec_Stack_240_81-00_CRU.tif (WORLD)
+  * FAO SOC map: GSOCmap v1.5.0.tif
+* **Outputs:**
+  * NPP_MIAMI_MEAN_81-00_[country_code].tif (Country)
  
 First, we will need to open the R script: "MIAMI_MODEL_NPP_MIAMI_MEAN_81-00.R"
 Analogously to the previous scripts, the first lines load the required packages into R and set the working directories. Then the annual precipitation and annual temperature stacks (1981-2000) that were created in script number 3 are opened:
@@ -659,7 +751,8 @@ WD_AOI<-("C:/Training_Material/INPUTS/AOI_POLYGON")
 WD_GSOC<-("C:/Training_Material/INPUTS/SOC_MAP")
 WD_CRU_LAYERS<-("C:/Training_Material/INPUTS/CRU_LAYERS")
 setwd(WD_CRU_LAYERS)
-# Open Annual Precipitation (mm) and Mean Annual Temperature (degree C) stacks
+# Open Annual Precipitation (mm) and 
+#   Mean Annual Temperature (degree C) stacks
 Temp<-stack("Temp_Stack_240_81-00_CRU.tif")
 Prec<- stack("Prec_Stack_240_81-00_CRU.tif")
 ```
@@ -709,11 +802,14 @@ NPP_MIAMI_tnDM_Ha_Year<-NPP_MIAMI*(1/100)
 NPP_MIAMI_tnC_Ha_Year<-NPP_MIAMI_tnDM_Ha_Year*0.5
 # Save WORLD NPP MIAMI MODEL tnC/ha/year
 setwd(WD_NPP)
-writeRaster(NPP_MIAMI_tnC_Ha_Year,filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00.tif",format="GTiff")
+writeRaster(NPP_MIAMI_tnC_Ha_Year,
+  filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00.tif",
+  format="GTiff")
 # NPP MEAN
 NPP_MIAMI_MEAN_81_00<-mean(NPP_MIAMI_tnC_Ha_Year)
 
-Then we will need to open the country polygon vector and the latest version of the FAO GSOCmap.
+# Then we will need to open the country polygon vector 
+#   and the latest version of the FAO GSOCmap.
 ## Open the shapefile of the region/country
 setwd(WD_AOI)
 AOI<-readOGR("Departamento_Pergamino.shp")
@@ -723,10 +819,12 @@ SOC_MAP_AOI<-raster("SOC_MAP_AOI.tif")
 # Crop & mask
 setwd(WD_NPP)
 NPP_MIAMI_MEAN_81_00_AOI<-crop(NPP_MIAMI_MEAN_81_00,AOI)
-NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,SOC_MAP_AOI)
+NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,
+                                   SOC_MAP_AOI)
 NPP_MIAMI_MEAN_81_00_AOI<-mask(NPP_MIAMI_MEAN_81_00_AOI,AOI)
 
-writeRaster(NPP_MIAMI_MEAN_81_00_AOI,filename="NPP_MIAMI_MEAN_81-00_AOI.tif",format="GTiff")
+writeRaster(NPP_MIAMI_MEAN_81_00_AOI,
+  filename="NPP_MIAMI_MEAN_81-00_AOI.tif",format="GTiff")
 ```
 In order to estimate the uncertainty of our predictions, we will create two additional layers, but this time using a minimum and maximum combination of precipitation and temperature variables to generate minimum and maximum NPP layers (See Chapter 12). 
 
@@ -775,15 +873,20 @@ NPP_MIAMI_tnDM_Ha_Year<-NPP_MIAMI*(1/100)
 NPP_MIAMI_tnC_Ha_Year<-NPP_MIAMI_tnDM_Ha_Year*0.5
 # Save WORLD NPP MIAMI MODEL tnC/ha/year
 setwd(WD_NPP)
-writeRaster(NPP_MIAMI_tnC_Ha_Year,filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00_MIN.tif",format="GTiff")
+writeRaster(NPP_MIAMI_tnC_Ha_Year,
+  filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00_MIN.tif",
+  format="GTiff")
 # NPP MEAN
 NPP_MIAMI_MEAN_81_00<-mean(NPP_MIAMI_tnC_Ha_Year)
 # Crop & and mask
 setwd(WD_NPP)
 NPP_MIAMI_MEAN_81_00_AOI<-crop(NPP_MIAMI_MEAN_81_00,AOI)
-NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,SOC_MAP_AOI)
+NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,
+                                   SOC_MAP_AOI)
 NPP_MIAMI_MEAN_81_00_AOI<-mask(NPP_MIAMI_MEAN_81_00_AOI,AOI)
-writeRaster(NPP_MIAMI_MEAN_81_00_AOI,filename="NPP_MIAMI_MEAN_81-00_AOI_MIN.tif",format="GTiff")
+writeRaster(NPP_MIAMI_MEAN_81_00_AOI,
+  filename="NPP_MIAMI_MEAN_81-00_AOI_MIN.tif",
+  format="GTiff")
 #UNCERTAINTIES MAXIMUM TEMP , PREC
 # Open Anual Precipitation (mm) and Mean Anual Temperature (grades C) stacks
 Temp_max<-Temp*0.98
@@ -830,16 +933,21 @@ NPP_MIAMI_tnDM_Ha_Year<-NPP_MIAMI*(1/100)
 NPP_MIAMI_tnC_Ha_Year<-NPP_MIAMI_tnDM_Ha_Year*0.5
 # Save NPP MIAMI MODEL tnC/ha/year
 setwd(WD_NPP)
-writeRaster(NPP_MIAMI_tnC_Ha_Year,filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00_MAX.tif",format="GTiff")
+writeRaster(NPP_MIAMI_tnC_Ha_Year,
+  filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00_MAX.tif",
+  format="GTiff")
 # NPP MEAN
 NPP_MIAMI_MEAN_81_00<-mean(NPP_MIAMI_tnC_Ha_Year)
 # Crop & and mask
 setwd(WD_NPP)
 NPP_MIAMI_MEAN_81_00_AOI<-crop(NPP_MIAMI_MEAN_81_00,AOI)
-NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,SOC_MAP_AOI)
+NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,
+                                   SOC_MAP_AOI)
 NPP_MIAMI_MEAN_81_00_AOI<-mask(NPP_MIAMI_MEAN_81_00_AOI,AOI)
 
-writeRaster(NPP_MIAMI_MEAN_81_00_AOI,filename="NPP_MIAMI_MEAN_81-00_AOI_MAX.tif",format="GTiff")
+writeRaster(NPP_MIAMI_MEAN_81_00_AOI,
+  filename="NPP_MIAMI_MEAN_81-00_AOI_MAX.tif",
+  format="GTiff")
 ```
 
 ***
@@ -850,25 +958,27 @@ This section presents step by step guidelines on how to download and prepare the
 The TerraClimate data set can be downloaded directly from Google Earth Engine, a powerful and free cloud computing platform.
 First, the user will need to activate a Google Earth Engine account. To run the Google Earth Engine (GEE) tool, the user will need to copy and paste the script (provided below) into the GEE code editor (central panel, Fig. 9.1).
 
-![**Figure 9.1** *Google Earth Engine code editor*](images/Figure_9.1.png)
+![*Google Earth Engine code editor*](images/Figure_9.1.png)
 
 
 To run the script the user can input a new geometry using the geometry tools panel (Figure 9.2) or by uploading a shapefile.
 
-![**Figure 9.2** *Drawing a polygon in Google Earth Engine*](images/Figure_9.2.png)  
+![*Drawing a polygon in Google Earth Engine*](images/Figure_9.2.png)  
 
 The following script can be copied and pasted into GEE without any further modifications:
 
 ```{js, eval = FALSE}
 // Climate data sets for the Spin Up phase 1980-2001
-// calculate the average temperature from minimum and maximum temperatures
+// calculate the average temperature
+// from minimum and maximum temperatures
 // download the Minimum and Maximum Temperature 
 // download the Average temperature
 // download the PET 
 // download the Precipitation
 
 var dataset = ee.ImageCollection('IDAHO_EPSCOR/TERRACLIMATE')
-                  .filter(ee.Filter.date('1981-01-01', '2001-01-01'));
+                  .filter(ee.Filter.date('1981-01-01', 
+                  '2001-01-01'));
 
 var maximumTemperature = dataset.select('tmmx');
 var mxT = maximumTemperature.toBands();
@@ -923,13 +1033,15 @@ Export.image.toDrive({
 });
 
 ``` 
-#### Scrip Number 2. TerraClimate GEE Warm up and Forward phase
+#### Script Number 2. TerraClimate GEE Warm up and Forward phase
 To retrieve the necessary climatic data (2001-2018/20) to be used as input for the warm up and subsequent forward phase the same steps are repeated as for Script 2.1. After defining a geometry or inputting a shapefile the following code can be copied and pasted into the GEE code editor.
 
 
 ```{js, eval = FALSE}
-/ Climate data sets for the Warm Up phase and Forward phase 2001 - 2020
-// calculate the average temperature from minimum and maximum temperatures
+// Climate data sets for the Warm Up phase and 
+// Forward phase 2001 - 2020
+// calculate the average temperature 
+// from minimum and maximum temperatures
 // download the Average temperature
 // download the PET 
 // download the Precipitation
@@ -1001,19 +1113,22 @@ DATE:  2/11/2020
 
 #  MSc Ing Agr Luciano E. Di Paolo
 #  Dr Ing Agr Guillermo E Peralta
-#######################################################################################
+###########################################
 
 library(raster)
 library(rgdal)
 
 
 # TerraClimate FROM GOOGLE EARTH ENGINE
-#Abatzoglou, J.T., S.Z. Dobrowski, S.A. Parks, K.C. Hegewisch, 2018, Terraclimate, 
-#a high-resolution global dataset of monthly climate and climatic water balance from 1958-2015, Scientific Data,
-#######################################################################################
+#Abatzoglou, J.T., S.Z. Dobrowski, S.A. Parks, 
+# K.C. Hegewisch, 2018, Terraclimate, 
+#a high-resolution global dataset of monthly climate
+#and climatic water balance from 1958-2015, Scientific Data,
+##########################################
 
 #Set working directory
-WD<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/TERRA_CLIME")
+WD<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+     INPUTS/TERRA_CLIME")
 setwd(WD)
 
 
@@ -1067,9 +1182,10 @@ Rlist[[i]]<-var_avg
 
 Temp_Stack<-stack(Rlist)
 Temp_Stack<-Temp_Stack*0.1 # rescale to C
-writeRaster(Temp_Stack,filename='Temp_Stack_81-00_TC.tif',"GTiff",overwrite=TRUE)
+writeRaster(Temp_Stack,
+      filename='Temp_Stack_81-00_TC.tif',"GTiff",overwrite=TRUE)
 
-#######################################################################################
+##################################################
 
 #PRECIPITATION
 
@@ -1108,9 +1224,10 @@ Rlist[[i]]<-var_avg
 #save a stack of months averages
 
 Prec_Stack<-stack(Rlist)
-writeRaster(Prec_Stack,filename='Prec_Stack_81-00_TC.tif',"GTiff",overwrite=TRUE)
+writeRaster(Prec_Stack,
+  filename='Prec_Stack_81-00_TC.tif',"GTiff",overwrite=TRUE)
 
-########################################################################
+#######################################################
 
 # POTENTIAL EVAPOTRANSPIRATION 
 
@@ -1153,7 +1270,8 @@ Rlist[[i]]<-var_avg
 
 PET_Stack<-stack(Rlist)
 PET_Stack<-PET_Stack*0.1
-writeRaster(PET_Stack,filename='PET_Stack_81-00_TC.tif',"GTiff",overwrite=TRUE)
+writeRaster(PET_Stack,
+  filename='PET_Stack_81-00_TC.tif',"GTiff",overwrite=TRUE)
 
 ```
 
@@ -1169,18 +1287,21 @@ DATE: 12/02/2021
 
 
 # TerraClimate FROM GOOGLE EARTH ENGINE
-#Abatzoglou, J.T., S.Z. Dobrowski, S.A. Parks, K.C. Hegewisch, 2018, Terraclimate, 
-#a high-resolution global dataset of monthly climate and climatic water balance from 1958-2015, Scientific Data,
-#######################################################################################
+#Abatzoglou, J.T., S.Z. Dobrowski, S.A. Parks, 
+# K.C. Hegewisch, 2018, Terraclimate, 
+#a high-resolution global dataset of monthly climate 
+# and climatic water balance from 1958-2015, Scientific Data,
+########################################################
 
-#######################################################################################
+########################################################
 
 library(raster)
 library(rgdal)
 
-#######################################################################################
+########################################################
 
-WD<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/TERRA_CLIME")
+WD<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+     INPUTS/TERRA_CLIME")
 setwd(WD)
 
 # OPEN LAYERS
@@ -1231,12 +1352,12 @@ Rlist[[i]]<-var_avg
 
 Temp_Stack<-stack(Rlist)
 Temp_Stack<-Temp_Stack*0.1 # rescale to C
-writeRaster(Temp_Stack,filename='Temp_Stack_01-19_TC.tif',"GTiff",overwrite=TRUE)
+writeRaster(Temp_Stack,
+    filename='Temp_Stack_01-19_TC.tif',"GTiff",overwrite=TRUE)
 
 
 
-#############################################################################################################################
-
+####################################
 #PRECIPITATION
 
 
@@ -1277,10 +1398,11 @@ Rlist[[i]]<-var_avg
 #save a stack of months averages
 
 Prec_Stack<-stack(Rlist)
-writeRaster(Prec_Stack,filename='Prec_Stack_01-19_TC.tif',"GTiff",overwrite=TRUE)
+writeRaster(Prec_Stack,
+    filename='Prec_Stack_01-19_TC.tif',"GTiff",overwrite=TRUE)
 
 
-########################################################################
+######################################################
 
 # POTENTIAL EVAPOTRANSPIRATION 
 
@@ -1320,7 +1442,8 @@ Rlist[[i]]<-var_avg
 
 PET_Stack<-stack(Rlist)
 PET_Stack<-PET_Stack*0.1
-writeRaster(PET_Stack,filename='PET_Stack_01-19_TC.tif',"GTiff",overwrite=TRUE)
+writeRaster(PET_Stack,
+  filename='PET_Stack_01-19_TC.tif',"GTiff",overwrite=TRUE)
 
 
 ```
@@ -1340,13 +1463,17 @@ To adjust yearly C inputs during the warm up phase according to annual NPP value
 library(raster)
 library(rgdal)
 
-WD_NPP<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/NPP")
+WD_NPP<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/NPP")
 
-WD_AOI<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/AOI_POLYGON")
+WD_AOI<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/AOI_POLYGON")
 
-WD_GSOC<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/SOC_MAP")
+WD_GSOC<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+          INPUTS/SOC_MAP")
 
-WD_TC_LAYERS<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/TERRA_CLIME")
+WD_TC_LAYERS<-("D:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+               INPUTS/TERRA_CLIME")
 
 setwd(WD_TC_LAYERS)
 
@@ -1424,9 +1551,12 @@ NPP_MIAMI_tnC_Ha_Year<-NPP_MIAMI_tnDM_Ha_Year*0.5
 
 setwd(WD_NPP)
 
-writeRaster(NPP_MIAMI_tnC_Ha_Year,filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00.tif",format="GTiff",overwrite=TRUE)
+writeRaster(NPP_MIAMI_tnC_Ha_Year,
+    filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00.tif",
+    format="GTiff",overwrite=TRUE)
 
-#NPP_MIAMI_tnC_Ha_Year<-stack("NPP_MIAMI_tnC_Ha_Year_STACK_81-00.tif")
+#NPP_MIAMI_tnC_Ha_Year<-stack("NPP_MIAMI_tnC_Ha
+# _Year_STACK_81-00.tif")
 
 # NPP MEAN
 
@@ -1444,11 +1574,16 @@ SOC_MAP_AOI<-raster("SOC_MAP_AOI.tif")
 setwd(WD_NPP)
 
 NPP_MIAMI_MEAN_81_00_AOI<-crop(NPP_MIAMI_MEAN_81_00,AOI)
-NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,SOC_MAP_AOI)
+NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,
+                                   SOC_MAP_AOI)
 NPP_MIAMI_MEAN_81_00_AOI<-mask(NPP_MIAMI_MEAN_81_00_AOI,AOI)
 
-writeRaster(NPP_MIAMI_MEAN_81_00_AOI,filename="NPP_MIAMI_MEAN_81-00_AOI.tif",format="GTiff",overwrite=TRUE)
-writeRaster(NPP_MIAMI_MEAN_81_00,filename="NPP_MIAMI_MEAN_81-00.tif",format="GTiff",overwrite=TRUE)
+writeRaster(NPP_MIAMI_MEAN_81_00_AOI,
+   filename="NPP_MIAMI_MEAN_81-00_AOI.tif",
+   format="GTiff",overwrite=TRUE)
+writeRaster(NPP_MIAMI_MEAN_81_00,
+   filename="NPP_MIAMI_MEAN_81-00.tif",
+   format="GTiff",overwrite=TRUE)
 
 
 #UNCERTAINTIES MINIMUM TEMP , PREC
@@ -1522,7 +1657,9 @@ NPP_MIAMI_tnC_Ha_Year<-NPP_MIAMI_tnDM_Ha_Year*0.5
 
 setwd(WD_NPP)
 
-writeRaster(NPP_MIAMI_tnC_Ha_Year,filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00_MIN.tif",format="GTiff",overwrite=TRUE)
+writeRaster(NPP_MIAMI_tnC_Ha_Year,
+   filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00_MIN.tif",
+   format="GTiff",overwrite=TRUE)
 
 # NPP MEAN
 
@@ -1533,16 +1670,22 @@ NPP_MIAMI_MEAN_81_00<-mean(NPP_MIAMI_tnC_Ha_Year)
 setwd(WD_NPP)
 
 NPP_MIAMI_MEAN_81_00_AOI<-crop(NPP_MIAMI_MEAN_81_00,AOI)
-NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,SOC_MAP_AOI)
+NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,
+                                   SOC_MAP_AOI)
 NPP_MIAMI_MEAN_81_00_AOI<-mask(NPP_MIAMI_MEAN_81_00_AOI,AOI)
 
-writeRaster(NPP_MIAMI_MEAN_81_00_AOI,filename="NPP_MIAMI_MEAN_81-00_AOI_MIN.tif",format="GTiff",overwrite=TRUE)
-writeRaster(NPP_MIAMI_MEAN_81_00,filename="NPP_MIAMI_MEAN_81-00_MIN.tif",format="GTiff",overwrite=TRUE)
+writeRaster(NPP_MIAMI_MEAN_81_00_AOI,
+        filename="NPP_MIAMI_MEAN_81-00_AOI_MIN.tif",
+        format="GTiff",overwrite=TRUE)
+writeRaster(NPP_MIAMI_MEAN_81_00,
+        filename="NPP_MIAMI_MEAN_81-00_MIN.tif",
+        format="GTiff",overwrite=TRUE)
 
 
 #UNCERTAINTIES MAXIMUM TEMP , PREC
 
-# Open Anual Precipitation (mm) and Mean Anual Temperature (grades C) stacks
+# Open Anual Precipitation (mm) and 
+# Mean Annual Temperature (C) stacks
 
 Temp_max<-Temp*0.98
 Prec_max<-Prec*1.05
@@ -1615,7 +1758,9 @@ NPP_MIAMI_tnC_Ha_Year<-NPP_MIAMI_tnDM_Ha_Year*0.5
 
 setwd(WD_NPP)
 
-writeRaster(NPP_MIAMI_tnC_Ha_Year,filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00_MAX.tif",format="GTiff",overwrite=TRUE)
+writeRaster(NPP_MIAMI_tnC_Ha_Year,
+  filename="NPP_MIAMI_tnC_Ha_Year_STACK_81-00_MAX.tif",
+  format="GTiff",overwrite=TRUE)
 
 # NPP MEAN
 
@@ -1626,11 +1771,16 @@ NPP_MIAMI_MEAN_81_00<-mean(NPP_MIAMI_tnC_Ha_Year)
 setwd(WD_NPP)
 
 NPP_MIAMI_MEAN_81_00_AOI<-crop(NPP_MIAMI_MEAN_81_00,AOI)
-NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,SOC_MAP_AOI)
+NPP_MIAMI_MEAN_81_00_AOI<-resample(NPP_MIAMI_MEAN_81_00_AOI,
+                                   SOC_MAP_AOI)
 NPP_MIAMI_MEAN_81_00_AOI<-mask(NPP_MIAMI_MEAN_81_00_AOI,AOI)
 
-writeRaster(NPP_MIAMI_MEAN_81_00_AOI,filename="NPP_MIAMI_MEAN_81-00_AOI_MAX.tif",format="GTiff",overwrite=TRUE)
-writeRaster(NPP_MIAMI_MEAN_81_00,filename="NPP_MIAMI_MEAN_81-00_MAX.tif",format="GTiff",overwrite=TRUE)
+writeRaster(NPP_MIAMI_MEAN_81_00_AOI,
+  filename="NPP_MIAMI_MEAN_81-00_AOI_MAX.tif",
+  format="GTiff",overwrite=TRUE)
+writeRaster(NPP_MIAMI_MEAN_81_00,
+  filename="NPP_MIAMI_MEAN_81-00_MAX.tif",
+  format="GTiff",overwrite=TRUE)
 
 
 ```
@@ -1644,16 +1794,22 @@ Script number 6 is a Google Earth Engine script. It is aimed at estimating an av
 
 **Table 9.6.** *Script Number 6.GEE Monthly Vegetation Cover. Inputs and Outputs*
 
-![](tables/Table_9.5.png)
+The algorithm must be run once for each month.
+
+* **Input:**
+  * Country polygon geometry
+* **Output:**
+  *NDVI_2015-2019_prop_gt_06_[country_code]_MONTH_[Number of the month] (12 Layers to be saved in a googledrive account)
+
 
 First, the user will need to activate a Google Earth Engine account. To run the Google Earth Engine (GEE) tool, the user will need to copy and paste the script  (provided below) into the GEE code editor (central panel, Fig. 9.1). 
  
-![**Figure 9.1** *Google Earth Engine code editor*](images/Figure_9.1.png)     
+![*Google Earth Engine code editor*](images/Figure_9.1.png)     
 
 
 The user will need  to draw a polygon that includes the country that is being analyzed, by clicking on "+new layer". The polygon will contain the country's boundary or area of interest (Fig. 9.2)
 
-![**Figure 9.2** *Drawing a polygon in Google Earth Engine*](images/Figure_9.2.png)    
+![*Drawing a polygon in Google Earth Engine*](images/Figure_9.2.png)    
 
 
 The script shall be run twelve times, once for each month of the year. The user will need to specify the month, the name of the output folder and the name of the output raster each time the script is run. The following lines need to be edited:
@@ -1666,10 +1822,11 @@ The script shall be run twelve times, once for each month of the year. The user 
 //Google Earth Engine 
 // Monthly Vegetation Cover for Roth C Model   
  // Provide a polygon geometry
- // Select the Modis dataset. MOD13A2 is an NDVI product. Modify the number of the month filter for each month from 1 to 12. 
+ // Select the Modis dataset. MOD13A2 is an NDVI product. 
+ // Modify the number of the month filter for each month from 1 to 12. 
  var dataset = ee.ImageCollection('MODIS/006/MOD13A2')
-                  .filter(ee.Filter.date('2015-01-01', '2019-12-01'))
-                  .filter(ee.Filter.calendarRange(12,12,'month'));
+              .filter(ee.Filter.date('2015-01-01', '2019-12-01'))
+              .filter(ee.Filter.calendarRange(12,12,'month'));
  var ndvi = dataset.select('NDVI');
  // Masks every pixel greater than 0.6 NDVI
 var mask06= function(image) {
@@ -1678,27 +1835,31 @@ var mask06= function(image) {
   };
  // Apply the mask to the dataset (var ndvi)
 var ndvi_06=ndvi.map(mask06); 
- // Count the number of times a pixel has an NDVI value greater than 0.6
+ // Count the number of times a pixel has an NDVI value 
+ // greater than 0.6
 var ndvi_06_nn=ndvi_06.reduce(ee.Reducer.count());
  // Count the total number of values per pixel
 var ndvi_nn=ndvi.reduce(ee.Reducer.count());
- // Calculate the proportion of times the NDVI value is greater than 0.6 per pixel
+ // Calculate the proportion of times the NDVI value 
+ // is greater than 0.6 per pixel
 var prop_cover= ndvi_06_nn.divide(ndvi_nn);
  // Color palette
 var ndviVis = {
   min: 0.0,
   max: 1.0,
   palette: [
-    'FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163', '99B718', '74A901',
-    '66A000', '529400', '3E8601', '207401', '056201', '004C00', '023B01',
-    '012E01', '011D01', '011301'
+    'FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163',
+    '99B718', '74A901', '66A000', '529400', '3E8601',
+    '207401', '056201', '004C00', '023B01', '012E01',
+    '011D01', '011301'
  ],
 };
  // Clip the map with the country geometry
 var Recorte = prop_cover.clip(geometry);
  // Add the map to the visualization google earth engine panel
 Map.addLayer(Recorte, ndviVis, 'Country')
- // This code block needs to be modify for each month and allows the user to save the map into a Google drive account
+ // This code block needs to be modify for each month and 
+ // allows the user to save the map into a Google drive account
 var regionJSON = JSON.stringify(Recorte.getInfo());
 Export.image.toDrive({
           image: Recorte.select("NDVI_count"),
@@ -1713,7 +1874,7 @@ Export.image.toDrive({
 
 After running the script for each month, the layer must be saved to the Google Drive account. To accomplish this, the user will need to click on the "task" button and then click the "run" button (Fig. 9.3)
 
-![**Figure 9.3** *Saving the task in GEE.*](images/Figure_9.3.png)
+![*Saving the task in GEE.*](images/Figure_9.3.png)
 
 Once the procedure is completed, the layers should be downloaded from the Google Drive and saved into a local folder
 
@@ -1721,8 +1882,12 @@ Once the procedure is completed, the layers should be downloaded from the Google
 ### Script Number 7. "Vegetation_Cover_stack.R"
 The script number 7 is an R script that uses the monthly vegetation cover layers (0-1 values) created with the GEE script number 6 to create a raster stack. It also linearly rescales the values from "0 to 1" (proportion of vegetated pixels in a time series) to "1 to 0.6" (being 1 = bare soil and 0.6 = full vegetated pixel). This transformation will allow us to use the calculated values as modifying factors of the decomposition rates in the RothC model. 
  
-Table 9.6 Script Number 7. Vegetation Cover Stack. Inputs and Outputs.
-![](tables/Table_9.6.png)
+* **Input:**
+  * Country polygon geometry
+  * SOC map from FAO (master layer): GSOCmapV1.5.0.tif
+  * 12x NDVI_2015-2019_prop_gt_06_[country_code]_MONTH_[Number of the month]
+* **Output:**
+  * Cov_Stack_[country_code].tif (12 layer stack)
 
 Once the monthly vegetation cover layers are downloaded from Google Drive, we will generate a stack of those layers. We will first open script number 7 "Vegetation_Cover_stack.R" and the required packages. Then, we will need to open the country polygon vector and set the working directory for the input and the output layers.
 
@@ -1742,7 +1907,8 @@ AOI<-readOGR("Departamento_Pergamino.shp")
 #Open SOC MAP FAO
 setwd(WD_SOC)
 SOC_MAP_AOI<-raster("SOC_MAP_AOI.tif")
-# Open Vegetation Cover layer based only in proportion of NDVI pixels grater than 0.6 
+# Open Vegetation Cover layer based only 
+# in proportion of NDVI pixels grater than 0.6 
 setwd(WD_COV)
 Cov1<-raster("NDVI_2015-2019_prop_gt03_M01.tif")
 Cov1[is.na(Cov1[])] <- 0
@@ -1811,11 +1977,17 @@ writeRaster(Cov,filename='Cov_stack_AOI.tif',format='GTiff')
 ```
 Once the monthly vegetation cover layers are downloaded from Google Drive, we will generate a stack of those layers. We will first open script number 7 "Vegetation_Cover_stack.R" and the required packages. Then, we will need to open the country polygon vector and set the working directory for the input and the output layers.
 
-**Table 9.8** *Script Number 8. Clay Layer from ISRIC. Inputs and Outputs*
+* **Input data:**
+  * Country polygon geometry
+  * Clay inputs from ISRIC:
+    * CLYPPT_M_sl1_250m_ll.tif
+    * CLYPPT_M_sl2_250m_ll.tif
+    * CLYPPT_M_sl3_250m_ll.tif
+    * CLYPPT_M_sl4_250m_ll.tif
+* **Output:**
+  * Clay_[country_code]_Avg.tif (1 layer)
 
-![](tables/Table_9.7.png)
-
-ISRIC clay layers represent the clay content (0-2 micrometer; in g/100g; w%) at four standard depths (Sl1=0-1cm; Sl2=1-5; Sl3=5-15cm; Sl4=15-30 cm) at a 250m resolution. The objective of this script is to aggregate the different layers into one layer by estimating the weighted average of the four depths:
+ISRIC clay layers represent the clay content (0-2 micrometer; in g/100g; w%) at four standard depths (sl1=0-1cm; sl2=1-5; sl3=5-15cm; sl4=15-30 cm) at a 250m resolution. The objective of this script is to aggregate the different layers into one layer by estimating the weighted average of the four depths:
 ```{r, eval = FALSE}
 library(raster)
 library(rgdal)
@@ -1864,16 +2036,19 @@ Finally, the land use layer is also needed to define the target points where the
 
 Depending on whether yearly land use layers are available for the forward phase, this technical manual contains alternative scripts both for the data preparation phase (Scripts 9_Land_Use_ESA_to_FAO_classes_LUsim.R and 11_WARM_UP_STACK_V5_LUsim.R) and the modelling phase (Script 14_ROTH_C_WARM_UP_UNC_v3_LUsim.R). Figure illustrates the script sequence to be followed depending on whether yearly land use change layers are available for the warm up phase.
 
-![Figure 9.6 Script sequence based on wether yearly land use change layers for the warm up phase are available](images/Figure_9.6.png) 
+![*Script sequence based on wether yearly land use change layers for the warm up phase are available*](images/Figure_9.6.png) 
 ***
 
 
 ### Script Number 9 "Land_Use_ESA_to_FAO_classes.R" No land use change
 Script number 9 transforms the ESA (European Space Agency 2015; 300 m resolution; ESA CCI Land cover website) land cover classes to the FAO land use classes. This script can be modified to be used with any other land use dataset.
-  
-**Table 9.9** *Script Number 9.  ESA Land Use to FAO classes. Inputs and Outputs*
 
-![](tables/Table_9.8.png)
+* **Input data:**
+  * Country polygon geometry
+  * SOC map from FAO (master layer): GSOCmapV1.5.0.tif
+  * ESACCI-LC-L4-LCCS-Map-300m-P1Y-2015-v2.0.7.tif (ESA Land use)
+* **Output:**
+  * ESA_Land_Cover_12clases_FAO_s.tif (1 layer)
  
 First, we will need to open the R packages, open the shapefile of the region/country to be modelled, and open the land use/land cover data set to be re-classified into FAO land use classes:
 
@@ -1888,7 +2063,8 @@ setwd(WD_AOI)
 AOI<-readOGR("Departamento_Pergamino.shp")
 # Open Land Use Layer (ESA)
 setwd(WD_LU)
-ESA_LU<-raster("ESACCI-LC-L4-LCCS-Map-300m-P1Y-2015-v2.0.7_subs.tif")
+ESA_LU<-raster("ESACCI-LC-L4-LCCS-Map-
+               300m-P1Y-2015-v2.0.7_subs.tif")
 plot(ESA_LU)
 # Cut the LU layer by the country polygon
 ESA_LU_AOI<-crop(ESA_LU,AOI)
@@ -1921,7 +2097,8 @@ ESA_FAO_res<-resample(ESA_FAO,SOC_MAP_AOI,method='ngb')
 ESA_FAO_mask<-mask(ESA_FAO_res,SOC_MAP_AOI) 
 # Save Land Use raster
 setwd(WD_LU)
-writeRaster(ESA_FAO_mask,filename="ESA_Land_Cover_12clases_FAO_AOI.tif",format='GTiff')
+writeRaster(ESA_FAO_mask,
+  filename="ESA_Land_Cover_12clases_FAO_AOI.tif",format='GTiff')
 
 ```
 ### Script Number 9 "Land_Use_ESA_to_FAO_classes_LUsim.R" Land use change simulation 
@@ -1940,16 +2117,20 @@ rm(list = ls())
 library(raster)
 library(rgdal)
 
-WD_AOI<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/AOI_POLYGON")
+WD_AOI<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/AOI_POLYGON")
 
-WD_LU<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/LAND_USE")
+WD_LU<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+        INPUTS/LAND_USE")
 
-WD_SOC<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/SOC_MAP")
+WD_SOC<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/SOC_MAP")
 
 # Open the shapefile of the region/country
 
 setwd(WD_AOI)
-AOI<-readOGR("Departamento_Pergamino.shp") # change for your own Area of interest
+AOI<-readOGR("Departamento_Pergamino.shp") # change for your 
+# own Area of interest
 
 # Open Land Use Layer (ESA)
 
@@ -1995,17 +2176,22 @@ ESA_FAO <- reclassify(ESA_LU_AOI, recMat)
 
 # Resample to SOC map layer extent and resolution
 setwd(WD_SOC)
-SOC_MAP_AOI<-raster("SOC_MAP_AOI.tif") # change for your own SOC MAP
+SOC_MAP_AOI<-raster("SOC_MAP_AOI.tif") # change for 
+  # your own SOC MAP
 
 ESA_FAO_res<-resample(ESA_FAO,SOC_MAP_AOI,method='ngb') 
 ESA_FAO_mask<-mask(ESA_FAO_res,SOC_MAP_AOI) 
 
 # Save Land Use raster
 setwd(WD_LU)
-writeRaster(ESA_FAO_mask,filename="ESA_Land_Cover_12clases_FAO_Stack_AOI.tif",format='GTiff',overwrite=TRUE)
+writeRaster(ESA_FAO_mask,
+  filename="ESA_Land_Cover_12clases_FAO_Stack_AOI.tif",
+  format='GTiff',overwrite=TRUE)
 
 # We save separately the land use from 2018 to perform the target's points creation
-writeRaster(ESA_FAO_mask[[18]],filename="ESA_Land_Cover_12clases_FAO_2018_AOI.tif",format='GTiff',overwrite=TRUE)
+writeRaster(ESA_FAO_mask[[18]],
+  filename="ESA_Land_Cover_12clases_FAO_2018_AOI.tif",
+  format='GTiff',overwrite=TRUE)
 
 ```
   
@@ -2018,9 +2204,22 @@ Once all soil, climate, vegetation and land use layers are created, they need to
 ### Script Number 10. "SPIN_UP_STACK.v3.R"
 Script number 10 is intended to harmonize all layers needed to complete phase 1 (long spin-up) of the spatial RothC model. The result of this script is a simple raster stack which contains all the data to perform the spin-up phase. To generate the stack we will need the SOC FAO layer (master layer), the clay layer (from script number 8), the three climate stacks (from script number 1), the land use layer (from script number 9), and the vegetation cover stack (from script number 7).   
  
-**Table 9.10** *Script Number 10. Stack Layers for SPIN UP phase. Inputs and Outputs*
-
-![](tables/Table_9.9.png)
+* **Input data:**
+  * Country polygon geometry
+  * SOC map from FAO (master layer): 
+    * GSOCmapV1.5.0.tif
+  * Clay inputs (from script number 8):
+    * Clay_[country_code]_Avg.tif (1 layer)
+  * CRU layers (from Script number 1):
+    * Temp_Stack_81-00_CRU.tif
+    * Prec_Stack_81-00_CRU.tif
+    * PET_Stack_81-00_CRU.tif
+  * Land use layer (from script number 9):
+    * ESA_Land_Cover_12clases_FAO_s.tif (1 layer)
+  * Vegetation cover layer (from script number 7):
+    * Cov_Stack_[country_code].tif (12 layer stack)
+* **Output:**
+  * Stack_Set_SPIN_UP_[country_code].tif
 
 First, we will open the required R-packages and a shapefile (polygon) which represents the country boundary. In the script below we will be using an example but when running it (AR), the user will have to replace the file according to the target country. The user can also modify the names of the variables inside the script. However, as these variables will only exist inside the script, it is not necessary.
 ```{r, eval = FALSE}
@@ -2039,7 +2238,9 @@ WD_STACK<-("C:/Training_Material/INPUTS/STACK")
 setwd(WD_AOI)
 AOI<-readOGR("Departamento_Pergamino.shp")
 
-The second step is to load the latest version of FAO Soil Organic Carbon map layer (Master Layer), created in script number 0. 
+The second step is to load the latest version of 
+FAO Soil Organic Carbon map layer (Master Layer),
+created in script number 0. 
 #Open SOC MAP FAO
 setwd(WD_SOC)
 SOC_MAP_AOI<-raster("SOC_MAP_AOI.tif")
@@ -2051,7 +2252,10 @@ Clay_WA_AOI_res<-resample(Clay_WA_AOI,SOC_MAP_AOI,method='bilinear')
 Clay_AR_Avg<-crop(Clay_AR_Avg,AR)
 Clay_AR_Avg<-mask(Clay_AR_Avg,AR)
 Clay_AR_Avg_res<-resample(Clay_AR_Avg,SOC_MAP_AR,method='bilinear') 
-Next, we will open the climate raster layers (generated in script number 1).  These layers come from the CRU database, but the user can choose local layers if desired, as long as they match the arrangement and format needed for running the model.
+Next, we will open the climate raster layers (generated in 
+script number 1).  These layers come from the CRU database, 
+but the user can choose local layers if desired, as long as 
+they match the arrangement and format needed for running the model.
 #Open Precipitation layer 
 setwd(WD_CLIM)
 PREC<-stack("Prec_Stack_81-00_CRU.tif")
@@ -2065,14 +2269,18 @@ TEMP_AOI<-crop(TEMP,AOI)
 TEMP_AOI<-resample(TEMP_AOI,SOC_MAP_AOI)
 TEMP_AOI<-mask(TEMP_AOI,AOI)
 TEMP_AOI<-stack(TEMP_AOI)
-#Open Potential Evapotranspiration layer (CRU https://crudata.uea.ac.uk/cru/data/hrg/)
+#Open Potential Evapotranspiration layer 
+# (CRU https://crudata.uea.ac.uk/cru/data/hrg/)
 PET<-stack("PET_Stack_81-00_CRU.tif")
 PET_AOI<-crop(PET,AOI)
 PET_AOI<-resample(PET_AOI,SOC_MAP_AOI)
 PET_AOI<-mask(PET_AOI,AOI)
 PET_AOI<-stack(PET_AOI)
-Next, we will open, resample and mask the land use raster layer to be used in the spin up phase (representative 1980-2000 period).  In this example we will use the ESA land used reclassified into FAO land use classes (script 9)
-# OPen Land Use layer reclassify to FAO classes 
+Next, we will open, resample and mask the land use raster layer 
+to be used in the spin up phase (representative 1980-2000 period).  
+In this example we will use the ESA land used reclassified 
+into FAO land use classes (script 9)
+# Open Land Use layer reclassify to FAO classes 
 # 0 No Data
 # 1 Artificial
 # 2 Croplands
@@ -2089,7 +2297,8 @@ Next, we will open, resample and mask the land use raster layer to be used in th
 # 13 Paddy fields
 setwd(WD_LU)
 LU_AOI<-raster("ESA_Land_Cover_12clases_FAO_AOI.tif")
-Then, we will open the vegetation cover layers (created in script number 7):
+Then, we will open the vegetation cover layers 
+(created in script number 7):
 # Open Vegetation Cover layer 
 setwd(WD_COV)
 Cov_AOI<-stack('Cov_stack_AOI.tif')
@@ -2102,23 +2311,38 @@ The script then creates a DR layer (DPM/RPM ratio). Here the DR layer is derived
 ```{r, eval = FALSE}
 # Use Land use layer to convert it to DR layer 
 #DPM/RPM (decomplosable vs resistant plant material)
-#(1) Most agricultural crops and improved grassland and tree crops 1.44 
+#(1) Most agricultural crops and improved grassland 
+# and tree crops 1.44 
 #(2) Unimproved grassland and schrub 0.67
 #(3) Deciduous and tropical woodland 0.25    
-DR<-(LU_AOI==2 | LU_AOI==12| LU_AOI==13)*1.44+ (LU_AOI==4)*0.25 + (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
- Finally, we will create a stack with all the raster layers that have been prepared.
+DR<-(LU_AOI==2 | LU_AOI==12| LU_AOI==13)*1.44+ (LU_AOI==4)*0.25 +
+  (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
+Finally, we will create a stack with all the raster layers
+that have been prepared.
  # STACK all layers
-Stack_Set_AOI<-stack(SOC_MAP_AOI,Clay_WA_AOI_res,TEMP_AOI,PREC_AOI,PET_AOI,DR,LU_AOI,Cov_AOI)
+Stack_Set_AOI<-stack(SOC_MAP_AOI,
+        Clay_WA_AOI_res,TEMP_AOI,PREC_AOI,PET_AOI,DR,LU_AOI,Cov_AOI)
 setwd(WD_STACK)
-writeRaster(Stack_Set_AOI,filename=("Stack_Set_SPIN_UP_AOI.tif"),format="GTiff")
+writeRaster(Stack_Set_AOI,
+    filename=("Stack_Set_SPIN_UP_AOI.tif"),format="GTiff")
 ```
 
 ### Script Number 11. "WARM_UP_STACK_V5.R" No Land use change
 Script number 11 is intended to harmonize all layers required to run the phase 2 (WARM UP) of the spatial RothC model. The result of this script is a simple raster stack which contains most of the layers needed for the warm-up phase. To generate the stack we will need the latest version of SOC FAO layer (master layer), the clay layer (from script number 8), land use layers (from script number 9), a land use stack (one land use layer per year), a vegetation cover stack (from script number 7)  and the NPP stack (from script number 4). The climate layers and the NPP mean are additional layers that will be needed in the WARM UP phase but will not be part of this stack because of the final size of the output file.
 
-**Table 9.11** *Script Number 11. Stack layers for Warm Up phase. Inputs and Outputs*
-
-![](tables/Table_9.10.png)
+* **Input data:**
+  * Country polygon geometry
+  * SOC layer (from script number 10): 
+    * SOC_MAP_[country_code].tif
+  * Clay layer (from script number 8):
+    * Clay_[country_code]_Avg.tif
+  * Land use layer (from script number 9):
+    * ESA_Land_Cover_12clases_FAO_s.tif (1 layer per year, 18 years)
+  * Vegetation cover layer (from script number 7):
+    * Cov_Stack_[country_code].tif (12 layer stack)
+  * DR Stack (1 layer per year, 18 years)
+* **Output:**
+  * Stack_Set_WARM_UP_[country_code].tif
  
 First, we will load the packages, set the number of years of the warmup phase and set the directories of each layer. Then we will open the country vector polygon boundaries:
 
@@ -2154,7 +2378,8 @@ Then we will open the clay layer created in script number 8:
  # Open Clay layers  (ISRIC)
 setwd(WD_CLAY)
 Clay_WA_AOI<-raster("Clay_WA_AOI.tif")
-Clay_WA_AOI_res<-resample(Clay_WA_AOI,SOC_MAP_AOI,method='bilinear') 
+Clay_WA_AOI_res<-resample(Clay_WA_AOI,
+                          SOC_MAP_AOI,method='bilinear') 
 
 ```
 Then, we will  open the Land Use layers required for the warm up phase (2000-2020). In this example we used the ESA land use (2015) reclassified into to the FAO land use classes.
@@ -2219,21 +2444,29 @@ library(rgdal)
 # Set the number of years of the warm up
 nWUP<-18
 
-WD_AOI<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/AOI_POLYGON")
+WD_AOI<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/AOI_POLYGON")
 
-WD_SOC<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/SOC_MAP")
+WD_SOC<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/SOC_MAP")
 
-WD_CLAY<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/CLAY")
+WD_CLAY<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+          INPUTS/CLAY")
 
-WD_CLIM<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/CRU_LAYERS")
+WD_CLIM<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+          INPUTS/CRU_LAYERS")
 
-WD_LU<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/LAND_USE")
+WD_LU<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+        INPUTS/LAND_USE")
 
-WD_COV<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/COV")
+WD_COV<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/COV")
 
-WD_STACK<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/STACK")
+WD_STACK<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+           INPUTS/STACK")
 
-WD_NPP<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/INPUTS/NPP")
+WD_NPP<-("C:/TRAINING_MATERIALS_GSOCseq_MAPS_12-11-2020/
+         INPUTS/NPP")
 
 
 # Open the shapefile of the region/country
@@ -2306,7 +2539,8 @@ DR_Stack[[i]]<-(LU_Stack[[i]]==2 | LU_Stack[[i]]==12 | LU_Stack[[i]]==13)*1.44+ 
 Stack_Set_AOI<-stack(SOC_MAP_AOI,Clay_WA_AOI_res,Cov_AOI,LU_Stack,DR_Stack)
 
 setwd(WD_STACK)
-writeRaster(Stack_Set_AOI,filename=("Stack_Set_WARM_UP_AOI.tif"),format="GTiff",overwrite=TRUE)
+writeRaster(Stack_Set_AOI,
+    filename=("Stack_Set_WARM_UP_AOI.tif"),format="GTiff",overwrite=TRUE)
 
 ```
 
@@ -2315,9 +2549,22 @@ writeRaster(Stack_Set_AOI,filename=("Stack_Set_WARM_UP_AOI.tif"),format="GTiff",
 
 Script number 12 harmonizes all layers needed to run phase 3 (forward) of the spatial Roth C model. The result of the script is a simple raster stack which contains the layers needed to perform the forward phase. To generate the stack we will need the SOC FAO layer (master layer), the clay layer (from script number 8), the three climate stacks required for the forward phase (from script number 2), the land use layer or the forward phase (from script number 9), and the vegetation cover stack (from script number 7).  
  
-**Table 9.12** *Script Number 12. Stack layers for forward phase. Inputs and Outputs.*
-
-![](tables/Table_9.11.png) 
+* **Input data:**
+  * Country polygon geometry
+  * SOC layer (from script number 10): 
+    * SOC_MAP_[country_code].tif
+  * Clay layer (from script number 8):
+    * Clay_[country_code]_Avg.tif
+  * CRU layers (from Script number 2):
+    * Temp_Stack_81-00_CRU.tif
+    * Prec_Stack_81-00_CRU.tif
+    * PET_Stack_81-00_CRU.tif
+  * Land use layer (from script number 10):
+    * LU_res.tif
+  * Vegetation cover layer (from script number 7):
+    * Cov_Stack_[country_code].tif (12 layer stack)
+* **Output:**
+  * Stack_Set_FOWARD_[country_code].tif
 
 First, we will load the packages, set path to the files directories and open the country vector polygon boundaries.
 
@@ -2346,40 +2593,50 @@ setwd(WD_CLAY)
 Clay_WA_AOI<-raster("Clay_WA_AOI.tif")
 Clay_WA_AOI_res<-resample(Clay_WA_AOI,SOC_MAP_AOI,method='bilinear') 
 
-Then we will open the 2000-2020 average climate layers created (as the one created in script number 2)
-#Open Precipitation layer (CRU https://crudata.uea.ac.uk/cru/data/hrg/)
+Then we will open the 2000-2020 average climate layers created 
+(as the one created in script number 2)
+#Open Precipitation layer 
+#(CRU https://crudata.uea.ac.uk/cru/data/hrg/)
 setwd(WD_CLIM)
 PREC<-stack("Prec_Stack_01-18_CRU.tif")
 PREC_AOI<-crop(PREC,AOI)
 PREC_AOI<-resample(PREC_AOI,SOC_MAP_AOI)
 PREC_AOI<-mask(PREC_AOI,AOI)
 PREC_AOI<-stack(PREC_AOI)
-#Open Temperatures layer (CRU https://crudata.uea.ac.uk/cru/data/hrg/)
+#Open Temperatures layer 
+#(CRU https://crudata.uea.ac.uk/cru/data/hrg/)
 TEMP<-stack("Temp_Stack_01-18_CRU.tif")
 TEMP_AOI<-crop(TEMP,AOI)
 TEMP_AOI<-resample(TEMP_AOI,SOC_MAP_AOI)
 TEMP_AOI<-mask(TEMP_AOI,AOI)
 TEMP_AOI<-stack(TEMP_AOI)
-#Open Potential Evapotranspiration layer (CRU https://crudata.uea.ac.uk/cru/data/hrg/)
+#Open Potential Evapotranspiration layer 
+#(CRU https://crudata.uea.ac.uk/cru/data/hrg/)
 PET<-stack("PET_Stack_01-18_CRU.tif")
 PET_AOI<-crop(PET,AOI)
 PET_AOI<-resample(PET_AOI,SOC_MAP_AOI)
 PET_AOI<-mask(PET_AOI,AOI)
 PET_AOI<-stack(PET_AOI)
-Then, we will open the land use layer (latest available year) created in script number 10.
+Then, we will open the land use layer (latest available year) 
+created in script number 10.
 setwd(WD_LU)
 LU_AOI<-raster("ESA_Land_Cover_12clases_FAO_AOI.tif")
 Then, we will open the vegetation cover layer created in script number 7.
 # Open Vegetation Cover 
 setwd(WD_COV)
 Cov_AOI<-stack('Cov_stack_AOI.tif')
-As in the previous scripts, this script creates a DR layer (DPM/RPM ratio), assigning default DPM/RPM ratios to each FAO land cover class (See Table 9.13). Users can modify these ratios according to local expertise and available local information. 
+As in the previous scripts, this script creates a 
+DR layer (DPM/RPM ratio), assigning default DPM/RPM ratios 
+to each FAO land cover class (See Table 9.13). 
+Users can modify these ratios according to local expertise 
+and available local information. 
 # Open Land use layer and convert it to DR layer (mod 12 , 14 classes)
-#DPM/RPM (decomplosable vs resistant plant material...como se divide los C inputs)
+#DPM/RPM (decomposable vs resistant plant material)
 #(1) Most agricultural crops and improved grassland or tree crops 1.44 
 #(2) Unimproved grassland and schrub 0.67
 #(3) Deciduous and tropical woodland 0.25    
-DR<-(LU_AOI==2 | LU_AOI==12| LU_AOI==13)*1.44+ (LU_AOI==4)*0.25 + (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
+DR<-(LU_AOI==2 | LU_AOI==12| LU_AOI==13)*1.44+ (LU_AOI==4)*0.25 + 
+  (LU_AOI==3 | LU_AOI==5 | LU_AOI==6 | LU_AOI==8)*0.67
 ```
 We will create a stack for the forward modelling phase. We will have to define the filename and  save the output stack.  
 
@@ -2397,17 +2654,20 @@ At this point we have three raster stacks for the different modelling phases. We
 ### QGIS Procedure number 1 (model)
 We will need the land use data of each pixel (we already corregistered the land use layer with the master layer at script number 7). Then we will use the land use layer of the country to generate the points. For this, we can use a QGIS model to create target points.
  
-**Table 9.13** *QGis procedure number 1. Create target points to run the model. Inputs and Outputs*
+* **Input:**
+  * Land use layer (from script number 10):
+    * LU_res.tif
+* **Output:**
+  * Points vector for agriculture, forests, tree crops, grasslands, and shrubland classes (empty)
 
-![](tables/Table_9.12.png)
  
 We will open the Qgis, then go to the processing toolbox and click on the "open existing model" button. We will have to search for the model in the provided folder, called "4_Points_country". We will have to load the model called "Qgis_Procedure_number_1.model3". Once this is done, we can run the model from the processing toolbox.
 
-![**Figure 9.4** *Processing toolbox in Qgis*](images/Figure_9.4.png)
+![*Processing toolbox in Qgis*](images/Figure_9.4.png)
 
 
 We will click the Empty_Points button and a window will pop up. We will select the Land use layer created in script number 10 (already resampled to match the extent and pixel size of the GSOCmap), set the path and the name of the output file, and click on the Execute button.
 
-![**Figure 9.5** *Qgis Window to edit the points generated.*](images/Figure_9.5.png) 
+![*Qgis Window to edit the points generated.*](images/Figure_9.5.png) 
 
 This process will create vector points. Each point will be created in the centroid of each pixel of the land use layer. This vector will contain no fields. The scripts to run the model for each phase (SPIN_UP, WARM_UP, forward) will attach all the necessary data from the stacks (scripts number 10, 11 and 12) to each point.

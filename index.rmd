@@ -1,11 +1,39 @@
 --- 
-title: "Technical Manual Global Soil Organic Carbon Sequestration Potential Map GSOCseq"
-author: "Food and Agriculture Organization of the United Nations, Rome, 2020"
-date: "25/11/2020"
-site: bookdown::bookdown_site
-output: bookdown::gitbook
-css: justify.css
+title: "Technical Manual" 
+subtitle: "Global Soil Organic Carbon Sequestration Potential Map GSOCseq"
+author: "Food and Agriculture Organization of the United Nations, Rome, 2021"
+date: "23/11/2021"
+#site: bookdown::bookdown_site
+output: bookdown::pdf_book
+header-includes:
+    - \AtBeginDocument{\renewcommand{\chaptername}{Chapter}}
+    - \usepackage{titling}
+    - \usepackage{pdfpages}
+    - \usepackage{fancyhdr}
+    - \usepackage{booktabs}
+    - \usepackage{longtable}
+    - \usepackage{subfig}
+    - \usepackage{array}
+    - \usepackage{amsmath}
+    - \usepackage{multirow}
+    - \usepackage{wrapfig}
+    - \usepackage{float}
+    - \usepackage{colortbl}
+    - \usepackage{pdflscape}
+    - \usepackage{tabu}
+    - \usepackage{threeparttable}
+    - \usepackage{threeparttablex}
+    - \usepackage[normalem]{ulem}
+    - \usepackage{makecell}
+    - \usepackage{xcolor}
+    - \DeclareUnicodeCharacter{2212}{\textendash}
+    - \usepackage{rotating, graphicx}
+    - \usepackage{pdflscape}
+    - \newcommand{\blandscape}{\begin{landscape}}
+    - \newcommand{\elandscape}{\end{landscape}}
+fig_caption: TRUE
 documentclass: book
+classoption: oneside
 papersize: b5
 fontsize: 10pt
 bibliography: GSOCseq_references_FAO.bib
@@ -18,10 +46,23 @@ always_allow_html: yes
 
 
 
-```{r set-options, echo=FALSE, cache=FALSE}
-options(width = 65,kableExtra.latex.load_packages = FALSE)
+```{r set-options, echo=FALSE, cache=FALSE, warning=FALSE, message=FALSE}
+options(knitr.table.format = "latex")
 library(kableExtra)
-library(dplyr)
+library(data.table)
+library(ggplot2)
+library(plotly)
+library(googlesheets4)
+library(tidyverse)
+library(ggrepel)
+library(ggtext)
+library(showtext)
+library(png)
+library(sf)
+library(waffle)
+library(gridExtra)
+library(patchwork)
+
 ## redefine str for the width option
 str <- function(...){
   utils::str(..., strict.width = "cut")}
@@ -31,14 +72,30 @@ set.seed(123)
 # if FALSE will use precalculated RK prediction and svm tuning
 #RUN.ALL <- TRUE
 # Cache results
-knitr::opts_chunk$set(cache=T)
+knitr::opts_chunk$set(cache=F,fig.pos = 'H',tidy.opts=list(width.cutoff=40),tidy=TRUE)
+
+
+addline_format <- function(x,...){
+  gsub('\\s','\n',x)
+}
+underscore_to_space <- function(x,...){
+  gsub("_", " ",x)
+}
+
+
+#bookdown::render_book("index.Rmd", "bookdown::gitbook")
+#bookdown::render_book("index.Rmd", "bookdown::pdf_book")
+#bookdown::render_book("index.Rmd", "bookdown::word_document2")
 ```
 
 \frontmatter
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}   
 \addtocontents{lot}{\protect\hypersetup{hidelinks}}
 \addtocontents{lof}{\protect\hypersetup{hidelinks}}
-\mainmatter
+\tableofcontents
+\listoffigures
+\listoftables
+\printnomenclature
 
 
 
@@ -89,5 +146,5 @@ Isabel Luotto (GSP Secretariat)
 
 **Recommended citation:**
 
-> FAO. 2020. GSOCseq Global Soil Organic Carbon Sequestration Potential Map
+> FAO. 2021. GSOCseq Global Soil Organic Carbon Sequestration Potential Map
 Technical Manual. G. Peralta,L. Di Paolo, C. Omuto, K. Viatkin, I. Luotto, Y. Yigini, 1st Edition, Rome. 

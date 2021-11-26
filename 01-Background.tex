@@ -1,0 +1,276 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\let\stdl@chapter\l@chapter
+\renewcommand*{\l@chapter}[2]{%
+  \stdl@chapter{\textcolor{astral}{#1}}{\textcolor{astral}{#2}}}
+
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage[table]{xcolor}
+\usepackage{sectsty}
+
+\definecolor{astral}{RGB}{153, 61, 15}
+\allsectionsfont{\sffamily\color{astral}}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=astral,
+    filecolor=astral,
+    urlcolor=astral,
+    citecolor=astral
+}
+
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
+
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{astral}\leaders\hrule height \headrulewidth\hfill}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[EL]{\nouppercase\leftmark}
+\fancyhead[OR]{\nouppercase\rightmark}
+\fancyhead[ER,OL]{\thepage}
+
+\usepackage{multicol}
+
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage[normalem]{ulem}
+% empty pages betwen chapters
+\usepackage{emptypage}
+
+\makeatletter
+\makeatother
+
+\renewcommand{\listfigurename}{Figures}
+\renewcommand{\listtablename}{Tables}
+
+\usepackage[sectionbib]{chapterbib}
+
+%% List of Abbreviations
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{Acronyms}
+%% to update run makeindex on docs folder and move results to / folder
+%% see nomencl manual
+%% e.g. makeindex SOCMapping.nlo -s nomencl.ist -o SOCMapping.nls
+
+%% index
+\usepackage{imakeidx}
+\makeindex
+
+\usepackage{xspace}
+
+% no title page
+\AtBeginDocument{\let\maketitle\relax}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\pagestyle{plain}
+\includepdf{cover2.pdf}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{4cm}
+        \Large
+
+        \textcolor{astral}{\textbf{Soil Organic Carbon Mapping Cookbook\\}}
+        \vspace{0.5cm}
+        \normalsize
+        \emph{2nd edition}
+        \vfill
+        \noindent
+        {\color{astral}\rule{\linewidth}{0.5mm} }
+
+        Food and Agriculture Organization of the United Nations, Rome, 2018
+    \end{center}
+\end{titlepage}
+
+\clearpage
+\thispagestyle{empty}
+
+\vfill
+{\footnotesize
+\vspace*{4cm}
+\vfill
+The designations employed and the presentation of material in this information product do not imply the expression of any opinion whatsoever on the part of the Food and Agriculture Organization of the United Nations (FAO) concerning the legal or development status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries. The mention of specific companies or products of manufacturers, whether or not these have been patented, does not imply that these have been endorsed or recommended by FAO in preference to others of a similar nature that are not mentioned.
+
+The views expressed in this information product are those of the author(s) and do not necessarily reflect the views or policies of FAO.
+
+ISBN 978-92-5-130440-2
+
+\copyright \xspace FAO, 2018
+
+FAO encourages the use, reproduction and dissemination of material in this information product. Except where otherwise indicated, material may be copied, downloaded and printed for private study, research and teaching purposes, or for use in non-commercial products or services, provided that appropriate acknowledgement of FAO as the source and copyright holder is given and that FAO’s endorsement of users’ views, products or services is not implied in any way.
+
+All requests for translation and adaptation rights, and for resale and other commercial use rights should be made via www.fao.org/contact-us/licence-request or addressed to copyright@fao.org.
+
+
+FAO information products are available on the [FAO website](www.fao.org/publications) and can be purchased through publications-sales@fao.org.
+}
+
+
+\nomenclature{ASCII}{American Standard Code for Information Interchange}
+\nomenclature{AVE}{amount of variance explained}
+\nomenclature{BD}{bulk density}
+\nomenclature{CDF}{cumulative distribution function}
+\nomenclature{CGMS}{Coordination Group for Meteorological Satellites}
+\nomenclature{CI}{confidence interval}
+\nomenclature{COE}{coefficient of efficiency}
+\nomenclature{CRAN}{Comprehensive R Archive Network}
+\nomenclature{CRS}{coordinate reference system}
+\nomenclature{CSV}{comma-separated values}
+\nomenclature{CV}{cross-validation}
+\nomenclature{DB}{database}
+\nomenclature{DEM}{digital elevation model}
+\nomenclature{DSM}{digital soil mapping}
+\nomenclature{EEA}{European Environment Agency}
+\nomenclature{EPSG}{European Petroleum Survey Group}
+\nomenclature{ESA}{European Space Agency}
+\nomenclature{FAC}{fraction of prediction}
+\nomenclature{FAO}{Food and Agriculture Organization of the United Nations}
+\nomenclature{FYROM}{Former Yugoslav Republic of Macedonia}
+\nomenclature{GAUL}{Global Administrative Unit Layers}
+\nomenclature{GDAL}{Geospatial Data Abstraction Library}
+\nomenclature{GDEM}{Global Digital Elevation Model}
+\nomenclature{GIS}{Geographic Information System}
+\nomenclature{GLOSIS}{Global Soil Information System}
+\nomenclature{GM}{Geo-matching}
+\nomenclature{GPS}{Global Positioning System}
+\nomenclature{GSIF}{Global Soil Information Facility}
+\nomenclature{GSOC}{global soil organic carbon}
+\nomenclature{GSP}{ Global Soil Partnership}
+\nomenclature{GUI}{graphical user interface}
+\nomenclature{HWSD}{Harmonized World Soil Database}
+\nomenclature{IIASA}{International Institute for Applied Systems Analysis}
+\nomenclature{INSII}{International Network of Soil Information Institutions}
+\nomenclature{IOA}{index of agreement}
+\nomenclature{ISRIC}{International Soil Reference and Information Centre}
+\nomenclature{ISS CAS}{Institute of Soil Science, Chinese Academy of Sciences}
+\nomenclature{ITPS}{Intergovernmental Technical Panel on Soils}
+\nomenclature{JRC}{Joint Research Center European Commision}
+\nomenclature{KML}{Keyhole Markup Language}
+\nomenclature{MASIS}{Macedonian Soil Information System Database}
+\nomenclature{MAE}{mean absolute error}
+\nomenclature{MB}{mean bias}
+\nomenclature{ME}{mean error}
+\nomenclature{MGE}{mean gross error}
+\nomenclature{MSDR}{mean squared deviation ratio}
+\nomenclature{MSE}{mean squared error}
+\nomenclature{NA}{not available, missing values}
+\nomenclature{NMB}{normalized mean bias}
+\nomenclature{NMGE}{normalized mean gross error}
+\nomenclature{OCS}{organic carbon stock}
+\nomenclature{PTF}{pedo-transfer functions}
+\nomenclature{RF}{random forest}
+\nomenclature{RK}{regression-kriging}
+\nomenclature{RMSE}{root-mean-square error}
+\nomenclature{SIS}{Soil Information System}
+\nomenclature{SMLR}{stepwise multiple linear regression}
+\nomenclature{SOC}{soil organic carbon}
+\nomenclature{SOM}{soil organic matter}
+\nomenclature{SPC}{Soil Profile Collection}
+\nomenclature{SRTM}{Shuttle Radar Topographic Mission}
+\nomenclature{SVM}{support vector machines}
+\nomenclature{TSS}{total sum of squares}
+\nomenclature{UNEP}{United Nations Environment Programme}
+\nomenclature{UTM}{Universal Transverse Mercator}
+\nomenclature{VIF}{Variance Inflation Factor}
+\nomenclature{WCS}{Web coverage service}
+\nomenclature{WGS}{World Geodetic System}
+\nomenclature{WRB}{World Reference Base}
+
+
+
+%\printindex
+\includepdf{backcover.pdf}
+
+\end{document}

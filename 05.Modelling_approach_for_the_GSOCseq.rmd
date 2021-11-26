@@ -1,8 +1,8 @@
-# | modeling approach for the GSOCseq
+# | Modeling approach for the GSOCseq
 
 ## General framework 
-SOC sequestration estimates will focus on croplands and grazing lands for the current GSOCseq map version. As defined by IPCC (2006, 2019), croplands include: all annual and perennial crops  (cereals, oils seeds, vegetables, root crops and forages);  perennial crops (including trees and shrubs, orchards, vineyards and plantations such as cocoa, coffee, tea, oil palm, coconut, rubber trees, bananas, and others), and their combination with herbaceous crops (e.g., agroforestry); arable land which is normally used for cultivation of annual crops, but which is temporarily used for forage crops or grazing as part of an annual crop-pasture rotation (mixed system), is to be included under croplands. Grazing lands include different land uses permanently dedicated to livestock production with a predominant herbaceous cover, including intensively managed permanent pastures and hay land, extensively managed grasslands and rangelands, savannahs, and shrublands.
-Since the proposed standardized methodology and the defined model are neither parameterized nor recommended for use on organic, sandy, saline, and waterlogged soils, soils with SOC stocks higher than 200 t C ha^-1^, sand contents higher than 90% and/or electrical conductivity higher than 4 dS m-1 at 0-30 cm depth, paddy rice lands, peatlands and wetlands will be masked out from the global results in this first version.
+SOC sequestration estimates will focus on croplands and grazing lands for the current GSOCseq map version. As defined by IPCC (2006, 2019), croplands include: all annual and perennial crops  (cereals, oils seeds, vegetables, root crops and forages);  perennial crops (including trees and shrubs, orchards, vineyards and plantations such as cocoa, coffee, tea, oil palm, coconut, rubber trees, bananas, and others), and their combination with herbaceous crops (e.g., agroforestry); arable land which is normally used for cultivation of annual crops, but which is temporarily used for forage crops or grazing as part of an annual crop-pasture rotation (mixed system), is to be included under croplands. Grazing lands include different land uses permanently dedicated to livestock production with a predominant herbaceous cover, including intensively managed permanent pastures and hay land, extensively managed grasslands and rangelands, savannas, and shrublands.
+Since the proposed standardized methodology and the defined model are neither parameterized nor recommended for use on organic, sandy, saline, and waterlogged soils, soils with SOC stocks higher than 200 tC/ha, sand contents higher than 90 percent and/or electrical conductivity higher than 4 dS/m at 0-30 cm depth, paddy rice lands, peatlands and wetlands will be masked out from the global results in this first version.
 Excluded conditions and land uses can be included in future versions of the GSOCseq map, as harmonized procedures for specific conditions are developed. Countries are nevertheless encouraged to provide supplementary maps developed using preferred alternative SOC models and methodologies, especially for excluded conditions.
 
 ## Potential SOC sequestration estimates after the implementation of SSM practices
@@ -21,10 +21,10 @@ SOC stocks in 0-30 cm of mineral soils in current agricultural lands shall be pr
 *   promoting agro-forestry and alley cropping; 
 *   managing crop residues and grazing to ensure optimum soil cover; among others.
 
-A very wide range of management practices are currently being implemented and can potentially be introduced into the world's agricultural systems, depending on climatic, soil, socio-cultural and economic conditions. In turn, different SSM C-oriented practices are often combined, making it difficult to dissociate their effects on SOC dynamics. Thus, as a first step, and to harmonize the results on a global map, and because soil carbon turnover models are the most sensitive to carbon inputs (FAO, 2019),  these guidelines propose to group SSM practices into three scenarios as a standard method, based on their expected relative effects on C inputs compared to BAU: Low, Medium and High increase in C inputs (referred as SSM1, SSM2, and SSM3 scenarios; for technical procedures, refer to section 5.4). National experts' opinion and local data are essential to accurately estimate or validate the target areas and carbon input levels for the different SSM scenarios in forthcoming versions.
+A very wide range of management practices are currently being implemented and can potentially be introduced into the world's agricultural systems, depending on climatic, soil, socio-cultural and economic conditions. In turn, different SSM C-oriented practices are often combined, making it difficult to dissociate their effects on SOC dynamics. Thus, as a first step, and to harmonize the results on a global map, and because soil carbon turnover models are the most sensitive to carbon inputs (FAO, 2019), these guidelines propose to group SSM practices into three scenarios as a standard method, based on their expected relative effects on C inputs compared to BAU: Low, Medium and High increase in C inputs (referred as SSM1, SSM2, and SSM3 scenarios; for technical procedures, refer to section 5.4). National experts' opinion and local data are essential to accurately estimate or validate the target areas and carbon input levels for the different SSM scenarios in forthcoming versions.
  
 ## General modeling procedures  
-The modeling approach proposed in the current Technical Manual is based on the studies by Smith et al. (2005; 2006; 2007), Gottschalk et al. (2012) and Dechow et al. (2019). The following sections describe the different modeling phases of the approach. 
+The modeling approach proposed in the current Technical Manual is based on the studies by Smith *et al.* (2005; 2006; 2007), Gottschalk *et al.* (2012) and Dechow *et al.* (2019). The following sections describe the different modeling phases of the approach. 
 
 ### Initialization: Spin up
 Prior to the simulation of SOC stocks and sequestration under the different scenarios, model initialization is required to set the initial SOC condition (total SOC and partition of the different pools) at the start of the simulation period, and to adjust the C inputs estimates. This modeling phase is referred to as initialization or ´spin up´ through this document. This is a key step, as the outputs of this phase will be used as inputs for the next modeling phase (see sections 5.4.2 and 5.4.3).  
@@ -33,9 +33,9 @@ Two methodologies to estimate initial carbon pools and initial C inputs are prov
 2.    Initialization based on an analytical approach
 
 #### Spin up phase: Initialization with equilibrium runs  
-This approach is based on studies by Smith et al. (2005; 2006; 2007), Gottschalk et al. (2012) in large scale studies. The standard procedure is to have a spin up period to initialize the model, so the soil carbon pools are in approximate equilibrium with the initial conditions regarding soil and climate variables, vegetation and land management. The length of the spin up simulation period needed to approach a steady state pool distribution can usually vary between 100s to 1000s years (FAO, 2019). The C input is adjusted so that the modelled final SOC of this period, and hence initial SOC of the following phases, matches a known SOC stock. 
+This approach is based on studies by Smith *et al.* (2005; 2006; 2007), Gottschalk *et al.* (2012) in large scale studies. The standard procedure is to have a spin up period to initialize the model, so the soil carbon pools are in approximate equilibrium with the initial conditions regarding soil and climate variables, vegetation and land management. The length of the spin up simulation period needed to approach a steady state pool distribution can usually vary between 100s to 1000s years (FAO, 2019). The C input is adjusted so that the modelled final SOC of this period, and hence initial SOC of the following phases, matches a known SOC stock. 
 In a first initialization step, RothC shall be run iteratively to equilibrium to calculate the size of the SOC pools and the annual plant carbon inputs using constant environmental conditions (Phase 1, Figure 5.1), for each grid cell on the map. Ideally, a first equilibrium run for a standard 10,000-year period should be performed, considering constant climatic conditions as the average of historic climate data from 1980 to 2000 (see Chapter 6, Climate data sets), clay contents (see Chapter 6, soil data sets), and land use as in year 2000 (see Chapter 6, land use data sets). Due to the simulated time span and depending on the size of the target area, this modelling phase is  the most time consuming and computationally demanding . The duration of the equilibrium run can be reduced if the data suggests that the equilibrium is reached with fewer iterations. A minimum of 500 years is suggested to approach equilibrium with reduced computational time to generate national maps. However, it must be noted that spin up runs for 500 years may not necessarily end up in equilibrium SOC stocks, depending on soil, climate and land use conditions. Increasing the duration (1000-2000 years) will reduce deviations with the cost of additional computation time.
-The total annual plant C input can be initially assumed to be 1 t C ha^-1^ yr^-1^ and the proportions of plant material added to the soil for each month are set to describe the typical input pattern for each land use class (Smith et al., 2007; Mondini et al., 2017). After the first equilibrium run, the annual C inputs from plant residues need to be optimized so that the results of the  spin up phase fit with the estimates of total SOC stocks of 0-30 cm provided in the FAO-ITPS GSOCmap. C equilibrium inputs can be adjusted using the following equation (Smith et al., 2005):
+The total annual plant C input can be initially assumed to be 1 t C ha^-1^ yr^-1^ and the proportions of plant material added to the soil for each month are set to describe the typical input pattern for each land use class (Smith *et al.*, 2007; Mondini *et al.*, 2017). After the first equilibrium run, the annual C inputs from plant residues need to be optimized so that the results of the  spin up phase fit with the estimates of total SOC stocks of 0-30 cm provided in the FAO-ITPS GSOCmap. C equilibrium inputs can be adjusted using the following equation (Smith *et al.*, 2005):
 
 \begin{equation}
 \tag{5.1}
@@ -43,27 +43,29 @@ C_{eq}=C_i \times[\frac{SOC_{GSOCmap}-IOM}{(SOC_{sim}-IOM}]
 \end{equation}
 
                                                       
-where $C_{eq}$ is the estimated annual C input at equilibrium, $C_i$ is the initial annual  C addition (the sum of the proportions of the C input in the first equilibrium is 1), $SOC_{GSOCmap}$ is the estimated soil C given in FAO-ITPS GSOCmap, $SOC_{sim}$ is the simulated soil C after the first equilibrium run, and $IOM$ is the C content of the inert organic matter fraction in the soil (all in t C ha^-1^). The size of the IOM fraction (t C ha^-1^) can be set according to the equation given by Falloon et al. (1998):
+where $C_{eq}$ is the estimated annual C input at equilibrium, $C_i$ is the initial annual  C addition (the sum of the proportions of the C input in the first equilibrium is 1), $SOC_{GSOCmap}$ is the estimated soil C given in FAO-ITPS GSOCmap, $SOC_{sim}$ is the simulated soil C after the first equilibrium run, and $IOM$ is the C content of the inert organic matter fraction in the soil (all in tC/ha). The size of the IOM fraction (tC/ha) can be set according to the equation given by Falloon *et al.* (1998):
 
 \begin{equation}
 \tag{5.2}
 IOM=0.049 \times SOC_{GSOCmap}^{1.139} 
 \end{equation}
 
-A second long term (minimum 1,000 years) equilibrium run shall be performed using the estimated $C_{eq}$, (under the same conditions as the first run), in order to obtain the size of the different SOC pools (t C ha^-1^) at year 2000.  
+A second long term (minimum 1,000 years) equilibrium run shall be performed using the estimated $C_{eq}$, (under the same conditions as the first run), in order to obtain the size of the different SOC pools (tC/ha) at year 2000.  
 
-An alternative to further reduce computational time is to avoid this second run by estimating the size of the different SOC pools using pedotransfer functions (Weiherm&uuml;ller et al., 2013). The R implementation the spin up phase can be found in Chapter 10 (section 10.1).
-The equilibrium run is a widely known approach to initialize RothC and other SOC models (FAO, 2019), and it has been implemented in other global and regional modeling-mapping studies to analyze SOC dynamics (e.g. Smith et al., 2005; 2006; 2007; Gottschalk et al., 2012).  
+An alternative to further reduce computational time is to avoid this second run by estimating the size of the different SOC pools using pedotransfer functions (Weiherm&uuml;ller *et al.*, 2013). The R implementation the spin up phase can be found in Chapter 10 (section 10.1).
+The equilibrium run is a widely known approach to initialize RothC and other SOC models (FAO, 2019), and it has been implemented in other global and regional modeling-mapping studies to analyze SOC dynamics (e.g. Smith *et al.*, 2005; 2006; 2007; Gottschalk *et al.*, 2012).  
 Compared to the analytical approach, which is presented in this Technical Manual as an alternative spin up approach, the equilibrium run allows for further user-defined modifications such as running the model under non-homogeneous conditions (e.g. not constant climatic conditions, land use and management for a specified time period). The approach can be also used to estimate the required period to attain equilibrium SOC stocks under certain environmental conditions, among other relevant research questions. However, although users may be in general more familiar with this initialization approach, it can be considerably time consuming as well as computationally demanding, depending on the simulation area.  If homogeneous environmental conditions are assumed during the spin up phase, other approaches (see following section) may be the preferred option. 
 
 #### Spin up phase: Initialization by analytical solution   
-Based on the Introductory Carbon Balance Model (ICBM B2) in K&auml;tterer and Andren (2001) and pool-specific differential equations for the RothC model in Sierra and M&uuml;ller (2015), Dechow et al. (2019) developed an analytical solution of RothC which describes the topsoil SOC development assuming temporal homogeneous climatic and management conditions. This novel approach allows quantification of pool distribution and C input for RothC at equilibrium. The structure of the approach is based on the linear relationship between C input amounts and initial SOC that follow from the analytical solution of the RothC model. 
+Based on the Introductory Carbon Balance Model (ICBM B2) in K&auml;tterer and Andren (2001) and pool-specific differential equations for the RothC model in Sierra and M&uuml;ller (2015), Dechow *et al.* (2019) developed an analytical solution of RothC which describes the topsoil SOC development assuming temporal homogeneous climatic and management conditions. This novel approach allows quantification of pool distribution and C input for RothC at equilibrium. The structure of the approach is based on the linear relationship between C input amounts and initial SOC that follow from the analytical solution of the RothC model. 
 Under homogeneous conditions, the SOC at time t is linearly correlated to the initial SOC ($C_0$) and the carbon input rate $I$ (equation 5.3):
 
 \begin{equation}
-\tag{5.3}
-C(t)=S_{impl}C_0 + \sum_{i=1}{N} I_i (u_{DPM}	\gamma_{DPM_i} + u_{RPM}Y_{RPM_i}+u_{hum} 	\gamma_{hum_i}) \\ 
-C_0 f_{IOM}[Mg \ C \ ha^{-1}]                                           
+\begin{aligned}
+\label{5.3}
+C(t)=S_{impl}C_0 + \sum_{i=1}{N} I_i (u_{DPM}	\gamma_{DPM_i} + u_{RPM}Y_{RPM_i}+ \\
+ u_{hum}\gamma_{hum_i}) C_0 f_{IOM} [Mg \ C \ ha^{-1}]                                       
+\end{aligned}
 \end{equation}
 
 Where $C_0$ is the initial SOC stock (which corresponds to  $SOC_{GSOCmap}$, the estimated soil C given in FAO GSOCmap). $S_{impl}$,$u_{DPM}$, $u_{RPM}$ and $u_{hum}$ are functions integrating model structure and parametrization of RothC. Parameters $\gamma_{DPM}$, $\gamma_{RPM}$, $\gamma_{HUM}$ are the partition coefficients. These $\gamma$ coefficients will depend on the decomposability of the incoming residues. For example, in conditions with carbon inputs with a  DPM/RPM of 1.44, the $\gamma$ DPM equals 0.59 and $\gamma$ DPM equals 0.41 . N is the number of input substrates characterized by a specific set of partition coefficients and $f_{IOM}$ is the fraction of inert SOC (IOM, equation 5.2). For stationary conditions time is assumed to be infinite and therefore the effect of initial active SOC ($C_0$ - IOM) negligible (equarion 5.4):
@@ -73,7 +75,7 @@ Where $C_0$ is the initial SOC stock (which corresponds to  $SOC_{GSOCmap}$, the
 C_0 = \sum_{i=1}^{N} I_i (\gamma_{DPM_i}u_{DPM}+\gamma_{HUM_i}u_{HUM})+f_{IOM}C_0
 \end{equation}
  
-First, the fractions $f_i$ of the DPM, RPM, BIO  and HUM pools at equilibrium are estimated following the set of equations described in in the supplementary material of Dechow et al., 2019 (https://www.fao.org/fileadmin/user_upload/GSP/GSOCseq/supplementary_material_analytical_spinup.pdf). The estimated fractions of each SOC pool at equilibrium will depend on:
+First, the fractions $f_i$ of the DPM, RPM, BIO  and HUM pools at equilibrium are estimated following the set of equations described in in the supplementary material of Dechow *et al.* (2019) (https://www.fao.org/fileadmin/user_upload/GSP/GSOCseq/supplementary_material_analytical_spinup.pdf). The estimated fractions of each SOC pool at equilibrium will depend on:
 
 *   the decomposition rates constants (k) of the different carbon pools
 *   an average of the different modifying factors (temperature, soil moisture,  vegetation factors)
@@ -125,7 +127,7 @@ SOC_{active}=SOC_{GSOCmap} -IOM
 SOC_{pool_i}=f_{pool_i} \times SOC_{active}
 \end{equation}
 
-where $SOC_{active}$ represents the SOC stocks of all the active pools of RothC model in t C ha^-1^ (DPM, RPM, BIO and HUM), IOM represents the Inert Organic Carbon estimated from equation 5.2, $SOC_{GSOCmap}$ is the estimated soil C given in FAO-ITPS GSOCmap in t C ha^-1^ (representing the total SOC stocks at equilibrium), $SOC_{pool_i}$ represents the SOC stock of each of the active pools in t C ha^-1^ , and $f_{pool_i}$ represents the fraction of each active pool estimated by the analytical procedure and equations 5.5 to 5.8. 
+where $SOC_{active}$ represents the SOC stocks of all the active pools of RothC model in t C ha^-1^ (DPM, RPM, BIO and HUM), IOM represents the Inert Organic Carbon estimated from equation 5.2, $SOC_{GSOCmap}$ is the estimated soil C given in FAO-ITPS GSOCmap in tC/ha (representing the total SOC stocks at equilibrium), $SOC_{pool_i}$ represents the SOC stock of each of the active pools in tC/ha, and $f_{pool_i}$ represents the fraction of each active pool estimated by the analytical procedure and equations 5.5 to 5.8. 
 Finally, Carbon inputs ($C_i$) at equilibrium can be estimated as:
 
 \begin{equation}
@@ -155,26 +157,36 @@ The absolute SOC sequestration is estimated as the difference between the corres
 The different modeling phases and their data requirements are summarized in in Figure 5.1 and Table 5.1.
 
 ![**Figure 5.1.** *SOC stocks simulated in the different phases according to the proposed general modeling procedure.*](images/Figure_5.1.png)
-
-**Table 5.1** *Summary of the different modeling phases and data requirements.*
+The different data sets required to run the RothC model for the different modeling phases are described in Chapter 6. 
 
 ```{r, echo = FALSE}
 library(kableExtra)
 library(dplyr)
 
-dt <- read.csv("tables/Table_5.1.csv", sep = ",")
-kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
-kable_styling("striped", full_width = F)
+dt <- read.csv("tables/Table_5.1.1.csv", sep = ",")
+kable(booktabs = T, dt, col.names = gsub("[.]", " ", names(dt)), caption = 'Summary of the modeling phase 1 and data requirements',
+format = 'latex')  %>%
+ kable_classic(latex_options = c("scale_down","HOLD_position"),full_width = F)
 ```
 
-The different data sets required to run the RothC model for the different modeling phases are described in Chapter 6. 
+
+```{r, echo = FALSE}
+library(kableExtra)
+library(dplyr)
+
+dt <- read.csv("tables/Table_5.1.2.csv", sep = ",")
+kable(booktabs = T, dt, col.names = gsub("[.]", " ", names(dt)), caption = 'Summary of the modeling phase 2 and data requirements',
+format = 'latex')  %>%
+ kable_classic(latex_options = c("scale_down","HOLD_position"),full_width = F)
+```
 
 
+```{r, echo = FALSE}
+library(kableExtra)
+library(dplyr)
 
-
-
-
-
-
-
-
+dt <- read.csv("tables/Table_5.1.3.csv", sep = ",")
+kable(booktabs = T, dt, col.names = gsub("[.]", " ", names(dt)), caption = 'Summary of the modeling phase 3 and data requirements',
+format = 'latex')  %>%
+ kable_classic(latex_options = c("scale_down","HOLD_position"),full_width = F)
+```

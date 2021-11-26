@@ -12,7 +12,7 @@ Data providers will retain the ownership of national datasets. The final global 
 ## Data formats and integrity
 All GIS files should be delivered in correct format according to the Technical Specifications and Country Guidelines for the GSOCseq map.
 GIS files shall be delivered in GeoTIFF format with embedded additional georeferencing information, including spatial extent, coordinate reference system, resolution, no data values. Pixel values should contain numeric values of the target parameter, estimated for the topsoil layer (0-30cm depth).
-World Geodetic System 1984 (WGS84) geographic (latitude/longitude) projection should be preferred for all submitted maps. The map shall be produced at regular fixed horizontal dimensions of 30 by 30 arc-seconds grid (approximately only 1x1km) at the equator. Countries will be expected to deliver their datasets using the standard 30 arc-second grids prepared and shared by the GSP.
+World Geodetic System 1984 (WGS84) geographic (latitude/longitude) projection should be preferred for all submitted maps. The map shall be produced at regular fixed horizontal dimensions of 30 by 30 arc-seconds grid (approximately only 1 km x 1 km) at the equator. Countries will be expected to deliver their datasets using the standard 30 arc-second grids prepared and shared by the GSP.
 Each data layer should be provided as a single continuous surface. Data providers should not attempt to mask out the excluded areas from the grid (e.g. saline soils, organic soils, wetlands). The GSP Secretariat will mask excluded areas using standard spatialized layers. Values in the excluded grid cells will be identified as no data (NA) in the final global product.
 
 ## Data correctness
@@ -31,16 +31,16 @@ Final QA/QC for the global datasets will be facilitated by the GSP Secretariat t
 ## Data completeness
 A complete set of mandatory data layers should be provided. This complete set of SOC sequestration maps includes country-level predicted topsoil (0-30 cm) SOC stocks and mean annual sequestration rates after the implementation of SSM practices, for a 20-year period, estimated with the spatialized version of the RothC carbon model. Each pixel shall contain:
 
-1.    Absolute average (vs. initial SOC stock) sequestration rates for 20 years (t C ha^-1^ yr^-1^ ), for BAU, SSM1, SSM2 and SSM3 scenarios
-2.    Mean relative (vs. business as usual) sequestration rates for 20 years (t C ha^-1^ yr^-1^ ), for SSM1, SSM2 and SSM3 scenarios
-3.    Initial SOC stocks (t C ha-1)
+1.    Absolute average (vs. initial SOC stock) sequestration rates for 20 years (tC ha^-1^ yr^-1^ ), for BAU, SSM1, SSM2 and SSM3 scenarios
+2.    Mean relative (vs. business as usual) sequestration rates for 20 years (tC ha^-1^ yr^-1^ ), for SSM1, SSM2 and SSM3 scenarios
+3.    Initial SOC stocks (tC ha-1)
 4.    SOC sequestration uncertainty maps (absolute and relative sequestration rates) for 3 SSM Scenarios (in %)
 
 The set of data layers should be supplemented by a country report (electronic document) according to the submission form provided by GSP-FAO.
 
 Country members are also encouraged to deliver the following products and supplementary data (optional):
 
-*   final SOC stocks at 2040 (t C ha^-1^), for BAU, SSM1, SSM2 and SSM3 scenarios;
+*   final SOC stocks at 2040 (tC ha^-1^), for BAU, SSM1, SSM2 and SSM3 scenarios;
 *   SOC sequestration maps using alternative modeling procedures: Includes country-level topsoil (0-30 cm) predicted SOC stocks and mean annual sequestration rates after implementation of SSM practices, for a 20-year period (2020-2040), estimated using;
 *   alternative SSM scenarios (e.g. alternative C % increase based on local data analysis);
 *   alternative local preferred, process-oriented and peer-reviewed models (e.g. CENTURY/DAYCENT, DNDC, YASSO, ICBM, or their derived models);

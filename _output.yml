@@ -9,7 +9,11 @@ bookdown::gitbook:
     edit: https://github.com/FAO-GSP/GSOCseq/edit/master/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
+  css: style.css
   includes:
+    in_header: preamble.tex
+    before_body: ["frontcover.tex", "abbrev.tex"]
+    after_body: ["backcover.tex"]
     latex_engine: xelatex
   toc: false
   citation_package: natbib

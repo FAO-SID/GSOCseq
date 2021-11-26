@@ -1,4 +1,4 @@
-@article{Richter.1981,
+﻿@article{Richter.1981,
 author = {Richter, J},
 doi = {10.1002/jpln.19811440414},
 issn = {00443263},

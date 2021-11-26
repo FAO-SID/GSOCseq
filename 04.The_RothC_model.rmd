@@ -9,54 +9,45 @@ RothC is a model for the turnover of organic carbon in non-waterlogged topsoil t
 *   Humified Organic Matter (HUM).  
 
 The structure of the model is shown in Figure 4.1.
-The IOM compartment is resistant to decomposition and is calculated using the following equation (Falloon et al., 1998):
+The IOM compartment is resistant to decomposition and is calculated using the following equation (Falloon *et al.*, 1998):
 
 \begin{equation}
 \tag{4.1}
 IOM = 0.049 \times SOC^{1.139} 
 \end{equation}
 
-Where $SOC$ is soil organic carbon, t C ha^-1^, and $IOM$ is Inert organic matter, t C ha^-1^.
-Incoming carbon inputs are split between DPM and RPM, depending on the DPM/RPM ratio of the particular incoming material. For most agricultural crops and improved grassland, the default DPM/RPM ratio is 1.44, i.e. 59% of the plant material is DPM and 41% is RPM. For unimproved grassland and scrub (including Savanna) a default ratio of 0.67 is used. For a deciduous or tropical woodland a default  DPM/RPM ratio of 0.25 is used, i.e. 20% of the plant material is DPM and 80% is RPM.
-Both DPM and RPM decompose to form CO2, BIO and HUM. The proportion that goes to CO2 and to BIO + HUM is determined by the clay content of the soil. The BIO + HUM is then split into 46% BIO and 54% HUM. BIO and HUM both decompose to form more CO2, BIO and HUM. Each compartment decomposes by a first-order process with its own characteristic rate. If an active compartment contains Y t C/ha, this declines at the end of the month to:
+Where $SOC$ is soil organic carbon, tC/ha, and $IOM$ is Inert organic matter, tC/ha.
+Incoming carbon inputs are split between DPM and RPM, depending on the DPM/RPM ratio of the particular incoming material. For most agricultural crops and improved grassland, the default DPM/RPM ratio is 1.44, i.e. 59 percent of the plant material is DPM and 41 percent is RPM. For unimproved grassland and scrub (including Savanna) a default ratio of 0.67 is used. For a deciduous or tropical woodland a default  DPM/RPM ratio of 0.25 is used, i.e. 20 percent of the plant material is DPM and 80 percent is RPM.
+Both DPM and RPM decompose to form CO~2~, BIO and HUM. The proportion that goes to CO~2~ and to BIO + HUM is determined by the clay content of the soil. The BIO + HUM is then split into 46 percent BIO and 54 percent HUM. BIO and HUM both decompose to form more CO~2~, BIO and HUM. Each compartment decomposes by a first-order process with its own characteristic rate. If an active compartment contains Y tC/ha, this declines at the end of the month to:
 
 \begin{equation}
 \tag{4.2}
-Y e^{-abckt} t C ha^-1 
+Y e^{-abckt} tC/ha 
 \end{equation}
 
 where $a$ is the rate-modifying factor for temperature; $b$ is the rate-modifying factor for moisture; $c$ is the soil cover rate-modifying factor; $k$ is the decomposition rate constant for that compartment; and $t$ is 1/12, since $k$ is based on an annual decomposition rate. $Y (1 - e^{-abckt})$ is the amount of the material in a compartment that decomposes in a particular month.
 RothC has also been adapted to simulate N and S dynamics (Falloon and Smith, 2009), but nutrient and C dynamics are not interconnected in RothC. It was originally developed and parameterized to model the turnover of organic C in arable topsoil, and it was later extended to model turnover in grasslands, savannas and woodlands, and to operate in different soils and under different climates (Coleman and Jenkinson, 1996).    
 
-![**Figure 4.1.** *Structure of the pools, and flows of Carbon in the Roth-C model, including major factors controlling the fluxes (a = multiplier for effects of temperature, b = multiplier for effects of moisture, c = multiplier for effects of soil cover; DPM/RPM = Decomposable/resistant plant material ratio). Source: redrawn from Coleman and Jenkinson (1996) and Falloon and Smith (2009).*](images/Figure_4.1.png)    
+![Structure of the pools, and flows of Carbon in the Roth-C model, including major factors controlling the fluxes (a = multiplier for effects of temperature, b = multiplier for effects of moisture, c = multiplier for effects of soil cover; DPM/RPM = Decomposable/resistant plant material ratio). Source: redrawn from Coleman and Jenkinson (1996) and Falloon and Smith (2009).](images/Figure_4.1.png)    
   
  
 ## RothC general data requirements
-The model requires climatic, soil and management data that are relatively easy to obtain or estimate.  Each modeling unit (e.g. cell of a grid) requires the following minimum data (Table 4.1):
+The model requires climatic, soil and management data that are relatively easy to obtain or estimate.  Each modeling unit (e.g. cell of a grid) requires the following minimum data:
 
-
-**Table 4.1** *Roth-C model minimum data requirements*
-
-```{r, echo = FALSE}
-library(kableExtra)
-library(dplyr)
-dt <- read.csv("tables/Table_4.1.csv", sep = ";")
-kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
-kable_styling("striped", full_width = F)
-```
-
+* **Climate data**
+  1. Monthly rainfall (mm)
+  2. Average monthly mean air temperature (ºC)
+  3. Monthly open pan evaporation (mm)/evapotranspiration (mm)
+* **Soil data**
+  1. Total initial 0-30cm SOC stocks (tC/ha)
+  2. Initial C stocks of the different pools (tC/ha): DPM, RPM, BIO, HUM, IOM
+  3. Clay content (%) at simulation depth
+  4. DPM/RPM ratio
+* **Land-use/Management data**
+  1.  Monthly Soil cover (binary: bare vs. vegetated)
+  2. Irrigation (to be added to rainfall amounts)
+  3. Monthly Carbon inputs from plant residue (aboveground + roots + rhizodeposition)
+  4. Monthly Carbon inputs from organic fertilizers and grazing animals’ excretion (tC/ha)
+  5. Estimate of the decomposability of the incoming plant material
 
 Careful harmonization of modeling procedures, datasets and input estimation methodologies is essential to obtain consistent SOC sequestration results across regions and countries. The general approach and modeling procedures to generate national SOCseq maps using the RothC model are described in Chapter 5. The land use datasets required for the proposed procedures are described in Chapter 6.
-
-
-
-
-
-
-
-
-
-
-
-
-

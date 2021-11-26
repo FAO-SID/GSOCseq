@@ -1,7 +1,7 @@
 # | Software environment 
 
-A spatially explicit version of the RothC model (e.g. Gottschalk et al., 2012; Mondini et al. 2017; Morais et al.; 2019) is required to generate national SOC sequestration maps. A spatialized version of the model was developed by the GSP Secretariat using an open source R-environment, based on the SoilR package developed by Sierra et al. (2012; downloadable from the Max Planck Institute of Biogeochemistry (https://www.bgc-jena.mpg.de/TEE/software/soilr/). 
-Other spatialized versions have been developed in Fortran (e.g. Gottschalk et al., 2012) and MATLAB (e.g. Morais et al., 2019) environments. Users can use these and other alternative local adaptations of a spatialized RothC model by following the general procedures and input data described in Chapter 5 and 6 to obtain consistent results. Users are asked to provide evidence, i.e. .peer-reviewed scientific journal papers university theses etc.,, demonstrating that the use of the modified version and changes in model parameters are appropriate for the selected agro-ecological conditions. 
+A spatially explicit version of the RothC model (e.g. Gottschalk **et al.**, 2012; Mondini *et al.* 2017; Morais *et al.*; 2019) is required to generate national SOC sequestration maps. A spatialized version of the model was developed by the GSP Secretariat using an open source R-environment, based on the SoilR package developed by Sierra *et al.* (2012; downloadable from the Max Planck Institute of Biogeochemistry (https://www.bgc-jena.mpg.de/TEE/software/soilr/). 
+Other spatialized versions have been developed in Fortran (e.g. Gottschalk *et al.*, 2012) and MATLAB (e.g. Morais *et al.*, 2019) environments. Users can use these and other alternative local adaptations of a spatialized RothC model by following the general procedures and input data described in Chapter 5 and 6 to obtain consistent results. Users are asked to provide evidence, i.e. .peer-reviewed scientific journal papers university theses etc.,, demonstrating that the use of the modified version and changes in model parameters are appropriate for the selected agro-ecological conditions. 
 This Chapter summarizes the steps required to set-up the software environment (R, RStudio) to prepare the input data and run the spatialized R-version of the RothC model through scripts provided by the GSP. Additional supplementary scripts for QGIS and Google Earth Engine (GEE) are also provided.
 Users are required to download the following open source software:
 
@@ -55,20 +55,20 @@ R has a large and growing number of spatial data packages.  We recommend taking 
 The authors of this Technical Manual used a number of different R packages (summarized in Table 7.1). All required packages can be installed using the following code and the install.packages() function when starting a new SOC sequestration mapping project:
 
 ```{r,eval=FALSE}
-Install.packages("name_of_the_package")
+install.packages("name_of_the_package")
 
 ```
 
 Alternatively, the code for the installation of the needed packages is included at the beginning of each Chapter.
 
-**Table 7.1** *Required R-packages for the national SOC sequestration potential maps using an R-environment*
-
 ```{r,echo=FALSE}
 library(kableExtra)
 library(dplyr)
 dt <- read.csv("tables/Table_7.1.csv", sep = ";",fileEncoding = 'UTF-8-BOM')
-kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
-kable_styling("striped", full_width = F)
+kable(booktabs = T, dt, col.names = gsub("[.]", " ", names(dt)),
+caption = 'Required R-packages for the national SOC sequestration potential maps using an R-environment.',
+format = 'latex', escape = FALSE) %>%
+kable_classic(latex_options = c( "scale_down","HOLD_position"),full_width = F)
 ```
 
 ## Considerations when using R
@@ -82,4 +82,4 @@ It is important to note the following points when using R:
 *   Some commands may run for some time and patience is recommended to enable the software to progress to completion. During such time, a red icon will be shown at the top left corner of the console panel.
 *   The execution of a line or script can be stopped if necessary by clicking on the "STOP" button from the tools bar. 
 
-![**Figure 7.1.** *Overview of RStudio's windowpanes and functionalities*](images/Figure_7.1.png)  
+![*Overview of RStudio's windowpanes and functionalities*](images/Figure_7.1.png)  

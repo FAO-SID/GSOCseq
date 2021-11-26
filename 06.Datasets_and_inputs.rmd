@@ -7,12 +7,12 @@ Gridded climate data shall be obtained from:
 a.)    National Sources or a preferred regional data source;  
 b.)    Global data sets, when national or regional gridded historical climate data sets are not available. 
 
-The dataset provided by the Climate Research Unit (CRU), developed by the University of East Anglia, United Kingdom (Harris et al., 2014) at a resolution of 0.5$^\circ$ (~50x50 km) was initially recommended to be used as the standard global data set if national or regional gridded data is not available, or if the available national data is at a coarser resolution. 
+The dataset provided by the Climate Research Unit (CRU), developed by the University of East Anglia, United Kingdom (Harris *et al.*, 2014) at a resolution of 0.5$^\circ$ (~50x50 km) was initially recommended to be used as the standard global data set if national or regional gridded data is not available, or if the available national data is at a coarser resolution. 
 To overcome limitations linked to the coarse resolution of the CRU products, the latest version of this Technical Manual has identified and recommends the TerraClimate dataset as an improved global alternative. 
 Since the map production phase for the implementation of the GSOCseq was initiated prior to the identification of the TerraClimate data set, this version of the Technical manual still presents both data sets (CRU and TerraClimate) as viable global options. 
 
 The CRU 2019 dataset (CRU TS v. 4.03) covers the period 1901-2018, including precipitation (pre), average/minimum and maximum air temperatures (tmp, tmn, tmx), cloud cover percentage  (cld), diurnal temperature range (dtr), vapor pressure (vap), number of rainy days (wet), frost days (frs), and potential evapotranspiration (pet); (See Table 6.2, data sets and download sources).  
-TerraClimate is a data set of monthly climate and climatic water balance for global terrestrial surfaces from 1958-2019. It has a monthly temporal resolution, a ~4x4 km  spatial resolution and was created by combining high-spatial resolution climatological normals from the WorldClim data set, with coarser spatial resolution, but time-varying data from CRU Ts4.0 and the Japanese 55-year Reanalysis (JRA55) (Abatzoglou et al., 2018).
+TerraClimate is a data set of monthly climate and climatic water balance for global terrestrial surfaces from 1958-2019. It has a monthly temporal resolution, a ~4x4 km  spatial resolution and was created by combining high-spatial resolution climatological normals from the WorldClim data set, with coarser spatial resolution, but time-varying data from CRU Ts4.0 and the Japanese 55-year Reanalysis (JRA55) (Abatzoglou *et al.*, 2018).
 
 The following variables and data sets are required to run the model (See Chapter 5, General modeling procedures):
 
@@ -26,11 +26,11 @@ The same data sources must be used in all modeling phases.
 ## Soil data sets
 
 ### Initial total SOC stocks
-Initial total SOC stocks to 30cm depth (in t C ha^-1^) are to be derived from the GSOCmap (30 arc seconds; ~ 1km x 1km resolution grid), latest revised version (FAO-ITPS, 2019). Countries wishing to include an updated or improved estimate of current SOC stocks, compared to the latest version of the GSOCmap, are encouraged to submit their updated national SOCmap to the GSP Secretariat and use it for modeling. 
+Initial total SOC stocks to 30cm depth (in tC/ha) are to be derived from the GSOCmap (30 arc seconds; ~ 1 km x 1 km resolution grid), latest revised version (FAO-ITPS, 2019). Countries wishing to include an updated or improved estimate of current SOC stocks, compared to the latest version of the GSOCmap, are encouraged to submit their updated national SOCmap to the GSP Secretariat and use it for modeling. 
 Since the GSOCmap was generated from national measurements taken between the 1960s and the 2000s, and no temporal corrections have been developed in many countries, GSOCmap values will represent SOC stocks for the year 2000. A 'short spin-up' model run (20 years) with climate variables and management forcing for the period 2000-2020 shall be performed to reduce the effect of temporal deviations. Thus, the simulated SOC content at 2020 after the 'short spin-up' run will represent the initial SOC stocks prior to implementation of SSM practices (See Chapter 6, General modeling procedures). If recent national SOC monitoring campaigns (2015-2020) have been undertaken to generate the latest version of the FAO-IPS GSOC map, the SOC stocks from the GSOCmap can be considered as the current stocks (t = 0 y; i.e. year 2020), and the 'short spin-up' phase is not required.
  
 ### Initial C pools
-The initial C stocks in the different pools (in t C ha^-1^) considered in the RothC model  (DPM, RPM, BIO, HUM and IOM, Fig. 4.1) shall be estimated following the 'long spin-up' and 'short spin-up' procedure described in Chapter 6. 
+The initial C stocks in the different pools (in tC/ha) considered in the RothC model  (DPM, RPM, BIO, HUM and IOM, Fig. 4.1) shall be estimated following the 'long spin-up' and 'short spin-up' procedure described in Chapter 6. 
 
 ### Soil texture: clay content
 The average clay contents over 0-30 cm depth is to be obtained from gridded data (raster format) from:
@@ -38,8 +38,8 @@ The average clay contents over 0-30 cm depth is to be obtained from gridded data
 *   national Sources (1 km x 1 km resolution);
 *   global data sets, where national or regional data sets are not available.  
 
-The topsoil clay content (0-30 cm, % mass fraction; 1 x 1 km resolution) from the Harmonized World Soil Database (HWSD) or SoilGrids developed by the- International Soil Reference and Information Centre (ISRIC) (see Table 6.2) shall be used as the standard global database if national or regional data is not available in the required format or resolution. Clay content can be averaged at finer resolutions to obtain 1 x 1 km grids. However, countries are encouraged to produce their own texture and clay content maps to be used as inputs for the SOCseq map, following the digital soil mapping approaches described in the GSOCmap Cookbook (FAO, 2018).
-Average clay contents over a 0-30 cm depth interval can be derived by taking a weighted average of the predictions over the depth interval using numerical integration (Hengl et al., 2017). 
+The topsoil clay content (0-30 cm,  percent mass fraction; 1 km x 1 km resolution) from the Harmonized World Soil Database (HWSD) or SoilGrids developed by the- International Soil Reference and Information Centre (ISRIC) (see Table 6.2) shall be used as the standard global database if national or regional data is not available in the required format or resolution. Clay content can be averaged at finer resolutions to obtain 1 km x 1 km grids. However, countries are encouraged to produce their own texture and clay content maps to be used as inputs for the SOCseq map, following the digital soil mapping approaches described in the GSOCmap Cookbook (FAO, 2018).
+Average clay contents over a 0-30 cm depth interval can be derived by taking a weighted average of the predictions over the depth interval using numerical integration (Hengl *et al.*, 2017). 
 
 \begin{equation}
 \tag{6.1}
@@ -49,8 +49,10 @@ Average clay contents over a 0-30 cm depth interval can be derived by taking a w
 where N is the number of depths; b is 30 cm, a is 0 cm, xk is the k-th depth and f(xk) is the value of the target variable (i.e., clay content) at depth xk. For example, for the 0-30 cm depth interval, with soil clay values at the first four standard depths (0, 5, 15 and 30 cm) equal to 14.5, 25.0, 25.3 and 25.0, clay content 0-30 cm equals:
 
 \begin{equation}
-\tag{6.2}
-	\frac{(5-0) \times(14.5+25.0)+(15-5) \times(25.0 + 25.3) + (30 - 15) \times (25.3 + 25.0)} {30\times 0.5} = 24.25
+\begin{aligned}
+\label{6.2}
+	\frac{(5-0) \times(14.5+25.0)+(15-5) \times(25.0 + 25.3) + (30 - 15) \times (25.3 + 25.0)} {30\times 0.5} \\ = 24.25
+\end{aligned}
 \end{equation}
 
 ## Land cover data sets
@@ -64,15 +66,15 @@ Since land cover may vary substantially between data sources and estimates of pa
 The ESA (European Space Agency) land cover Global dataset (See Table 6.2), and its reclassification into FAO Global Land Cover - SHARE (GLC-SHARE; See Table 6.2) classes will be provided by the GSP Secretariat, if no national land use dataset is available. However, users should estimate land use from the source that best reflects national and subnational conditions. Other global and regional data sets are provided in Table 6.2 at the end of this Chapter.
 The land cover classes will affect the decomposability of the incoming plant material (DPM/RPM ratio; See Section 6.6). A spatialized R-version of RothC is provided by the GSP Secretariat (See Chapter 7, software environment) and runs considering the 13 classes defined in the FAO Global Land Cover - SHARE (GLC-SHARE). A default DPM/RPM value is assigned to each class (Table 6.1). Thus, when using this spatialized R-version of RothC without modifying its scripts, the land use classes from the possible different data sets need to be re-classified into FAO Global Land Cover - SHARE (GLC-SHARE) land use classes. However, users can model alternative land use classes, and modify these default  DPM/RPM values. If so,  modifications in the R-version must be then introduced (See Chapter 7). Examples of land cover reclassification from the ESA land cover database into the RothC land use categories are presented (Table 6.4) at the end of this Chapter.
 
-**Table 6.1** *FAO Land cover classes, land cover number and default DPM/RPM ratios. An extra land use class (&#42;Tree-crops) is shown as an example of the disaggregation of a land use class.*
-
 ```{r, echo = FALSE}
 library(kableExtra)
 library(dplyr)
 dt <- read.csv("tables/Table_6.1.csv", sep = ";")
-kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
-kable_styling("striped", full_width = F)
+kable(booktabs = T, dt, col.names = gsub("[.]", " ", names(dt)),caption = 'FAO Land cover classes, land cover number and default DPM/RPM ratios. An extra land use class (see Tree-crops) is shown as an example of the disaggregation of a land use class.',
+format = 'latex') %>%
+kable_classic(latex_options = c( "scale_down","HOLD_position"),full_width = F)
 ```
+
 
 As a minimum, land use for the year 2000 and land use for the year 2020 (or last available year) at 1x1 km resolution shall be defined. The predominant land use category in each cell of the 1x1 km grid shall be selected if finer resolutions are available.
 
@@ -87,7 +89,7 @@ The annual distribution of vegetation cover can be derived from:
 *   public statistics of national and/or administrative units considering the predominant agricultural systems in a temporal series (2000-2020); 
 *   derived from NDVI (normalized difference in vegetation index) values from historic satellite images (See data sets, Table 6.2).
 
-The occurrence of plant cover can be assumed to be constant in grasslands, shrublands and savannas and during specific months (e.g. 1-6 months for croplands) (e.g. Smith et al., 2005; Smith et al., 2007). The following coefficients can be set for based on the specific land cover and/or land use:
+The occurrence of plant cover can be assumed to be constant in grasslands, shrublands and savannas and during specific months (e.g. 1-6 months for croplands) (e.g. Smith *et al.*, 2005; Smith *et al.*, 2007). The following coefficients can be set for based on the specific land cover and/or land use:
 
 *   Perennial tree-crops, forests and grasslands (c=0.6);
 *   Months with predominantly bare soil and unvegetated fallows (c=1);
@@ -106,8 +108,8 @@ NDVI is proposed as an alternative for estimating vegetation cover when no veget
 ## Monthly carbon inputs: 
 
 ### C inputs under BAU practices: 
-Carbon inputs for the BAU scenarios shall be estimated using the approach proposed by Smith et al. (2005; 2006; 2007) and Gottschalk et al. (2012). Total plant C inputs to the soil, which include plant litter, root exudates and fine root turnover, are rarely known. To overcome this problem, RothC shall be run in 'equilibrium mode' to calculate the initial plant carbon inputs to the soil (or 'equilibrium Carbon inputs', Ceq), which led to the initial SOC stocks (GSOCmap), under historic forcing conditions. The Ceq thus represents the historical average of annual carbon input of the BAU scenario up to the year 2000. For further details on the equilibrium run and initialization to estimate Ceq, refer to section 3.2 (General modeling procedures). 
-Once these initial carbon inputs have been established (from the year 2000 onwards), year-to-year changes can be adjusted in accordance with changes in Net Primary Production (NPP), as changes in C inputs to the soil are assumed to be associated with changes in NPP (Smith et al., 2005). Thus, annual C inputs for the BAU scenario can be adjusted as:
+Carbon inputs for the BAU scenarios shall be estimated using the approach proposed by Smith *et al.* (2005; 2006; 2007) and Gottschalk *et al.* (2012). Total plant C inputs to the soil, which include plant litter, root exudates and fine root turnover, are rarely known. To overcome this problem, RothC shall be run in 'equilibrium mode' to calculate the initial plant carbon inputs to the soil (or 'equilibrium Carbon inputs', Ceq), which led to the initial SOC stocks (GSOCmap), under historic forcing conditions. The Ceq thus represents the historical average of annual carbon input of the BAU scenario up to the year 2000. For further details on the equilibrium run and initialization to estimate Ceq, refer to section 3.2 (General modeling procedures). 
+Once these initial carbon inputs have been established (from the year 2000 onwards), year-to-year changes can be adjusted in accordance with changes in Net Primary Production (NPP), as changes in C inputs to the soil are assumed to be associated with changes in NPP (Smith *et al.*, 2005). Thus, annual C inputs for the BAU scenario can be adjusted as:
 
 \begin{equation}
 \tag{6.4}
@@ -115,18 +117,18 @@ BAU_{Ct} = C_{t-1} \times (NPP_{t-1})-1 \times NPP_t
 \end{equation}
 
 
-where $BAU_{Ct}$ is the annual carbon input of a specific year $t$; $C_{t-1}$ is the annual carbon input of the previous year; $NPP_t$ is the net primary production of year $t$, and $NPP-t$ is the NPP of the previous year (in tC ha^-1^). Thus, the average NPP over the initialization period shall be associated with Ceq and the annual C inputs for the BAU scenario can be adjusted as:
+where $BAU_{Ct}$ is the annual carbon input of a specific year $t$; $C_{t-1}$ is the annual carbon input of the previous year; $NPP_t$ is the net primary production of year $t$, and $NPP-t$ is the NPP of the previous year (in tC/ha). Thus, the average NPP over the initialization period shall be associated with Ceq and the annual C inputs for the BAU scenario can be adjusted as:
 \begin{equation}
 \tag{6.5}
-BAU_{Ct \ 2001} = C_{eq} \times NPP_{1980-2000}^{-1} \times NPP_{2001}                                                 
+BAU_{Ct \ 2001} = C_{eq} \times NPP_{1980-2000}^{-1} \times NPP_{2001}                     
 \end{equation}
 
 where $BAU_{Ct \ 2001}$ is the annual carbon input for the first year of the 'short spin-up' phase; $C_{eq}$ is the estimated annual C input at equilibrium derived through the 'long spin-up' process; $NPP_{1980-2000}$ is the estimated average net primary production over the initialization period (1980-2000); and $NPP_{2001}$  is the estimated annual net primary production for the first year of the 'short spin-up' phase. The annual C inputs for the BAU scenario can be then adjusted following equation 7, according to changes in the NPP.
-The estimation of NPP using the MIAMI model (Lieth, 1975) is defined as the standard method in this document. It requires little input and is easily applicable worldwide, can be used to estimate NPP under future climatic conditions, and can act as a baseline for different NPP data sets or projections (e.g. Gottschalk et al., 2012). NPP estimated with the MIAMI model is computed with the following equations:
+The estimation of NPP using the MIAMI model (Lieth, 1975) is defined as the standard method in this document. It requires little input and is easily applicable worldwide, can be used to estimate NPP under future climatic conditions, and can act as a baseline for different NPP data sets or projections (e.g. Gottschalk *et al.*, 2012). NPP estimated with the MIAMI model is computed with the following equations:
 
 \begin{equation}
 \tag{6.6}
-NPP_{MIAMI}= min(NPP_T , NPP_P)                                                                       
+NPP_{MIAMI}= min(NPP_T , NPP_P)                                                          
 \end{equation}
 
 \begin{equation}
@@ -134,23 +136,21 @@ NPP_{MIAMI}= min(NPP_T , NPP_P)
 NPPT_{MIAMI}= \frac{3000}{1 + e^{1.315-0.119} \times T}  
 \end{equation}
 
-                                                            
-
 \begin{equation}
 \tag{6.8}
 NPPP_{MIAMI} = 3000 \times 1 - e^{-0.000664P} 
 \end{equation}
 
-where $NPP$ is the climatic net primary production in dry matter (DM; g m^-2^ yr^-1^), $NPP_T$ is the temperature dependency term of NPP, where $T$ is the annual mean temperature ($^\circ$C) and $NPP_P$ is the moisture dependency term of NPP, where P is the mean annual sum of precipitation (mm). NPP is limited by either temperature or precipitation. MIAMI model NPP can be expressed in t C ha^-1^ yr^-1^ as:
+where $NPP$ is the climatic net primary production in dry matter (DM; g m^-2^ yr^-1^), $NPP_T$ is the temperature dependency term of NPP, where $T$ is the annual mean temperature ($^\circ$C) and $NPP_P$ is the moisture dependency term of NPP, where P is the mean annual sum of precipitation (mm). NPP is limited by either temperature or precipitation. MIAMI model annual NPP can be expressed in tC/ha as:
 
 \begin{equation}
 \tag{6.9}
-NPP_{MIAMI} \ tC ha^1 yr^{-1} = NPP_{MIAMI} (DM; g m^{-2} yr^{-1}) \times 0.01 \times 0.48                  
+NPP_{MIAMI} \ tC ha^1 yr^{-1} = NPP_{MIAMI} (DM; g m^{-2} yr^{-1}) \times 0.01 \times 0.48  
 \end{equation}
 
 
 The annual NPPMIAMI shall be estimated for each grid cell from the climatic data sets described in section 6.1 for the different simulation periods (1981-1990; 1991-2000; 2001-2010; 2011-2020; 2021-2040). The NPPMIAMI is used to estimate BAU carbon inputs under current and projected climatic conditions.
-The change in NPP is used as a surrogate for estimating the change in C input and assumes that a similar proportion remains in the field (e.g. Smith et al., 2005; Gottschalk et al., 2012). In a first instance, countries should focus on C inputs in agricultural lands in 2020, the use of which has not changed since the year 2000. Changes in land use and management over the period 2000-2020 and associated changes in C inputs can nevertheless be taken into account, if trends in biomass removal are known, in order to adjust C inputs (e.g. Schulze et al., 2010; Plutzar et al., 2016; Neumann and Smith, 2018). Thus, the annual changes in C inputs by equations 7 and 8 can be adjusted using annual land cover data. For example, by assuming and approving an NPP of 12, 28 and 47% for forests, grasslands and croplands (Schulze et al., 2010), the annual NPP of a specific year (NPPt) can be adjusted using these coefficients (equations 6.9 to 6.11), and the annual C inputs can then be estimated by equations 6.3 and 6.4:
+The change in NPP is used as a surrogate for estimating the change in C input and assumes that a similar proportion remains in the field (e.g. Smith *et al.*, 2005; Gottschalk *et al.*, 2012). In a first instance, countries should focus on C inputs in agricultural lands in 2020, the use of which has not changed since the year 2000. Changes in land use and management over the period 2000-2020 and associated changes in C inputs can nevertheless be taken into account, if trends in biomass removal are known, in order to adjust C inputs (e.g. Schulze *et al.*, 2010; Plutzar *et al.*, 2016; Neumann and Smith, 2018). Thus, the annual changes in C inputs by equations 7 and 8 can be adjusted using annual land cover data. For example, by assuming and approving an NPP of 12, 28 and 47 percent for forests, grasslands and croplands (Schulze *et al.*, 2010), the annual NPP of a specific year (NPPt) can be adjusted using these coefficients (equations 6.9 to 6.11), and the annual C inputs can then be estimated by equations 6.3 and 6.4:
 
 \begin{equation}
 \tag{6.10}
@@ -171,64 +171,84 @@ NPPt_{croplands} = NPP_{MIAMI} \times 0.53
 ### C inputs under SSM practices: 
 
 SSM practices shall be grouped into three scenarios as a standard method, based on their expected relative effects on C inputs compared to BAU: Low, Medium and High C inputs. The SSM practices considered in this approach are practices that affect C inputs to the soil, as changes in C inputs have been identified as one of the factors to which models are most sensitive when projecting changes in SOC stocks (FAO, 2019).
-As with estimates of BAU C inputs, total plant C inputs to the soil, including plant litter, root exudates and fine root turnover, are rarely known. Thus, C inputs of SSM scenarios will represent a % increase from BAU C inputs:
+As with estimates of BAU C inputs, total plant C inputs to the soil, including plant litter, root exudates and fine root turnover, are rarely known. Thus, C inputs of SSM scenarios will represent a percent increase from BAU C inputs:
 
 \begin{equation}
 \tag{6.13}
 	\Delta \% CSSM-BAU = (Cinputs_{SSM} - Cinputs_{BAU}) \times Cinputs_{BAU}
 \end{equation}
 	
-As a standard, the expected effects (% increase in C inputs) of 3 scenarios have been conservatively set at:
+As a standard, the expected effects (percent increase in C inputs) of 3 scenarios have been conservatively set at:
 
-*   Low: 5 % increase in C inputs
-*   Medium: 10% increase C inputs
-*   High: 20 % increase in C inputs
+*   Low: 5 percent increase in C inputs
+*   Medium: 10 percent increase C inputs
+*   High: 20 percent increase in C inputs
 
-These percentages (based on Smith, 2004; Wiesmeier et al., 2016) shall be used to produce the mandatory maps for the global product. An additional 'High increase' scenario, considering a 30% increase in C inputs, can be modeled, to compare results with recent 'top-down' modeling approaches (e.g. CIRCASA).
-The use of default percentages in C input increase can be applied globally without complex configuration. However, countries should carefully check whether these scenarios are reasonable and under what type of management practices they are achievable. Countries are encouraged to produce and provide additional maps, taking into account their own estimates of the effects of different selected practices or land use changes, based on expert knowledge and local capacities. These effects can be determined on the basis of expert opinion and available information at the country level. A meta-analysis should be conducted based on the latest available local and regional studies to estimate how agricultural practices affect average annual C inputs (and the % increase in C input compared to BAU practices). These practices may include, for example, the use of cover crops, rotation with high residue yielding crops or perennials, residue retention, grazing management, plant nutrition, species introduction, manure or organic amendment application, among others. If no data is directly provided in the compiled studies, carbon inputs and % increase in C inputs relative to BAU practices shall be estimated considering the framework proposed by Bolinder et al. (2007). 
+These percentages (based on Smith, 2004; Wiesmeier *et al.*, 2016) shall be used to produce the mandatory maps for the global product. An additional 'High increase' scenario, considering a 30 percent increase in C inputs, can be modeled, to compare results with recent 'top-down' modeling approaches (e.g. CIRCASA).
+The use of default percentages in C input increase can be applied globally without complex configuration. However, countries should carefully check whether these scenarios are reasonable and under what type of management practices they are achievable. Countries are encouraged to produce and provide additional maps, taking into account their own estimates of the effects of different selected practices or land use changes, based on expert knowledge and local capacities. These effects can be determined on the basis of expert opinion and available information at the country level. A meta-analysis should be conducted based on the latest available local and regional studies to estimate how agricultural practices affect average annual C inputs (and the percent increase in C input compared to BAU practices). These practices may include, for example, the use of cover crops, rotation with high residue yielding crops or perennials, residue retention, grazing management, plant nutrition, species introduction, manure or organic amendment application, among others. If no data is directly provided in the compiled studies, carbon inputs and percent increase in C inputs relative to BAU practices shall be estimated considering the framework proposed by Bolinder *et al.* (2007). 
 The annual C inputs required to model the effects of SSM practices under 3 scenarios (Low, Medium, High) for each modeling unit (i.e. grid cells) shall be estimated from the annual BAU C inputs:
 
 \begin{equation}
 \tag{6.14}
-SSM_{Ct} t C ha^-1 yr^-1 = BAU_{Ct} + \% \Delta CSSM_i - BAU \times  BAU_{Ct}
+SSM_{Ct} t C ha^-1^ yr^-1^ = BAU_{Ct} + \% \Delta CSSM_i - BAU \times  BAU_{Ct}
 \end{equation}
 
 where $SSM_{Ct}$ represents the estimated annual C inputs for a specific scenario ($i$ =Low, Medium, High) for year $t$; $BAU_{Ct}$ represents the estimated annual C inputs for the BAU scenario for year t (determined from C inputs at equilibrium, as explained at the beginning of this section and in Chapter 5), and 
-$\% \Delta CSSM_i - BAU$ is the representative % increase in C inputs for a specific scenario ($i$=Low, Medium, High). 
+$\% \Delta CSSM_i - BAU$ is the representative percent increase in C inputs for a specific scenario ($i$=Low, Medium, High). 
 
 ## Residue decomposability: decomposable to resistant plant material ratio (DPM/RPM)
 Default values for the DPM/RPM ratio (decomposability of incoming plant material) can be used (e.g. 1.44 for crops and improved grasslands; 0.67 for unimproved grasslands and shrublands, and 0.25 for forests, woodlands and tree crops; Falloon and Smith, 2009). Table 6.1 (Land cover data sets) show default DPM/RPM for FAO land use classes.  These default values can be modified according to region-specific data and local knowledge. 
 
 ## Required data sets and global data sources. Summary
-The required data sets described in this chapter are summarized in Table 6.2. The proposed regional and global data sources to obtain the required input data when no quality national or regional data is available are described in Table 6.3. 
+The required data sets described in this chapter are summarized here: 
 
-**Table 6.2** *Summary of the input data requirements for the proposed modeling approach to generate national SOCseq maps*
+* **Climate data**
+  * Monthly air temperature (°C)
+    * Time series: 1980-2000, 2001-2020 (or until last year available)
+    * Raster data; resolution: 50x50 km
+  * Monthly precipitation (+ irrigation) (mm)
+    * Time series: 1980-2000, 2001-2020 (or until last year available)
+    * Raster data; resolution: 50x50 km
+  * Monthly evapotranspiration/pan evaporation (mm)
+    * Time series: 1980-2000, 2001-2020 (or until last year available)
+    * Raster data; resolution: 50x50 km
+* **Soil data**
+  * Topsoil clay content (0-30 cm, %)
+    * Raster data< 1x1 km
+  * Current SOC stocks (0-30 cm, tC/ha)
+    * latest version of national GSOCmap
+    * Raster data, 1x1 km
+* **Land use/land cover**
+  * grassland/shrubland/savannas and forestry;
+    * Time series: min. 2000 and 2020 (or last year available); optimal: annual land use from 2000 to 2020
+    * Raster data; 1x1 km
+  * Monthly vegetation cover
+    * Minimum: average 2000-2020 (or last year available); optimal: annual land use 2000 to 2020
+    * Raster data; 1x1 km
+    * Optimum: 13 classes as defined in the FAO Global Land Cover - SHARE (GLC-SHARE)
+    * Alternatively: Obtained from national statistics/local expert knowledge; or derived from NDVI or spectral indexes (see section 3.3.4)
+
+The proposed regional and global data sources to obtain the required input data when no quality national or regional data is available are described here:
+
+
+\blandscape
 ```{r, echo = FALSE}
 library(kableExtra)
 library(dplyr)
-dt <- read.csv("tables/Table_6.2.csv", sep = ";")
-kable(dt, col.names = gsub("[.]", " ", names(dt))) %>%
-kable_styling("striped", full_width = F)
+dt <- read.csv("tables/Table_6.3.csv", sep = ";")
+kable(booktabs = T, dt, col.names = gsub("[.]", " ", names(dt)),caption = 'Global and regional data sources to generate national SOCseq maps.',
+format = 'latex')  %>%
+kable_classic(latex_options = c("scale_down","HOLD_position"),full_width = F)
 ```
+\elandscape
 
-**Table 6.3** *Global and regional data sources to generate national SOCseq maps*
-
-```{r, echo = FALSE}
-library(kableExtra)
-library(dplyr)
-dt <- read.csv("tables/Table_6.3.csv", sep = ";", fileEncoding = 'UTF-8-BOM')
-kable(dt, col.names = gsub("[.]", " ", names(dt)))  %>%
-kable_styling("striped", full_width = F)
-```
-
-**Table 6.4** *Land cover aggregation schemes into RothC land use classes. Example from ESA*
 ```{r, echo = FALSE}
 library(kableExtra)
 library(dplyr)
 dt <- read.csv("tables/Table_6.4.csv", sep = ";")
-kable(dt, col.names = gsub("[.]", " ", names(dt)))  %>%
-kable_styling("striped", full_width = F)
+kable(booktabs = T, dt, col.names = gsub("[.]", " ", names(dt)),caption = 'Land cover aggregation schemes into RothC land use classes. Example from ESA.',
+format = 'latex')  %>%
+kable_classic(latex_options = c("scale_down","HOLD_position"),full_width = F)
 ```
 *cover classes= "-9999" denotes areas to be excluded without local adaptations in the RothC model.*
-
 
